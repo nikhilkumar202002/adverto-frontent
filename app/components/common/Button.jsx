@@ -13,7 +13,7 @@ export default function Button({
     <Link
       href={href}
       className={clsx(
-        "group relative inline-flex h-[56px] items-center justify-center overflow-hidden bg-[#0000FF] px-8 text-[16px] font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]",
+        "group relative inline-flex items-center justify-center overflow-hidden bg-[#0000FF] px-[22px] py-[12px] text-[14px] font-normal text-[#EDEDED] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)] tracking-wide",
         className
       )}
       style={{

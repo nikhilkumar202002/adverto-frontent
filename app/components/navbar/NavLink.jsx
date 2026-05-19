@@ -4,7 +4,7 @@ export default function NavLink({ href, label }) {
   return (
     <Link
       href={href}
-      className="group relative text-sm uppercase tracking-widest text-white/70 transition duration-300 hover:text-white"
+      className="group relative text-[14px] text-[#EDEDED] font-regular tracking-wide transition duration-300 hover:text-white"
     >
       {label}
 

@@ -18,15 +18,12 @@ export default function MobileMenu({
     >
       {/* Top */}
       <div className="flex items-center justify-between border-b border-white/10 px-[24px] py-6">
-        <Link
-          href="/"
-          className="text-xl font-bold uppercase tracking-[0.2em] text-white"
-        >
+        <Link href="/" className="text-[14px] font-normal uppercase tracking-[0.2em] text-[#EDEDED]">
           Adverto
         </Link>
 
         <button onClick={() => setIsOpen(false)}>
-          <X size={30} className="text-white" />
+          <X size={30} className="text-[#EDEDED]" />
         </button>
       </div>
 
@@ -37,7 +34,7 @@ export default function MobileMenu({
             key={item.label}
             href={item.href}
             onClick={() => setIsOpen(false)}
-            className="text-3xl font-semibold uppercase tracking-wider text-white transition hover:text-[#0000FF]"
+            className="text-[14px] font-normal uppercase tracking-wider text-[#EDEDED] transition hover:text-[#0000FF]"
           >
             {item.label}
           </Link>
