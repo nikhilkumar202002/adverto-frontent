@@ -3,6 +3,10 @@
 import GridLines from "../common/GridLines";
 import Container from "../common/Container";
 import Button from "../common/Button";
+import AnimatedText from "../common/AnimatedText";
+import { motion } from "framer-motion";
+import { MoveDown } from "lucide-react";
+
 
 export default function HeroSection() {
   return (
@@ -13,27 +17,34 @@ export default function HeroSection() {
 
       <Container className="relative z-10 h-full flex items-center justify-center">
         
-        <div className="max-w-[1100px] w-full flex flex-col items-center justify-center text-center">
-          
-          <p className="mb-4 text-sm md:text-[14px] tracking-[0.1em] text-[#0000FF] flex items-center gap-3">
+        <motion.div
+          className="max-w-[1100px] w-full flex flex-col items-center justify-center text-center"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.12, delayChildren: 0.08 } },
+          }}
+        >
+
+          <motion.p variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="mb-4 text-sm md:text-[14px] tracking-[0.1em] text-[#0000FF] flex items-center gap-3">
             <span className="w-[30px] md:w-[50px] h-[1px] md:h-[1.5px] bg-[#0000FF] inline-block" />
             Creative Agency — Est. 2016
-          </p>
+          </motion.p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-[64px] lg:text-[93px] font-semibold leading-[0.9]">
-            We build brands that{" "}
-            <span className="text-[#0000FF] italic">
-              dominate
-            </span>{" "}
-            attention.
-          </h1>
+          <motion.h1 variants={{ hidden: { opacity: 0, y: 26 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22,1,0.36,1] } } }} className="text-4xl sm:text-5xl md:text-[64px] lg:text-[93px] font-semibold leading-[0.9]">
+            <AnimatedText text={"We build brands that " } className="mr-2" />
+            <AnimatedText text={<span className="text-[#0000FF] italic">dominate</span>} className="mr-2" />
+            <AnimatedText text={"attention."} />
+          </motion.h1>
 
-          <p className="mt-6 max-w-[550px] text-base md:text-[20px] leading-[1.1] text-white/60 font-regular">
+          <motion.p variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="mt-6 max-w-[550px] text-base md:text-[20px] leading-[1.1] text-white/60 font-regular">
             Branding, campaigns, video production, and social
             experiences crafted for modern businesses.
-          </p>
+          </motion.p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
+          <motion.div variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="mt-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
             <Button>
               View Works
             </Button>
@@ -41,9 +52,9 @@ export default function HeroSection() {
             <Button variant="secondary">
               Book Consultation
             </Button>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </Container>
 
       {/* Scroll indicator */}
@@ -57,10 +68,7 @@ export default function HeroSection() {
             }
           }}
         >
-          <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-            <path d="M12 5v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M6 13l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <MoveDown  className="long-arrow text-[#0000FF]" strokeWidth={1.6} aria-hidden />
           <span className="text-xs md:text-sm">Scroll to Explore</span>
         </button>
       </div>
@@ -68,6 +76,14 @@ export default function HeroSection() {
       <style jsx>{`
         button[aria-label="Scroll to explore"] svg {
           animation: arrowBounce 1.6s infinite;
+        }
+
+        /* make the lucide arrow taller to match the "long" look */
+        button[aria-label="Scroll to explore"] svg.long-arrow {
+          transform-origin: center;
+          transform: scaleY(1.6);
+          width: 20px;
+          height: 20px;
         }
 
         @keyframes arrowBounce {

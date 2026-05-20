@@ -2,7 +2,7 @@
 
 export default function GridLines() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
       {/* Vertical Lines (moves diagonally) */}
       <div
         className="absolute inset-0 opacity-[0.08] grid-move vertical-grid"
