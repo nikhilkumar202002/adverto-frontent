@@ -8,22 +8,44 @@ export default function Button({
   children,
   href = "#",
   className,
+  variant = "primary",
 }) {
+  const base =
+    "group relative inline-flex items-center justify-center overflow-hidden px-[22px] py-[12px] text-[14px] font-normal transition-all duration-300 tracking-wide";
+
+  const clipPath =
+    "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))";
+
+  const primary =
+    "bg-[#0000FF] text-[#EDEDED] hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]";
+
+  const secondary =
+    "bg-transparent text-white hover:bg-white/5 hover:scale-[1.01]";
+
+  const classes = clsx(base, variant === "secondary" ? secondary : primary, className);
+
   return (
     <Link
       href={href}
-      className={clsx(
-        "group relative inline-flex items-center justify-center overflow-hidden bg-[#0000FF] px-[22px] py-[12px] text-[14px] font-normal text-[#EDEDED] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)] tracking-wide",
-        className
-      )}
+      className={classes}
       style={{
-        // Updated to match the screenshot's chamfered corners (top-right and bottom-left)
-        clipPath:
-          "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
+        // Chamfered corners (top-right and bottom-left)
+        clipPath,
       }}
     >
-      {/* Glow Overlay */}
-      <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      {/* Glow Overlay for primary only */}
+      {variant !== "secondary" && (
+        <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      )}
+
+      {/* Border overlay for secondary to match clipPath exactly */}
+      {variant === "secondary" && (
+        <span
+          aria-hidden
+          className="absolute inset-0 pointer-events-none border-[1px] border-white/90 transition-colors duration-300 group-hover:border-[#0000FF] group-hover:bg-[#0000FF]/20 box-border"
+          style={{ clipPath }}
+        />
+      )}
 
       {/* Content */}
       <span className="relative z-10 flex items-center gap-3">
