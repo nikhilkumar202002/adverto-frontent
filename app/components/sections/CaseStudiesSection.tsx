@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Container from "../common/Container";
 
@@ -44,28 +45,35 @@ export default function CaseStudiesSection() {
 
         {/* --- 2. FEATURED PROJECT 1 (NOIR) --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
-          {/* Image (Left, spans 7 cols) */}
-          <motion.div 
+          {/* Image (Left) */}
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="group relative overflow-hidden bg-white/5 h-[320px] md:h-[500px]"
           >
-             <div className="absolute inset-0 bg-[#1A1A1A] transition-transform duration-700 group-hover:scale-105" />
-             {/* Replace with <Image src="/path-to-noir.jpg" fill className="object-cover" /> */}
+            <div className="absolute inset-0 overflow-hidden">
+              <img
+                src="https://cdn.dribbble.com/userupload/44948077/file/1ac8c0dd83bb22d8d20685ca89cc678e.jpg?resize=1024x767&vertical=center"
+                alt="NOIR — project"
+                loading="lazy"
+                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="absolute inset-0 bg-black/20" />
           </motion.div>
 
-          {/* Text (Right, spans 5 cols) */}
-          <motion.div 
+          {/* Text (Right) */}
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col h-[320px] md:h-[500px] justify-center p-[80px] bg-[#080808] border border-[#252525]"
+            className="flex flex-col h-[320px] md:h-[500px] justify-center p-6 md:p-12 bg-[#080808] border border-[#252525]"
           >
             <p className="text-[#0000FF] uppercase tracking-[0.15em] text-xs mb-3">Luxury Fashion</p>
             <h3 className="text-3xl md:text-4xl font-medium text-[#EDEDED] mb-4">NOIR — Identity System</h3>
             <p className="text-white/50 text-sm mb-8 leading-relaxed">
-              A bespoke visual identity designed for an emerging luxury fashion label. 
+              A bespoke visual identity designed for an emerging luxury fashion label.
               We focused on typography, robust photography direction, and a sleek monochromatic UI system.
             </p>
             <Link href="/work/noir" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white border-b border-white/20 hover:border-white pb-1 w-max transition-all">
@@ -76,23 +84,30 @@ export default function CaseStudiesSection() {
 
         {/* --- 3. FEATURED PROJECT 2 (APEX) --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
-           {/* Image (Left, spans 7 cols) */}
-          <motion.div 
+          {/* Image (Left) */}
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="group relative overflow-hidden bg-white/5 h-[320px] md:h-[500px]"
           >
-             <div className="absolute inset-0 bg-[#1A1A1A] transition-transform duration-700 group-hover:scale-105" />
-             {/* Replace with <Image src="/path-to-apex.jpg" fill className="object-cover" /> */}
+            <div className="absolute inset-0 overflow-hidden">
+               <img
+                src="https://cdn.dribbble.com/userupload/46853171/file/81b0e4b8cb5f6afa0901ca006ff4fda1.jpg?resize=1024x576&vertical=center"
+                alt="NOIR — project"
+                loading="lazy"
+                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="absolute inset-0 bg-black/20" />
           </motion.div>
 
-          {/* Text (Right, spans 5 cols) */}
-          <motion.div 
+          {/* Text (Right) */}
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col h-[320px] md:h-[500px] justify-center p-6 md:p-12"
+            className="flex flex-col h-[320px] md:h-[500px] justify-center p-6 md:p-12 bg-[#080808] border border-[#252525]"
           >
             <p className="text-[#0000FF] uppercase tracking-[0.15em] text-xs mb-3">Technology</p>
             <h3 className="text-3xl md:text-4xl font-medium text-[#EDEDED] mb-4">APEX — Product Launch Campaign</h3>
@@ -106,18 +121,18 @@ export default function CaseStudiesSection() {
         </div>
 
         {/* --- 4. COLLAGE GRID (3 Columns) --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-24 md:mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[6px]">
           {/* Col 1 */}
-          <div className="flex flex-col gap-4 md:gap-6">
-             <div className="w-full aspect-square bg-[#1A1A1A] rounded-sm" />
-             <div className="w-full aspect-[4/3] bg-[#1A1A1A] rounded-sm" />
+          <div className="flex flex-col gap-[6px]">
+             <div className="w-full aspect-square bg-[#1A1A1A] " />
+             <div className="w-full aspect-[4/3] bg-[#1A1A1A] " />
           </div>
           {/* Col 2 (Hero image in center) */}
-          <div className="w-full h-full min-h-[400px] bg-[#1A1A1A] rounded-sm" />
+          <div className="w-full h-full min-h-[400px] bg-[#1A1A1A] " />
           {/* Col 3 */}
-          <div className="flex flex-col gap-4 md:gap-6">
-             <div className="w-full aspect-[4/3] bg-[#1A1A1A] rounded-sm" />
-             <div className="w-full aspect-square bg-[#1A1A1A] rounded-sm" />
+          <div className="flex flex-col gap-[6px]">
+             <div className="w-full aspect-[4/3] bg-[#1A1A1A] " />
+             <div className="w-full aspect-square bg-[#1A1A1A] " />
           </div>
         </div>
 
