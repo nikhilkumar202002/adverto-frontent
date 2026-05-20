@@ -3,7 +3,6 @@
 export default function GridLines() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-      {/* Vertical Lines (moves diagonally) */}
       <div
         className="absolute inset-0 opacity-[0.08] grid-move vertical-grid"
         style={{
@@ -17,7 +16,6 @@ export default function GridLines() {
         }}
       />
 
-      {/* Horizontal Lines (moves on a different path for parallax) */}
       <div
         className="absolute inset-0 opacity-[0.04] grid-move-slow horizontal-grid"
         style={{
@@ -31,13 +29,8 @@ export default function GridLines() {
         }}
       />
 
-      {/* Blue Glow (subtle floating movement) */}
-      {/* <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#0000FF]/20 blur-[180px] glow-move" /> */}
-
-      {/* Left-Bottom Glow (behind text) */}
       <div className="absolute left-14 bottom-8 h-[220px] w-[220px] rounded-full bg-[#0000FF]/20 blur-[120px] glow-left md:left-[220px] md:bottom-[120px] md:h-[420px] md:w-[420px] md:blur-[160px]" />
 
-      {/* Right-Top Glow (behind text) - mirrored/opposite of left */}
       <div className="absolute right-8 top-4 h-[260px] w-[260px] rounded-full bg-[#0000FF]/20 blur-[140px] glow-right md:right-[220px] md:top-[60px] md:h-[520px] md:w-[520px] md:blur-[200px]" />
 
       <style jsx>{`
@@ -53,7 +46,6 @@ export default function GridLines() {
           background-size: 120px 120px;
         }
 
-        /* smaller background grid on small screens */
         @media (max-width: 640px) {
           .grid-move,
           .grid-move-slow {

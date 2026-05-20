@@ -3,24 +3,25 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import clsx from "clsx";
+import React from "react";
 
-export default function Button({
-  children,
-  href = "#",
-  className,
-  variant = "primary",
-}) {
+interface ButtonProps {
+  children: React.ReactNode;
+  href?: string;
+  className?: string;
+  variant?: "primary" | "secondary";
+}
+
+export default function Button({ children, href = "#", className, variant = "primary" }: ButtonProps) {
   const base =
     "group relative inline-flex items-center justify-center overflow-hidden px-[22px] py-[12px] text-[14px] font-normal transition-all duration-300 tracking-wide";
 
   const clipPath =
     "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))";
 
-  const primary =
-    "bg-[#0000FF] text-[#EDEDED] hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]";
+  const primary = "bg-[#0000FF] text-[#EDEDED] hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]";
 
-  const secondary =
-    "bg-transparent text-white hover:bg-white/5 hover:scale-[1.01]";
+  const secondary = "bg-transparent text-white hover:bg-white/5 hover:scale-[1.01]";
 
   const classes = clsx(base, variant === "secondary" ? secondary : primary, className);
 
@@ -29,16 +30,13 @@ export default function Button({
       href={href}
       className={classes}
       style={{
-        // Chamfered corners (top-right and bottom-left)
         clipPath,
       }}
     >
-      {/* Glow Overlay for primary only */}
       {variant !== "secondary" && (
         <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       )}
 
-      {/* Border overlay for secondary to match clipPath exactly */}
       {variant === "secondary" && (
         <span
           aria-hidden
@@ -47,15 +45,10 @@ export default function Button({
         />
       )}
 
-      {/* Content */}
       <span className="relative z-10 flex items-center gap-3">
         {children}
 
-        <ArrowRight
-          size={20}
-          strokeWidth={2}
-          className="transition-transform duration-300 group-hover:translate-x-1"
-        />
+        <ArrowRight size={20} strokeWidth={2} className="transition-transform duration-300 group-hover:translate-x-1" />
       </span>
     </Link>
   );

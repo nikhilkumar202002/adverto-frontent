@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroSection from './components/hero/HeroSection'
 import MarqueeText from './components/common/MarqueeText'
+import CaseStudiesSection from './components/sections/CaseStudiesSection'
 
 const page = () => {
   const sliderContent = [
@@ -17,9 +18,8 @@ const page = () => {
   return (
     <>
       <HeroSection />
-      <main className="min-h-screen bg-black">
-        <MarqueeText items={sliderContent} />
-      </main>
+      <MarqueeText items={sliderContent} />
+      <CaseStudiesSection />
     </>
   )
 }
