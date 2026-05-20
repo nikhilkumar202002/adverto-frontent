@@ -37,6 +37,7 @@ export default function Navbar() {
               width={128}
               height={32}
               className="h-8 w-auto"
+              style={{ width: "auto" }}
             />
           </Link>
 

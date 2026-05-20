@@ -5,7 +5,7 @@ export default function GridLines() {
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       {/* Vertical Lines (moves diagonally) */}
       <div
-        className="absolute inset-0 opacity-[0.08] grid-move"
+        className="absolute inset-0 opacity-[0.08] grid-move vertical-grid"
         style={{
           backgroundImage: `
             linear-gradient(
@@ -14,13 +14,12 @@ export default function GridLines() {
               transparent 0px
             )
           `,
-          backgroundSize: "120px 120px",
         }}
       />
 
       {/* Horizontal Lines (moves on a different path for parallax) */}
       <div
-        className="absolute inset-0 opacity-[0.04] grid-move-slow"
+        className="absolute inset-0 opacity-[0.04] grid-move-slow horizontal-grid"
         style={{
           backgroundImage: `
             linear-gradient(
@@ -29,7 +28,6 @@ export default function GridLines() {
               transparent 10px
             )
           `,
-          backgroundSize: "120px 120px",
         }}
       />
 
@@ -37,20 +35,32 @@ export default function GridLines() {
       {/* <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#0000FF]/20 blur-[180px] glow-move" /> */}
 
       {/* Left-Bottom Glow (behind text) */}
-      <div className="absolute left-[220px] bottom-[120px] h-[420px] w-[420px] rounded-full bg-[#0000FF]/20 blur-[160px] glow-left" />
+      <div className="absolute left-14 bottom-8 h-[220px] w-[220px] rounded-full bg-[#0000FF]/20 blur-[120px] glow-left md:left-[220px] md:bottom-[120px] md:h-[420px] md:w-[420px] md:blur-[160px]" />
 
       {/* Right-Top Glow (behind text) - mirrored/opposite of left */}
-      <div className="absolute right-[220px] top-[60px] h-[520px] w-[520px] rounded-full bg-[#0000FF]/20 blur-[200px] glow-right" />
+      <div className="absolute right-8 top-4 h-[260px] w-[260px] rounded-full bg-[#0000FF]/20 blur-[140px] glow-right md:right-[220px] md:top-[60px] md:h-[520px] md:w-[520px] md:blur-[200px]" />
 
       <style jsx>{`
         .grid-move {
           animation: moveGrid 40s linear infinite;
           background-position: 0 0;
+          background-size: 120px 120px;
         }
 
         .grid-move-slow {
           animation: moveGridAlt 70s linear infinite;
           background-position: 0 0;
+          background-size: 120px 120px;
+        }
+
+        /* smaller background grid on small screens */
+        @media (max-width: 640px) {
+          .grid-move,
+          .grid-move-slow {
+            background-size: 80px 80px;
+          }
+          .grid-move { opacity: 0.06; }
+          .grid-move-slow { opacity: 0.03; }
         }
 
         .glow-move {
