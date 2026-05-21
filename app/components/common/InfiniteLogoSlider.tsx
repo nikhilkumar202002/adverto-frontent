@@ -6,10 +6,6 @@ import { clientLogos } from "../../data/logos";
 export default function InfiniteLogoSlider() {
   return (
     <div className="w-full bg-[#050505] overflow-hidden flex flex-col items-center">
-      
-      <p className="text-white/40 uppercase text-[12px] tracking-[1px] mb-8 text-center">
-        Trusted by innovative teams worldwide
-      </p>
 
       {/* The Container with Edge Fading */}
       <div 
@@ -26,7 +22,9 @@ export default function InfiniteLogoSlider() {
             100% { transform: translateX(-50%); }
           }
           .animate-logo-marquee {
-            animation: logo-marquee 30s linear infinite;
+            /* slower marquee for easier reading */
+            animation: logo-marquee 60s linear infinite;
+            will-change: transform;
           }
         `}</style>
 
@@ -34,20 +32,17 @@ export default function InfiniteLogoSlider() {
         <div className="animate-logo-marquee flex w-max items-center">
           {/* Duplicate the array twice to create the seamless loop */}
           {[...Array(2)].map((_, setIndex) => (
-            <div key={setIndex} className="flex shrink-0 items-center">
+            <div key={setIndex} className="flex shrink-0 items-center gap-[30px]">
               {clientLogos.map((logo) => {
                 const Icon = logo.icon;
                 return (
-                  <div 
-                    key={`${setIndex}-${logo.id}`} 
+                  <div
+                    key={`${setIndex}-${logo.id}`}
                     // Width is calculated to show exactly 6 on desktop, 4 on tablet, 3 on mobile
-                    className="flex w-[33vw] md:w-[25vw] lg:w-[calc(1200px/6)] shrink-0 items-center justify-center opacity-40 transition-opacity duration-300 hover:opacity-100 grayscale hover:grayscale-0"
+                    className="flex w-[33vw] md:w-[25vw] lg:w-[calc(1200px/7)] shrink-0 items-center justify-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                   >
-                    <div className="flex items-center gap-3">
-                      <Icon size={28} className="text-white" />
-                      <span className="text-white font-medium tracking-wide text-lg">
-                        {logo.name}
-                      </span>
+                    <div className="flex items-center transition-transform duration-300 ease-out hover:scale-110">
+                      <Icon size={100} className="text-white" />
                     </div>
                   </div>
                 );

@@ -7,6 +7,10 @@ export default function MobileMenu({
   isOpen,
   setIsOpen,
   navItems,
+}: {
+  isOpen: boolean;
+  setIsOpen: (v: boolean) => void;
+  navItems: { label: string; href: string }[];
 }) {
   return (
     <div

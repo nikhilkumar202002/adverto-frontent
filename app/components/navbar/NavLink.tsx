@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NavLink({ href, label }) {
+export default function NavLink({ href, label }: { href: string; label: React.ReactNode }) {
   return (
     <Link
       href={href}
