@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Container from "../common/Container";
 import Button from "../common/Button";
+import Reveal from "../common/Reveal";
 
 export default function CtaSection() {
   return (
@@ -12,6 +13,7 @@ export default function CtaSection() {
       <div className="absolute bottom-0 left-1/2 w-[800px] h-[600px] -translate-x-1/2 translate-y-1/2 bg-[#0000FF]/20 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <Container className="relative z-10 flex flex-col items-center text-center">
+        <Reveal>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,6 +50,7 @@ export default function CtaSection() {
           <Button href="/contact">Start your project</Button>
           <Button href="/portfolio" variant="secondary">Explore Portfolio</Button>
         </motion.div>
+        </Reveal>
       </Container>
     </section>
   );

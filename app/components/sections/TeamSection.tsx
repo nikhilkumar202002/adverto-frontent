@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Container from "../common/Container";
+import Reveal from "../common/Reveal";
 import { teamData } from "../../data/team";
 
 // Custom Behance Icon (since lucide-react no longer includes brand icons)
@@ -45,6 +46,7 @@ export default function TeamSection() {
   return (
     <section className="relative z-10 bg-[#050505] py-24 md:py-32 border-t border-white/5 overflow-hidden">
       <Container>
+        <Reveal>
         {/* --- SECTION HEADER --- */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-8 md:mb-10">
           <motion.div
@@ -141,6 +143,7 @@ export default function TeamSection() {
             </motion.div>
           ))}
         </div>
+        </Reveal>
       </Container>
     </section>
   );

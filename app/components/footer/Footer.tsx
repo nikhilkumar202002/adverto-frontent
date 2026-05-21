@@ -5,6 +5,7 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Container from "../common/Container";
 import { footerData } from "../../data/footer";
 import React from "react";
+import Image from "next/image";
 
 // Custom Behance Icon to match your team section
 const Behance = ({ size = 18 }) => (
@@ -31,7 +32,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#050505] relative z-20 border-t border-white/5">
       {/* --- MARQUEE HEADER --- */}
-      <div className="relative flex overflow-hidden border-b border-white/10 py-8 md:py-12">
+      <div className="relative flex overflow-hidden py-8 md:py-12">
         <style>{`
           @keyframes footer-marquee {
             0% { transform: translateX(0%); }
@@ -48,24 +49,22 @@ export default function Footer() {
               <span className="text-[60px] md:text-[90px] lg:text-[120px] font-medium text-white px-8 md:px-12 leading-none tracking-tight">
                 Get In Touch
               </span>
-              {/* Adverto Blue 'A' Icon Placeholder */}
-              <svg width="60" height="60" viewBox="0 0 100 100" className="text-[#0000FF] fill-current shrink-0 md:w-[80px] md:h-[80px]">
-                <path d="M50 0 L100 100 L0 100 Z" /> {/* Replace with your actual Adverto SVG path */}
-              </svg>
+              {/* Adverto Blue icon from public */}
+              <Image src="/main_icon-02.svg" alt="Adverto Icon" width={80} height={80} className="text-[#0000FF] shrink-0 md:w-[60px] md:h-[60px]" />
             </React.Fragment>
           ))}
         </div>
       </div>
 
       {/* --- FOOTER MAIN CONTENT --- */}
-      <Container className="py-20 md:py-24">
+      <Container className="pb-[30px] pt-[40px]">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 lg:gap-8">
           
           {/* Col 1: Logo */}
           <div className="col-span-2 lg:col-span-2 flex items-start">
              {/* Replace with your giant blue graphic/logo */}
              <div className="text-[#0000FF] font-bold text-[120px] leading-[0.8] tracking-tighter">
-                d<span className="text-white">.</span>
+                <Image src={"/main-logo.svg"} alt="Adverto Logo" width={200} height={200} className="w-auto h-[80px] md:h-[60px]" />
              </div>
           </div>
 

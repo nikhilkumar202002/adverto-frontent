@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, X } from "lucide-react";
 import Container from "../common/Container";
+import Reveal from "../common/Reveal";
 import { faqData } from "../../data/faqs";
 
 export default function FaqSection() {
@@ -17,6 +18,7 @@ export default function FaqSection() {
   return (
     <section className="relative z-10 bg-[#050505] py-24 md:py-32 border-t border-white/5 overflow-hidden">
       <Container>
+        <Reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
           
           {/* --- LEFT COLUMN: Header --- */}
@@ -116,6 +118,7 @@ export default function FaqSection() {
           </motion.div>
 
         </div>
+        </Reveal>
       </Container>
     </section>
   );
