@@ -88,7 +88,6 @@ export default function TeamSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               // Trigger the staggered hover animation on the entire card
-              initial="initial"
               whileHover="hover"
               className="group flex flex-col gap-4 cursor-pointer"
             >
