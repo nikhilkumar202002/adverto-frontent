@@ -5,12 +5,14 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Container from "../common/Container";
 import InfiniteProjectSlider from "../common/InfiniteProjectSlider";
+import Reveal from "../common/Reveal";
 import { moreProjects } from "../../data/moreProjects";
 
 export default function CaseStudiesSection() {
   return (
     <section className="relative z-10 bg-[#050505] py-24 md:py-32 overflow-hidden">
       <Container>
+        <Reveal>
         {/* --- 1. SECTION HEADER --- */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-[50px]">
           {/* Title (Left, spans 6 cols) */}
@@ -47,6 +49,7 @@ export default function CaseStudiesSection() {
         </div>
 
         {/* --- 2. FEATURED PROJECT 1 (NOIR) --- */}
+        <Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
           {/* Image (Left) */}
           <motion.div
@@ -89,6 +92,7 @@ export default function CaseStudiesSection() {
             </Link>
           </motion.div>
         </div>
+        </Reveal>
 
         {/* --- 3. FEATURED PROJECT 2 (APEX) --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
@@ -134,6 +138,7 @@ export default function CaseStudiesSection() {
         </div>
 
         {/* --- 4. COLLAGE GRID (3 Columns) --- */}
+        <Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[6px]">
           {/* Col 1 */}
           <div className="flex flex-col gap-[6px]">
@@ -208,10 +213,12 @@ export default function CaseStudiesSection() {
              </div>
           </div>
         </div>
+        </Reveal>
 
          <div className="mt-12 md:mt-24">
         <InfiniteProjectSlider projects={moreProjects} />
       </div>
+        </Reveal>
       </Container>
 
      

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 interface Project {
   id: number;
@@ -17,6 +18,7 @@ interface InfiniteProjectSliderProps {
 export default function InfiniteProjectSlider({ projects }: InfiniteProjectSliderProps) {
   return (
     <div className="w-full overflow-hidden">
+      <Reveal>
       {/* Header */}
       <div className="flex items-center justify-between mb-4 max-xl:px-[60px] max-lg:px-[40px] max-md:px-[24px]">
         <p className="text-[#0000FF] uppercase text-[14px] tracking-[0.1em] flex items-center gap-3">
@@ -76,6 +78,7 @@ export default function InfiniteProjectSlider({ projects }: InfiniteProjectSlide
           </div>
         ))}
       </div>
-    </div>
+      </Reveal>
+      </div>
   );
 }

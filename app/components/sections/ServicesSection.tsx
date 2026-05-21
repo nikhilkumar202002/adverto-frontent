@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Container from "../common/Container";
+import Reveal from "../common/Reveal";
 import { servicesData } from "../../data/services";
 
 export default function ServicesSection() {
   return (
     <section className="relative z-10 bg-[#050505] py-24 md:py-32 overflow-hidden border-t border-white/5">
       <Container>
+        <Reveal>
         {/* --- SECTION HEADER --- */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8 md:mb-10 items-end">
           {/* Title (Left, spans 7 cols) */}
@@ -94,6 +96,7 @@ export default function ServicesSection() {
             );
           })}
         </div>
+        </Reveal>
       </Container>
     </section>
   );
