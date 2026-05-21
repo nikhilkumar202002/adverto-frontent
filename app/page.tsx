@@ -2,6 +2,7 @@ import React from 'react'
 import HeroSection from './components/hero/HeroSection'
 import MarqueeText from './components/common/MarqueeText'
 import CaseStudiesSection from './components/sections/CaseStudiesSection'
+import ServicesSection from './components/sections/ServicesSection'
 
 const page = () => {
   const sliderContent = [
@@ -20,6 +21,7 @@ const page = () => {
       <HeroSection />
       <MarqueeText items={sliderContent} />
       <CaseStudiesSection />
+      <ServicesSection />
     </>
   )
 }
