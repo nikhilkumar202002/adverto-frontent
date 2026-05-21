@@ -12,14 +12,14 @@ export default function CtaSection() {
       {/* Deep Blue Radial Glow */}
       <div className="absolute bottom-0 left-1/2 w-[800px] h-[600px] -translate-x-1/2 translate-y-1/2 bg-[#0000FF]/20 blur-[120px] rounded-full pointer-events-none z-0" />
 
-      <Container className="relative z-10 flex flex-col items-center text-center">
+      <Container className="relative z-10 flex flex-col items-center justify-center text-center">
         <Reveal>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-center gap-4 mb-8"
+          className="flex items-center justify-center gap-4 mb-8"
         >
           <span className="w-8 h-[1px] bg-[#0000FF]" />
           <p className="text-[#0000FF] uppercase text-[12px] tracking-[0.2em] font-medium">
@@ -45,7 +45,7 @@ export default function CtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button href="/contact">Start your project</Button>
           <Button href="/portfolio" variant="secondary">Explore Portfolio</Button>
