@@ -2,6 +2,8 @@ import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import NoiseOverlay from "./components/common/NoiseOverlay";
 import CustomCursor from "./components/common/CustomCursor";
+import CtaSection from "./components/sections/CtaSection";
+import Footer from "./components/footer/Footer";
 
 export default function RootLayout({ children }) {
   return (
@@ -13,6 +15,8 @@ export default function RootLayout({ children }) {
           <main className="relative z-10">
             {children}
           </main>
+        <CtaSection />
+        <Footer />
       </body>
     </html>
   );
