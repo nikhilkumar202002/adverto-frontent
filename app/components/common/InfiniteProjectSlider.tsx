@@ -52,21 +52,21 @@ export default function InfiniteProjectSlider({ projects }: InfiniteProjectSlide
                 className="group relative w-[260px] h-[180px] mx-2 overflow-hidden bg-[#1A1A1A] cursor-pointer border border-transparent transition-colors duration-300 hover:border-b-2 hover:border-b-[#0000FF]"
               >
                 {/* Fallback background if image is missing */}
-                <div className="absolute inset-0 bg-[#0A0A0A]" />
+                <div className="absolute inset-0 bg-[#0A0A0A] z-0" />
                 
                 {/* External image (supports remote URLs) */}
                 <img
                   src={project.image}
                   alt={project.title}
                   loading="lazy"
-                  className="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  className="object-cover w-full h-full relative z-0"
                 />
 
-                {/* Gradient overlay to ensure text is always readable */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Bottom-to-top gradient overlay that slides up on hover (also fades in) */}
+                <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10" />
                 
                 {/* Bottom Left Text */}
-                <div className="absolute left-4 bottom-4 z-10">
+                <div className="absolute left-4 bottom-4 z-20">
                   <p className="text-[13px] text-white/90 font-medium tracking-wide">
                     {project.subtitle}
                   </p>

@@ -65,6 +65,10 @@ export default function CaseStudiesSection() {
             </div>
               <div className="absolute inset-0 bg-black/20" />
               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 pointer-events-none" />
+              <div className="absolute left-0 right-0 bottom-0 p-6 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10 pointer-events-none">
+                <h4 className="text-2xl font-medium text-white">NOIR — Identity System</h4>
+                <p className="text-sm text-[#0000FF] mt-2">Luxury Fashion</p>
+              </div>
           </motion.div>
 
           {/* Text (Right) */}
@@ -105,6 +109,10 @@ export default function CaseStudiesSection() {
             </div>
               <div className="absolute inset-0 bg-black/20" />
               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 pointer-events-none" />
+              <div className="absolute left-0 right-0 bottom-0 p-6 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10 pointer-events-none">
+                <h4 className="text-2xl font-medium text-white">APEX — Product Launch Campaign</h4>
+                <p className="text-sm text-[#0000FF] mt-2">Technology</p>
+              </div>
           </motion.div>
 
           {/* Text (Right) */}
