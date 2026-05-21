@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Container from "../common/Container";
+import InfiniteProjectSlider from "../common/InfiniteProjectSlider";
+import { moreProjects } from "../../data/moreProjects";
 
 export default function CaseStudiesSection() {
   return (
@@ -19,7 +20,9 @@ export default function CaseStudiesSection() {
             viewport={{ once: true }}
             className="md:col-span-6"
           >
-            <p className="text-[#0000FF] uppercase text-[14px] tracking-[1] mb-2 flex items-center gap-2"><span className="w-[30px] h-[1px]  bg-[#0000FF] "></span>SELECTED WORK</p>
+            <p className="text-[#0000FF] uppercase text-[14px] tracking-[1] mb-2 flex items-center gap-2">
+              <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>SELECTED WORK
+            </p>
             <h2 className="text-[45px] md:text-[65px] font-medium leading-[1] text-[#EDEDED]">
               Case Studies & <br /> Campaigns
             </h2>
@@ -50,7 +53,7 @@ export default function CaseStudiesSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="group relative overflow-hidden bg-white/5 h-[320px] md:h-[500px]"
+            className="group relative overflow-hidden bg-white/5 h-[320px] md:h-[500px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]"
           >
             <div className="absolute inset-0 overflow-hidden">
               <img
@@ -60,7 +63,8 @@ export default function CaseStudiesSection() {
                 className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 pointer-events-none" />
           </motion.div>
 
           {/* Text (Right) */}
@@ -89,17 +93,18 @@ export default function CaseStudiesSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="group relative overflow-hidden bg-white/5 h-[320px] md:h-[500px]"
+            className="group relative overflow-hidden bg-white/5 h-[320px] md:h-[500px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]"
           >
             <div className="absolute inset-0 overflow-hidden">
                <img
                 src="https://cdn.dribbble.com/userupload/46853171/file/81b0e4b8cb5f6afa0901ca006ff4fda1.jpg?resize=1024x576&vertical=center"
-                alt="NOIR — project"
+                alt="APEX — project"
                 loading="lazy"
                 className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 pointer-events-none" />
           </motion.div>
 
           {/* Text (Right) */}
@@ -124,40 +129,84 @@ export default function CaseStudiesSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[6px]">
           {/* Col 1 */}
           <div className="flex flex-col gap-[6px]">
-             <div className="w-full aspect-square bg-[#1A1A1A] " />
-             <div className="w-full aspect-[4/3] bg-[#1A1A1A] " />
+             <div className="w-full aspect-square overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+               <img
+                 src="https://cdn.dribbble.com/userupload/46006270/file/00fe3e9c5f60ca73b6be0076a3054b75.png?resize=1024x768&vertical=center"
+                 alt="Collage image 1"
+                 loading="lazy"
+                 className="object-cover w-full h-full"
+               />
+               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
+               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
+                 <h5 className="text-sm font-medium text-white">Project Name</h5>
+                 <p className="text-xs text-white/60 mt-1">Branding · 2023</p>
+               </div>
+             </div>
+             <div className="w-full aspect-[4/3] overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+               <img
+                 src="https://cdn.dribbble.com/userupload/45762002/file/5f2fe4e374f8514b53b863637d7379d0.png?resize=1024x768&vertical=center"
+                 alt="Collage image 2"
+                 loading="lazy"
+                 className="object-cover w-full h-full"
+               />
+               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
+               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
+                 <h5 className="text-sm font-medium text-white">Project Name</h5>
+                 <p className="text-xs text-white/60 mt-1">UI / Web · 2023</p>
+               </div>
+             </div>
           </div>
           {/* Col 2 (Hero image in center) */}
-          <div className="w-full h-full min-h-[400px] bg-[#1A1A1A] " />
+          <div className="w-full h-full min-h-[400px] overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+            <img
+              src="https://cdn.dribbble.com/userupload/46944459/file/817e33e8a07211881aef89ada4ebd3c5.webp?resize=1024x683&vertical=center"
+              loading="lazy"
+              alt="Volt Energy Project"
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
+            <div className="absolute left-0 right-0 bottom-0 p-6 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
+              <h4 className="text-3xl font-medium text-white">VOLT Energy</h4>
+              <p className="text-sm text-[#0000FF] mt-2">Consumer Goods · 2023</p>
+            </div>
+          </div>
           {/* Col 3 */}
           <div className="flex flex-col gap-[6px]">
-             <div className="w-full aspect-[4/3] bg-[#1A1A1A] " />
-             <div className="w-full aspect-square bg-[#1A1A1A] " />
+             <div className="w-full aspect-[4/3] overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+               <img
+                 src="https://cdn.dribbble.com/userupload/45535811/file/6966705b376133bcad5d29e49a1d46f7.jpg?resize=1024x629&vertical=center"
+                 alt="Collage image 3"
+                 loading="lazy"
+                 className="object-cover w-full h-full"
+               />
+               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
+               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
+                 <h5 className="text-sm font-medium text-white">Project Name</h5>
+                 <p className="text-xs text-white/60 mt-1">Photography · 2023</p>
+               </div>
+             </div>
+             <div className="w-full aspect-square overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+               <img
+                 src="https://cdn.dribbble.com/userupload/44108562/file/original-fe8d5d85f612be72b54aa2748cdc9090.png?resize=1024x768&vertical=center"
+                 loading="lazy"
+                 alt="Collage image 4"
+                 className="object-cover w-full h-full"
+               />
+               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
+               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
+                 <h5 className="text-sm font-medium text-white">Project Name</h5>
+                 <p className="text-xs text-white/60 mt-1">Campaign · 2023</p>
+               </div>
+             </div>
           </div>
         </div>
 
-        {/* --- 5. BOTTOM CAROUSEL/SLIDER --- */}
-        <div className="w-full border-t border-white/10 pt-12">
-          <div className="flex items-center justify-between mb-8">
-            <p className="text-[#0000FF] uppercase tracking-[0.2em] text-xs">— MORE PROJECTS</p>
-            <p className="text-xs text-white/40 tracking-widest">DRAG TO EXPLORE</p>
-          </div>
-          
-          {/* Simple scrollable row for small screens */}
-          <div className="flex gap-4 overflow-x-auto pb-8 snap-x hide-scrollbar">
-            {[1, 2, 3, 4, 5].map((item) => (
-              <div key={item} className="shrink-0 w-[280px] group cursor-pointer snap-start">
-                <div className="w-full aspect-[16/9] bg-[#1A1A1A] rounded-sm mb-4 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <h4 className="text-sm font-medium text-white group-hover:text-[#0000FF] transition-colors">Project Name {item}</h4>
-                <p className="text-xs text-white/40 mt-1">Branding, Web</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
+         <div className="mt-12 md:mt-24">
+        <InfiniteProjectSlider projects={moreProjects} />
+      </div>
       </Container>
+
+     
     </section>
   );
 }

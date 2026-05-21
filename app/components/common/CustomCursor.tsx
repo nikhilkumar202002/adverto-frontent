@@ -47,7 +47,7 @@ export default function CustomCursor() {
         transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.2 }}
       >
         <motion.div
-          className="h-10 w-10 rounded-full border border-[#0000FF] backdrop-blur-sm"
+          className="h-10 w-10 rounded-full border border-[#0000FF]"
           animate={{
             backgroundColor: isHovering ? "rgba(0, 0, 255, 0.15)" : "rgba(0, 0, 255, 0)",
             borderColor: isHovering ? "rgba(0, 0, 255, 0.3)" : "rgba(0, 0, 255, 0.8)",
