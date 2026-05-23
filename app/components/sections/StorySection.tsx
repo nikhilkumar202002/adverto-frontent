@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import Container from "../common/Container";
 import { useEffect, useRef, useState } from "react";
-import InfiniteLogoSlider from "../common/InfiniteLogoSlider";
+// import InfiniteLogoSlider from "../common/InfiniteLogoSlider";
 
 function useCount(target: number, start: boolean, duration = 1400) {
   const [value, setValue] = useState(0);
@@ -134,9 +134,9 @@ export default function StorySection() {
         </div>
 
         {/* --- INFINITE LOGO SLIDER --- */}
-        <div className="mt-20">
+        {/* <div className="mt-20">
           <InfiniteLogoSlider />
-        </div>
+        </div> */}
       </Container>
     </section>
   );

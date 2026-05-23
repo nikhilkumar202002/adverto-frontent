@@ -6,6 +6,7 @@ import ServicesSection from './components/sections/ServicesSection'
 import StorySection from './components/sections/StorySection'
 import TeamSection from './components/sections/TeamSection'
 import FaqSection from './components/sections/FaqSection'
+import ClientLogo from './components/sections/ClientLogo'
 
 const page = () => {
   const sliderContent = [
@@ -26,6 +27,7 @@ const page = () => {
       <CaseStudiesSection />
       <ServicesSection />
       <StorySection />
+      <ClientLogo />
       <TeamSection />
       <FaqSection />
     </>
