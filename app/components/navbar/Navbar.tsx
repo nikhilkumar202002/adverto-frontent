@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
@@ -20,38 +20,10 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState('up');
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY) {
-        // Scrolling down
-        setScrollDirection('down');
-      } else {
-        // Scrolling up
-        setScrollDirection('up');
-      }
-      
-      setLastScrollY(currentScrollY);
-      setIsScrolled(currentScrollY > 20);
-    };
-
-    // initial check
-    if (typeof window !== "undefined") onScroll();
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [lastScrollY]);
 
   return (
     <>
-      <header 
-        style={{ position: scrollDirection === 'down' && isScrolled ? 'absolute' : 'fixed' }}
-        className={`top-0 left-0 z-40 w-full transition-all duration-300 ${scrollDirection === 'down' && isScrolled ? 'bg-transparent -translate-y-full' : 'backdrop-blur-md bg-black/70 translate-y-0'}`}>
+      <header className="backdrop-blur-md bg-black/70">
         <Container className="flex items-center justify-between py-6">
           
           <Link

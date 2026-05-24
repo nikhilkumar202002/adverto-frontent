@@ -13,9 +13,6 @@ export default function HeroBanner() {
   const photoRef   = useRef(null);
   const overlayRef = useRef(null);
   const contentRef = useRef(null);
-  const titleRef   = useRef(null);
-  const subRef     = useRef(null);
-  const lineRef    = useRef(null);
   const arrowRef   = useRef(null);
 
   useEffect(() => {
@@ -37,31 +34,6 @@ export default function HeroBanner() {
           0
         )
         .fromTo(
-          lineRef.current,
-          { scaleX: 0 },
-          { scaleX: 1, duration: 0.7, ease: "power3.inOut" },
-          0.6
-        )
-        .fromTo(
-          subRef.current,
-          { opacity: 0, y: 18, filter: "blur(6px)" },
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7 },
-          0.75
-        )
-        .fromTo(
-          titleRef.current.querySelectorAll("." + styles.titleWord),
-          { opacity: 0, y: 60, rotateX: -20 },
-          {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 0.9,
-            stagger: 0.09,
-            ease: "expo.out",
-          },
-          0.9
-        )
-        .fromTo(
           arrowRef.current,
           { opacity: 0, y: -10 },
           { opacity: 1, y: 0, duration: 0.5 },
@@ -75,19 +47,6 @@ export default function HeroBanner() {
         scrollTrigger: {
           trigger: bannerRef.current,
           start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-
-      gsap.to(contentRef.current, {
-        yPercent: 28,
-        opacity: 0,
-        filter: "blur(8px)",
-        ease: "none",
-        scrollTrigger: {
-          trigger: bannerRef.current,
-          start: "20% top",
           end: "bottom top",
           scrub: true,
         },
@@ -117,38 +76,7 @@ export default function HeroBanner() {
       {/* Grain */}
       <div className={styles.grain} aria-hidden="true" />
 
-      {/* Content */}
-      <div ref={contentRef} className={styles.content}>
-        {/* Top meta row */}
-        <div className={styles.metaRow}>
-          <span className={styles.metaLabel}>Creative Studio</span>
-          <div ref={lineRef} className={styles.metaLine} />
-          <span ref={subRef} className={styles.metaYear}>Est. 2019</span>
-        </div>
 
-        {/* Main title */}
-        <h1 ref={titleRef} className={styles.title}>
-          {["The", "People", "Behind", "The", "Work"].map((w, i) => (
-            <span key={i} className={styles.titleWord}>
-              {w}
-              {(i === 1 || i === 3) && <br />}
-            </span>
-          ))}
-        </h1>
-
-        {/* Descriptor */}
-        <p className={styles.descriptor}>
-          Five creative minds. One shared obsession with craft.
-        </p>
-
-        {/* Bottom row */}
-        <div className={styles.bottomRow}>
-          <div className={styles.teamCount}>
-            <span className={styles.countNumber}>05</span>
-            <span className={styles.countLabel}>Team Members</span>
-          </div>
-        </div>
-      </div>
 
       {/* Scroll arrow */}
       <div ref={arrowRef} className={styles.scrollArrow} aria-hidden="true">
