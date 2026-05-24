@@ -3,7 +3,7 @@
    3:4 ratio cards · one-card-at-a-time · dark luxury
    ═══════════════════════════════════════════════════════════════ */
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap");
+
 
 /* ── Variables ──────────────────────────────────────────────────── */
 :root {
@@ -12,6 +12,8 @@
   --text-lo:      rgba(240, 236, 227, 0.38);
   --text-muted:   rgba(240, 236, 227, 0.18);
   --border:       rgba(255, 255, 255, 0.06);
+  --accent:       #0000FF;
+  --accent-light: #3b82ff;
 
   /* 3:4 card size — social-poster portrait */
   --card-w:       clamp(260px, 30vw, 420px);
@@ -53,7 +55,7 @@
   height:     700px;
   top:        -20%;
   left:       -18%;
-  background: radial-gradient(circle, rgba(200, 169, 110, 0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 0, 255, 0.07) 0%, transparent 70%);
   animation:  orbA 20s ease-in-out infinite alternate;
 }
 
@@ -99,7 +101,7 @@
 
 .eyebrow {
   display:       block;
-  font-family:   "Syne", sans-serif;
+  font-family:   "CreatoDisplay", sans-serif;
   font-size:     clamp(8px, 0.75vw, 10px);
   font-weight:   700;
   letter-spacing: 0.36em;
@@ -109,7 +111,7 @@
 }
 
 .sectionTitle {
-  font-family:   "Cormorant Garamond", serif;
+  font-family:   "CreatoDisplay", sans-serif;
   font-size:     clamp(40px, 6.5vw, 96px);
   font-weight:   300;
   line-height:   0.9;
@@ -120,10 +122,7 @@
 
 .sectionTitle em {
   font-style: italic;
-  background: linear-gradient(130deg, var(--text-hi) 0%, #c8a96e 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 
 /* ── Card deck container ─────────────────────────────────────────── */
@@ -165,7 +164,7 @@
   box-shadow:
     0 50px 120px rgba(0, 0, 0, 0.85),
     0 14px 36px  rgba(0, 0, 0, 0.65),
-    0 0 80px color-mix(in srgb, var(--accent, #c8a96e) 22%, transparent),
+    0 0 80px color-mix(in srgb, var(--accent) 22%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
@@ -187,7 +186,7 @@
   z-index:     3;
   background:  radial-gradient(
     ellipse 80% 50% at 50% 110%,
-    color-mix(in srgb, var(--bloom-color, #c8a96e) 20%, transparent),
+    color-mix(in srgb, var(--accent) 20%, transparent),
     transparent 65%
   );
   pointer-events: none;
@@ -266,7 +265,7 @@
 /* ── Top-right index number ─────────────────────────────────────── */
 .cardIndex {
   align-self:    flex-end;
-  font-family:   "Syne", sans-serif;
+  font-family:   "CreatoDisplay", sans-serif;
   font-size:     clamp(10px, 0.9vw, 13px);
   font-weight:   700;
   letter-spacing: 0.14em;
@@ -286,12 +285,12 @@
 }
 
 .cardTagline {
-  font-family:    "Syne", sans-serif;
+  font-family:    "CreatoDisplay", sans-serif;
   font-size:      clamp(8px, 0.7vw, 10px);
   font-weight:    600;
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color:          var(--accent, #c8a96e);
+  color:          var(--accent);
   opacity:        0.75;
   transform:      translateY(5px);
   transition:     transform 0.5s ease, opacity 0.5s ease;
@@ -309,7 +308,7 @@
 }
 
 .cardName {
-  font-family:    "Cormorant Garamond", serif;
+  font-family:    "CreatoDisplay", sans-serif;
   font-size:      clamp(26px, 3.4vw, 46px);
   font-weight:    400;
   line-height:    1;
@@ -328,12 +327,13 @@
   position:        absolute;
   bottom:          -4px;
   left:            0;
-  height:          1px;
+  height:          2px;
   width:           100%;
+  background:      var(--accent);
   transform:       scaleX(0);
   transform-origin: left;
   transition:      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
-  opacity:         0.7;
+  opacity:         1;
 }
 
 .card:hover .cardNameUnderline {
@@ -362,7 +362,7 @@
 }
 
 .cardRole {
-  font-family:    "Syne", sans-serif;
+  font-family:    "CreatoDisplay", sans-serif;
   font-size:      clamp(9px, 0.85vw, 11px);
   font-weight:    500;
   letter-spacing: 0.24em;
@@ -410,7 +410,7 @@
 .dotActive {
   width:         22px;
   border-radius: 3px;
-  background:    rgba(200, 169, 110, 0.85);
+  background:    var(--accent);
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -443,7 +443,7 @@
   left:      0;
   width:     1px;
   height:    48px;
-  background: rgba(200, 169, 110, 0.9);
+  background: var(--accent);
   animation: scrollDrop 2s ease-in-out infinite;
 }
 
@@ -455,13 +455,54 @@
 }
 
 .scrollCueText {
-  font-family:    "Syne", sans-serif;
+  font-family:    "CreatoDisplay", sans-serif;
   font-size:      8px;
   font-weight:    600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color:          var(--text-lo);
   writing-mode:   vertical-rl;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PROJECTS TEXT FADE UP
+   ══════════════════════════════════════════════════════════════════ */
+.projectsText {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 15;
+  max-width: 90vw;
+  max-width: 600px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.projectsHeading {
+  font-family: "CreatoDisplay", sans-serif;
+  font-size: clamp(40px, 6.5vw, 96px);
+  font-weight: 600;
+  line-height: 0.9;
+  color: var(--text-hi);
+  margin: 0 0 20px 0;
+  letter-spacing: -0.02em;
+}
+
+.projectsHeading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.projectsDescription {
+  font-family: "CreatoDisplay", sans-serif;
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-lo);
+  margin: 0;
+  letter-spacing: 0.02em;
 }
 
 /* ══════════════════════════════════════════════════════════════════

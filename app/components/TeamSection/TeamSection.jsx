@@ -190,20 +190,6 @@ function TeamCard({ member, deckIndex, cardRef }) {
   );
 }
 
-/* ── Progress Dots ────────────────────────────────────────────────────────────── */
-function ProgressDots({ total, active }) {
-  return (
-    <div className={styles.dots} aria-hidden="true">
-      {Array.from({ length: total }).map((_, i) => (
-        <div
-          key={i}
-          className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-        />
-      ))}
-    </div>
-  );
-}
-
 /* ── Main Component ───────────────────────────────────────────────────────────── */
 export default function TeamSection() {
   const sectionRef  = useRef(null);
@@ -211,7 +197,7 @@ export default function TeamSection() {
   const deckRef     = useRef(null);
   const headingRef  = useRef(null);
   const cardRefs    = useRef([]);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const projectsRef = useRef(null);
 
   /* Mouse parallax on image inner layer */
   useMouseParallax(sectionRef, styles.imageParallaxInner);
@@ -249,7 +235,7 @@ export default function TeamSection() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 80%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -259,19 +245,11 @@ export default function TeamSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start:   "top top",
-          end:     `+=${window.innerHeight * (total + 1)}`,
+          end:     `+=${window.innerHeight * total}`,
           scrub:   1.4,
           pin:     stickyRef.current,
           pinSpacing: true,
           anticipatePin: 1,
-          onUpdate: (self) => {
-            // Update active dot
-            const idx = Math.min(
-              Math.floor(self.progress * total),
-              total - 1
-            );
-            setActiveIdx(idx);
-          },
         },
       });
 
@@ -345,6 +323,37 @@ export default function TeamSection() {
         },
         ">"
       );
+
+      /* ── Heading fade out ──────────────────────────────────────── */
+      tl.to(
+        headingRef.current,
+        {
+          opacity: 0,
+          y: -40,
+          filter: "blur(10px)",
+          ease: "expo.in",
+          duration: 0.6,
+        },
+        ">"
+      );
+
+      /* ── Projects text fade up ──────────────────────────────────── */
+      tl.fromTo(
+        projectsRef.current,
+        {
+          opacity: 0,
+          y: 40,
+          filter: "blur(10px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          ease: "expo.out",
+          duration: 0.8,
+        },
+        ">"
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -382,13 +391,14 @@ export default function TeamSection() {
           ))}
         </div>
 
-        {/* Progress indicator */}
-        <ProgressDots total={TEAM_MEMBERS.length} active={activeIdx} />
-
-        {/* Scroll cue */}
-        <div className={styles.scrollCue} aria-hidden="true">
-          <div className={styles.scrollCueLine} />
-          <span className={styles.scrollCueText}>scroll</span>
+        {/* Projects Text Fade Up */}
+        <div
+          ref={projectsRef}
+          className={styles.projectsText}
+          style={{ opacity: 0 }}
+        >
+          <h3 className={styles.projectsHeading}>Branding Built on <em>Teamwork</em></h3>
+   
         </div>
       </div>
     </section>
