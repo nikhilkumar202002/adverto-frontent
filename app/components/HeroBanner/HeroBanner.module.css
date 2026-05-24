@@ -1,0 +1,228 @@
+/* ═══════════════════════════════════════════════════════════════
+   HeroBanner.module.css
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap");
+
+/* ── Shell ──────────────────────────────────────────────────────── */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  background: #050505;
+}
+
+/* ── Photo layer ────────────────────────────────────────────────── */
+.photo {
+  position: absolute;
+  inset: -10% -2%;
+  z-index: 1;
+  will-change: transform;
+}
+
+.photoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  -webkit-user-drag: none;
+}
+
+/* ── Overlay ────────────────────────────────────────────────────── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to top,  rgba(4, 4, 4, 0.96) 0%,  rgba(4, 4, 4, 0.6) 30%, transparent 65%),
+    linear-gradient(to right, rgba(4, 4, 4, 0.7) 0%,  rgba(4, 4, 4, 0.2) 50%, transparent 80%),
+    linear-gradient(to bottom, rgba(4, 4, 4, 0.6) 0%, transparent 30%);
+}
+
+/* ── Grain ──────────────────────────────────────────────────────── */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ── Content ────────────────────────────────────────────────────── */
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(28px, 5vw, 72px) clamp(24px, 6vw, 88px);
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+/* ── Meta row ───────────────────────────────────────────────────── */
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: clamp(16px, 2.5vh, 30px);
+}
+
+.metaLabel,
+.metaYear {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(9px, 0.8vw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 227, 0.45);
+}
+
+.metaLine {
+  flex: 0 0 48px;
+  height: 1px;
+  background: rgba(200, 169, 110, 0.5);
+  transform-origin: left;
+}
+
+/* ── Title ──────────────────────────────────────────────────────── */
+.title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(56px, 10vw, 148px);
+  font-weight: 300;
+  line-height: 0.88;
+  color: #f0ece3;
+  margin: 0 0 clamp(14px, 2vh, 28px);
+  letter-spacing: -0.02em;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.titleWord {
+  display: inline-block;
+  margin-right: 0.22em;
+  will-change: transform, opacity;
+}
+
+.titleWord:nth-child(2),
+.titleWord:nth-child(4) {
+  font-style: italic;
+  background: linear-gradient(120deg, #f0ece3 0%, #c8a96e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Descriptor ─────────────────────────────────────────────────── */
+.descriptor {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(15px, 1.6vw, 22px);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240, 236, 227, 0.5);
+  margin: 0 0 clamp(20px, 4vh, 44px);
+  letter-spacing: 0.04em;
+  max-width: 540px;
+}
+
+/* ── Bottom row ─────────────────────────────────────────────────── */
+.bottomRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.teamCount {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.countNumber {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 800;
+  color: rgba(240, 236, 227, 0.08);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.countLabel {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(9px, 0.8vw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 227, 0.3);
+}
+
+/* ── Scroll arrow ───────────────────────────────────────────────── */
+.scrollArrow {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 44px);
+  right: clamp(24px, 4vw, 56px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrowTrack {
+  width: 1px;
+  height: 60px;
+  background: rgba(240, 236, 227, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.arrowDot {
+  width: 1px;
+  height: 30px;
+  background: rgba(200, 169, 110, 0.8);
+  position: absolute;
+  top: -30px;
+  animation: arrowSlide 1.8s ease-in-out infinite;
+}
+
+@keyframes arrowSlide {
+  0%   { top: -30px; opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { top: 60px;  opacity: 0; }
+}
+
+.arrowLabel {
+  font-family: "Syne", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 227, 0.25);
+  writing-mode: vertical-rl;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .content {
+    padding: 24px 24px 32px;
+  }
+
+  .bottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrowDot {
+    animation: none;
+  }
+}

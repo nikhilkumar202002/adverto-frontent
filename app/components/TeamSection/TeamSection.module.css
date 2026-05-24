@@ -1,0 +1,507 @@
+/* ═══════════════════════════════════════════════════════════════
+   TeamSection.module.css  –  v2
+   3:4 ratio cards · one-card-at-a-time · dark luxury
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap");
+
+/* ── Variables ──────────────────────────────────────────────────── */
+:root {
+  --bg:           #060606;
+  --text-hi:      #f0ece3;
+  --text-lo:      rgba(240, 236, 227, 0.38);
+  --text-muted:   rgba(240, 236, 227, 0.18);
+  --border:       rgba(255, 255, 255, 0.06);
+
+  /* 3:4 card size — social-poster portrait */
+  --card-w:       clamp(260px, 30vw, 420px);
+  --card-h:       calc(var(--card-w) * 4 / 3);
+  --card-radius:  18px;
+}
+
+/* ── Section shell ──────────────────────────────────────────────── */
+.section {
+  position:   relative;
+  width:      100%;
+  background: var(--bg);
+  overflow:   hidden;
+}
+
+/* ── Noise overlay ──────────────────────────────────────────────── */
+.sectionNoise {
+  position:   absolute;
+  inset:      0;
+  z-index:    0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode:  overlay;
+  pointer-events:  none;
+  opacity:    0.7;
+}
+
+/* ── Ambient orbs ───────────────────────────────────────────────── */
+.orb {
+  position:       absolute;
+  border-radius:  50%;
+  filter:         blur(140px);
+  pointer-events: none;
+  z-index:        0;
+}
+
+.orb[data-orb="1"] {
+  width:      700px;
+  height:     700px;
+  top:        -20%;
+  left:       -18%;
+  background: radial-gradient(circle, rgba(200, 169, 110, 0.07) 0%, transparent 70%);
+  animation:  orbA 20s ease-in-out infinite alternate;
+}
+
+.orb[data-orb="2"] {
+  width:      500px;
+  height:     500px;
+  bottom:     -12%;
+  right:      -10%;
+  background: radial-gradient(circle, rgba(110, 142, 200, 0.06) 0%, transparent 70%);
+  animation:  orbB 24s ease-in-out infinite alternate;
+}
+
+@keyframes orbA {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(70px, 50px) scale(1.12); }
+}
+@keyframes orbB {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-60px, -40px) scale(1.1); }
+}
+
+/* ── Sticky viewport ────────────────────────────────────────────── */
+.sticky {
+  position:        relative;
+  width:           100%;
+  height:          100svh;
+  min-height:      600px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  overflow:        hidden;
+  z-index:         1;
+}
+
+/* ── Section header ─────────────────────────────────────────────── */
+.sectionHead {
+  position:  absolute;
+  top:       clamp(28px, 4.5vh, 52px);
+  left:      clamp(22px, 5vw, 72px);
+  z-index:   20;
+  pointer-events: none;
+}
+
+.eyebrow {
+  display:       block;
+  font-family:   "Syne", sans-serif;
+  font-size:     clamp(8px, 0.75vw, 10px);
+  font-weight:   700;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color:         var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  font-family:   "Cormorant Garamond", serif;
+  font-size:     clamp(40px, 6.5vw, 96px);
+  font-weight:   300;
+  line-height:   0.9;
+  color:         var(--text-hi);
+  margin:        0;
+  letter-spacing: -0.02em;
+}
+
+.sectionTitle em {
+  font-style: italic;
+  background: linear-gradient(130deg, var(--text-hi) 0%, #c8a96e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Card deck container ─────────────────────────────────────────── */
+.deck {
+  position:   relative;
+  width:      var(--card-w);
+  height:     var(--card-h);
+  z-index:    10;
+  will-change: opacity, transform, filter;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CARD  (3 : 4 portrait ratio)
+   ══════════════════════════════════════════════════════════════════ */
+.card {
+  /* Exact 3:4 size */
+  width:    var(--card-w);
+  height:   var(--card-h);
+
+  /* Rounded luxury corners */
+  border-radius: var(--card-radius);
+  overflow:      hidden;
+  cursor:        pointer;
+
+  /* GPU layer */
+  will-change: transform, opacity, filter;
+
+  /* Depth shadow */
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.75),
+    0 10px 28px  rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+  /* Smooth hover shadow transition */
+  transition: box-shadow 0.55s ease;
+}
+
+.card:hover {
+  box-shadow:
+    0 50px 120px rgba(0, 0, 0, 0.85),
+    0 14px 36px  rgba(0, 0, 0, 0.65),
+    0 0 80px color-mix(in srgb, var(--accent, #c8a96e) 22%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* ── Noise per card ─────────────────────────────────────────────── */
+.cardNoise {
+  position:    absolute;
+  inset:       0;
+  z-index:     10;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-size:  200px 200px;
+  mix-blend-mode:   overlay;
+  pointer-events:   none;
+}
+
+/* ── Accent glow bloom ──────────────────────────────────────────── */
+.cardBloom {
+  position:    absolute;
+  inset:       0;
+  z-index:     3;
+  background:  radial-gradient(
+    ellipse 80% 50% at 50% 110%,
+    color-mix(in srgb, var(--bloom-color, #c8a96e) 20%, transparent),
+    transparent 65%
+  );
+  pointer-events: none;
+  opacity:     0;
+  transition:  opacity 0.65s ease;
+}
+
+.cardHovered .cardBloom {
+  opacity: 1;
+}
+
+/* ── Image wrapper ──────────────────────────────────────────────── */
+.imageWrap {
+  position: absolute;
+  inset:    0;
+  z-index:  1;
+  overflow: hidden;
+}
+
+/* Inner layer for mouse parallax (gsap.set targets this) */
+.imageParallaxInner {
+  width:    108%;
+  height:   108%;
+  top:      -4%;
+  left:     -4%;
+  position: absolute;
+  will-change: transform;
+}
+
+.image {
+  width:          100%;
+  height:         100%;
+  object-fit:     cover;
+  object-position: center 15%;
+  display:        block;
+  transform:      scale(1);
+  transition:     transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-user-drag: none;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+/* ── Vignette gradient over photo ───────────────────────────────── */
+.imageVignette {
+  position:  absolute;
+  inset:     0;
+  z-index:   2;
+  background:
+    linear-gradient(
+      to top,
+      rgba(4, 4, 4, 0.95) 0%,
+      rgba(4, 4, 4, 0.55) 32%,
+      rgba(4, 4, 4, 0.10) 58%,
+      transparent         78%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(4, 4, 4, 0.35) 0%,
+      transparent         22%
+    );
+}
+
+/* ── Card body (content overlay) ───────────────────────────────── */
+.cardBody {
+  position:    absolute;
+  inset:       0;
+  z-index:     5;
+  display:     flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:     clamp(18px, 3vw, 30px);
+}
+
+/* ── Top-right index number ─────────────────────────────────────── */
+.cardIndex {
+  align-self:    flex-end;
+  font-family:   "Syne", sans-serif;
+  font-size:     clamp(10px, 0.9vw, 13px);
+  font-weight:   700;
+  letter-spacing: 0.14em;
+  color:         rgba(255, 255, 255, 0.18);
+  transition:    color 0.4s ease;
+}
+
+.cardHovered .cardIndex {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Footer (name + role) ───────────────────────────────────────── */
+.cardFooter {
+  display:        flex;
+  flex-direction: column;
+  gap:            10px;
+}
+
+.cardTagline {
+  font-family:    "Syne", sans-serif;
+  font-size:      clamp(8px, 0.7vw, 10px);
+  font-weight:    600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color:          var(--accent, #c8a96e);
+  opacity:        0.75;
+  transform:      translateY(5px);
+  transition:     transform 0.5s ease, opacity 0.5s ease;
+}
+
+.card:hover .cardTagline {
+  transform: translateY(0);
+  opacity:   1;
+}
+
+/* Name with animated underline */
+.cardNameWrap {
+  position:   relative;
+  display:    inline-block;
+}
+
+.cardName {
+  font-family:    "Cormorant Garamond", serif;
+  font-size:      clamp(26px, 3.4vw, 46px);
+  font-weight:    400;
+  line-height:    1;
+  color:          var(--text-hi);
+  margin:         0;
+  letter-spacing: -0.01em;
+  transform:      translateY(8px);
+  transition:     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardName {
+  transform: translateY(0);
+}
+
+.cardNameUnderline {
+  position:        absolute;
+  bottom:          -4px;
+  left:            0;
+  height:          1px;
+  width:           100%;
+  transform:       scaleX(0);
+  transform-origin: left;
+  transition:      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+  opacity:         0.7;
+}
+
+.card:hover .cardNameUnderline {
+  transform: scaleX(1);
+}
+
+/* Role row */
+.cardRoleRow {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+  transform:   translateY(6px);
+  transition:  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.06s;
+}
+
+.card:hover .cardRoleRow {
+  transform: translateY(0);
+}
+
+.cardRoleDot {
+  width:         5px;
+  height:        5px;
+  border-radius: 50%;
+  flex-shrink:   0;
+  opacity:       0.8;
+}
+
+.cardRole {
+  font-family:    "Syne", sans-serif;
+  font-size:      clamp(9px, 0.85vw, 11px);
+  font-weight:    500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color:          var(--text-lo);
+  margin:         0;
+}
+
+/* ── Card rim (subtle border) ───────────────────────────────────── */
+.cardRim {
+  position:      absolute;
+  inset:         0;
+  z-index:       8;
+  border-radius: var(--card-radius);
+  border:        1px solid rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+  transition:    border-color 0.45s ease;
+}
+
+.cardHovered .cardRim {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PROGRESS DOTS
+   ══════════════════════════════════════════════════════════════════ */
+.dots {
+  position:  absolute;
+  bottom:    clamp(22px, 3.5vh, 40px);
+  left:      50%;
+  transform: translateX(-50%);
+  display:   flex;
+  gap:       8px;
+  z-index:   20;
+}
+
+.dot {
+  width:         6px;
+  height:        6px;
+  border-radius: 50%;
+  background:    rgba(240, 236, 227, 0.18);
+  transition:    width 0.35s ease, background 0.35s ease, border-radius 0.35s ease;
+}
+
+.dotActive {
+  width:         22px;
+  border-radius: 3px;
+  background:    rgba(200, 169, 110, 0.85);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SCROLL CUE
+   ══════════════════════════════════════════════════════════════════ */
+.scrollCue {
+  position:  absolute;
+  bottom:    clamp(22px, 3.5vh, 40px);
+  right:     clamp(22px, 4vw, 52px);
+  z-index:   20;
+  display:   flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:       6px;
+  opacity:   0.35;
+}
+
+.scrollCueLine {
+  width:     1px;
+  height:    48px;
+  background: rgba(240, 236, 227, 0.2);
+  position:  relative;
+  overflow:  hidden;
+}
+
+.scrollCueLine::after {
+  content:   "";
+  position:  absolute;
+  top:       -48px;
+  left:      0;
+  width:     1px;
+  height:    48px;
+  background: rgba(200, 169, 110, 0.9);
+  animation: scrollDrop 2s ease-in-out infinite;
+}
+
+@keyframes scrollDrop {
+  0%   { top: -48px; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top:  48px; opacity: 0; }
+}
+
+.scrollCueText {
+  font-family:    "Syne", sans-serif;
+  font-size:      8px;
+  font-weight:    600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color:          var(--text-lo);
+  writing-mode:   vertical-rl;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  :root {
+    --card-w: clamp(240px, 72vw, 340px);
+  }
+
+  .sectionHead {
+    left: 18px;
+    top:  20px;
+  }
+
+  .scrollCue {
+    right: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --card-w: 80vw;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .image,
+  .cardName,
+  .cardRole,
+  .cardTagline,
+  .cardNameUnderline,
+  .orb {
+    animation:  none !important;
+    transition: none !important;
+  }
+
+  .scrollCueLine::after {
+    animation: none !important;
+  }
+}

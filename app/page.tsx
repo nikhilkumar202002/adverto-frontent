@@ -4,9 +4,12 @@ import MarqueeText from './components/common/MarqueeText'
 import CaseStudiesSection from './components/sections/CaseStudiesSection'
 import ServicesSection from './components/sections/ServicesSection'
 import StorySection from './components/sections/StorySection'
-import TeamSection from './components/sections/TeamSection'
+
 import FaqSection from './components/sections/FaqSection'
 import ClientLogo from './components/sections/ClientLogo'
+
+import HeroBanner from './components/HeroBanner/HeroBanner'
+import TeamSection from './components/TeamSection/TeamSection'
 
 const page = () => {
   const sliderContent = [
@@ -28,6 +31,7 @@ const page = () => {
       <ServicesSection />
       <StorySection />
       <ClientLogo />
+      <HeroBanner />
       <TeamSection />
       <FaqSection />
     </>
