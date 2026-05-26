@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
@@ -20,10 +20,50 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isTransparent, setIsTransparent] = useState(false);
+  const lastScrollYRef = useRef(0);
+
+  useEffect(() => {
+    lastScrollYRef.current = window.scrollY;
+
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingUp = currentScrollY < lastScrollYRef.current;
+      const nearTop = currentScrollY < 12;
+      const navProbeY = currentScrollY + 96;
+      const transparentSection = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-navbar-transparent]")
+      ).some((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        return navProbeY >= sectionTop && navProbeY <= sectionBottom;
+      });
+
+      setIsTransparent(transparentSection);
+      setIsVisible(nearTop || scrollingUp || transparentSection);
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   return (
     <>
-      <header className="backdrop-blur-md bg-black/70">
+      <header
+        className={`fixed left-0 top-0 z-50 w-full transition-[background-color,backdrop-filter,transform] duration-300 ease-out ${
+          isTransparent ? "bg-transparent backdrop-blur-0" : "bg-black/70 backdrop-blur-md"
+        } ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
         <Container className="flex items-center justify-between py-6">
           
           <Link

@@ -57,7 +57,7 @@ export default function HeroBanner() {
   }, []);
 
   return (
-    <section ref={bannerRef} className={styles.banner}>
+    <section ref={bannerRef} className={styles.banner} data-navbar-transparent>
       {/* Background photo */}
       <div ref={photoRef} className={styles.photo}>
         <Image

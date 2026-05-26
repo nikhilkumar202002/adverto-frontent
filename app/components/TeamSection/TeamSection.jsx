@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./TeamSection.module.css";
@@ -65,18 +65,38 @@ const TEAM_MEMBERS = [
     exitY:    "-14vh",
     exitRot:  -10,
   },
+  {
+    id: 6,
+    name: "Nora Bell",
+    role: "Content Lead",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=90&fit=crop&crop=top",
+    accent: "#c87d6e",
+    tagline: "Story Maker",
+    exitX:    "116vw",
+    exitY:    "-10vh",
+    exitRot:  14,
+  },
+  {
+    id: 7,
+    name: "Elias Rowan",
+    role: "Growth Strategist",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=90&fit=crop&crop=top",
+    accent: "#8fc86e",
+    tagline: "Scale Builder",
+    exitX:    "-118vw",
+    exitY:    "18vh",
+    exitRot:  -16,
+  },
 ];
 
-/* ── Stagger offsets for the "deck peek" effect ─────────────────────────────
-   Index 0 = TOP card (front of deck)
-   Index 4 = BOTTOM card (deepest in stack)
-*/
-const DECK_OFFSETS = [
-  { y:  0,  scale: 1.000, rot:  0.0, z: 50 },
-  { y: 10,  scale: 0.964, rot: -1.6, z: 40 },
-  { y: 20,  scale: 0.928, rot:  1.2, z: 30 },
-  { y: 28,  scale: 0.892, rot: -0.9, z: 20 },
-  { y: 36,  scale: 0.856, rot:  0.6, z: 10 },
+const ZOOM_POSITIONS = [
+  { top: 20, side: "left",  sideValue: 1 },
+  { top: 20, side: "right", sideValue: 1 },
+  { top: 11, side: "left",  sideValue: 18 },
+  { top: 38, side: "right", sideValue: 12 },
+  { top: 55, side: "left",  sideValue: 7 },
+  { top: 12, side: "right", sideValue: 26 },
+  { top: 63, side: "right", sideValue: 30 },
 ];
 
 /* ── Mouse parallax inner layer ─────────────────────────────────────────────── */
@@ -118,7 +138,7 @@ function useMouseParallax(sectionRef, innerClass) {
 /* ── Individual Card ─────────────────────────────────────────────────────────── */
 function TeamCard({ member, deckIndex, cardRef }) {
   const [hovered, setHovered] = useState(false);
-  const offset = DECK_OFFSETS[deckIndex] || DECK_OFFSETS[0];
+  const position = ZOOM_POSITIONS[deckIndex] || ZOOM_POSITIONS[0];
 
   return (
     <article
@@ -127,7 +147,8 @@ function TeamCard({ member, deckIndex, cardRef }) {
       style={{
         "--accent":     member.accent,
         "--deck-index": deckIndex,
-        zIndex:         offset.z,
+        top:            `${position.top}%`,
+        [position.side]: `${position.sideValue}%`,
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -195,7 +216,6 @@ export default function TeamSection() {
   const sectionRef  = useRef(null);
   const stickyRef   = useRef(null);
   const deckRef     = useRef(null);
-  const headingRef  = useRef(null);
   const cardRefs    = useRef([]);
   const projectsRef = useRef(null);
 
@@ -204,156 +224,133 @@ export default function TeamSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = cardRefs.current;
+      const cards = cardRefs.current.filter(Boolean);
       const total = cards.length;
+      let timeline;
+      let resizeTimer;
+      let viewportWidth = window.innerWidth;
 
-      /* ── Set initial stacked positions ──────────────────────────── */
-      cards.forEach((card, i) => {
-        const off = DECK_OFFSETS[i];
-        gsap.set(card, {
-          position:   "absolute",
-          top:        "50%",
-          left:       "50%",
-          xPercent:   -50,
-          yPercent:   -50,
-          y:          off.y,
-          scale:      off.scale,
-          rotateZ:    off.rot,
-          opacity:    i === 0 ? 1 : 0.85 - i * 0.06,
-          filter:     i === 0 ? "blur(0px)" : `blur(${i * 0.6}px)`,
-          transformOrigin: "center center",
+      ScrollTrigger.config({
+        ignoreMobileResize: true,
+        autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+      });
+
+      const setupAnimation = () => {
+        const isMobile = window.innerWidth < 768;
+        const firstCardDepth = isMobile ? 140 : 110;
+        const nextCardDepth = isMobile ? 120 : 100;
+        const scrollLength = isMobile ? total * 50 : total * 25;
+        const scrub = isMobile ? 0.08 : 0.05;
+        const pairStep = isMobile ? 1 : 0.82;
+
+        timeline?.scrollTrigger?.kill();
+        timeline?.kill();
+        gsap.killTweensOf([cards, projectsRef.current]);
+
+        /* ── Set initial 3D zoom positions ──────────────────────────── */
+        cards.forEach((card, i) => {
+          const initialZ = i < 2 ? -20 : -4 - i * 20;
+
+          gsap.set(card, {
+            position:   "absolute",
+            zIndex:     total - i,
+            opacity:    i < 2 ? 1 : 0,
+            filter:     i < 2 ? "blur(0px)" : "blur(10px)",
+            transform:  `translate3D(0, 0, ${initialZ}vh)`,
+            transformOrigin: "center center",
+            force3D: true,
+          });
         });
-      });
 
-      /* ── Section heading entrance ───────────────────────────────── */
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 40, filter: "blur(10px)" },
-        {
-          opacity: 1, y: 0, filter: "blur(0px)",
-          duration: 0.8, ease: "expo.out",
+        gsap.set(projectsRef.current, {
+          autoAlpha: 0,
+          y: 34,
+          filter: "blur(10px)",
+        });
+
+        /* ── Master scroll timeline ─────────────────────────────────── */
+        timeline = gsap.timeline({
           scrollTrigger: {
+            id: "team-zoom-scroll",
             trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
+            start:   "top top",
+            end:     `+=${scrollLength}%`,
+            scrub,
+            pin:     stickyRef.current,
+            pinSpacing: true,
+            pinType: "fixed",
+            anticipatePin: 1,
+            normalizeScroll: true,
+            fastScrollEnd: true,
+            invalidateOnRefresh: true,
           },
-        }
-      );
+        });
 
-      /* ── Master scroll timeline ─────────────────────────────────── */
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start:   "top top",
-          end:     `+=${window.innerHeight * total}`,
-          scrub:   1.4,
-          pin:     stickyRef.current,
-          pinSpacing: true,
-          anticipatePin: 1,
-        },
-      });
-
-      /* ── Per-card exit choreography ─────────────────────────────── */
-      const segDur = 1 / total;
-
-      cards.forEach((card, i) => {
-        const member = TEAM_MEMBERS[i];
-        const seg    = i * segDur;
-
-        /* Exit: current top card flies away */
-        tl.to(
-          card,
+        timeline.to(
+          cards.slice(0, 2),
           {
-            x:       member.exitX,
-            y:       member.exitY,
-            rotateZ: member.exitRot,
-            scale:   1.18,
-            opacity: 0,
-            filter:  "blur(12px)",
-            ease:    "power4.in",
-            duration: segDur * 0.55,
+            transform: `translate3D(0, 0, ${firstCardDepth}vh)`,
+            duration: 4,
+            ease: "none",
           },
-          seg
+          0
         );
 
-        /* Promote: every card behind steps forward one position */
-        if (i < total - 1) {
-          for (let j = i + 1; j < total; j++) {
-            const nextOff = DECK_OFFSETS[j - i - 1];
-            tl.to(
-              cards[j],
+        cards.slice(2).forEach((card, index) => {
+          const cardTl = gsap.timeline();
+
+          cardTl
+            .to(card, {
+              transform: `translate3D(0, 0, ${nextCardDepth}vh)`,
+              duration: 4,
+              ease: "none",
+            })
+            .to(
+              card,
               {
-                y:       nextOff.y,
-                scale:   nextOff.scale,
-                rotateZ: nextOff.rot,
-                opacity: j - i - 1 === 0 ? 1 : 0.85 - (j - i - 1) * 0.06,
-                filter:  j - i - 1 === 0 ? "blur(0px)" : `blur(${(j - i - 1) * 0.6}px)`,
-                ease:    "expo.out",
-                duration: segDur * 0.6,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "none",
               },
-              seg + segDur * 0.18
+              0.4
             );
-          }
-        }
 
-        /* Reveal zoom: new top card pops forward */
-        if (i < total - 1) {
-          tl.fromTo(
-            cards[i + 1],
-            { scale: DECK_OFFSETS[1].scale * 0.96 },
-            {
-              scale:    DECK_OFFSETS[0].scale,
-              ease:     "expo.out",
-              duration: segDur * 0.45,
-            },
-            seg + segDur * 0.28
-          );
-        }
-      });
+          timeline.add(cardTl, Math.floor(index / 2) * pairStep);
+        });
 
-      /* ── Deck fade-out after last card exits ────────────────────── */
-      tl.to(
-        deckRef.current,
-        {
-          opacity: 0,
-          scale:   0.94,
-          filter:  "blur(16px)",
-          ease:    "power2.inOut",
-          duration: segDur * 0.5,
-        },
-        ">"
-      );
+        timeline.to(
+          projectsRef.current,
+          {
+            autoAlpha: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.4,
+            ease: "power2.out",
+          },
+          ">"
+        );
 
-      /* ── Heading fade out ──────────────────────────────────────── */
-      tl.to(
-        headingRef.current,
-        {
-          opacity: 0,
-          y: -40,
-          filter: "blur(10px)",
-          ease: "expo.in",
-          duration: 0.6,
-        },
-        ">"
-      );
+        ScrollTrigger.refresh();
+      };
 
-      /* ── Projects text fade up ──────────────────────────────────── */
-      tl.fromTo(
-        projectsRef.current,
-        {
-          opacity: 0,
-          y: 40,
-          filter: "blur(10px)",
-        },
-        {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          ease: "expo.out",
-          duration: 0.8,
-        },
-        ">"
-      );
+      const onResize = () => {
+        if (window.innerWidth === viewportWidth) return;
+
+        viewportWidth = window.innerWidth;
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(setupAnimation, 200);
+      };
+
+      setupAnimation();
+      window.addEventListener("resize", onResize);
+
+      return () => {
+        clearTimeout(resizeTimer);
+        window.removeEventListener("resize", onResize);
+        timeline?.scrollTrigger?.kill();
+        timeline?.kill();
+      };
     }, sectionRef);
 
     return () => ctx.revert();
@@ -370,14 +367,6 @@ export default function TeamSection() {
 
       {/* Sticky viewport */}
       <div ref={stickyRef} className={styles.sticky}>
-
-        {/* Section label */}
-        <header ref={headingRef} className={styles.sectionHead}>
-          <span className={styles.eyebrow}>Meet The Team</span>
-          <h2 className={styles.sectionTitle}>
-            Our&nbsp;<em>Crew</em>
-          </h2>
-        </header>
 
         {/* Card deck */}
         <div ref={deckRef} className={styles.deck}>

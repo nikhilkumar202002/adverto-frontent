@@ -11,7 +11,10 @@ import React from "react";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center justify-center">
+    <section
+      className="relative overflow-hidden min-h-screen flex items-center justify-center"
+      data-navbar-transparent
+    >
       <GridLines />
 
       <Container className="relative z-10 h-full flex items-center justify-center">
