@@ -1,68 +1,68 @@
 "use client";
 
-import GridLines from "../common/GridLines";
 import Container from "../common/Container";
 import Button from "../common/Button";
-import AnimatedText from "../common/AnimatedText";
-import { motion } from "framer-motion";
 import { MoveDown } from "lucide-react";
-import MagneticButton from "../common/MagneticButton";
-import React from "react";
+
+const backgroundSquares = [
+  "#000000", "#07000c", "#020417", "#030720", "#061035", "#071849", "#082464", "#0a2f73",
+  "#17034e", "#160854", "#170a5e", "#180b65", "#1a0d70", "#1a0f78", "#171085", "#13108f",
+  "#15158a", "#171894", "#1518a2", "#1518ab", "#1218b7", "#1218c4", "#1018cf", "#0f18d8",
+  "#1114d0", "#1115d7", "#1116df", "#1417e6", "#1518ed", "#1519f1", "#1519f7", "#141aff",
+  "#1215f2", "#1115f5", "#1014fa", "#1114ff", "#1819ff", "#2423ff", "#302cff", "#3a35ff",
+];
 
 export default function HeroSection() {
   return (
     <section
-      className="relative overflow-hidden min-h-screen flex items-center justify-center"
+      className="relative flex min-h-screen min-h-[100svh] w-full items-center justify-center overflow-hidden"
       data-navbar-transparent
     >
-      <GridLines />
+      <div
+        aria-hidden
+        className="absolute inset-0 z-0 grid grid-cols-4 grid-rows-10 bg-black sm:grid-cols-8 sm:grid-rows-5"
+      >
+        {backgroundSquares.map((color, index) => (
+          <span
+            key={`${color}-${index}`}
+            className="block h-full w-full"
+            style={{ backgroundColor: color }}
+          />
+        ))}
+      </div>
 
-      <Container className="relative z-10 h-full flex items-center justify-center">
-        <motion.div
-          className="max-w-[1100px] w-full flex flex-col items-center justify-center text-center"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.08 } } }}
+      <Container className="relative z-10 flex min-h-screen min-h-[100svh] items-center justify-center py-24 sm:py-28 lg:py-32">
+        <div
+          className="flex w-full max-w-[1100px] flex-col items-center justify-center text-center"
         >
-          <motion.p
-            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
-            className="mb-4 text-sm md:text-[14px] tracking-[0.1em] text-[#0000FF] flex items-center gap-3"
+          <p
+            className="mb-4 text-center text-xs tracking-[0.1em] text-[#0000FF] sm:text-sm md:text-[14px]"
           >
-            <span className="w-[30px] md:w-[50px] h-[1px] md:h-[1.5px] bg-[#0000FF] inline-block" />
-            Creative Agency — Est. 2016
-          </motion.p>
+            Creative Agency Est. 2016
+          </p>
 
-          <motion.h1
-            variants={{ hidden: { opacity: 0, y: 26 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
-            className="text-4xl sm:text-5xl md:text-[64px] lg:text-[93px] font-semibold leading-[0.9]"
+          <h1
+            className="max-w-[11ch] text-[42px] font-semibold leading-[0.92] sm:max-w-[12ch] sm:text-6xl md:text-[72px] lg:max-w-none lg:text-[93px]"
           >
-            <AnimatedText text={"We build brands that " } className="mr-2" />
-            <AnimatedText text={<span className="text-[#0000FF] italic">dominate</span>} className="mr-2" />
-            <AnimatedText text={"attention."} />
-          </motion.h1>
+            We build brands that dominate attention.
+          </h1>
 
-          <motion.p
-            variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
-            className="mt-6 max-w-[550px] text-base md:text-[20px] leading-[1.1] text-white/60 font-regular"
+          <p
+            className="mt-5 max-w-[34rem] text-sm leading-[1.25] text-white/60 sm:text-base md:mt-6 md:text-[20px] md:leading-[1.1]"
           >
             Branding, campaigns, video production, and social
             experiences crafted for modern businesses.
-          </motion.p>
+          </p>
 
-          <motion.div variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }} className="mt-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
-            <MagneticButton>
-              <Button>View Works</Button>
-            </MagneticButton>
+          <div className="mt-7 flex w-full flex-col items-center gap-4 sm:mt-8 sm:w-auto sm:flex-row sm:gap-5">
+            <Button>View Works</Button>
 
-            <MagneticButton>
-              <Button variant="secondary">Book Consultation</Button>
-            </MagneticButton>
-          </motion.div>
-        </motion.div>
+            <Button variant="secondary">Book Consultation</Button>
+          </div>
+        </div>
       </Container>
 
-      <div className="absolute bottom-8 left-0 w-full flex items-center justify-center z-20">
+      <div className="absolute bottom-5 left-0 z-20 flex w-full items-center justify-center sm:bottom-8">
         <button
           aria-label="Scroll to explore"
           className="flex flex-col items-center gap-2 text-white/70 hover:text-white"
@@ -72,30 +72,10 @@ export default function HeroSection() {
             }
           }}
         >
-          <MoveDown className="long-arrow text-[#0000FF]" strokeWidth={1.6} aria-hidden />
+          <MoveDown className="h-5 w-5 scale-y-[1.6] text-[white]" strokeWidth={1.6} aria-hidden />
           <span className="text-xs md:text-sm">Scroll to Explore</span>
         </button>
       </div>
-
-      <style jsx>{`
-        button[aria-label="Scroll to explore"] svg {
-          animation: arrowBounce 1.6s infinite;
-        }
-
-        button[aria-label="Scroll to explore"] svg.long-arrow {
-          transform-origin: center;
-          transform: scaleY(1.6);
-          width: 20px;
-          height: 20px;
-        }
-
-        @keyframes arrowBounce {
-          0% { transform: translateY(0); opacity: 0.9 }
-          30% { transform: translateY(6px); opacity: 1 }
-          60% { transform: translateY(0); opacity: 0.9 }
-          100% { transform: translateY(0); opacity: 0.9 }
-        }
-      `}</style>
     </section>
   );
 }

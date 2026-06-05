@@ -12,7 +12,6 @@ export default function HeroBanner() {
   const bannerRef  = useRef(null);
   const photoRef   = useRef(null);
   const overlayRef = useRef(null);
-  const contentRef = useRef(null);
   const arrowRef   = useRef(null);
 
   useEffect(() => {
@@ -40,17 +39,6 @@ export default function HeroBanner() {
           1.6
         );
 
-      /* ── Parallax on scroll ───────────────────── */
-      gsap.to(photoRef.current, {
-        yPercent: 18,
-        ease: "none",
-        scrollTrigger: {
-          trigger: bannerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
     }, bannerRef);
 
     return () => ctx.revert();
