@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import Navbar from "./components/navbar/Navbar";
 import NoiseOverlay from "./components/common/NoiseOverlay";
 import CustomCursor from "./components/common/CustomCursor";
-import CtaSection from "./components/sections/CtaSection";
+// import CtaSection from "./components/sections/CtaSection";
 import Footer from "./components/footer/Footer";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main className="relative z-10">
             {children}
           </main>
-        <CtaSection />
+        {/* <CtaSection /> */}
         <Footer />
       </body>
     </html>
