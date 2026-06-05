@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
+import Button from "../common/Button";
 import Container from "../common/Container";
 
 type IconProps = {
@@ -70,18 +71,15 @@ export default function Footer() {
 
   return (
     <footer className="relative z-20 min-h-[100svh] overflow-hidden bg-black text-white">
-      <Container className="flex min-h-[100svh] flex-col justify-between py-8 md:py-10">
+      <Container className="relative z-10 flex min-h-[100svh] flex-col justify-between py-8 md:py-10">
         <div className="flex flex-1 flex-col items-center justify-center text-center">
           <h2 className="text-[clamp(72px,17vw,300px)] font-semibold leading-[0.78] tracking-normal text-[#f4f3ef]">
             Let&apos;s Talk
           </h2>
 
-          <Link
-            href="/contact"
-            className="mt-20 inline-flex h-14 items-center justify-center rounded-full border border-white/80 px-8 text-[20px] font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black max-md:mt-12 max-md:h-12 max-md:px-6 max-md:text-[16px]"
-          >
+          <Button href="/contact" className="mt-20 max-md:mt-12">
             Contact Us
-          </Link>
+          </Button>
         </div>
 
         <button

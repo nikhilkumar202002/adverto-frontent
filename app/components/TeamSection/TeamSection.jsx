@@ -150,10 +150,11 @@ function TeamCard({ member, deckIndex, cardRef }) {
             draggable={false}
           />
         </div>
-        <div className={styles.memberMeta}>
-          <span className={styles.memberName}>{member.name}</span>
-          <span className={styles.memberRole}>{member.role}</span>
-        </div>
+      </div>
+      <div className={styles.memberMeta}>
+        <span className={styles.memberName}>{member.name}</span>
+        <span className={styles.memberDivider} aria-hidden="true" />
+        <span className={styles.memberRole}>{member.role}</span>
       </div>
     </article>
   );
