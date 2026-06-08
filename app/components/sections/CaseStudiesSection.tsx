@@ -7,8 +7,17 @@ import Container from "../common/Container";
 import InfiniteProjectSlider from "../common/InfiniteProjectSlider";
 import Reveal from "../common/Reveal";
 import { moreProjects } from "../../data/moreProjects";
+import { caseStudyCollageProjects } from "../../data/portfolio";
 
 export default function CaseStudiesSection() {
+  const [
+    leftTopProject,
+    leftBottomProject,
+    centerProject,
+    rightTopProject,
+    rightBottomProject,
+  ] = caseStudyCollageProjects;
+
   return (
     <section className="relative z-10 bg-[#050505] py-24 md:py-32 overflow-hidden">
       <Container>
@@ -139,76 +148,76 @@ export default function CaseStudiesSection() {
 
         {/* --- 4. COLLAGE GRID (3 Columns) --- */}
         <Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[6px]">
+        <div className="grid grid-cols-1 gap-[6px] md:grid-cols-3">
           {/* Col 1 */}
           <div className="flex flex-col gap-[6px]">
-             <div className="w-full aspect-square overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+             <div className="group relative aspect-square w-full overflow-hidden border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
                <img
-                 src="https://cdn.dribbble.com/userupload/46006270/file/00fe3e9c5f60ca73b6be0076a3054b75.png?resize=1024x768&vertical=center"
-                 alt="Collage image 1"
+                 src={leftTopProject.image}
+                 alt={leftTopProject.alt}
                  loading="lazy"
                  className="object-cover w-full h-full"
                />
                <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
                <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">Project Name</h5>
-                 <p className="text-xs text-white/60 mt-1">Branding · 2023</p>
+                 <h5 className="text-sm font-medium text-white">{leftTopProject.title}</h5>
+                 <p className="text-xs text-white/60 mt-1">{leftTopProject.subtitle}</p>
                </div>
              </div>
-             <div className="w-full aspect-[4/3] overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+             <div className="group relative aspect-[4/3] w-full overflow-hidden border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
                <img
-                 src="https://cdn.dribbble.com/userupload/45762002/file/5f2fe4e374f8514b53b863637d7379d0.png?resize=1024x768&vertical=center"
-                 alt="Collage image 2"
+                 src={leftBottomProject.image}
+                 alt={leftBottomProject.alt}
                  loading="lazy"
                  className="object-cover w-full h-full"
                />
                <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
                <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">Project Name</h5>
-                 <p className="text-xs text-white/60 mt-1">UI / Web · 2023</p>
+                 <h5 className="text-sm font-medium text-white">{leftBottomProject.title}</h5>
+                 <p className="text-xs text-white/60 mt-1">{leftBottomProject.subtitle}</p>
                </div>
              </div>
           </div>
           {/* Col 2 (Hero image in center) */}
-          <div className="w-full h-full min-h-[400px] overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+          <div className="group relative min-h-[400px] h-full w-full overflow-hidden border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
             <img
-              src="https://cdn.dribbble.com/userupload/46944459/file/817e33e8a07211881aef89ada4ebd3c5.webp?resize=1024x683&vertical=center"
+              src={centerProject.image}
               loading="lazy"
-              alt="Volt Energy Project"
+              alt={centerProject.alt}
               className="object-cover w-full h-full"
             />
             <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
             <div className="absolute left-0 right-0 bottom-0 p-6 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-              <h4 className="text-3xl font-medium text-white">VOLT Energy</h4>
-              <p className="text-sm text-[#0000FF] mt-2">Consumer Goods · 2023</p>
+              <h4 className="text-3xl font-medium text-white">{centerProject.title}</h4>
+              <p className="text-sm text-[#0000FF] mt-2">{centerProject.subtitle}</p>
             </div>
           </div>
           {/* Col 3 */}
           <div className="flex flex-col gap-[6px]">
-             <div className="w-full aspect-[4/3] overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+             <div className="group relative aspect-[4/3] w-full overflow-hidden border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
                <img
-                 src="https://cdn.dribbble.com/userupload/45535811/file/6966705b376133bcad5d29e49a1d46f7.jpg?resize=1024x629&vertical=center"
-                 alt="Collage image 3"
+                 src={rightTopProject.image}
+                 alt={rightTopProject.alt}
                  loading="lazy"
                  className="object-cover w-full h-full"
                />
                <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
                <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">Project Name</h5>
-                 <p className="text-xs text-white/60 mt-1">Photography · 2023</p>
+                 <h5 className="text-sm font-medium text-white">{rightTopProject.title}</h5>
+                 <p className="text-xs text-white/60 mt-1">{rightTopProject.subtitle}</p>
                </div>
              </div>
-             <div className="w-full aspect-square overflow-hidden relative group border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+             <div className="group relative aspect-square w-full overflow-hidden border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
                <img
-                 src="https://cdn.dribbble.com/userupload/44108562/file/original-fe8d5d85f612be72b54aa2748cdc9090.png?resize=1024x768&vertical=center"
+                 src={rightBottomProject.image}
                  loading="lazy"
-                 alt="Collage image 4"
+                 alt={rightBottomProject.alt}
                  className="object-cover w-full h-full"
                />
                <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
                <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">Project Name</h5>
-                 <p className="text-xs text-white/60 mt-1">Campaign · 2023</p>
+                 <h5 className="text-sm font-medium text-white">{rightBottomProject.title}</h5>
+                 <p className="text-xs text-white/60 mt-1">{rightBottomProject.subtitle}</p>
                </div>
              </div>
           </div>

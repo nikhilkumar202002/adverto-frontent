@@ -5,8 +5,8 @@
 
 
 
-/* ── Variables ──────────────────────────────────────────────────── */
-:root {
+/* ── Section shell ──────────────────────────────────────────────── */
+.section {
   --bg:           #060606;
   --text-hi:      #f0ece3;
   --text-lo:      rgba(240, 236, 227, 0.38);
@@ -14,14 +14,9 @@
   --border:       rgba(255, 255, 255, 0.06);
   --accent:       #0000FF;
   --accent-light: #3b82ff;
-
   --card-w:       clamp(170px, 15vw, 300px);
   --card-h:       auto;
   --card-radius:  0px;
-}
-
-/* ── Section shell ──────────────────────────────────────────────── */
-.section {
   position:   relative;
   width:      100%;
   background: var(--bg);
@@ -540,7 +535,7 @@
    RESPONSIVE
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  :root {
+  .section {
     --card-w: clamp(170px, 54vw, 260px);
   }
 
@@ -614,7 +609,7 @@
 }
 
 @media (max-width: 480px) {
-  :root {
+  .section {
     --card-w: clamp(160px, 58vw, 230px);
   }
 
