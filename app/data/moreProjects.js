@@ -4,7 +4,7 @@ export const moreProjects = [
     slug: "spices",
     title: "Spices",
     subtitle: "Branding · 2024",
-    image: "/case-studies/spices/BRANDING%20SPICES-01.jpg.jpeg",
+    image: "/case-studies/spices/BRANDING SPICES-01.jpg.jpeg",
   },
   {
     id: "underdwag",
@@ -18,7 +18,7 @@ export const moreProjects = [
     slug: "crevo",
     title: "CREVO",
     subtitle: "Branding · 2024",
-    image: "/case-studies/CREVO/cover%20photo/cover.jpg",
+    image: "/case-studies/CREVO/cover photo/cover.jpg",
   },
   {
     id: "azbery",
@@ -53,14 +53,14 @@ export const moreProjects = [
     slug: "soma-beach",
     title: "Soma Beach",
     subtitle: "Hospitality · 2024",
-    image: "/case-studies/Soma%20beach/Cover/soma.jpg",
+    image: "/case-studies/Soma beach/Cover/soma.jpg",
   },
   {
     id: "prime-edge",
     slug: "prime-edge",
     title: "Prime Edge",
     subtitle: "Branding · 2024",
-    image: "/case-studies/Prime%20edge/Cover/BRANDING%20SPICES-10.jpg",
+    image: "/case-studies/Prime edge/Cover/BRANDING SPICES-10.jpg",
   },
   {
     id: "thavala",

@@ -1,36 +1,36 @@
 export const portfolioProjects = [
   {
     id: 1,
-    title: "NOIR Identity System",
-    category: "Luxury Fashion",
+    title: "Spices",
+    category: "Branding",
     year: "2024",
-    image: "/images/projects/project-1.jpg",
+    image: "/case-studies/spices/BRANDING SPICES-01.jpg.jpeg",
     featured: true,
   },
 
   {
     id: 2,
-    title: "APEX Product Launch",
-    category: "Technology",
+    title: "CREVO",
+    category: "Branding",
     year: "2024",
-    image: "/images/projects/project-2.jpg",
+    image: "/case-studies/CREVO/cover photo/cover.jpg",
     featured: true,
   },
 
   {
     id: 3,
-    title: "VOLT Energy",
-    category: "Consumer Goods",
-    year: "2023",
-    image: "/images/projects/project-3.jpg",
+    title: "Fins",
+    category: "Branding",
+    year: "2024",
+    image: "/case-studies/Fins/Cover/fins.jpg",
   },
 
   {
     id: 4,
-    title: "Crypto Platform",
-    category: "Fintech",
-    year: "2023",
-    image: "/images/projects/project-4.jpg",
+    title: "Mistwish",
+    category: "Branding",
+    year: "2024",
+    image: "/case-studies/Mistwish/Cover/mist.jpg",
   },
 ];
 
@@ -74,17 +74,18 @@ export const caseStudyCollageProjects = [
 ];
 
 const spicesGalleryImages = [
-  "/case-studies/spices/BRANDING%20SPICES-02.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-03.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-04.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-05.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-06.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-07.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-08.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-09.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-10.jpg.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-10.jpg%20%281%29.jpeg",
-  "/case-studies/spices/BRANDING%20SPICES-11.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-01.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-02.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-03.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-04.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-05.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-06.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-07.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-08.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-09.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-10.jpg (1).jpeg",
+  "/case-studies/spices/BRANDING SPICES-10.jpg.jpeg",
+  "/case-studies/spices/BRANDING SPICES-11.jpg.jpeg",
 ];
 
 const underdwagGalleryImages = [
@@ -94,15 +95,30 @@ const underdwagGalleryImages = [
   "/case-studies/Underdwag/Untitled-8-04.jpg",
   "/case-studies/Underdwag/Untitled-8-05.jpg",
   "/case-studies/Underdwag/Untitled-8-06.jpg",
+  "/case-studies/Underdwag/Untitled-8-07.jpg",
+  "/case-studies/Underdwag/Untitled-8-08.jpg",
+  "/case-studies/Underdwag/Untitled-8-09.jpg",
+  "/case-studies/Underdwag/Untitled-8-10.jpg",
 ];
 
 const crevoGalleryImages = [
-  "/case-studies/CREVO/CREVO%20BRANDING-01.jpg",
-  "/case-studies/CREVO/CREVO%20BRANDING-02.jpg",
-  "/case-studies/CREVO/CREVO%20BRANDING-03.jpg",
-  "/case-studies/CREVO/CREVO%20BRANDING-04.jpg",
-  "/case-studies/CREVO/CREVO%20BRANDING-05.jpg",
-  "/case-studies/CREVO/CREVO%20BRANDING-06.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-01.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-02.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-03.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-04.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-05.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-06.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-07.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-08.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-09.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-10.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-11.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-12.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-13.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-14.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-15.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-16.jpg",
+  "/case-studies/CREVO/CREVO BRANDING-17.jpg",
 ];
 
 const azberyGalleryImages = [
@@ -112,6 +128,14 @@ const azberyGalleryImages = [
   "/case-studies/azbery/Untitled-1-04.jpg",
   "/case-studies/azbery/Untitled-1-05.jpg",
   "/case-studies/azbery/Untitled-1-06.jpg",
+  "/case-studies/azbery/Untitled-1-07.jpg",
+  "/case-studies/azbery/Untitled-1-08.jpg",
+  "/case-studies/azbery/Untitled-1-09.jpg",
+  "/case-studies/azbery/Untitled-1-10.jpg",
+  "/case-studies/azbery/Untitled-1-11.jpg",
+  "/case-studies/azbery/Untitled-1-12.jpg",
+  "/case-studies/azbery/Untitled-1-13.jpg",
+  "/case-studies/azbery/Untitled-1-14.jpg",
 ];
 
 const belantoGalleryImages = [
@@ -121,6 +145,11 @@ const belantoGalleryImages = [
   "/case-studies/Belanto/Untitled-9-04.jpg",
   "/case-studies/Belanto/Untitled-9-05.jpg",
   "/case-studies/Belanto/Untitled-9-06.jpg",
+  "/case-studies/Belanto/Untitled-9-07.jpg",
+  "/case-studies/Belanto/Untitled-9-08.jpg",
+  "/case-studies/Belanto/Untitled-9-09.jpg",
+  "/case-studies/Belanto/Untitled-9-10.jpg",
+  "/case-studies/Belanto/Untitled-9-11.jpg",
 ];
 
 const charuthaGalleryImages = [
@@ -130,6 +159,10 @@ const charuthaGalleryImages = [
   "/case-studies/Charutha/Untitled-10-04.jpg",
   "/case-studies/Charutha/Untitled-10-05.jpg",
   "/case-studies/Charutha/Untitled-10-06.jpg",
+  "/case-studies/Charutha/Untitled-10-07.jpg",
+  "/case-studies/Charutha/Untitled-10-08.jpg",
+  "/case-studies/Charutha/Untitled-10-09.jpg",
+  "/case-studies/Charutha/Untitled-10-10.jpg",
 ];
 
 const neveuGalleryImages = [
@@ -139,41 +172,65 @@ const neveuGalleryImages = [
   "/case-studies/NEVEU/Untitled-3-04.jpg",
   "/case-studies/NEVEU/Untitled-3-05.jpg",
   "/case-studies/NEVEU/Untitled-3-06.jpg",
+  "/case-studies/NEVEU/Untitled-3-07.jpg",
+  "/case-studies/NEVEU/Untitled-3-08.jpg",
+  "/case-studies/NEVEU/Untitled-3-09.jpg",
 ];
 
 const somaBeachGalleryImages = [
-  "/case-studies/Soma%20beach/Untitled-4-01.jpg",
-  "/case-studies/Soma%20beach/Untitled-4-02.jpg",
-  "/case-studies/Soma%20beach/Untitled-4-03.jpg",
-  "/case-studies/Soma%20beach/Untitled-4-04.jpg",
-  "/case-studies/Soma%20beach/Untitled-4-05.jpg",
+  "/case-studies/Soma beach/Untitled-4-01.jpg",
+  "/case-studies/Soma beach/Untitled-4-02.jpg",
+  "/case-studies/Soma beach/Untitled-4-03.jpg",
+  "/case-studies/Soma beach/Untitled-4-04.jpg",
+  "/case-studies/Soma beach/Untitled-4-05.jpg",
 ];
 
 const primeEdgeGalleryImages = [
-  "/case-studies/Prime%20edge/Untitled-2-01.jpg",
-  "/case-studies/Prime%20edge/Untitled-2-02.jpg",
-  "/case-studies/Prime%20edge/Untitled-2-03.jpg",
-  "/case-studies/Prime%20edge/Untitled-2-04.jpg",
-  "/case-studies/Prime%20edge/Untitled-2-05.jpg",
-  "/case-studies/Prime%20edge/Untitled-2-06.jpg",
+  "/case-studies/Prime edge/Untitled-2-01.jpg",
+  "/case-studies/Prime edge/Untitled-2-01x.jpg",
+  "/case-studies/Prime edge/Untitled-2-02.jpg",
+  "/case-studies/Prime edge/Untitled-2-02s.jpg",
+  "/case-studies/Prime edge/Untitled-2-03.jpg",
+  "/case-studies/Prime edge/Untitled-2-03s.jpg",
+  "/case-studies/Prime edge/Untitled-2-04.jpg",
+  "/case-studies/Prime edge/Untitled-2-05.jpg",
+  "/case-studies/Prime edge/Untitled-2-06.jpg",
+  "/case-studies/Prime edge/Untitled-2-07.jpg",
+  "/case-studies/Prime edge/Untitled-2-08.jpg",
 ];
 
 const thavalaGalleryImages = [
-  "/case-studies/THAVALA/THAVALA%20BRAND%20GUIDELINE-01.jpg",
-  "/case-studies/THAVALA/THAVALA%20BRAND%20GUIDELINE-02.jpg",
-  "/case-studies/THAVALA/THAVALA%20BRAND%20GUIDELINE-03.jpg",
-  "/case-studies/THAVALA/THAVALA%20BRAND%20GUIDELINE-04.jpg",
-  "/case-studies/THAVALA/THAVALA%20BRAND%20GUIDELINE-05.jpg",
-  "/case-studies/THAVALA/THAVALA%20BRAND%20GUIDELINE-06.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-01.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-02.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-03.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-04.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-05.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-06.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-07.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-08.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-09.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-10.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-11.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-12.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-13.jpg",
+  "/case-studies/THAVALA/THAVALA BRAND GUIDELINE-14.jpg",
 ];
 
 const soraGalleryImages = [
-  "/case-studies/SORA/SORA%20BRANDING%20FINAL-01.jpg",
-  "/case-studies/SORA/SORA%20BRANDING%20FINAL-02.jpg",
-  "/case-studies/SORA/SORA%20BRANDING%20FINAL-03.jpg",
-  "/case-studies/SORA/SORA%20BRANDING%20FINAL-04.jpg",
-  "/case-studies/SORA/SORA%20BRANDING%20FINAL-5.jpg",
-  "/case-studies/SORA/SORA%20BRANDING%20FINAL-06.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-01.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-02.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-03.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-04.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-5.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-06.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-07.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-08.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-09.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-10.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-11.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-12.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-13.jpg",
+  "/case-studies/SORA/SORA BRANDING FINAL-14.jpg",
 ];
 
 const finsGalleryImages = [
@@ -183,6 +240,9 @@ const finsGalleryImages = [
   "/case-studies/Fins/fins-01-04.jpg",
   "/case-studies/Fins/fins-01-05.jpg",
   "/case-studies/Fins/fins-01-06.jpg",
+  "/case-studies/Fins/fins-01-07.jpg",
+  "/case-studies/Fins/fins-01-08.jpg",
+  "/case-studies/Fins/fins-01-09.jpg",
 ];
 
 const govoyajoGalleryImages = [
@@ -192,6 +252,10 @@ const govoyajoGalleryImages = [
   "/case-studies/GOVOYAJO/IMG_6730-04.JPG",
   "/case-studies/GOVOYAJO/IMG_6730-05.JPG",
   "/case-studies/GOVOYAJO/IMG_6730-06.JPG",
+  "/case-studies/GOVOYAJO/IMG_6730-07.JPG",
+  "/case-studies/GOVOYAJO/IMG_6730-08.JPG",
+  "/case-studies/GOVOYAJO/IMG_6730-09.JPG",
+  "/case-studies/GOVOYAJO/IMG_6730-10.JPG",
 ];
 
 const mistwishGalleryImages = [
@@ -201,6 +265,16 @@ const mistwishGalleryImages = [
   "/case-studies/Mistwish/mist-04.jpg",
   "/case-studies/Mistwish/mist-05.jpg",
   "/case-studies/Mistwish/mist-06.jpg",
+  "/case-studies/Mistwish/mist-07.jpg",
+  "/case-studies/Mistwish/mist-08.jpg",
+  "/case-studies/Mistwish/mist-09.jpg",
+  "/case-studies/Mistwish/mist-10.jpg",
+  "/case-studies/Mistwish/mist-11.jpg",
+  "/case-studies/Mistwish/mist-12.jpg",
+  "/case-studies/Mistwish/mist-13.jpg",
+  "/case-studies/Mistwish/mist-14.jpg",
+  "/case-studies/Mistwish/mist-15.jpg",
+  "/case-studies/Mistwish/mist-16.jpg",
 ];
 
 export const portfolioPageProjects = [
@@ -210,7 +284,7 @@ export const portfolioPageProjects = [
     subtitle: "Branding · 2024",
     category: "Branding",
     year: "2024",
-    heroImage: "/case-studies/spices/BRANDING%20SPICES-01.jpg.jpeg",
+    heroImage: "/case-studies/spices/BRANDING SPICES-01.jpg.jpeg",
     description:
       "A complete brand presentation for a spice label, built around expressive packaging, sharp product visuals, and a warm retail-ready identity system.",
     services: ["Brand identity", "Packaging", "Campaign design"],
@@ -234,7 +308,7 @@ export const portfolioPageProjects = [
     subtitle: "Branding · 2024",
     category: "Branding",
     year: "2024",
-    heroImage: "/case-studies/CREVO/cover%20photo/cover.jpg",
+    heroImage: "/case-studies/CREVO/cover photo/cover.jpg",
     description:
       "A complete brand system with polished identity applications, presentation assets, and high-contrast campaign visuals.",
     services: ["Brand identity", "Guidelines", "Campaign design"],
@@ -294,7 +368,7 @@ export const portfolioPageProjects = [
     subtitle: "Hospitality · 2024",
     category: "Hospitality",
     year: "2024",
-    heroImage: "/case-studies/Soma%20beach/Cover/soma.jpg",
+    heroImage: "/case-studies/Soma beach/Cover/soma.jpg",
     description:
       "A hospitality identity shaped around coastal visuals, elegant brand applications, and destination-led storytelling.",
     services: ["Brand identity", "Campaign design", "Print design"],
@@ -306,7 +380,7 @@ export const portfolioPageProjects = [
     subtitle: "Branding · 2024",
     category: "Branding",
     year: "2024",
-    heroImage: "/case-studies/Prime%20edge/Cover/BRANDING%20SPICES-10.jpg",
+    heroImage: "/case-studies/Prime edge/Cover/BRANDING SPICES-10.jpg",
     description:
       "A sharp brand presentation with structured layouts, bold applications, and polished communication assets.",
     services: ["Brand identity", "Presentation", "Campaign design"],
