@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "./Reveal";
 import { moreProjects } from "../../data/moreProjects";
 
@@ -55,12 +54,11 @@ export default function InfiniteProjectSlider({
                 >
                   <div className="absolute inset-0 bg-[#0A0A0A] z-0" />
 
-                  <Image
+                  <img
                     src={project.image}
                     alt={project.title}
-                    width={260}
-                    height={180}
                     loading="lazy"
+                    decoding="async"
                     className="object-cover w-full h-full relative z-0"
                   />
 
