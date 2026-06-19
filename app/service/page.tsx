@@ -68,10 +68,7 @@ export default function ServicePage() {
                   </div>
 
                   <div className="absolute left-6 top-6 flex h-12 w-12 items-center justify-center border border-white/10 text-[#0000FF] transition-colors duration-500 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10 md:left-8 md:top-8">
-                    <Icon
-                      size={20}
-                      strokeWidth={1.5}
-                    />
+                    <Icon size={20} strokeWidth={1.5} />
                   </div>
 
                   <div className="absolute inset-x-6 bottom-6 transition-transform duration-500 ease-out group-hover:-translate-y-[170px] md:inset-x-8 md:bottom-8">

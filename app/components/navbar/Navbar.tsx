@@ -76,8 +76,9 @@ export default function Navbar() {
               alt="Adverto"
               width={128}
               height={32}
+              loading="eager"
               className="h-8 w-auto"
-              style={{ width: "auto" }}
+              style={{ width: "auto", height: "auto" }}
             />
           </Link>
 

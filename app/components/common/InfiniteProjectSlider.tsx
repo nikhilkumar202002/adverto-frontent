@@ -32,9 +32,6 @@ export default function InfiniteProjectSlider({
             <span className="w-[30px] h-[1px] bg-[#0000FF]" />
             MORE PROJECTS
           </p>
-          <p className="text-xs text-white/40 tracking-widest uppercase">
-            Hover to pause
-          </p>
         </div>
 
         <style>{`
@@ -44,9 +41,6 @@ export default function InfiniteProjectSlider({
         }
         .animate-image-marquee {
           animation: image-marquee 35s linear infinite;
-        }
-        .animate-image-marquee:hover {
-          animation-play-state: paused;
         }
       `}</style>
 

@@ -105,10 +105,10 @@ const ZOOM_POSITIONS = [
   { top: 30, left: 84 },
   { top: 24, left: 32 },
   { top: 38, left: 68 },
-  { top: 50, left: 24 },
+  { top: 42, left: 24 },
   { top: 24, left: 76 },
-  { top: 58, left: 35 },
-  { top: 58, left: 65 },
+  { top: 32, left: 35 },
+  { top: 32, left: 65 },
 ];
 
 const MOBILE_ZOOM_POSITIONS = [
@@ -118,8 +118,8 @@ const MOBILE_ZOOM_POSITIONS = [
   { top: 38, left: 70 },
   { top: 50, left: 24 },
   { top: 50, left: 76 },
-  { top: 62, left: 32 },
-  { top: 62, left: 68 },
+  { top: 34, left: 32 },
+  { top: 34, left: 68 },
 ];
 
 /* ── Individual Card ─────────────────────────────────────────────────────────── */
@@ -183,7 +183,7 @@ export default function TeamSection() {
 
       const setupAnimation = () => {
         const isMobile = window.innerWidth < 768;
-        const scrollLength = isMobile ? total * 92 : total * 72;
+        const scrollLength = isMobile ? total * 46 : total * 36;
         const scrub = isMobile ? 0.9 : 0.65;
         const firstPairDepth = isMobile ? "140vh" : "110vh";
         const nextPairDepth = isMobile ? "120vh" : "100vh";

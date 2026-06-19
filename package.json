@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "COPYFILE_DISABLE=1 next dev --webpack",
-    "build": "COPYFILE_DISABLE=1 next build --webpack && npm run clean:appledouble",
-    "export": "COPYFILE_DISABLE=1 next export && npm run clean:appledouble",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack && npm run clean:appledouble",
+    "export": "next export && npm run clean:appledouble",
     "start": "next start",
     "lint": "eslint",
-    "clean:appledouble": "find . -name '._*' -type f -delete"
+    "clean:appledouble": "node -e \"const fs=require('fs');const path=require('path');function walk(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,entry.name);if(entry.isDirectory()){if(!['.git','node_modules','.next'].includes(entry.name)) walk(p);}else if(entry.isFile()&&entry.name.startsWith('._')) fs.rmSync(p);}}walk(process.cwd());\""
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",

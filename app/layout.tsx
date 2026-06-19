@@ -8,7 +8,7 @@ import Footer from "./components/footer/Footer";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="relative overflow-x-hidden bg-black text-white">
         <NoiseOverlay />
         <CustomCursor />

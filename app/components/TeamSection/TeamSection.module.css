@@ -257,7 +257,7 @@
   display: block;
   width: 34px;
   height: 1px;
-  background: var(--accent);
+  background: #0000ff;
   opacity: 0.9;
 }
 
@@ -536,7 +536,7 @@
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .section {
-    --card-w: clamp(170px, 54vw, 260px);
+    --card-w: clamp(145px, 44vw, 220px);
   }
 
   .sticky {
@@ -553,11 +553,11 @@
   }
 
   .featuredCard {
-    --card-w: clamp(170px, 54vw, 260px);
+    --card-w: clamp(145px, 44vw, 220px);
   }
 
   .visibleStart {
-    --card-w: clamp(190px, 62vw, 300px);
+    --card-w: clamp(165px, 50vw, 250px);
   }
 
   .cardBody {
@@ -610,15 +610,15 @@
 
 @media (max-width: 480px) {
   .section {
-    --card-w: clamp(160px, 58vw, 230px);
+    --card-w: clamp(135px, 46vw, 190px);
   }
 
   .featuredCard {
-    --card-w: clamp(160px, 58vw, 230px);
+    --card-w: clamp(135px, 46vw, 190px);
   }
 
   .visibleStart {
-    --card-w: clamp(175px, 64vw, 260px);
+    --card-w: clamp(150px, 52vw, 220px);
   }
 
   .sticky {
