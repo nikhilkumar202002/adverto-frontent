@@ -108,19 +108,17 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
               Project Visuals
             </h2>
           </div>
-          <div className="grid grid-cols-1 gap-[6px] md:col-span-8 md:grid-cols-3">
+          <div className="md:col-span-8 [column-count:1] md:[column-count:2] xl:[column-count:3] [column-gap:6px]">
             {project.gallery.map((image, index) => (
               <div
                 key={`${image}-${index}`}
-                className={`overflow-hidden bg-[#0A0A0A] ${
-                  index % 6 === 0 ? "md:col-span-2" : ""
-                }`}
+                className="mb-[6px] break-inside-avoid overflow-hidden bg-[#0A0A0A]"
               >
                 <img
                   src={image}
                   alt={`${project.title} gallery ${index + 1}`}
                   loading="lazy"
-                  className="h-full min-h-[320px] w-full object-cover"
+                  className="h-auto w-full object-cover"
                 />
               </div>
             ))}

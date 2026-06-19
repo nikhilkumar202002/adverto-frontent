@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu } from "lucide-react";
 
 import Container from "../common/Container";
@@ -71,14 +70,13 @@ export default function Navbar() {
             aria-label="Adverto home"
             className="inline-block transition hover:opacity-90"
           >
-            <Image
+            <img
               src="/main-logo.svg"
               alt="Adverto"
               width={128}
               height={32}
-              loading="eager"
+              decoding="async"
               className="h-8 w-auto"
-              style={{ width: "auto", height: "auto" }}
             />
           </Link>
 
