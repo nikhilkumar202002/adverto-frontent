@@ -50,7 +50,7 @@ export default function CaseStudiesSection() {
             <p className="text-[#CDCDCD] text-[16px] mb-6 leading-[1.3] w-[300px] text-end">
               We build project architectures that are scalable, visually striking, and engineered for maximum conversion.
             </p>
-            <Link href="/work" className="group flex items-center gap-2 text-sm text-[#EDEDED] transition-colors hover:text-[#0000FF]">
+            <Link href="/portfolio" className="group flex items-center gap-2 text-sm text-[#EDEDED] transition-colors hover:text-[#0000FF]">
               View all works 
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
@@ -96,7 +96,7 @@ export default function CaseStudiesSection() {
               A bespoke visual identity designed for an emerging luxury fashion label.
               We focused on typography, robust photography direction, and a sleek monochromatic UI system.
             </p>
-            <Link href="/work/noir" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white border-b border-white/20 hover:border-white pb-1 w-max transition-all">
+            <Link href="/portfolio/spices" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white border-b border-white/20 hover:border-white pb-1 w-max transition-all">
               View Case Study <ArrowUpRight size={14} />
             </Link>
           </motion.div>
@@ -140,7 +140,7 @@ export default function CaseStudiesSection() {
             <p className="text-white/50 text-sm mb-8 leading-relaxed">
               A comprehensive launch campaign spanning web, social, and digital OOH.
             </p>
-            <Link href="/work/apex" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white border-b border-white/20 hover:border-white pb-1 w-max transition-all">
+            <Link href="/portfolio/spices" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white border-b border-white/20 hover:border-white pb-1 w-max transition-all">
               View Case Study <ArrowUpRight size={14} />
             </Link>
           </motion.div>

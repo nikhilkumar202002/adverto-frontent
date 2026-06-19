@@ -1,32 +1,47 @@
+const dummyProjectImage =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360' viewBox='0 0 520 360'%3E%3Crect width='520' height='360' fill='%231A1A1A'/%3E%3Cpath d='M0 280L150 190L260 245L390 140L520 220V360H0Z' fill='%23252525'/%3E%3Ccircle cx='405' cy='92' r='34' fill='%23323232'/%3E%3Ctext x='260' y='183' fill='%23777777' font-family='Arial, sans-serif' font-size='22' text-anchor='middle' letter-spacing='3'%3EIMAGE SOON%3C/text%3E%3C/svg%3E";
+
 export const moreProjects = [
   {
-    id: 1,
+    id: "spices",
+    slug: "spices",
+    title: "Spices",
+    subtitle: "Branding · 2024",
+    image: "/case-studies/spices/BRANDING%20SPICES-01.jpg.jpeg",
+  },
+  {
+    id: "trinity",
+    slug: "trinity",
     title: "Trinity",
     subtitle: "Apparel · 2023",
-    image: "https://cdn.dribbble.com/userupload/47474744/file/dcdead60fe921d1f60c4ca1e710eccde.jpg?resize=1024x682&vertical=center",
+    image: dummyProjectImage,
   },
   {
-    id: 2,
+    id: "gotour",
+    slug: "gotour",
     title: "GoTour",
     subtitle: "Architecture · 2022",
-    image: "https://cdn.dribbble.com/userupload/46058337/file/a286975407300f162176f9fd79d22636.jpg?resize=1024x768&vertical=center",
+    image: dummyProjectImage,
   },
   {
-    id: 3,
+    id: "ai-startup",
+    slug: "ai-startup",
     title: "AI Startup",
     subtitle: "AI Startup · 2024",
-    image: "https://cdn.dribbble.com/userupload/46661471/file/96f35db66c412fde16b2a7dc9163261e.png?resize=1024x768&vertical=center",
+    image: dummyProjectImage,
   },
   {
-    id: 4,
+    id: "jumpqi",
+    slug: "jumpqi",
     title: "JumpQi",
     subtitle: "Automotive · 2023",
-    image: "https://cdn.dribbble.com/userupload/16187394/file/original-70c5b02ee2d9df5b750b80904a20fabf.png?resize=1024x768&vertical=center",
+    image: dummyProjectImage,
   },
   {
-    id: 5,
+    id: "rexora",
+    slug: "rexora",
     title: "Rexora",
     subtitle: "Real Estate · 2022",
-    image: "https://cdn.dribbble.com/userupload/47699958/file/bda8e6584654c432715a01781f4f9368.png?resize=1024x2726&vertical=center",
-  }
+    image: dummyProjectImage,
+  },
 ];

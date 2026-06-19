@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "export": "next export",
+    "dev": "COPYFILE_DISABLE=1 next dev --webpack",
+    "build": "COPYFILE_DISABLE=1 next build --webpack && npm run clean:appledouble",
+    "export": "COPYFILE_DISABLE=1 next export && npm run clean:appledouble",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "clean:appledouble": "find . -name '._*' -type f -delete"
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
