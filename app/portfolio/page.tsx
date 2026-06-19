@@ -14,7 +14,7 @@ export default function PortfolioPage() {
               Portfolio
             </p>
             <h1 className="text-[52px] font-medium leading-[0.95] text-[#EDEDED] md:text-[88px]">
-              Selected Project Pages
+              Branding & Creative Portfolio
             </h1>
           </div>
           <div className="flex items-end md:col-span-4 md:col-start-9">

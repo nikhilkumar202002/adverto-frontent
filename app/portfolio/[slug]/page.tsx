@@ -98,8 +98,8 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
           </div>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-12">
-          <div className="md:col-span-4">
+        <div className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-12 md:items-start">
+          <div className="md:sticky md:top-28 md:col-span-4">
             <p className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Gallery
