@@ -4,7 +4,7 @@ export const moreProjects = [
     slug: "spices",
     title: "Spices",
     subtitle: "Branding · 2024",
-    image: "/case-studies/spices/BRANDING SPICES-01.jpg.jpeg",
+    image: "/case-studies/spices/Cover/BRANDING SPICES-10.jpg.jpeg",
   },
   {
     id: "underdwag",

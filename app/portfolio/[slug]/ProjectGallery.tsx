@@ -1,12 +1,88 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
 
 type ProjectGalleryProps = {
   images: string[];
   title: string;
 };
+
+type GalleryItemProps = {
+  image: string;
+  index: number;
+  title: string;
+  onOpen: () => void;
+};
+
+function GalleryItem({ image, index, title, onOpen }: GalleryItemProps) {
+  const itemRef = useRef<HTMLButtonElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [rowSpan, setRowSpan] = useState(24);
+
+  const updateRowSpan = useCallback(() => {
+    const item = itemRef.current;
+    const img = imageRef.current;
+
+    if (!item || !img) {
+      return;
+    }
+
+    const grid = item.parentElement;
+    const gridStyles = grid ? window.getComputedStyle(grid) : null;
+    const rowHeight = gridStyles
+      ? Number.parseFloat(gridStyles.getPropertyValue("grid-auto-rows"))
+      : 8;
+    const rowGap = gridStyles
+      ? Number.parseFloat(gridStyles.getPropertyValue("row-gap"))
+      : 6;
+    const safeRowHeight = Number.isFinite(rowHeight) && rowHeight > 0 ? rowHeight : 8;
+    const safeRowGap = Number.isFinite(rowGap) ? rowGap : 6;
+    const nextRowSpan = Math.ceil(
+      (img.getBoundingClientRect().height + safeRowGap) /
+        (safeRowHeight + safeRowGap),
+    );
+
+    setRowSpan(Math.max(nextRowSpan, 1));
+  }, []);
+
+  useEffect(() => {
+    updateRowSpan();
+
+    const resizeObserver = new ResizeObserver(updateRowSpan);
+    if (itemRef.current) {
+      resizeObserver.observe(itemRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [updateRowSpan]);
+
+  return (
+    <button
+      ref={itemRef}
+      type="button"
+      onClick={onOpen}
+      style={{ gridRowEnd: `span ${rowSpan}` }}
+      className="group relative w-full overflow-hidden bg-[#0A0A0A] text-left"
+      aria-label={`Open ${title} gallery image ${index + 1}`}
+    >
+      <img
+        ref={imageRef}
+        src={image}
+        alt={`${title} gallery ${index + 1}`}
+        loading="lazy"
+        onLoad={updateRowSpan}
+        className="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+      />
+      <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/35" />
+      <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 translate-y-2 items-center justify-center bg-[#0000FF] text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <Expand size={16} />
+      </span>
+    </button>
+  );
+}
 
 export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -55,26 +131,15 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
   return (
     <>
-      <div className="md:col-span-8 [column-count:2] xl:[column-count:3] [column-gap:6px]">
+      <div className="grid grid-cols-2 items-start gap-[6px] [grid-auto-rows:8px] md:col-span-8 md:grid-cols-3">
         {images.map((image, index) => (
-          <button
+          <GalleryItem
             key={`${image}-${index}`}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            className="group relative mb-[6px] block w-full break-inside-avoid overflow-hidden bg-[#0A0A0A] text-left"
-            aria-label={`Open ${title} gallery image ${index + 1}`}
-          >
-            <img
-              src={image}
-              alt={`${title} gallery ${index + 1}`}
-              loading="lazy"
-              className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/35" />
-            <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 translate-y-2 items-center justify-center bg-[#0000FF] text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              <Expand size={16} />
-            </span>
-          </button>
+            image={image}
+            index={index}
+            title={title}
+            onOpen={() => setActiveIndex(index)}
+          />
         ))}
       </div>
 

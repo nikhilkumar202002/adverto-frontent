@@ -69,7 +69,7 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
         </div>
 
         <div className="mt-12 overflow-hidden border border-white/10 bg-[#0A0A0A]">
-          <img
+          <img 
             src={project.heroImage}
             alt={project.title}
             className="h-[420px] w-full object-cover md:h-[720px]"

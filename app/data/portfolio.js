@@ -4,7 +4,7 @@ export const portfolioProjects = [
     title: "Spices",
     category: "Branding",
     year: "2024",
-    image: "/case-studies/spices/BRANDING SPICES-01.jpg.jpeg",
+    image: "/case-studies/spices/Cover/BRANDING SPICES-10.jpg.jpeg",
     featured: true,
   },
 
@@ -84,7 +84,7 @@ const spicesGalleryImages = [
   "/case-studies/spices/BRANDING SPICES-08.jpg.jpeg",
   "/case-studies/spices/BRANDING SPICES-09.jpg.jpeg",
   "/case-studies/spices/BRANDING SPICES-10.jpg (1).jpeg",
-  "/case-studies/spices/BRANDING SPICES-10.jpg.jpeg",
+  // "/case-studies/spices/BRANDING SPICES-10.jpg.jpeg",
   "/case-studies/spices/BRANDING SPICES-11.jpg.jpeg",
 ];
 
@@ -284,7 +284,7 @@ export const portfolioPageProjects = [
     subtitle: "Branding · 2024",
     category: "Branding",
     year: "2024",
-    heroImage: "/case-studies/spices/BRANDING SPICES-01.jpg.jpeg",
+    heroImage: "/case-studies/spices/Cover/BRANDING SPICES-10.jpg.jpeg",
     description:
       "A complete brand presentation for a spice label, built around expressive packaging, sharp product visuals, and a warm retail-ready identity system.",
     services: ["Brand identity", "Packaging", "Campaign design"],

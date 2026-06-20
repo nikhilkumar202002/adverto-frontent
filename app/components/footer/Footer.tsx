@@ -70,14 +70,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-20 min-h-[100svh] overflow-hidden bg-black text-white">
-      <Container className="relative z-10 flex min-h-[100svh] flex-col justify-between py-8 md:py-10">
-        <div className="flex flex-1 flex-col items-center justify-center text-center">
-          <h2 className="text-[clamp(72px,17vw,300px)] font-semibold leading-[0.78] tracking-normal text-[#f4f3ef]">
+    <footer className="relative z-20 overflow-hidden bg-black text-white md:min-h-[100svh]">
+      <Container className="relative z-10 flex min-h-[420px] flex-col justify-between py-8 md:min-h-[100svh] md:py-10">
+        <div className="flex flex-1 flex-col items-center justify-center py-8 text-center md:py-0">
+          <h2 className="text-[clamp(52px,18vw,92px)] font-semibold leading-[0.82] tracking-normal text-[#f4f3ef] md:text-[clamp(72px,17vw,300px)] md:leading-[0.78]">
             Let&apos;s Talk
           </h2>
 
-          <Button href="/contact" className="mt-20 max-md:mt-12">
+          <Button href="/contact" className="mt-8 md:mt-20">
             Contact Us
           </Button>
         </div>
@@ -94,13 +94,13 @@ export default function Footer() {
           </span>
         </button>
 
-        <div className="grid items-center gap-6 pb-1 text-[15px] text-white/60 md:grid-cols-3">
+        <div className="grid items-center gap-4 pb-1 text-[14px] text-white/60 md:grid-cols-3 md:gap-6 md:text-[15px]">
           <p className="text-center md:text-left">
             Adverto © {currentYear} All rights reserved
           </p>
 
           <nav
-            className="flex items-center justify-center gap-5 text-white/55"
+            className="flex flex-wrap items-center justify-center gap-4 text-white/55 md:gap-5"
             aria-label="Social links"
           >
             {socials.map((social) => (
@@ -115,7 +115,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          <div className="flex items-center justify-center gap-5 md:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:justify-end md:gap-5">
             <Link href="/privacy" className="transition-colors hover:text-white">
               Privacy Policy
             </Link>
