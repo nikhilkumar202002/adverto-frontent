@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Container from "../../components/common/Container";
 import { portfolioPageProjects } from "../../data/portfolio";
+import ProjectGallery from "./ProjectGallery";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -108,21 +109,7 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
               Project Visuals
             </h2>
           </div>
-          <div className="md:col-span-8 [column-count:1] md:[column-count:2] xl:[column-count:3] [column-gap:6px]">
-            {project.gallery.map((image, index) => (
-              <div
-                key={`${image}-${index}`}
-                className="mb-[6px] break-inside-avoid overflow-hidden bg-[#0A0A0A]"
-              >
-                <img
-                  src={image}
-                  alt={`${project.title} gallery ${index + 1}`}
-                  loading="lazy"
-                  className="h-auto w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <ProjectGallery images={project.gallery} title={project.title} />
         </div>
 
         <div className="mt-20 flex justify-end">

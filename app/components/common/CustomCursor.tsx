@@ -12,7 +12,9 @@ export default function CustomCursor() {
       setPosition({ x: (e as MouseEvent).clientX, y: (e as MouseEvent).clientY });
 
       const target = e.target as HTMLElement | null;
-      if (target && (target.closest("a") || target.closest("button"))) {
+      const cursorIgnored = target?.closest("[data-cursor-ignore='true']");
+
+      if (target && !cursorIgnored && (target.closest("a") || target.closest("button"))) {
         setIsHovering(true);
       } else {
         setIsHovering(false);
