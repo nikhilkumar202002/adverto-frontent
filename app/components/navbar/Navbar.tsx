@@ -21,6 +21,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isTransparent, setIsTransparent] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const lastScrollYRef = useRef(0);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
       const scrollingUp = currentScrollY < lastScrollYRef.current;
       const nearTop = currentScrollY < 12;
+      const stickyActive = currentScrollY > 12;
       const navProbeY = currentScrollY + 96;
       const transparentSection = Array.from(
         document.querySelectorAll<HTMLElement>("[data-navbar-transparent]")
@@ -40,7 +42,8 @@ export default function Navbar() {
         return navProbeY >= sectionTop && navProbeY <= sectionBottom;
       });
 
-      setIsTransparent(transparentSection);
+      setHasScrolled(stickyActive);
+      setIsTransparent(nearTop || (transparentSection && !stickyActive));
       setIsVisible(nearTop || scrollingUp || transparentSection);
       lastScrollYRef.current = currentScrollY;
     };
@@ -57,13 +60,19 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed left-0 top-0 z-50 w-full transition-[background-color,backdrop-filter,transform] duration-300 ease-out ${
-          isTransparent ? "bg-transparent backdrop-blur-0" : "bg-black/70 backdrop-blur-md"
+        className={`fixed left-0 top-0 z-50 w-full border-b transition-[background-color,backdrop-filter,border-color,box-shadow,transform] duration-500 ease-out ${
+          isTransparent
+            ? "border-transparent bg-transparent shadow-none backdrop-blur-0"
+            : "border-white/10 bg-black/72 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl"
         } ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <Container className="flex items-center justify-between py-6">
+        <Container
+          className={`flex items-center justify-between transition-[padding] duration-500 ease-out ${
+            hasScrolled ? "py-4" : "py-6"
+          }`}
+        >
           
           <Link
             href="/"
