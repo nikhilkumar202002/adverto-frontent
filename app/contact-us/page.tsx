@@ -21,20 +21,32 @@ export const metadata: Metadata = {
 const contactMethods = [
   {
     label: "Email",
-    value: "hello@adverto.co",
-    href: "mailto:hello@adverto.co",
+    value: "connectadvertoads@gmail.com",
+    href: "mailto:connectadvertoads@gmail.com",
     icon: Mail,
   },
   {
     label: "Phone",
-    value: "Book a discovery call",
-    href: "mailto:hello@adverto.co?subject=Discovery%20Call%20Request",
+    value: "+91 73565 60800",
+    href: "tel:+917356560800",
     icon: Phone,
   },
   {
     label: "Location",
-    value: "Kerala, India",
-    href: "https://maps.google.com/?q=Kerala%2C%20India",
+    value: (
+      <>
+        ADVERTO ADS
+        <br />
+        SUITE NO: 387B, 5/257A8
+        <br />
+        Basement Floor, Pallath Square,
+        <br />
+        FACT Kalamassery Rd,
+        <br />
+        Kalamassery P.O, Ernakulam - 683104
+      </>
+    ),
+    href: "https://maps.google.com/?q=ADVERTO%20ADS%20SUITE%20NO%20387B%205%2F257A8%20Basement%20Floor%20Pallath%20Square%20FACT%20Kalamassery%20Rd%20Kalamassery%20P.O%20Ernakulam%20683104",
     icon: MapPin,
   },
 ];
@@ -108,7 +120,7 @@ export default function ContactPage() {
                       <p className="mb-2 text-xs uppercase tracking-[0.18em] text-white/35">
                         {method.label}
                       </p>
-                      <p className="text-xl font-medium text-white">
+                      <p className="text-xl font-medium leading-snug text-white">
                         {method.value}
                       </p>
                     </div>
@@ -152,7 +164,7 @@ export default function ContactPage() {
             </div>
 
             <form
-              action="mailto:hello@adverto.co"
+              action="mailto:connectadvertoads@gmail.com"
               method="post"
               encType="text/plain"
               className="grid grid-cols-1 gap-5 md:grid-cols-2"
@@ -240,7 +252,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-4 md:col-span-2 md:flex-row md:items-center md:justify-between">
                 <p className="max-w-[420px] text-sm leading-relaxed text-white/40">
                   The form opens your email client with the project details. For
-                  direct email, write to hello@adverto.co.
+                  direct email, write to connectadvertoads@gmail.com.
                 </p>
                 <button
                   type="submit"

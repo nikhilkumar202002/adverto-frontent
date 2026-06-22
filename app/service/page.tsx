@@ -61,23 +61,25 @@ export default function ServicePage() {
               return (
                 <article
                   key={service.id}
-                  className="group relative min-h-[480px] overflow-hidden border border-white/10 bg-black p-6 transition-colors duration-500 hover:border-[#0000FF] md:min-h-[540px] md:p-8"
+                  className="group relative min-h-[480px] overflow-hidden border border-white/5 bg-[#0A0A0A] p-6 transition-colors duration-500 hover:border-[#0000FF] hover:bg-[#0f0f0f] md:min-h-[540px] md:p-8"
                 >
-                  <div className="absolute right-6 top-6 text-[42px] font-medium leading-none text-white/[0.06] transition-colors duration-500 group-hover:text-[#0000FF]/20 md:right-8 md:top-8">
+                  <div className="pointer-events-none absolute -top-[150px] left-1/2 z-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#0000FF]/30 opacity-0 blur-[80px] transition-all duration-700 group-hover:translate-y-8 group-hover:opacity-100" />
+
+                  <div className="absolute right-6 top-6 z-10 text-[42px] font-medium leading-none text-white/[0.06] transition-colors duration-500 group-hover:text-[#0000FF]/20 md:right-8 md:top-8">
                     {service.id}
                   </div>
 
-                  <div className="absolute left-6 top-6 flex h-12 w-12 items-center justify-center border border-white/10 text-[#0000FF] transition-colors duration-500 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10 md:left-8 md:top-8">
+                  <div className="absolute left-6 top-6 z-10 flex h-12 w-12 items-center justify-center border border-white/10 text-[#0000FF] transition-colors duration-500 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10 md:left-8 md:top-8">
                     <Icon size={20} strokeWidth={1.5} />
                   </div>
 
-                  <div className="absolute inset-x-6 bottom-6 transition-transform duration-500 ease-out group-hover:-translate-y-[170px] md:inset-x-8 md:bottom-8">
+                  <div className="absolute inset-x-6 bottom-6 z-10 transition-transform duration-500 ease-out group-hover:-translate-y-[170px] md:inset-x-8 md:bottom-8">
                     <h3 className="text-2xl font-medium leading-tight text-[#EDEDED] md:text-3xl">
                       {service.title}
                     </h3>
                   </div>
 
-                  <div className="absolute inset-x-6 bottom-6 translate-y-6 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 md:inset-x-8 md:bottom-8">
+                  <div className="absolute inset-x-6 bottom-6 z-10 translate-y-6 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 md:inset-x-8 md:bottom-8">
                     <p className="mb-8 text-[15px] leading-[1.55] text-white/55">
                       {service.description}
                     </p>
@@ -112,7 +114,7 @@ export default function ServicePage() {
               </h2>
               <p className="max-w-[420px] text-[16px] leading-[1.5] text-white/50">
                 Clear answers before the first call. For anything more specific,
-                email hello@adverto.co.
+                email connectadvertoads@gmail.com.
               </p>
             </div>
 

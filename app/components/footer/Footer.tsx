@@ -52,14 +52,40 @@ const Facebook = ({ size = 18, className = "" }: IconProps) => (
   </svg>
 );
 
+const LinkedIn = ({ size = 18, className = "" }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M4.98 3.5c0 1.38-1.11 2.5-2.49 2.5S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8h4v15h-4V8zm7.5 0h3.84v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.06 0 4.82 2.67 4.82 6.14V23h-4v-7.85c0-1.87-.03-4.28-2.61-4.28-2.61 0-3.01 2.04-3.01 4.15V23h-4V8z" />
+  </svg>
+);
+
 const socials = [
-  { label: "Facebook", content: <Facebook size={17} /> },
-  { label: "Instagram", content: <Instagram size={17} /> },
-  { label: "Behance", content: <Behance size={18} /> },
-  { label: "LinkedIn", content: "in" },
-  { label: "Pinterest", content: "p" },
-  { label: "YouTube", content: "▶" },
-  { label: "X", content: "X" },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/adverto.india?",
+    content: <Facebook size={17} />,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/adverto.india?igsh=M3d0cndoMnoxbWl1&utm_source=qr",
+    content: <Instagram size={17} />,
+  },
+  {
+    label: "Behance",
+    href: "https://www.behance.net/advertocompany2025",
+    content: <Behance size={18} />,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/adverto-company-b33990363?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    content: <LinkedIn size={17} />,
+  },
 ];
 
 export default function Footer() {
@@ -106,8 +132,10 @@ export default function Footer() {
             {socials.map((social) => (
               <a
                 key={social.label}
-                href="#"
+                href={social.href}
                 aria-label={social.label}
+                target="_blank"
+                rel="noreferrer"
                 className="flex h-6 min-w-4 items-center justify-center text-[18px] font-semibold leading-none transition-colors duration-300 hover:text-white"
               >
                 {social.content}

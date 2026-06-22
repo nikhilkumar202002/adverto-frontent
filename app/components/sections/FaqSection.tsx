@@ -36,7 +36,7 @@ export default function FaqSection() {
             </h2>
             <p className="text-white/50 text-[17px]">
               Not finding what you need? Reach out directly <br className="hidden md:block" />
-              at <a href="mailto:hello@adverto.co" className="text-white hover:text-[#0000FF] transition-colors">hello@adverto.co</a>
+              at <a href="mailto:connectadvertoads@gmail.com" className="text-white hover:text-[#0000FF] transition-colors">connectadvertoads@gmail.com</a>
             </p>
           </motion.div>
 
