@@ -4,6 +4,15 @@ import { ArrowRight, Plus } from "lucide-react";
 import Container from "../components/common/Container";
 import { faqData } from "../data/faqs";
 import { servicesData } from "../data/services";
+import ServiceHeroContent from "./ServiceHeroContent";
+
+const backgroundSquares = [
+  "#000000", "#07000c", "#020417", "#030720", "#061035", "#071849", "#082464", "#0a2f73",
+  "#17034e", "#160854", "#170a5e", "#180b65", "#1a0d70", "#1a0f78", "#171085", "#13108f",
+  "#15158a", "#171894", "#1518a2", "#1518ab", "#1218b7", "#1218c4", "#1018cf", "#0f18d8",
+  "#1114d0", "#1115d7", "#1116df", "#1417e6", "#1518ed", "#1519f1", "#1519f7", "#141aff",
+  "#1215f2", "#1115f5", "#1014fa", "#1114ff", "#1819ff", "#2423ff", "#302cff", "#3a35ff",
+];
 
 export const metadata: Metadata = {
   title: "Creative Services | Adverto",
@@ -15,20 +24,21 @@ export default function ServicePage() {
   return (
     <div className="relative bg-[#050505] text-white">
       <section className="relative flex min-h-screen items-end overflow-hidden border-b border-white/5 pb-[40px]">
-        <Container>
-          <div className="max-w-[980px]">
-            <p className="mb-4 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
-              <span className="h-[1px] w-[30px] bg-[#0000FF]" />
-              Creative Services
-            </p>
-            <h1 className="max-w-[980px] text-[52px] font-medium leading-[0.95] text-[#EDEDED] md:text-[100px]">
-              Brand, Campaign & Content Systems
-            </h1>
-            <p className="mt-6 max-w-[520px] text-[16px] leading-[1.45] text-white/55">
-              We connect strategy, design, production, and distribution into one
-              creative workflow for ambitious brands.
-            </p>
-          </div>
+        <div
+          aria-hidden
+          className="absolute inset-0 z-0 grid grid-cols-4 grid-rows-10 bg-black sm:grid-cols-8 sm:grid-rows-5"
+        >
+          {backgroundSquares.map((color, index) => (
+            <span
+              key={`${color}-${index}`}
+              className="block h-full w-full"
+              style={{ backgroundColor: color }}
+            />
+          ))}
+        </div>
+
+        <Container className="relative z-10">
+          <ServiceHeroContent />
         </Container>
       </section>
 
