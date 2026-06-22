@@ -25,10 +25,10 @@ function RevealCharacter({
   total,
 }: RevealCharacterProps) {
   const revealStart = 0.08;
-  const revealEnd = 0.82;
-  const characterProgress = index / total;
+  const revealEnd = 0.9;
+  const characterProgress = index / Math.max(total - 1, 1);
   const start = revealStart + characterProgress * (revealEnd - revealStart);
-  const end = Math.min(start + 0.04, revealEnd);
+  const end = Math.min(start + 0.03, 0.96);
   const color = useTransform(
     progress,
     [start, end],
@@ -42,7 +42,7 @@ export default function AboutScrolling() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 75%", "end 95%"],
+    offset: ["start 70%", "end 90%"],
   });
 
   const paragraphs = useMemo(() => {
@@ -87,7 +87,7 @@ export default function AboutScrolling() {
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 min-h-[300vh] bg-[#030303] py-24"
+      className="relative z-10 bg-[#030303] py-24"
     >
       <Container className="sticky top-0 flex min-h-screen items-center">
         <div className="grid w-full grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">

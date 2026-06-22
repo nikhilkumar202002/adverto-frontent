@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Container from "../components/common/Container";
 import AboutScrolling from "../components/sections/AboutScrolling";
+import ClientLogo from "../components/sections/ClientLogo";
+import FeaturedWorksSlider from "../components/sections/FeaturedWorksSlider";
+import HowItsWork from "../components/sections/HowItsWork";
 
 export const metadata: Metadata = {
   title: "About Adverto | Creative Advertising Agency",
@@ -91,6 +94,9 @@ export default function AboutUsPage() {
         </Container>
       </section>
       <AboutScrolling />
+      <HowItsWork />
+      <FeaturedWorksSlider />
+      <ClientLogo />
     </main>
   );
 }
