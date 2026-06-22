@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-const contentVariants = {
+const contentVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -13,7 +14,7 @@ const contentVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 28, filter: "blur(10px)" },
   visible: {
     opacity: 1,
