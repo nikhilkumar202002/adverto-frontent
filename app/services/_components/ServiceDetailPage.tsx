@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import Container from "../../components/common/Container";
 import Button from "../../components/common/Button";
+import { portfolioPageProjects } from "../../data/portfolio";
 import { serviceDetails, type ServiceSlug } from "../serviceDetails";
 
 type ServiceDetailPageProps = {
@@ -10,20 +12,44 @@ type ServiceDetailPageProps = {
 
 const serviceOrder = Object.keys(serviceDetails) as ServiceSlug[];
 
+type PortfolioProject = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  heroImage: string;
+  gallery?: readonly string[];
+};
+
+const portfolioProjects = portfolioPageProjects as PortfolioProject[];
+
 export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
   const service = serviceDetails[slug];
-  const currentIndex = serviceOrder.indexOf(slug);
-  const nextSlug = serviceOrder[(currentIndex + 1) % serviceOrder.length];
-  const nextService = serviceDetails[nextSlug];
+  const recentWorks = service.recentWorks
+    .map((workSlug) =>
+      portfolioProjects.find((project) => project.slug === workSlug)
+    )
+    .filter((project): project is PortfolioProject => Boolean(project));
+  const recentWorkImages = recentWorks
+    .flatMap((project) =>
+      [project.heroImage, ...(project.gallery ?? [])]
+        .slice(0, 3)
+        .map((image, imageIndex) => ({
+          image,
+          imageIndex,
+          project,
+        }))
+    )
+    .slice(0, 9);
 
   return (
-    <main className="relative overflow-hidden bg-black text-white">
+    <main className="relative overflow-x-hidden bg-black text-white">
       <section
-        className="relative flex min-h-screen min-h-[100svh] items-end overflow-hidden border-b border-white/5 pb-16 pt-32"
+        className="relative flex min-h-[72vh] items-end overflow-hidden border-b border-white/5 pb-12 pt-32 md:min-h-[76vh] md:pb-16"
         data-navbar-transparent
       >
         <div aria-hidden className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[#030303]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px]" />
           <div className="absolute right-[-16%] top-[-20%] h-[620px] w-[620px] rounded-full bg-[#0000FF]/25 blur-[130px]" />
           <div className="absolute bottom-[-24%] left-[-10%] h-[520px] w-[520px] rounded-full bg-white/8 blur-[120px]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,0,255,0.18),transparent_44%),linear-gradient(180deg,rgba(0,0,0,0.08)_0%,#000_100%)]" />
@@ -54,42 +80,79 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
         <Container>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-8">
-              <div className="border-t border-[#0000FF] bg-[#111111]">
-                <div className="px-5 py-5 md:px-8">
-                  <p className="mb-3 text-[12px] uppercase tracking-[0.18em] text-white/38">
-                    Service Scope
+              <div className="relative overflow-hidden border border-white/10 bg-black">
+                <div className="relative border-b border-white/10 p-5 md:p-8">
+                  <div className="mb-10 flex items-start justify-between gap-8">
+                    <div>
+                      <p className="mb-4 flex items-center gap-3 text-[12px] uppercase tracking-[0.18em] text-[#0000FF]">
+                        <span className="h-[1px] w-[34px] bg-[#0000FF]" />
+                        Service Scope
+                      </p>
+                      <h2 className="max-w-[620px] text-[42px] font-medium leading-[0.94] tracking-[-0.04em] text-[#F5F5F5] md:text-[72px]">
+                        What&apos;s included in this service.
+                      </h2>
+                    </div>
+                    <span className="hidden text-[64px] font-medium leading-none text-white/[0.06] md:block">
+                      {service.id}
+                    </span>
+                  </div>
+
+                  <p className="max-w-[680px] text-[17px] leading-[1.6] text-white/55">
+                    Each item is shaped around the business goal, then connected
+                    into a clear system for brand, campaign, content, or growth.
                   </p>
-                  <h2 className="text-[34px] font-medium leading-none tracking-[-0.03em] text-[#0000FF] md:text-[56px]">
-                    What&apos;s Included
-                  </h2>
                 </div>
 
-                <div className="grid grid-cols-1 gap-[1px] bg-white/8">
+                <div className="relative grid grid-cols-1 gap-[1px] bg-white/10 md:grid-cols-2">
                   {service.items.map((item, index) => (
                     <div
                       key={item}
-                      className="group flex min-h-[82px] items-center justify-between gap-6 bg-[#151515] px-5 py-4 transition-colors duration-300 hover:bg-[#1A1A1A] md:px-8"
+                      className="group min-h-[180px] bg-black p-5 transition-colors duration-300 hover:bg-[#050505] md:p-7"
                     >
-                      <div className="flex items-center gap-4">
-                        <Check
-                          size={18}
-                          strokeWidth={2}
-                          className="shrink-0 text-[#0000FF]"
-                        />
-                        <span className="text-[20px] leading-[1.25] text-white/84 md:text-[28px]">
-                          {item}
+                      <div className="mb-10 flex items-center justify-between gap-6">
+                        <span className="text-[13px] uppercase tracking-[0.16em] text-white/22 transition-colors duration-300 group-hover:text-[#0000FF]">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-[#0000FF] transition-colors duration-300 group-hover:border-[#0000FF] group-hover:bg-[#0000FF] group-hover:text-white">
+                          <Check size={16} strokeWidth={2} />
                         </span>
                       </div>
-                      <span className="text-[13px] uppercase tracking-[0.16em] text-white/18 transition-colors duration-300 group-hover:text-[#0000FF]">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
+                      <h3 className="text-[24px] font-medium leading-[1.05] tracking-[-0.025em] text-white/86 md:text-[32px]">
+                        {item}
+                      </h3>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-10 bg-black">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {recentWorkImages.map(({ image, imageIndex, project }) => (
+                    <Link
+                      key={`${project.slug}-${imageIndex}-${image}`}
+                      href={`/portfolio/${project.slug}`}
+                      className="group relative aspect-[4/3] overflow-hidden bg-[#111111]"
+                    >
+                      <Image
+                        src={image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      <div className="absolute inset-x-4 bottom-4 translate-y-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        <h3 className="text-[18px] font-medium leading-none tracking-[-0.02em] text-white">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </Link>
                   ))}
                 </div>
               </div>
             </div>
 
-            <aside className="lg:sticky lg:top-28 lg:col-span-4">
+            <aside className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
               <div className="border border-white/10 bg-[#080808] p-5 md:p-8">
                 <div className="mb-8 flex items-start justify-between gap-6">
                   <div>
@@ -145,25 +208,6 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                       );
                     })}
                   </div>
-                </div>
-
-                <div className="mt-10 border-t border-white/10 pt-6">
-                  <Link
-                    href={`/services/${nextSlug}`}
-                    className="group flex items-center justify-between gap-4"
-                  >
-                    <span>
-                      <span className="block text-[12px] uppercase tracking-[0.18em] text-white/35">
-                        Next Service
-                      </span>
-                      <span className="mt-1 block text-[22px] font-medium text-white transition-colors group-hover:text-[#0000FF]">
-                        {nextService.title}
-                      </span>
-                    </span>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 transition-colors group-hover:border-[#0000FF] group-hover:bg-[#0000FF]">
-                      <ArrowUpRight size={18} />
-                    </span>
-                  </Link>
                 </div>
               </div>
             </aside>

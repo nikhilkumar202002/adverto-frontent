@@ -15,6 +15,7 @@ export const serviceDetails = {
       "Marketing Strategy",
       "Digital Brand Strategy",
     ],
+    recentWorks: ["crevo", "azbery", "neveu", "thavala"],
   },
   advertising: {
     id: "02",
@@ -34,6 +35,7 @@ export const serviceDetails = {
       "Content Marketing Campaigns",
       "Competitive Positioning Campaigns",
     ],
+    recentWorks: ["spices", "belanto", "sora", "prime-edge"],
   },
   video: {
     id: "03",
@@ -54,6 +56,7 @@ export const serviceDetails = {
       "Lead Generation Ads",
       "Short Format Ads",
     ],
+    recentWorks: ["govoyajo", "soma-beach", "underdwag", "mistwish"],
   },
   social: {
     id: "04",
@@ -71,6 +74,7 @@ export const serviceDetails = {
       "Performance Analytics",
       "Monthly Reporting",
     ],
+    recentWorks: ["fins", "charutha", "spices", "sora"],
   },
 } as const;
 
