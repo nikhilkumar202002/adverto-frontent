@@ -16,6 +16,10 @@ function ImageLogo({ src, alt = "logo", size = 48, className = "", ...props }) {
 }
 
 const logoFiles = [
+  "tiara logo1y.png",
+  "fira logoy.png",
+  "Asset 2@4x.png",
+
   "300Asset 1u.png",
   "500Asset 1.png",
   "500Asset 1t.png",
@@ -40,7 +44,6 @@ const logoFiles = [
   "Asset 27.png",
   "Asset 28.png",
   "Asset 29.png",
-  "Asset 2@4x.png",
   "Asset 3.png",
   "Asset 36.png",
   "Asset 37.png",
@@ -55,10 +58,8 @@ const logoFiles = [
   "Asset 5.png",
   "Asset 8.png",
   "Asset 9.png",
-  "fira logoy.png",
   "PNG.png",
   "sss.png",
-  "tiara logo1y.png",
 ];
 
 export const clientLogos = logoFiles.map((file, idx) => {
