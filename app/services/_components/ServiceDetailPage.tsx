@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import Container from "../../components/common/Container";
 import Button from "../../components/common/Button";
-import { portfolioPageProjects } from "../../data/portfolio";
 import { serviceDetails, type ServiceSlug } from "../serviceDetails";
 
 type ServiceDetailPageProps = {
@@ -12,34 +10,8 @@ type ServiceDetailPageProps = {
 
 const serviceOrder = Object.keys(serviceDetails) as ServiceSlug[];
 
-type PortfolioProject = {
-  slug: string;
-  title: string;
-  subtitle: string;
-  heroImage: string;
-  gallery?: readonly string[];
-};
-
-const portfolioProjects = portfolioPageProjects as PortfolioProject[];
-
 export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
   const service = serviceDetails[slug];
-  const recentWorks = service.recentWorks
-    .map((workSlug) =>
-      portfolioProjects.find((project) => project.slug === workSlug)
-    )
-    .filter((project): project is PortfolioProject => Boolean(project));
-  const recentWorkImages = recentWorks
-    .flatMap((project) =>
-      [project.heroImage, ...(project.gallery ?? [])]
-        .slice(0, 3)
-        .map((image, imageIndex) => ({
-          image,
-          imageIndex,
-          project,
-        }))
-    )
-    .slice(0, 9);
 
   return (
     <main className="relative overflow-x-hidden bg-black text-white">
@@ -121,32 +93,6 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                         {item}
                       </h3>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-10 bg-black">
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {recentWorkImages.map(({ image, imageIndex, project }) => (
-                    <Link
-                      key={`${project.slug}-${imageIndex}-${image}`}
-                      href={`/portfolio/${project.slug}`}
-                      className="group relative aspect-[4/3] overflow-hidden bg-[#111111]"
-                    >
-                      <Image
-                        src={image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <div className="absolute inset-x-4 bottom-4 translate-y-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                        <h3 className="text-[18px] font-medium leading-none tracking-[-0.02em] text-white">
-                          {project.title}
-                        </h3>
-                      </div>
-                    </Link>
                   ))}
                 </div>
               </div>

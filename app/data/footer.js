@@ -9,10 +9,10 @@ export const footerData = {
     { label: "Contact Us", href: "/contact" },
   ],
   services: [
-    { label: "Branding Consulting", href: "/services/branding" },
-    { label: "Advertising Campaign", href: "/services/advertising" },
-    { label: "Video Production", href: "/services/video" },
+    { label: "Brand Consulting", href: "/services/branding" },
+    { label: "Branding & Campaigns", href: "/services/advertising" },
     { label: "Social Media Management", href: "/services/social" },
+    { label: "Media Production", href: "/services/video" },
   ],
   company: [
     { label: "Our Team", href: "/team" },

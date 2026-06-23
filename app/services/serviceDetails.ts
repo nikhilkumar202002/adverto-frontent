@@ -37,8 +37,26 @@ export const serviceDetails = {
     ],
     recentWorks: ["spices", "belanto", "sora", "prime-edge"],
   },
-  video: {
+  social: {
     id: "03",
+    title: "Social Media Management",
+    eyebrow: "Content, Growth & Reporting",
+    description:
+      "Run a clear, consistent, and performance-aware social presence built around content, community, and growth.",
+    items: [
+      "Content Creation",
+      "Creative Production",
+      "Brand Storytelling",
+      "Community Management",
+      "Audience Growth",
+      "Paid Media Campaigns",
+      "Performance Analytics",
+      "Monthly Reporting",
+    ],
+    recentWorks: ["fins", "charutha", "spices", "sora"],
+  },
+  video: {
+    id: "04",
     title: "Media Production",
     eyebrow: "Films, Ads & Motion",
     description:
@@ -57,24 +75,6 @@ export const serviceDetails = {
       "Short Format Ads",
     ],
     recentWorks: ["govoyajo", "soma-beach", "underdwag", "mistwish"],
-  },
-  social: {
-    id: "04",
-    title: "Social Media Management",
-    eyebrow: "Content, Growth & Reporting",
-    description:
-      "Run a clear, consistent, and performance-aware social presence built around content, community, and growth.",
-    items: [
-      "Content Creation",
-      "Creative Production",
-      "Brand Storytelling",
-      "Community Management",
-      "Audience Growth",
-      "Paid Media Campaigns",
-      "Performance Analytics",
-      "Monthly Reporting",
-    ],
-    recentWorks: ["fins", "charutha", "spices", "sora"],
   },
 } as const;
 

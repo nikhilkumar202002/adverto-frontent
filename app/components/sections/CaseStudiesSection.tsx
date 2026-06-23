@@ -59,7 +59,7 @@ export default function CaseStudiesSection() {
 
         {/* --- 2. FEATURED PROJECT 1 (NOIR) --- */}
         <Reveal>
-        <div className="hidden grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
           {/* Image (Left) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -104,7 +104,7 @@ export default function CaseStudiesSection() {
         </Reveal>
 
         {/* --- 3. FEATURED PROJECT 2 (APEX) --- */}
-        <div className="hidden grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 items-center mb-[6px]">
           {/* Image (Left) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
