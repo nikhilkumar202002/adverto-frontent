@@ -16,7 +16,7 @@
   --accent-light: #3b82ff;
   --card-w:       clamp(170px, 15vw, 300px);
   --card-h:       auto;
-  --card-radius:  0px;
+  --card-radius:  30px;
   position:   relative;
   width:      100%;
   background: var(--bg);
@@ -139,7 +139,7 @@
   top:      var(--card-top);
   left:     var(--card-left);
 
-  border-radius: 0;
+  border-radius: var(--card-radius);
   overflow:      visible;
   cursor:        default;
   transform-style: preserve-3d;
@@ -199,6 +199,7 @@
   z-index:  1;
   width: 100%;
   height: auto;
+  border-radius: var(--card-radius);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -549,7 +550,7 @@
   .card {
     top: var(--mobile-card-top);
     left: var(--mobile-card-left);
-    border-radius: 0;
+    border-radius: var(--card-radius);
   }
 
   .featuredCard {

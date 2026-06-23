@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -8,15 +9,60 @@ import InfiniteProjectSlider from "../common/InfiniteProjectSlider";
 import Reveal from "../common/Reveal";
 import { moreProjects } from "../../data/moreProjects";
 import { caseStudyCollageProjects } from "../../data/portfolio";
+import { featuredPortfolioTiles } from "../../data/featuredportfolio";
+
+type FeaturedPortfolioProject = {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  alt: string;
+};
+
+type RotatingPortfolioTileProps = {
+  projects: FeaturedPortfolioProject[];
+  intervalMs: number;
+  className: string;
+};
+
+function RotatingPortfolioTile({
+  projects,
+  intervalMs,
+  className,
+}: RotatingPortfolioTileProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeProject = projects[activeIndex] ?? projects[0];
+
+  useEffect(() => {
+    if (projects.length < 2) return;
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((currentIndex) => (currentIndex + 1) % projects.length);
+    }, intervalMs);
+
+    return () => window.clearInterval(timer);
+  }, [intervalMs, projects.length]);
+
+  if (!activeProject) return null;
+
+  return (
+    <div className={`group relative w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] ${className}`}>
+      <motion.img
+        key={activeProject.image}
+        src={activeProject.image}
+        alt={activeProject.alt}
+        loading="lazy"
+        initial={{ opacity: 0, scale: 1.02 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="object-cover w-full h-full"
+      />
+    </div>
+  );
+}
 
 export default function CaseStudiesSection() {
-  const [
-    leftTopProject,
-    leftBottomProject,
-    centerProject,
-    rightTopProject,
-    rightBottomProject,
-  ] = caseStudyCollageProjects;
+  const centerProject = caseStudyCollageProjects[2];
 
   return (
     <section className="relative z-10 bg-[#050505] py-24 md:py-32 overflow-hidden">
@@ -127,32 +173,16 @@ export default function CaseStudiesSection() {
         <div className="grid grid-cols-1 gap-[20px] md:grid-cols-3">
           {/* Col 1 */}
           <div className="flex flex-col gap-[20px]">
-             <div className="group relative aspect-square w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
-               <img
-                 src={leftTopProject.image}
-                 alt={leftTopProject.alt}
-                 loading="lazy"
-                 className="object-cover w-full h-full"
-               />
-               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
-               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">{leftTopProject.title}</h5>
-                 <p className="text-xs text-white/60 mt-1">{leftTopProject.subtitle}</p>
-               </div>
-             </div>
-             <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
-               <img
-                 src={leftBottomProject.image}
-                 alt={leftBottomProject.alt}
-                 loading="lazy"
-                 className="object-cover w-full h-full"
-               />
-               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
-               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">{leftBottomProject.title}</h5>
-                 <p className="text-xs text-white/60 mt-1">{leftBottomProject.subtitle}</p>
-               </div>
-             </div>
+             <RotatingPortfolioTile
+               projects={featuredPortfolioTiles.leftTop.projects}
+               intervalMs={featuredPortfolioTiles.leftTop.intervalMs}
+               className="aspect-square"
+             />
+             <RotatingPortfolioTile
+               projects={featuredPortfolioTiles.leftBottom.projects}
+               intervalMs={featuredPortfolioTiles.leftBottom.intervalMs}
+               className="aspect-[4/3]"
+             />
           </div>
           {/* Col 2 (Hero image in center) */}
           <div className="group relative min-h-[400px] h-full w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
@@ -170,32 +200,16 @@ export default function CaseStudiesSection() {
           </div>
           {/* Col 3 */}
           <div className="flex flex-col gap-[20px]">
-             <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
-               <img
-                 src={rightTopProject.image}
-                 alt={rightTopProject.alt}
-                 loading="lazy"
-                 className="object-cover w-full h-full"
-               />
-               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
-               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">{rightTopProject.title}</h5>
-                 <p className="text-xs text-white/60 mt-1">{rightTopProject.subtitle}</p>
-               </div>
-             </div>
-             <div className="group relative aspect-square w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
-               <img
-                 src={rightBottomProject.image}
-                 loading="lazy"
-                 alt={rightBottomProject.alt}
-                 className="object-cover w-full h-full"
-               />
-               <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
-               <div className="absolute left-0 right-0 bottom-0 p-4 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-                 <h5 className="text-sm font-medium text-white">{rightBottomProject.title}</h5>
-                 <p className="text-xs text-white/60 mt-1">{rightBottomProject.subtitle}</p>
-               </div>
-             </div>
+             <RotatingPortfolioTile
+               projects={featuredPortfolioTiles.rightTop.projects}
+               intervalMs={featuredPortfolioTiles.rightTop.intervalMs}
+               className="aspect-[4/3]"
+             />
+             <RotatingPortfolioTile
+               projects={featuredPortfolioTiles.rightBottom.projects}
+               intervalMs={featuredPortfolioTiles.rightBottom.intervalMs}
+               className="aspect-square"
+             />
           </div>
         </div>
         </Reveal>

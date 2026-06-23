@@ -55,38 +55,38 @@ export default function ServicePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-[6px] md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-x-[20px] gap-y-[20px] md:grid-cols-2 lg:grid-cols-4">
             {servicesData.map((service) => {
               const Icon = service.icon;
 
               return (
                 <article
                   key={service.id}
-                  className="group relative min-h-[480px] overflow-hidden border border-white/5 bg-[#0A0A0A] p-6 transition-colors duration-500 hover:border-[#0000FF] hover:bg-[#0f0f0f] md:min-h-[540px] md:p-8"
+                  className="group relative min-h-[480px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0000FF] p-6 text-white transition-colors duration-500 hover:border-white/25 hover:bg-[#0000cc] md:min-h-[540px] md:p-8"
                 >
-                  <div className="pointer-events-none absolute -top-[150px] left-1/2 z-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#0000FF]/30 opacity-0 blur-[80px] transition-all duration-700 group-hover:translate-y-8 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute -top-[150px] left-1/2 z-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-white/20 opacity-0 blur-[80px] transition-all duration-700 group-hover:translate-y-8 group-hover:opacity-100" />
 
-                  <div className="absolute right-6 top-6 z-10 text-[42px] font-medium leading-none text-white/[0.06] transition-colors duration-500 group-hover:text-[#0000FF]/20 md:right-8 md:top-8">
+                  <div className="absolute right-6 top-6 z-10 text-[42px] font-medium leading-none text-white/20 transition-colors duration-500 group-hover:text-white/35 md:right-8 md:top-8">
                     {service.id}
                   </div>
 
-                  <div className="absolute left-6 top-6 z-10 flex h-12 w-12 items-center justify-center border border-white/10 text-[#0000FF] transition-colors duration-500 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10 md:left-8 md:top-8">
+                  <div className="absolute left-6 top-6 z-10 flex h-12 w-12 items-center justify-center border border-white/25 text-white transition-colors duration-500 group-hover:border-white/60 group-hover:bg-white/10 md:left-8 md:top-8">
                     <Icon size={20} strokeWidth={1.5} />
                   </div>
 
                   <div className="absolute inset-x-6 bottom-6 z-10 transition-transform duration-500 ease-out group-hover:-translate-y-[170px] md:inset-x-8 md:bottom-8">
-                    <h3 className="text-2xl font-medium leading-tight text-[#EDEDED] md:text-3xl">
+                    <h3 className="text-2xl font-medium leading-tight text-white md:text-3xl">
                       {service.title}
                     </h3>
                   </div>
 
                   <div className="absolute inset-x-6 bottom-6 z-10 translate-y-6 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 md:inset-x-8 md:bottom-8">
-                    <p className="mb-8 text-[15px] leading-[1.55] text-white/55">
+                    <p className="mb-8 text-[15px] leading-[1.55] text-white/80">
                       {service.description}
                     </p>
                     <Link
                       href={service.link}
-                      className="inline-flex items-center gap-2 border-b border-white/20 pb-1 text-xs font-medium uppercase tracking-[0.14em] text-white/70 transition-colors duration-300 hover:border-white hover:text-white"
+                      className="inline-flex items-center gap-2 border-b border-white/35 pb-1 text-xs font-medium uppercase tracking-[0.14em] text-white transition-colors duration-300 hover:border-white"
                     >
                       Explore Service
                       <ArrowRight

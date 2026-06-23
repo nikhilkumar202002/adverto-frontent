@@ -73,6 +73,7 @@
   --foreground: #ffffff;
   --muted: rgba(255,255,255,0.08);
   --border: rgba(255,255,255,0.12);
+  --site-radius: 30px;
 }
 
 html {
@@ -100,6 +101,31 @@ body {
   background: var(--primary);
   color: white;
 }
+
+:where(
+  article:not([class*="rounded"]),
+  figure:not([class*="rounded"]),
+  input:not([class*="rounded"]),
+  select:not([class*="rounded"]),
+  textarea:not([class*="rounded"]),
+  iframe:not([class*="rounded"]),
+  video:not([class*="rounded"]),
+  img:not([src$=".svg"]):not([class*="rounded"]):not([class*="w-auto"]),
+  [class*="border"][class*="bg-"]:not([class*="rounded"]),
+  [class*="overflow-hidden"][class*="bg-"]:not([class*="rounded"])
+) {
+  border-radius: var(--site-radius);
+}
+
+:where(
+  article:not([class*="rounded"]),
+  figure:not([class*="rounded"]),
+  [class*="border"][class*="bg-"]:not([class*="rounded"]),
+  [class*="overflow-hidden"][class*="bg-"]:not([class*="rounded"])
+) {
+  overflow: hidden;
+}
+
 @media (min-width: 768px) {
   * {
     cursor: none !important;
