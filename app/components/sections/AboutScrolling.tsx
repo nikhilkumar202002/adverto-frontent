@@ -99,25 +99,23 @@ export default function AboutScrolling() {
           </div>
 
           <div className="lg:col-span-9">
-            <div className="max-w-[980px] text-[32px] font-medium leading-[1.12] tracking-[-0.025em] md:text-[48px] lg:text-[58px]">
+            <div className="max-w-[980px] text-[30px] font-normal leading-[1.12] tracking-[-0.025em] md:text-[40px] lg:text-[45px]">
               {paragraphs.map((paragraph, paragraphIndex) => (
                 <p key={paragraphIndex} className="mb-8 last:mb-0">
                   {paragraph.map((word, wordIndex) => (
-                    <span
-                      key={`${paragraphIndex}-${wordIndex}`}
-                      className="inline-block"
-                    >
-                      {word.map(({ character, index }) => (
-                        <RevealCharacter
-                          key={`${character}-${index}`}
-                          index={index}
-                          progress={scrollYProgress}
-                          total={totalCharacters}
-                        >
-                          {character}
-                        </RevealCharacter>
-                      ))}
-                      <span> </span>
+                    <span key={`${paragraphIndex}-${wordIndex}`}>
+                      <span className="inline-block">
+                        {word.map(({ character, index }) => (
+                          <RevealCharacter
+                            key={`${character}-${index}`}
+                            index={index}
+                            progress={scrollYProgress}
+                            total={totalCharacters}
+                          >
+                            {character}
+                          </RevealCharacter>
+                        ))}
+                      </span>{" "}
                     </span>
                   ))}
                 </p>

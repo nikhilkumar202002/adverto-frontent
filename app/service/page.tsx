@@ -20,6 +20,7 @@ export default function ServicePage() {
         data-navbar-transparent
       >
         <div aria-hidden className="absolute inset-0 z-0 bg-black">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px]" />
           <div className="absolute left-1/2 top-1/2 h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(72,88,255,0.58),rgba(0,0,255,0.34)_38%,rgba(0,0,0,0)_72%)] opacity-80 blur-[120px] md:h-[1040px] md:w-[1040px]" />
           <div className="absolute bottom-[-14%] right-[-8%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(0,0,255,0.28),rgba(0,0,0,0)_70%)] opacity-70 blur-[110px] md:h-[620px] md:w-[620px]" />
           <div className="absolute left-[-10%] top-[12%] h-[340px] w-[340px] rounded-full bg-[radial-gradient(circle,rgba(35,0,124,0.34),rgba(0,0,0,0)_68%)] opacity-60 blur-[96px] md:h-[500px] md:w-[500px]" />
@@ -84,10 +85,10 @@ export default function ServicePage() {
                       {service.description}
                     </p>
                     <Link
-                      href="/contact-us"
+                      href={service.link}
                       className="inline-flex items-center gap-2 border-b border-white/20 pb-1 text-xs font-medium uppercase tracking-[0.14em] text-white/70 transition-colors duration-300 hover:border-white hover:text-white"
                     >
-                      Start Project
+                      Explore Service
                       <ArrowRight
                         size={14}
                         className="transition-transform duration-300 group-hover:translate-x-1"

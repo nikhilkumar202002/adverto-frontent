@@ -76,7 +76,7 @@ export default function InfiniteProjectSlider({
                   href={`/portfolio/${project.slug || project.id}`}
                   key={`${setIndex}-${project.id}-${index}`}
                   data-cursor-ignore="true"
-                  className="project-marquee__card group relative mx-2 h-[180px] w-[260px] overflow-hidden border border-b-2 border-transparent bg-[#1A1A1A] transition-colors duration-300 ease-out"
+                  className="project-marquee__card group relative mx-2 h-[180px] w-[260px] overflow-hidden rounded-[25px] border border-b-2 border-transparent bg-[#1A1A1A] transition-colors duration-300 ease-out"
                 >
                   <div className="absolute inset-0 bg-[#0A0A0A] z-0" />
 

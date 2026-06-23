@@ -72,7 +72,7 @@ export default function FeaturedWorksSlider() {
                   <Link
                     key={`${setIndex}-${project.slug}-${index}`}
                     href={`/portfolio/${project.slug}`}
-                    className="group relative mx-2 h-[360px] w-[280px] shrink-0 overflow-hidden border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
+                    className="group relative mx-2 h-[360px] w-[280px] shrink-0 overflow-hidden rounded-[30px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
                   >
                     <Image
                       src={project.heroImage}
@@ -81,17 +81,11 @@ export default function FeaturedWorksSlider() {
                       sizes="(max-width: 768px) 280px, 380px"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent opacity-90" />
-                    <div className="absolute left-5 right-5 bottom-5 translate-y-3 opacity-95 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      <p className="mb-3 w-max bg-[#0000FF] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-white shadow-[0_0_24px_rgba(0,0,255,0.45)]">
-                        {project.category}
-                      </p>
-                      <h3 className="w-max max-w-full bg-white px-3 py-2 text-[26px] font-medium leading-none tracking-[-0.02em] text-black transition-colors duration-300 group-hover:bg-[#0000FF] group-hover:text-white md:text-[34px]">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute left-5 right-5 bottom-5 translate-y-3 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                      <h3 className="text-[25px] font-medium leading-none tracking-[-0.02em] text-white">
                         {project.title}
                       </h3>
-                      <p className="mt-3 text-[14px] font-medium text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-                        {project.subtitle}
-                      </p>
                     </div>
                   </Link>
                 ))}

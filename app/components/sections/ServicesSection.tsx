@@ -55,31 +55,31 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden flex flex-col justify-between bg-[#0A0A0A] border border-white/5 p-8 md:p-10 transition-colors duration-500 hover:bg-[#0f0f0f] hover:border-[#0000FF] min-h-[380px]"
+                className="group relative overflow-hidden flex flex-col justify-between rounded-[30px] bg-[#0000FF] border border-[#0000FF] p-8 md:p-10 transition-colors duration-500 hover:bg-[#0000D6] hover:border-[#0000D6] min-h-[380px]"
               >
                 {/* Radial Glow Drop 
                   A large, blurred circle placed slightly above the top edge.
                   Fades in and drops down slightly (translate-y) on hover.
                 */}
-                <div className="absolute -top-[150px] left-1/2 w-[300px] h-[300px] -translate-x-1/2 rounded-full bg-[#0000FF]/30 blur-[80px] pointer-events-none opacity-0 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-8 z-0" />
+                <div className="absolute -top-[150px] left-1/2 w-[300px] h-[300px] -translate-x-1/2 rounded-full bg-white/20 blur-[80px] pointer-events-none opacity-0 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-8 z-0" />
 
                 {/* Content Wrapper - Keeps text above the glow (z-10) */}
                 <div className="relative z-10">
                   {/* Number & Icon */}
                   <div className="flex flex-col gap-6 mb-4">
-                    <span className="text-[#0000FF] font-medium text-lg">
+                    <span className="text-white font-medium text-lg">
                       {service.id}
                     </span>
-                    <div className="w-12 h-12 flex items-center justify-center border border-white/10 transition-colors duration-500 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10">
-                      <Icon className="text-[#0000FF]" size={20} strokeWidth={1.5} />
+                    <div className="w-12 h-12 flex items-center justify-center rounded-md border border-white/30 transition-colors duration-500 group-hover:border-white/70 group-hover:bg-white/10">
+                      <Icon className="text-white" size={20} strokeWidth={1.5} />
                     </div>
                   </div>
 
                   {/* Text Content */}
-                  <h3 className="text-xl font-medium text-[#EDEDED] mb-2">
+                  <h3 className="text-xl font-medium text-white mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-[#888888] text-[16px] leading-[1.4] mb-4">
+                  <p className="text-white/75 text-[16px] leading-[1.4] mb-4">
                     {service.description}
                   </p>
                 </div>
@@ -87,7 +87,7 @@ export default function ServicesSection() {
                 {/* Explore Link */}
                 <Link 
                   href={service.link}
-                  className="relative z-10 flex items-center gap-2 text-[12px] font-medium tracking-[0.1em] text-white/70 uppercase transition-colors duration-300 group-hover:text-white mt-auto w-max"
+                  className="relative z-10 flex items-center gap-2 text-[12px] font-medium tracking-[0.1em] text-white/75 uppercase transition-colors duration-300 group-hover:text-white mt-auto w-max"
                 >
                   Explore 
                   <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
