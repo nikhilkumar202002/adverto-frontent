@@ -76,15 +76,7 @@ export default function AboutUsPage() {
         />
 
         <Container className="relative z-10 flex min-h-screen min-h-[100svh] flex-col justify-between py-28 md:py-32">
-          <div className="flex justify-end">
-            <p className="about-reveal-up about-reveal-up-delay max-w-[560px] text-[16px] leading-[1.65] text-white/68 md:text-right">
-              Adverto is a creative and digital growth agency that helps
-              businesses grow with clarity, consistency, and measurable results.
-              Through branding, content, design, and digital marketing, we help
-              businesses communicate more effectively, strengthen their
-              presence, and connect with the right audience.
-            </p>
-          </div>
+          <div />
 
           <div className="about-reveal-up max-w-[760px]">
             <h1 className="text-[80px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5]">

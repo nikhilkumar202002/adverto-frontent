@@ -69,11 +69,11 @@ export default function HowItsWork() {
                   </p>
                 </div>
 
-                <div className="mt-10 grid grid-cols-1 overflow-hidden rounded-[20px] border border-white bg-white sm:grid-cols-2">
+                <div className="mt-10 grid grid-cols-1 overflow-hidden rounded-[20px] border border-white bg-transparent sm:grid-cols-2">
                   {principles.map((principle) => (
                     <div
                       key={principle}
-                      className="border-b border-[#0000FF]/15 bg-white p-4 text-[14px] leading-[1.4] text-[#0000FF] last:border-b-0 sm:border-r sm:even:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0"
+                      className="border-b border-white bg-transparent p-4 text-[14px] leading-[1.4] text-white last:border-b-0 sm:border-r sm:even:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0"
                     >
                       {principle}
                     </div>
