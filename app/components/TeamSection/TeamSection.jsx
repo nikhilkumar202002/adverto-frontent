@@ -124,15 +124,15 @@ const ZOOM_POSITIONS = [
 ];
 
 const MOBILE_ZOOM_POSITIONS = [
-  { top: 24, left: 24 },
-  { top: 24, left: 76 },
-  { top: 36, left: 30 },
-  { top: 38, left: 70 },
-  { top: 50, left: 24 },
-  { top: 50, left: 76 },
-  { top: 34, left: 32 },
-  { top: 34, left: 68 },
-  { top: 46, left: 50 },
+  { top: 18, left: 30 },
+  { top: 48, left: 70 },
+  { top: 24, left: 70 },
+  { top: 52, left: 30 },
+  { top: 18, left: 32 },
+  { top: 50, left: 68 },
+  { top: 26, left: 68 },
+  { top: 54, left: 32 },
+  { top: 42, left: 50 },
 ];
 
 /* ── Individual Card ─────────────────────────────────────────────────────────── */
@@ -196,10 +196,10 @@ export default function TeamSection() {
 
       const setupAnimation = () => {
         const isMobile = window.innerWidth < 768;
-        const scrollLength = isMobile ? total * 46 : total * 36;
-        const scrub = isMobile ? 0.9 : 0.65;
-        const firstPairDepth = isMobile ? "140vh" : "110vh";
-        const nextPairDepth = isMobile ? "120vh" : "100vh";
+        const scrollLength = isMobile ? total * 58 : total * 36;
+        const scrub = isMobile ? 0.75 : 0.65;
+        const firstPairDepth = isMobile ? "118vh" : "110vh";
+        const nextPairDepth = isMobile ? "108vh" : "100vh";
 
         timeline?.scrollTrigger?.kill();
         timeline?.kill();
@@ -207,7 +207,10 @@ export default function TeamSection() {
 
         /* ── Set initial depth positions ─────────────────────────────── */
         cards.forEach((card, i) => {
-          const z = i < 2 ? "-20vh" : `${-4 - i * 20}vh`;
+          const z = isMobile
+            ? i < 2 ? "-12vh" : `${-18 - i * 12}vh`
+            : i < 2 ? "-20vh" : `${-4 - i * 20}vh`;
+          const visibleAtStart = isMobile ? i === 0 : i < 2;
 
           gsap.set(card, {
             position: "absolute",
@@ -215,7 +218,7 @@ export default function TeamSection() {
             xPercent: -50,
             yPercent: 0,
             scale: 1,
-            opacity: i < 2 ? 1 : 0,
+            opacity: visibleAtStart ? 1 : 0,
             rotate: 0,
             rotationZ: 0,
             z,
@@ -247,7 +250,7 @@ export default function TeamSection() {
 
         if (cards.length >= 2) {
           timeline.to(
-            cards.slice(0, 2),
+            isMobile ? cards[0] : cards.slice(0, 2),
             {
               z: firstPairDepth,
               duration: 4,
@@ -257,10 +260,10 @@ export default function TeamSection() {
           );
         }
 
-        cards.slice(2).forEach((card, offsetIndex) => {
-          const index = offsetIndex + 2;
+        cards.slice(isMobile ? 1 : 2).forEach((card, offsetIndex) => {
+          const index = offsetIndex + (isMobile ? 1 : 2);
           const cardTl = gsap.timeline();
-          const pairSlot = Math.floor(offsetIndex / 2);
+          const timelineSlot = isMobile ? offsetIndex * 1.15 : Math.floor(offsetIndex / 2);
 
           cardTl
             .set(card, { zIndex: total + index }, 0)
@@ -292,7 +295,7 @@ export default function TeamSection() {
               3.65
             );
 
-          timeline.add(cardTl, pairSlot * 1);
+          timeline.add(cardTl, timelineSlot);
         });
 
         timeline.to(

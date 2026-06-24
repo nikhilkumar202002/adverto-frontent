@@ -551,14 +551,14 @@
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .section {
-    --card-w: clamp(145px, 44vw, 220px);
+    --card-w: clamp(155px, 43vw, 225px);
   }
 
   .sticky {
-    min-height: 620px;
-    height: 97svh;
-    perspective: 100vh;
-    perspective-origin: 50% 48%;
+    min-height: 680px;
+    height: 100svh;
+    perspective: 86vh;
+    perspective-origin: 50% 45%;
   }
 
   .card {
@@ -568,11 +568,11 @@
   }
 
   .featuredCard {
-    --card-w: clamp(145px, 44vw, 220px);
+    --card-w: clamp(155px, 43vw, 225px);
   }
 
   .visibleStart {
-    --card-w: clamp(165px, 50vw, 250px);
+    --card-w: clamp(170px, 48vw, 245px);
   }
 
   .cardBody {
@@ -625,19 +625,19 @@
 
 @media (max-width: 480px) {
   .section {
-    --card-w: clamp(135px, 46vw, 190px);
+    --card-w: clamp(145px, 44vw, 195px);
   }
 
   .featuredCard {
-    --card-w: clamp(135px, 46vw, 190px);
+    --card-w: clamp(145px, 44vw, 195px);
   }
 
   .visibleStart {
-    --card-w: clamp(150px, 52vw, 220px);
+    --card-w: clamp(160px, 50vw, 220px);
   }
 
   .sticky {
-    min-height: 590px;
+    min-height: 640px;
   }
 
   .projectsHeading {
