@@ -60,7 +60,7 @@ export default function StorySection() {
             </p>
             
             <h2 className="text-[45px] md:text-[60px] lg:text-[70px] font-medium leading-[1] text-[#EDEDED] mb-4 tracking-tight">
-              We craft brands <span className="text-white/30 italic font-light">the <br className="hidden md:block" /> world</span> cannot ignore.
+              Two friends. <br className="hidden md:block" />One shared vision.
             </h2>
             
             <p className="text-[#888888] text-[16px] leading-[1.4] max-w-[500px]">
@@ -77,11 +77,11 @@ export default function StorySection() {
             className="lg:col-span-5 lg:col-start-8 flex flex-col justify-center"
           >
             <h3 className="text-[18px] md:text-[20px] font-medium text-white mb-1 leading-snug">
-              "Strategy without creativity is just a plan. We build both."
+              "Built on Trust. Proven Through Results."
             </h3>
             
             <p className="text-[#888888] text-[17px] leading-[1.4] mb-6">
-              Our process is collaborative, rigorous, and obsessively detail-oriented. From the initial brief to the final pixel, every decision is intentional every asset built to last.
+              Behind every number is a project delivered, a challenge solved, and a relationship built on trust.
             </p>
 
             {/* Blue Divider */}

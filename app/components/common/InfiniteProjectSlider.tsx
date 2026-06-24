@@ -40,7 +40,7 @@ export default function InfiniteProjectSlider({
           }
 
           .project-marquee__track {
-            animation: image-marquee 35s linear infinite;
+            animation: image-marquee 22s linear infinite;
             backface-visibility: hidden;
             contain: layout paint;
             transform: translate3d(0, 0, 0);
@@ -76,7 +76,7 @@ export default function InfiniteProjectSlider({
                   href={`/portfolio/${project.slug || project.id}`}
                   key={`${setIndex}-${project.id}-${index}`}
                   data-cursor-ignore="true"
-                  className="project-marquee__card group relative mx-2 h-[180px] w-[260px] overflow-hidden rounded-[25px] border border-b-2 border-transparent bg-[#1A1A1A] transition-colors duration-300 ease-out"
+                  className="project-marquee__card group relative mx-2 h-[180px] w-[260px] overflow-hidden rounded-[15px] border border-b-2 border-transparent bg-[#1A1A1A] transition-colors duration-300 ease-out"
                 >
                   <div className="absolute inset-0 bg-[#0A0A0A] z-0" />
 
@@ -85,7 +85,7 @@ export default function InfiniteProjectSlider({
                     alt={project.title}
                     loading="lazy"
                     decoding="async"
-                    className="relative z-0 h-full w-full object-cover"
+                    className="relative z-0 h-full w-full rounded-[15px] object-cover"
                   />
 
                   <div className="project-marquee__hover-layer pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-1/2 translate-y-full bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100" />

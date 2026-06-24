@@ -46,7 +46,7 @@ function RotatingPortfolioTile({
   if (!activeProject) return null;
 
   return (
-    <div className={`group relative w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] ${className}`}>
+    <div className={`group relative w-full overflow-hidden rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] ${className}`}>
       <motion.img
         key={activeProject.image}
         src={activeProject.image}
@@ -55,7 +55,7 @@ function RotatingPortfolioTile({
         initial={{ opacity: 0, scale: 1.02 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className="object-cover w-full h-full"
+        className="object-cover w-full h-full rounded-[20px]"
       />
     </div>
   );
@@ -109,18 +109,18 @@ export default function CaseStudiesSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group grid grid-cols-1 md:grid-cols-2 items-center mb-[20px] overflow-hidden rounded-[30px] border border-[#252525] bg-[#080808]"
+            className="group grid grid-cols-1 md:grid-cols-2 items-center mb-[20px] overflow-hidden rounded-[20px] border border-[#252525] bg-[#080808]"
           >
-            <div className="relative overflow-hidden bg-white/5 h-[320px] md:h-[500px]">
-              <div className="absolute inset-0 overflow-hidden">
+            <div className="relative overflow-hidden rounded-[20px] bg-white/5 h-[320px] md:h-[500px]">
+              <div className="absolute inset-0 overflow-hidden rounded-[20px]">
                 <img
                   src="https://cdn.dribbble.com/userupload/44948077/file/1ac8c0dd83bb22d8d20685ca89cc678e.jpg?resize=1024x767&vertical=center"
                   alt="NOIR — project"
                   loading="lazy"
-                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover w-full h-full rounded-[20px] transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute inset-0 rounded-[20px] bg-black/20" />
             </div>
 
             <div className="flex flex-col h-[320px] md:h-[500px] justify-center p-6 md:p-12">
@@ -142,18 +142,18 @@ export default function CaseStudiesSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="group grid grid-cols-1 md:grid-cols-2 items-center mb-[20px] overflow-hidden rounded-[30px] border border-[#252525] bg-[#080808]"
+          className="group grid grid-cols-1 md:grid-cols-2 items-center mb-[20px] overflow-hidden rounded-[20px] border border-[#252525] bg-[#080808]"
         >
-          <div className="relative overflow-hidden bg-white/5 h-[320px] md:h-[500px]">
-            <div className="absolute inset-0 overflow-hidden">
+          <div className="relative overflow-hidden rounded-[20px] bg-white/5 h-[320px] md:h-[500px]">
+            <div className="absolute inset-0 overflow-hidden rounded-[20px]">
               <img
                 src="https://cdn.dribbble.com/userupload/46853171/file/81b0e4b8cb5f6afa0901ca006ff4fda1.jpg?resize=1024x576&vertical=center"
                 alt="APEX — project"
                 loading="lazy"
-                className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                className="object-cover w-full h-full rounded-[20px] transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 rounded-[20px] bg-black/20" />
           </div>
 
           <div className="flex flex-col h-[320px] md:h-[500px] justify-center p-6 md:p-12">
@@ -185,12 +185,12 @@ export default function CaseStudiesSection() {
              />
           </div>
           {/* Col 2 (Hero image in center) */}
-          <div className="group relative min-h-[400px] h-full w-full overflow-hidden rounded-[30px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+          <div className="group relative min-h-[400px] h-full w-full overflow-hidden rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
             <img
               src={centerProject.image}
               loading="lazy"
               alt={centerProject.alt}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full rounded-[20px]"
             />
             <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
             <div className="absolute left-0 right-0 bottom-0 p-6 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">

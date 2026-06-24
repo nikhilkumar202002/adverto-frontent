@@ -55,7 +55,7 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden flex flex-col justify-between rounded-[30px] bg-[#0000FF] border border-[#0000FF] p-8 md:p-10 transition-colors duration-500 hover:bg-[#0000D6] hover:border-[#0000D6] min-h-[380px]"
+                className="group relative overflow-hidden flex flex-col justify-between rounded-[20px] bg-[#0000FF] border border-[#0000FF] p-8 md:p-10 transition-colors duration-500 hover:bg-[#0000D6] hover:border-[#0000D6] min-h-[380px]"
               >
                 {/* Radial Glow Drop 
                   A large, blurred circle placed slightly above the top edge.
