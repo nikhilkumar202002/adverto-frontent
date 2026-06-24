@@ -53,7 +53,7 @@ export default function StorySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-6 flex flex-col justify-center"
+            className="lg:col-span-6 flex flex-col justify-start"
           >
             <p className="text-[#0000FF] uppercase text-[14px] tracking-[1] mb-2 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>OUR STORY
@@ -91,7 +91,7 @@ export default function StorySection() {
                 <div
                   ref={statsRef}
                   onMouseEnter={() => setStart(true)}
-                  className="grid grid-cols-2 gap-[6px]"
+                  className="grid grid-cols-2 gap-[15px]"
                 >
                   {
                     // parse numeric targets and suffixes
@@ -115,12 +115,12 @@ export default function StorySection() {
                       return parsed.map((p, i) => (
                         <div
                           key={i}
-                          className="bg-[#0A0A0A] border border-white/10 rounded-[2px] p-6 md:p-8 flex flex-col justify-center transition-colors duration-300 hover:bg-[#0f0f0f]"
+                          className="bg-[#0000FF] border border-[#0000FF] rounded-[15px] p-6 md:p-8 flex flex-col justify-center transition-colors duration-300 hover:bg-[#0000D6] hover:border-[#0000D6]"
                         >
-                          <h4 className="text-[#0000FF] text-3xl md:text-4xl font-medium mb-1">
+                          <h4 className="text-white text-3xl md:text-4xl font-medium mb-1">
                             {counts[i]}{p.suffix}
                           </h4>
-                          <p className="text-white/50 text-[13px] tracking-wide">
+                          <p className="text-white text-[13px] tracking-wide">
                             {p.label}
                           </p>
                         </div>
