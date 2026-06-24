@@ -27,41 +27,48 @@ const teamMembers = [
   },
   {
     id: 3,
+    name: "Ashif",
+    role: "Digital Marketer & Project Manager",
+    image: "/teams/ASHIF.jpeg",
+    discipline: "Digital Strategy",
+  },
+  {
+    id: 4,
     name: "Ajin",
     role: "Graphic Designer",
     image: "/teams/AJIN.jpg",
     discipline: "Visual Design",
   },
   {
-    id: 4,
+    id: 5,
     name: "Aby",
     role: "Senior Video Editor",
     image: "/teams/ABY.jpg",
     discipline: "Edit Lead",
   },
   {
-    id: 5,
+    id: 6,
     name: "Ashish",
     role: "Director",
     image: "/teams/ashi.jpg",
     discipline: "Direction",
   },
   {
-    id: 6,
+    id: 7,
     name: "Ameen",
     role: "Cinematographer",
     image: "/teams/ameen.jpg",
     discipline: "Cinematography",
   },
   {
-    id: 7,
+    id: 8,
     name: "Alphya",
     role: "HR Manager",
     image: "/teams/ALPHY.jpg",
     discipline: "People Ops",
   },
   {
-    id: 8,
+    id: 9,
     name: "Nawaz",
     role: "Graphic Designer & Video Editor",
     image: "/teams/navas%20..jpg",
@@ -133,24 +140,24 @@ export default function OurTeamPage() {
             </div>
           </div>
 
-          <div className="mb-[6px] grid grid-cols-1 gap-[6px] md:grid-cols-2 lg:grid-cols-4">
+          <div className="mb-[20px] grid grid-cols-1 gap-[20px] md:grid-cols-2 lg:grid-cols-4">
             {teamStats.map((item) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.label}
-                  className="border border-white/10 bg-[#080808] p-6 md:p-8"
+                  className="rounded-[20px] border border-[#0000FF] bg-[#0000FF] p-6 text-white md:p-8"
                 >
                   <div className="mb-10 flex items-center justify-between gap-5">
-                    <div className="flex h-12 w-12 items-center justify-center border border-white/10 text-[#0000FF]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 text-white">
                       <Icon size={20} strokeWidth={1.5} />
                     </div>
-                    <p className="text-right text-xs uppercase tracking-[0.18em] text-white/35">
+                    <p className="text-right text-xs uppercase tracking-[0.18em] text-white/75">
                       {item.label}
                     </p>
                   </div>
-                  <p className="text-2xl font-medium text-[#EDEDED]">
+                  <p className="text-right text-2xl font-medium text-white">
                     {item.value}
                   </p>
                 </div>
@@ -158,15 +165,15 @@ export default function OurTeamPage() {
             })}
           </div>
 
-          <div className="grid grid-cols-1 gap-[6px] md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 lg:grid-cols-4">
             {teamMembers.map((member, index) => (
               <article
                 key={member.id}
-                className={`group relative overflow-hidden border border-white/10 bg-[#0A0A0A] ${
+                className={`group relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] ${
                   index === 0 || index === 1 ? "lg:col-span-2" : ""
                 }`}
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#111]">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] bg-[#111]">
                   <Image
                     src={member.image}
                     alt={member.name}

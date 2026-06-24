@@ -100,9 +100,9 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-[6px] lg:grid-cols-12">
+        <div className="mt-16 grid grid-cols-1 gap-[20px] lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <div className="grid grid-cols-1 gap-[6px]">
+            <div className="grid grid-cols-1 gap-[20px]">
               {contactMethods.map((method) => {
                 const Icon = method.icon;
 
@@ -111,10 +111,10 @@ export default function ContactPage() {
                     key={method.label}
                     href={method.href}
                     target={method.href.startsWith("http") ? "_blank" : undefined}
-                    className="group flex min-h-[150px] items-start justify-between gap-6 border border-white/10 bg-[#0A0A0A] p-6 transition-colors duration-300 hover:border-[#0000FF] hover:bg-[#0f0f0f] md:p-8"
+                    className="group flex min-h-[150px] items-start justify-between gap-6 rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-colors duration-300 hover:border-[#0000FF] hover:bg-[#0f0f0f] md:p-8"
                   >
                     <div>
-                      <div className="mb-8 flex h-12 w-12 items-center justify-center border border-white/10 text-[#0000FF] transition-colors duration-300 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10">
+                      <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-[20px] border border-white/10 text-[#0000FF] transition-colors duration-300 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10">
                         <Icon size={20} strokeWidth={1.6} />
                       </div>
                       <p className="mb-2 text-xs uppercase tracking-[0.18em] text-white/35">
@@ -132,9 +132,9 @@ export default function ContactPage() {
                 );
               })}
 
-              <div className="border border-white/10 bg-[#080808] p-6 md:p-8">
+              <div className="rounded-[20px] border border-white/10 bg-[#080808] p-6 md:p-8">
                 <div className="mb-8 flex items-center justify-between gap-5">
-                  <div className="flex h-12 w-12 items-center justify-center border border-white/10 text-[#0000FF]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[20px] border border-white/10 text-[#0000FF]">
                     <Clock3 size={20} strokeWidth={1.6} />
                   </div>
                   <p className="text-right text-xs uppercase tracking-[0.18em] text-white/35">
@@ -148,7 +148,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="border border-white/10 bg-[#0A0A0A] p-6 md:p-8 lg:col-span-7">
+          <div className="rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 md:p-8 lg:col-span-7">
             <div className="mb-10 flex items-start justify-between gap-6">
               <div>
                 <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#0000FF]">
@@ -158,7 +158,7 @@ export default function ContactPage() {
                   Tell us what you need
                 </h2>
               </div>
-              <div className="hidden h-12 w-12 shrink-0 items-center justify-center border border-white/10 text-[#0000FF] md:flex">
+              <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-[20px] border border-white/10 text-[#0000FF] md:flex">
                 <MessageSquareText size={20} strokeWidth={1.6} />
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function ContactPage() {
                   name="name"
                   type="text"
                   required
-                  className="h-14 w-full border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
+                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
                   placeholder="Your name"
                 />
               </label>
@@ -190,7 +190,7 @@ export default function ContactPage() {
                   name="email"
                   type="email"
                   required
-                  className="h-14 w-full border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
+                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
                   placeholder="you@example.com"
                 />
               </label>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                 <select
                   name="service"
                   defaultValue=""
-                  className="h-14 w-full border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
+                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
                   required
                 >
                   <option value="" disabled>
@@ -223,7 +223,7 @@ export default function ContactPage() {
                 <select
                   name="budget"
                   defaultValue=""
-                  className="h-14 w-full border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
+                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
                   required
                 >
                   <option value="" disabled>
@@ -244,7 +244,7 @@ export default function ContactPage() {
                   name="message"
                   required
                   rows={7}
-                  className="w-full resize-none border border-white/10 bg-black/30 p-4 text-[16px] leading-relaxed text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
+                  className="w-full resize-none rounded-[20px] border border-white/10 bg-black/30 p-4 text-[16px] leading-relaxed text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
                   placeholder="Tell us about the goal, timeline, audience, and deliverables."
                 />
               </label>
@@ -256,11 +256,7 @@ export default function ContactPage() {
                 </p>
                 <button
                   type="submit"
-                  className="group inline-flex h-14 items-center justify-center gap-3 bg-[#0000FF] px-7 text-[14px] font-medium tracking-wide text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]"
-                  style={{
-                    clipPath:
-                      "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
-                  }}
+                  className="group inline-flex h-14 items-center justify-center gap-3 rounded-[20px] bg-[#0000FF] px-7 text-[14px] font-medium tracking-wide text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]"
                 >
                   Send Inquiry
                   <Send
@@ -274,11 +270,11 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="mt-[6px] grid grid-cols-1 gap-[6px] md:grid-cols-3">
+        <div className="mt-[20px] grid grid-cols-1 gap-[20px] md:grid-cols-3">
           {responseSteps.map((step) => (
             <div
               key={step.id}
-              className="min-h-[220px] border border-white/10 bg-[#080808] p-6 md:p-8"
+              className="min-h-[220px] rounded-[20px] border border-white/10 bg-[#080808] p-6 md:p-8"
             >
               <div className="mb-10 flex items-center justify-between gap-5">
                 <span className="text-lg font-medium text-[#0000FF]">

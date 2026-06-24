@@ -91,9 +91,9 @@ export default function CaseStudiesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="md:col-span-4 md:col-start-9 flex flex-col items-end justify-end"
+            className="md:col-span-4 md:col-start-9 flex flex-col items-start justify-end md:items-end"
           >
-            <p className="text-[#CDCDCD] text-[16px] mb-6 leading-[1.3] w-[300px] text-end">
+            <p className="text-[#CDCDCD] text-[16px] mb-6 leading-[1.3] w-full max-w-[300px] text-left md:text-end">
               We build project architectures that are scalable, visually striking, and engineered for maximum conversion.
             </p>
             <Link href="/portfolio" className="group flex items-center gap-2 text-sm text-[#EDEDED] transition-colors hover:text-[#0000FF]">
@@ -137,38 +137,7 @@ export default function CaseStudiesSection() {
           </motion.div>
         </Reveal>
 
-        {/* --- 3. FEATURED PROJECT 2 (APEX) --- */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="group grid grid-cols-1 md:grid-cols-2 items-center mb-[20px] overflow-hidden rounded-[20px] border border-[#252525] bg-[#080808]"
-        >
-          <div className="relative overflow-hidden rounded-[20px] bg-white/5 h-[320px] md:h-[500px]">
-            <div className="absolute inset-0 overflow-hidden rounded-[20px]">
-              <img
-                src="https://cdn.dribbble.com/userupload/46853171/file/81b0e4b8cb5f6afa0901ca006ff4fda1.jpg?resize=1024x576&vertical=center"
-                alt="APEX — project"
-                loading="lazy"
-                className="object-cover w-full h-full rounded-[20px] transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <div className="absolute inset-0 rounded-[20px] bg-black/20" />
-          </div>
-
-          <div className="flex flex-col h-[320px] md:h-[500px] justify-center p-6 md:p-12">
-            <p className="text-[#0000FF] uppercase tracking-[0.15em] text-xs mb-3">Technology</p>
-            <h3 className="text-3xl md:text-4xl font-medium text-[#EDEDED] mb-4">APEX — Product Launch Campaign</h3>
-            <p className="text-white/50 text-sm mb-8 leading-relaxed">
-              A comprehensive launch campaign spanning web, social, and digital OOH.
-            </p>
-            <Link href="/portfolio/spices" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white border-b border-white/20 hover:border-white pb-1 w-max transition-all">
-              View Case Study <ArrowUpRight size={14} />
-            </Link>
-          </div>
-        </motion.div>
-
-        {/* --- 4. COLLAGE GRID (3 Columns) --- */}
+        {/* --- 3. COLLAGE GRID (3 Columns) --- */}
         <Reveal>
         <div className="grid grid-cols-1 gap-[20px] md:grid-cols-3">
           {/* Col 1 */}

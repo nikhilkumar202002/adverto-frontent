@@ -73,7 +73,7 @@
   --foreground: #ffffff;
   --muted: rgba(255,255,255,0.08);
   --border: rgba(255,255,255,0.12);
-  --site-radius: 30px;
+  --site-radius: 0px;
 }
 
 html {

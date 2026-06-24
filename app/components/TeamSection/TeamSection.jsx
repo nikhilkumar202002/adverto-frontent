@@ -227,8 +227,6 @@ export default function TeamSection() {
 
         gsap.set(projectsRef.current, {
           autoAlpha: 0,
-          y: 34,
-          filter: "blur(10px)",
         });
 
         /* ── Master scroll timeline ─────────────────────────────────── */
@@ -239,7 +237,7 @@ export default function TeamSection() {
             start:   "top top",
             end:     `+=${scrollLength}%`,
             scrub,
-            pin:     stickyRef.current,
+            pin:     sectionRef.current,
             pinSpacing: true,
             pinType: "fixed",
             anticipatePin: 0.6,
@@ -307,14 +305,17 @@ export default function TeamSection() {
           ">"
         );
 
-        timeline.to(
+        timeline.fromTo(
           projectsRef.current,
           {
+            autoAlpha: 0,
+          },
+          {
             autoAlpha: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 2,
-            ease: "power2.out",
+            duration: 0.9,
+            ease: "power1.out",
+            immediateRender: false,
+            overwrite: "auto",
           },
           ">"
         );
@@ -374,7 +375,8 @@ export default function TeamSection() {
           className={styles.projectsText}
           style={{ opacity: 0 }}
         >
-          <h3 className={styles.projectsHeading}>From Humans<br />to Humans</h3>
+          <div className={styles.projectsBackdrop} aria-hidden="true" />
+          <h3 className={styles.projectsHeading}>The Quiet Force</h3>
    
         </div>
       </div>

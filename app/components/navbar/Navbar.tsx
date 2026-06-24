@@ -60,7 +60,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed left-0 top-0 z-50 w-full border-b transition-[background-color,backdrop-filter,border-color,box-shadow,transform] duration-500 ease-out ${
+        className={`fixed left-0 top-0 z-50 w-full rounded-none border-b transition-[background-color,backdrop-filter,border-color,box-shadow,transform] duration-500 ease-out ${
           isTransparent
             ? "border-transparent bg-transparent shadow-none backdrop-blur-0"
             : "border-white/10 bg-black/72 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl"

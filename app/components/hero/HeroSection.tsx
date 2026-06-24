@@ -15,7 +15,7 @@ const backgroundSquares = [
 export default function HeroSection() {
   return (
     <section
-      className="relative flex min-h-screen min-h-[100svh] w-full items-center justify-center overflow-hidden"
+      className="relative flex min-h-[720px] w-full items-center justify-center overflow-hidden sm:min-h-screen sm:min-h-[100svh]"
       data-navbar-transparent
     >
       <div
@@ -31,18 +31,18 @@ export default function HeroSection() {
         ))}
       </div>
 
-      <Container className="relative z-10 flex min-h-screen min-h-[100svh] items-center justify-center py-24 sm:py-28 lg:py-32">
+      <Container className="relative z-10 flex min-h-[720px] items-center justify-center py-24 sm:min-h-screen sm:min-h-[100svh] sm:py-28 lg:py-32">
         <div
           className="flex w-full max-w-[1100px] flex-col items-center justify-center text-center"
         >
           <p
             className="mb-4 text-center text-xs tracking-[0.1em] text-[#0000FF] sm:text-sm md:text-[14px]"
           >
-            Creative Agency Est. 2016
+            Creative Agency Est. 2023
           </p>
 
           <h1
-            className="max-w-[11ch] text-[42px] font-semibold leading-[0.92] sm:max-w-[12ch] sm:text-6xl md:text-[72px] lg:max-w-none lg:text-[93px]"
+            className="w-full text-[42px] font-semibold leading-[0.92] sm:text-6xl md:text-[72px] lg:max-w-none lg:text-[93px]"
           >
             We build brands that dominate attention.
           </h1>
@@ -54,7 +54,7 @@ export default function HeroSection() {
             experiences crafted for modern businesses.
           </p>
 
-          <div className="mt-7 flex w-full flex-col items-center gap-4 sm:mt-8 sm:w-auto sm:flex-row sm:gap-5">
+          <div className="mt-7 flex w-full flex-row flex-wrap items-center justify-center gap-4 sm:mt-8 sm:w-auto sm:gap-5">
             <Button>View Works</Button>
 
             <Button variant="secondary">Book Consultation</Button>

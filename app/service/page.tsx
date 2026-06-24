@@ -62,7 +62,7 @@ export default function ServicePage() {
               return (
                 <article
                   key={service.id}
-                  className="group relative min-h-[480px] overflow-hidden rounded-[30px] border border-white/10 bg-[#0000FF] p-6 text-white transition-colors duration-500 hover:border-white/25 hover:bg-[#0000cc] md:min-h-[540px] md:p-8"
+                  className="group relative min-h-[480px] overflow-hidden rounded-[20px] border border-white/10 bg-[#0000FF] p-6 text-white transition-colors duration-500 hover:border-white/25 hover:bg-[#0000cc] md:min-h-[540px] md:p-8"
                 >
                   <div className="pointer-events-none absolute -top-[150px] left-1/2 z-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-white/20 opacity-0 blur-[80px] transition-all duration-700 group-hover:translate-y-8 group-hover:opacity-100" />
 

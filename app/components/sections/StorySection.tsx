@@ -31,19 +31,26 @@ export default function StorySection() {
   const stats = [
     { value: "120+", label: "Campaigns Delivered" },
     { value: "40+", label: "Brand Launches" },
-    { value: "8+", label: "Years Experience" },
+    { value: "3+", label: "Years Experience" },
     { value: "96%", label: "Client Retention" },
   ];
-  const statsRef = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(statsRef, { once: true, amount: 0.4 });
-  const [start, setStart] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const inView = useInView(sectionRef, { once: true, amount: 0.35 });
+  const parsedStats = stats.map((stat) => {
+    const match = stat.value.match(/(\d+)/);
+    const num = match ? Number(match[1]) : 0;
+    const suffix = stat.value.replace(/\d+/g, "");
 
-  useEffect(() => {
-    if (inView) setStart(true);
-  }, [inView]);
+    return { num, suffix, label: stat.label };
+  });
+  const count0 = useCount(parsedStats[0].num, inView);
+  const count1 = useCount(parsedStats[1].num, inView);
+  const count2 = useCount(parsedStats[2].num, inView);
+  const count3 = useCount(parsedStats[3].num, inView);
+  const counts = [count0, count1, count2, count3];
 
   return (
-    <section className="relative z-10 bg-[#050505] border-t border-white/5 py-24">
+    <section ref={sectionRef} className="relative z-10 bg-[#050505] border-t border-white/5 py-24">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           
@@ -87,47 +94,22 @@ export default function StorySection() {
             {/* Blue Divider */}
             <div className="w-12 h-[2px] bg-[#0000FF] mb-10" />
 
-                {/* Stats - start counting when revealed or hovered */}
+            {/* Stats - start counting when this section is revealed */}
+            <div className="grid grid-cols-2 gap-[15px]">
+              {parsedStats.map((p, i) => (
                 <div
-                  ref={statsRef}
-                  onMouseEnter={() => setStart(true)}
-                  className="grid grid-cols-2 gap-[15px]"
+                  key={i}
+                  className="bg-[#0000FF] border border-[#0000FF] rounded-[15px] p-6 md:p-8 flex flex-col justify-center transition-colors duration-300 hover:bg-[#0000D6] hover:border-[#0000D6]"
                 >
-                  {
-                    // parse numeric targets and suffixes
-                  }
-                  {
-                    (() => {
-                      const parsed = stats.map((s) => {
-                        const m = s.value.match(/(\d+)/);
-                        const num = m ? Number(m[1]) : 0;
-                        const suffix = s.value.replace(/\d+/g, "");
-                        return { num, suffix, label: s.label };
-                      });
-
-                      const c0 = useCount(parsed[0].num, start);
-                      const c1 = useCount(parsed[1].num, start);
-                      const c2 = useCount(parsed[2].num, start);
-                      const c3 = useCount(parsed[3].num, start);
-
-                      const counts = [c0, c1, c2, c3];
-
-                      return parsed.map((p, i) => (
-                        <div
-                          key={i}
-                          className="bg-[#0000FF] border border-[#0000FF] rounded-[15px] p-6 md:p-8 flex flex-col justify-center transition-colors duration-300 hover:bg-[#0000D6] hover:border-[#0000D6]"
-                        >
-                          <h4 className="text-white text-3xl md:text-4xl font-medium mb-1">
-                            {counts[i]}{p.suffix}
-                          </h4>
-                          <p className="text-white text-[13px] tracking-wide">
-                            {p.label}
-                          </p>
-                        </div>
-                      ));
-                    })()
-                  }
+                  <h4 className="text-white text-3xl md:text-4xl font-medium mb-1">
+                    {counts[i]}{p.suffix}
+                  </h4>
+                  <p className="text-white text-[13px] tracking-wide">
+                    {p.label}
+                  </p>
                 </div>
+              ))}
+            </div>
 
           </motion.div>
 

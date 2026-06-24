@@ -14,10 +14,7 @@ interface ButtonProps {
 
 export default function Button({ children, href = "#", className, variant = "primary" }: ButtonProps) {
   const base =
-    "group relative inline-flex items-center justify-center overflow-hidden px-[22px] py-[12px] text-[14px] font-normal transition-all duration-300 tracking-wide";
-
-  const clipPath =
-    "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))";
+    "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-[22px] py-[12px] text-[14px] font-normal transition-all duration-300 tracking-wide";
 
   const primary = "bg-[#0000FF] text-[#EDEDED] hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]";
 
@@ -29,9 +26,6 @@ export default function Button({ children, href = "#", className, variant = "pri
     <Link
       href={href}
       className={classes}
-      style={{
-        clipPath,
-      }}
     >
       {variant !== "secondary" && (
         <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -40,8 +34,7 @@ export default function Button({ children, href = "#", className, variant = "pri
       {variant === "secondary" && (
         <span
           aria-hidden
-          className="absolute inset-0 pointer-events-none border-[1px] border-white/90 transition-colors duration-300 group-hover:border-[#0000FF] group-hover:bg-[#0000FF]/20 box-border"
-          style={{ clipPath }}
+          className="absolute inset-0 pointer-events-none rounded-full border-[1px] border-white/90 transition-colors duration-300 group-hover:border-[#0000FF] group-hover:bg-[#0000FF]/20 box-border"
         />
       )}
 

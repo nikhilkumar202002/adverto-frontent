@@ -20,9 +20,9 @@ export default function FaqSection() {
       <Container>
         <Reveal>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
-          
+
           {/* --- LEFT COLUMN: Header --- */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -41,7 +41,7 @@ export default function FaqSection() {
           </motion.div>
 
           {/* --- RIGHT COLUMN: Accordion --- */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -52,8 +52,8 @@ export default function FaqSection() {
               const isOpen = openIndex === index;
 
               return (
-                <div 
-                  key={faq.id} 
+                <div
+                  key={faq.id}
                   className={`border-b transition-colors duration-300 ${
                     isOpen ? "border-[#0000FF]" : "border-white/10"
                   }`}
@@ -65,7 +65,7 @@ export default function FaqSection() {
                     <h3 className="text-lg md:text-xl font-medium text-[#EDEDED] group-hover:text-[#0000FF] transition-colors pr-8">
                       {faq.question}
                     </h3>
-                    
+
                     {/* The Icon Toggle */}
                     <div className="shrink-0 relative flex items-center justify-center w-6 h-6">
                       <AnimatePresence mode="wait">
@@ -76,9 +76,10 @@ export default function FaqSection() {
                             animate={{ rotate: 0, opacity: 1 }}
                             exit={{ rotate: 90, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="w-6 h-6 bg-[#0000FF] rotate-45 flex items-center justify-center"
+                            style={{ borderRadius: "9999px" }}
+                            className="w-6 h-6 !rounded-full bg-[#0000FF] flex items-center justify-center"
                           >
-                            <X size={14} className="text-white -rotate-45" strokeWidth={3} />
+                            <X size={14} className="text-white" strokeWidth={3} />
                           </motion.div>
                         ) : (
                           <motion.div
@@ -87,7 +88,8 @@ export default function FaqSection() {
                             animate={{ rotate: 0, opacity: 1 }}
                             exit={{ rotate: -90, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="w-6 h-6 border border-white/20 flex items-center justify-center transition-colors group-hover:border-[#0000FF]"
+                            style={{ borderRadius: "9999px" }}
+                            className="w-6 h-6 !rounded-full border border-white/20 flex items-center justify-center transition-colors group-hover:border-[#0000FF]"
                           >
                             <Plus size={14} className="text-white/70 group-hover:text-[#0000FF]" strokeWidth={2} />
                           </motion.div>

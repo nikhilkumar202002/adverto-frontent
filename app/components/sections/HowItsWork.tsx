@@ -15,7 +15,7 @@ export default function HowItsWork() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-stretch">
           <div className="lg:col-span-7">
             <Reveal className="h-full">
-              <div className="relative h-full overflow-hidden rounded-[30px] border border-white/10 bg-[#080808] p-6 md:p-10">
+              <div className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-[#080808] p-6 md:p-10">
                 <div
                   aria-hidden
                   className="absolute right-[-120px] top-[-120px] h-[280px] w-[280px] rounded-full bg-[#0000FF]/20 blur-[90px]"
@@ -48,7 +48,7 @@ export default function HowItsWork() {
 
           <div className="lg:col-span-5">
             <Reveal className="h-full">
-              <div className="relative h-full overflow-hidden rounded-[30px] border border-[#0000FF] bg-[#0000FF] p-6 md:p-10">
+              <div className="relative h-full overflow-hidden rounded-[20px] border border-[#0000FF] bg-[#0000FF] p-6 md:p-10">
                 <p className="mb-4 flex items-center gap-3 text-[13px] uppercase tracking-[0.16em] text-white">
                   <span className="h-[1px] w-[34px] bg-white" />
                   What We Believe

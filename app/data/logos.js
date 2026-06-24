@@ -60,6 +60,9 @@ const logoFiles = [
   "Asset 9.png",
   "PNG.png",
   "sss.png",
+  "Asset 1@500x.png",
+  "Asset 2@500x.png",
+  "ayan@500x.png",
 ];
 
 export const clientLogos = logoFiles.map((file, idx) => {

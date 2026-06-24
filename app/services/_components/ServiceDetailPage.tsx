@@ -29,7 +29,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-12">
               <p className="mb-4 flex items-center gap-3 text-[13px] uppercase tracking-[0.18em] text-[#0000FF]">
                 <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                 {service.eyebrow}
@@ -39,20 +39,15 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                 {service.title}
               </h1>
             </div>
-            <div className="lg:col-span-4">
-              <p className="max-w-[460px] text-[17px] leading-[1.6] text-white/58 lg:ml-auto">
-                {service.description}
-              </p>
-            </div>
           </div>
         </Container>
       </section>
 
       <section className="relative z-10 py-20 md:py-28">
         <Container>
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
-            <div className="lg:col-span-8">
-              <div className="relative overflow-hidden border border-white/10 bg-black">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-start">
+            <div className="md:col-span-8">
+              <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-black">
                 <div className="relative border-b border-white/10 p-5 md:p-8">
                   <div className="mb-10 flex items-start justify-between gap-8">
                     <div>
@@ -98,8 +93,8 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
               </div>
             </div>
 
-            <aside className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
-              <div className="border border-white/10 bg-[#080808] p-5 md:p-8">
+            <aside className="md:sticky md:top-28 md:col-span-4 md:self-start">
+              <div className="rounded-[20px] border border-white/10 bg-[#080808] p-5 md:p-8">
                 <div className="mb-8 flex items-start justify-between gap-6">
                   <div>
                     <p className="mb-2 text-[12px] uppercase tracking-[0.18em] text-white/35">
@@ -140,7 +135,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                         <Link
                           key={serviceSlug}
                           href={`/services/${serviceSlug}`}
-                          className={`flex items-center justify-between gap-4 border px-4 py-3 text-[15px] transition-colors ${
+                          className={`flex items-center justify-between gap-4 rounded-[20px] border px-4 py-3 text-[15px] transition-colors ${
                             isActive
                               ? "border-[#0000FF] bg-[#0000FF] text-white"
                               : "border-white/10 bg-white/[0.03] text-white/58 hover:border-[#0000FF]/60 hover:text-white"

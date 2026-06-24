@@ -47,6 +47,7 @@ const landscapeImages = [
   "16.jpg",
   "17.jpg",
   "18.jpg",
+  "19.jpg",
 ].map((fileName, index) => ({
   id: `landscape-${index + 1}`,
   title: "Featured Portfolio",

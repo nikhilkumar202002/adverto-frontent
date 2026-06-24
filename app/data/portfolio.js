@@ -277,6 +277,76 @@ const mistwishGalleryImages = [
   "/case-studies/Mistwish/mist-16.jpg",
 ];
 
+const waterCanGalleryImages = [
+  "/case-studies/water-can/1.jpg",
+  "/case-studies/water-can/2.jpg",
+  "/case-studies/water-can/3.jpg",
+  "/case-studies/water-can/4.jpg",
+  "/case-studies/water-can/5.jpg",
+  "/case-studies/water-can/6.jpg",
+  "/case-studies/water-can/7.jpg",
+  "/case-studies/water-can/8.jpg",
+  "/case-studies/water-can/water can branding final-08.jpg",
+  "/case-studies/water-can/water can branding final-09.jpg",
+  "/case-studies/water-can/water can branding final-10.jpg",
+  "/case-studies/water-can/water can branding final-11.jpg",
+  "/case-studies/water-can/water can branding final-12.jpg",
+];
+
+const ayanGalleryImages = [
+  "/case-studies/ayan/AYAN CUPPA-01.jpg",
+  "/case-studies/ayan/AYAN CUPPA-02.jpg",
+  "/case-studies/ayan/AYAN CUPPA-03.jpg",
+  "/case-studies/ayan/AYAN CUPPA-04.jpg",
+  "/case-studies/ayan/AYAN CUPPA-05.jpg",
+  "/case-studies/ayan/AYAN CUPPA-06.jpg",
+  "/case-studies/ayan/AYAN CUPPA-07.jpg",
+  "/case-studies/ayan/AYAN CUPPA-08.jpg",
+  "/case-studies/ayan/AYAN CUPPA-09.jpg",
+  "/case-studies/ayan/AYAN CUPPA-10.jpg",
+  "/case-studies/ayan/AYAN CUPPA-11.jpg",
+];
+
+const bridexGalleryImages = [
+  "/case-studies/bridex/BRIDEX BRANDING-01.jpg",
+  "/case-studies/bridex/BRIDEX BRANDING-02.jpg",
+  "/case-studies/bridex/BRIDEX BRANDING-03.jpg",
+  "/case-studies/bridex/BRIDEX BRANDING-04.jpg",
+  "/case-studies/bridex/BRIDEX BRANDING-05.jpg",
+  "/case-studies/bridex/BRIDEX BRANDING-06.jpg",
+  "/case-studies/bridex/BRIDEX BRANDING-07.jpg",
+];
+
+const chaiKaifGalleryImages = [
+  "/case-studies/chai-kaif/Untitled-5-01.jpg",
+  "/case-studies/chai-kaif/Untitled-5-02.jpg",
+  "/case-studies/chai-kaif/Untitled-5-03.jpg",
+  "/case-studies/chai-kaif/Untitled-5-04.jpg",
+  "/case-studies/chai-kaif/Untitled-5-05.jpg",
+  "/case-studies/chai-kaif/Untitled-5-06.jpg",
+  "/case-studies/chai-kaif/Untitled-5-07.jpg",
+  "/case-studies/chai-kaif/Untitled-5-08.jpg",
+  "/case-studies/chai-kaif/Untitled-5-09.jpg",
+  "/case-studies/chai-kaif/Untitled-5-10.jpg",
+  "/case-studies/chai-kaif/Untitled-5-11.jpg",
+  "/case-studies/chai-kaif/Untitled-5-12.jpg",
+  "/case-studies/chai-kaif/Untitled-5-13.jpg",
+  "/case-studies/chai-kaif/Untitled-5-14.jpg",
+  "/case-studies/chai-kaif/Untitled-5-15.jpg",
+  "/case-studies/chai-kaif/Untitled-5-16.jpg",
+  "/case-studies/chai-kaif/Untitled-5-17.jpg",
+  "/case-studies/chai-kaif/Untitled-5-18.jpg",
+  "/case-studies/chai-kaif/Untitled-5-19.jpg",
+  "/case-studies/chai-kaif/Untitled-5-20.jpg",
+  "/case-studies/chai-kaif/Untitled-5-21.jpg",
+  "/case-studies/chai-kaif/Untitled-5-22.jpg",
+];
+
+const haloHiveGalleryImages = Array.from({ length: 30 }, (_, index) => {
+  const imageNumber = String(index + 1).padStart(2, "0");
+  return `/case-studies/Halo-Hive/HALO HIVE-${imageNumber}.jpg`;
+});
+
 export const portfolioPageProjects = [
   {
     slug: "spices",
@@ -445,5 +515,65 @@ export const portfolioPageProjects = [
       "A dreamy brand identity system with atmospheric visuals, product-led layouts, and consistent campaign assets.",
     services: ["Brand identity", "Art direction", "Campaign design"],
     gallery: mistwishGalleryImages,
+  },
+  {
+    slug: "water-can",
+    title: "Water Can",
+    subtitle: "Branding · 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/water-can/cover/1.jpg",
+    description:
+      "A clean brand presentation with product-forward visuals, packaging-ready assets, and practical communication frames.",
+    services: ["Brand identity", "Packaging", "Campaign design"],
+    gallery: waterCanGalleryImages,
+  },
+  {
+    slug: "ayan",
+    title: "Ayan Cuppa",
+    subtitle: "Branding · 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/ayan/cover/Untitled-3.jpg",
+    description:
+      "A warm beverage brand identity with expressive visuals, polished applications, and launch-ready campaign layouts.",
+    services: ["Brand identity", "Packaging", "Campaign design"],
+    gallery: ayanGalleryImages,
+  },
+  {
+    slug: "bridex",
+    title: "Bridex",
+    subtitle: "Branding · 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/bridex/cover/Untitled-3.jpg",
+    description:
+      "A sharp identity system built around structured brand applications, clear visual hierarchy, and professional rollout assets.",
+    services: ["Brand identity", "Presentation", "Digital design"],
+    gallery: bridexGalleryImages,
+  },
+  {
+    slug: "chai-kaif",
+    title: "Chai Kaif",
+    subtitle: "Branding · 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/chai-kaif/cover/Untitled-3.jpg",
+    description:
+      "A flavorful brand presentation for a chai concept, combining vibrant applications, packaging visuals, and social-ready assets.",
+    services: ["Brand identity", "Packaging", "Campaign design"],
+    gallery: chaiKaifGalleryImages,
+  },
+  {
+    slug: "halo-hive",
+    title: "Halo Hive",
+    subtitle: "Branding · 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/Halo-Hive/Cover/bel.jpg",
+    description:
+      "A broad brand system with extensive visual applications, campaign pieces, and presentation assets for a cohesive rollout.",
+    services: ["Brand identity", "Guidelines", "Campaign design"],
+    gallery: haloHiveGalleryImages,
   },
 ];
