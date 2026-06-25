@@ -100,7 +100,7 @@ function RotatingCampaignImage() {
           alt="Koickal Gold & Diamonds campaign visual"
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105 md:object-cover"
         />
       </motion.div>
     </AnimatePresence>
@@ -155,7 +155,7 @@ export default function CaseStudiesSection() {
             viewport={{ once: true }}
             className="group grid grid-cols-1 md:grid-cols-2 items-center mb-[20px] overflow-hidden rounded-[20px] border border-[#252525] bg-[#080808]"
           >
-            <div className="relative h-[360px] overflow-hidden rounded-[20px] bg-white/5 md:h-[500px]">
+            <div className="relative aspect-[3492/2000] overflow-hidden rounded-[20px] bg-white/5 md:aspect-auto md:h-[500px]">
               <RotatingCampaignImage />
               <div className="pointer-events-none absolute inset-0 rounded-[20px] bg-black/10" />
             </div>
