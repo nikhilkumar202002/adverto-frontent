@@ -77,21 +77,33 @@ function PlaylistVideo({
 
 export default function ServiceVideoShowcase() {
   return (
-    <div className="grid grid-cols-1 gap-5 lg:grid-cols-4">
-      <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-3">
-        <PlaylistVideo
-          videos={horizontalVideos}
-          label="Horizontal service video reel"
-          className="aspect-video h-full w-full object-contain"
-        />
+    <div>
+      <div className="mb-12 max-w-[760px]">
+        <p className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
+          <span className="h-[1px] w-[30px] bg-[#0000FF]" />
+          Video Work
+        </p>
+        <h2 className="text-[45px] font-medium leading-[1] text-[#EDEDED] md:text-[70px]">
+          Frames That Move Brands
+        </h2>
       </div>
 
-      <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-1">
-        <PlaylistVideo
-          videos={verticalVideos}
-          label="Vertical service video reel"
-          className="aspect-[9/16] h-full w-full object-contain"
-        />
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-4">
+        <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-3">
+          <PlaylistVideo
+            videos={horizontalVideos}
+            label="Horizontal service video reel"
+            className="aspect-video h-full w-full object-contain"
+          />
+        </div>
+
+        <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-1">
+          <PlaylistVideo
+            videos={verticalVideos}
+            label="Vertical service video reel"
+            className="aspect-[9/16] h-full w-full object-contain"
+          />
+        </div>
       </div>
     </div>
   );
