@@ -40,7 +40,7 @@ export default function InfiniteProjectSlider({
           }
 
           .project-marquee__track {
-            animation: image-marquee 22s linear infinite;
+            animation: image-marquee 52s linear infinite;
             backface-visibility: hidden;
             contain: layout paint;
             transform: translate3d(0, 0, 0);

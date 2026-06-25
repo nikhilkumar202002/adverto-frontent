@@ -1,10 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Container from "../components/common/Container";
-import { faqData } from "../data/faqs";
 import { servicesData } from "../data/services";
 import ServiceHeroContent from "./ServiceHeroContent";
+import ServiceVideoShowcase from "./ServiceVideoShowcase";
 
 export const metadata: Metadata = {
   title: "Creative Services | Adverto",
@@ -48,10 +48,10 @@ export default function ServicePage() {
               </h2>
             </div>
             <div className="flex items-end md:col-span-4 md:col-start-9">
-              <p className="max-w-[360px] text-[16px] leading-[1.45] text-white/55 md:text-right">
+              {/* <p className="max-w-[360px] text-[16px] leading-[1.45] text-white/55 md:text-right">
                 Choose one focused discipline or combine them into a complete
                 launch plan.
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -104,43 +104,7 @@ export default function ServicePage() {
 
       <section className="relative z-10 border-t border-white/5 py-24 md:py-32">
         <Container>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start">
-            <div className="lg:sticky lg:top-28 lg:col-span-5">
-              <p className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
-                <span className="h-[1px] w-[30px] bg-[#0000FF]" />
-                FAQ
-              </p>
-              <h2 className="mb-6 text-[45px] font-medium leading-[1] text-[#EDEDED] md:text-[64px]">
-                Service Questions
-              </h2>
-              <p className="max-w-[420px] text-[16px] leading-[1.5] text-white/50">
-                Clear answers before the first call. For anything more specific,
-                email connectadvertoads@gmail.com.
-              </p>
-            </div>
-
-            <div className="border-t border-white/10 lg:col-span-7">
-              {faqData.map((faq, index) => (
-                <details
-                  key={faq.id}
-                  open={index === 0}
-                  className="group border-b border-white/10 transition-colors duration-300 open:border-[#0000FF]"
-                >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-8 py-6 text-left md:py-8 [&::-webkit-details-marker]:hidden">
-                    <h3 className="text-lg font-medium text-[#EDEDED] transition-colors duration-300 group-hover:text-[#0000FF] md:text-xl">
-                      {faq.question}
-                    </h3>
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-white/20 transition-all duration-300 group-open:rotate-45 group-open:border-[#0000FF] group-open:bg-[#0000FF]">
-                      <Plus size={14} strokeWidth={2} />
-                    </span>
-                  </summary>
-                  <p className="max-w-[90%] pb-8 text-[15px] leading-[1.6] text-white/50">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </div>
+          <ServiceVideoShowcase />
         </Container>
       </section>
     </div>

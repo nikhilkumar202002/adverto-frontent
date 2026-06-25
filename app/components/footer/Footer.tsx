@@ -100,7 +100,7 @@ export default function Footer() {
       <Container className="relative z-10 flex min-h-[420px] flex-col justify-between py-8 md:min-h-[100svh] md:py-10">
         <div className="flex flex-1 flex-col items-center justify-center py-8 text-center md:py-0">
           <h2 className="text-[clamp(52px,18vw,92px)] font-semibold leading-[0.82] tracking-normal text-[#f4f3ef] md:text-[clamp(72px,17vw,300px)] md:leading-[0.78]">
-            Let&apos;s Talk
+            Let<span className="text-[#0000FF]">&apos;</span>s Talk
           </h2>
 
           <Button href="/contact" className="mt-8 md:mt-20">

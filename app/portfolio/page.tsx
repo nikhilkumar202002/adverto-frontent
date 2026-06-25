@@ -18,21 +18,19 @@ export default function PortfolioPage() {
             </h1>
           </div>
           <div className="flex items-end md:col-span-4 md:col-start-9">
-            <p className="max-w-[360px] text-[16px] leading-[1.45] text-white/55">
+            {/* <p className="max-w-[360px] text-[16px] leading-[1.45] text-white/55">
               Each project has a focused inner page with a hero image, project
               context, services, and a visual gallery.
-            </p>
+            </p> */}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-[6px] md:grid-cols-2 lg:grid-cols-3">
-          {portfolioPageProjects.map((project, index) => (
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {portfolioPageProjects.map((project) => (
             <Link
               key={project.slug}
               href={`/portfolio/${project.slug}`}
-              className={`group relative overflow-hidden border border-white/10 bg-[#0A0A0A] ${
-                index === 0 ? "md:col-span-2 lg:col-span-2" : ""
-              }`}
+              className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A]"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img
@@ -44,9 +42,9 @@ export default function PortfolioPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-5 p-5 md:p-7">
                 <div>
-                  <p className="mb-2 text-xs uppercase tracking-[0.16em] text-[#0000FF]">
+                  {/* <p className="mb-2 text-xs uppercase tracking-[0.16em] text-[#0000FF]">
                     {project.subtitle}
-                  </p>
+                  </p> */}
                   <h2 className="text-2xl font-medium text-white md:text-3xl">
                     {project.title}
                   </h2>

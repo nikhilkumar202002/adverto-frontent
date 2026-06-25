@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Container from "../common/Container";
@@ -46,17 +46,20 @@ function RotatingPortfolioTile({
   if (!activeProject) return null;
 
   return (
-    <div className={`group relative w-full overflow-hidden rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] ${className}`}>
-      <motion.img
-        key={activeProject.image}
-        src={activeProject.image}
-        alt={activeProject.alt}
-        loading="lazy"
-        initial={{ opacity: 0, scale: 1.02 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
-        className="object-cover w-full h-full rounded-[20px]"
-      />
+    <div className={`group relative w-full overflow-hidden rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] [perspective:1200px] ${className}`}>
+      <AnimatePresence initial={false} mode="popLayout">
+        <motion.img
+          key={activeProject.image}
+          src={activeProject.image}
+          alt={activeProject.alt}
+          loading="lazy"
+          initial={{ opacity: 0, rotateY: -82, scale: 0.98 }}
+          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+          exit={{ opacity: 0, rotateY: 82, scale: 0.98 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 object-cover w-full h-full rounded-[20px] origin-left [backface-visibility:hidden] [transform-style:preserve-3d]"
+        />
+      </AnimatePresence>
     </div>
   );
 }
@@ -93,9 +96,7 @@ export default function CaseStudiesSection() {
             transition={{ delay: 0.1 }}
             className="md:col-span-4 md:col-start-9 flex flex-col items-start justify-end md:items-end"
           >
-            <p className="text-[#CDCDCD] text-[16px] mb-6 leading-[1.3] w-full max-w-[300px] text-left md:text-end">
-              We build project architectures that are scalable, visually striking, and engineered for maximum conversion.
-            </p>
+        
             <Link href="/portfolio" className="group flex items-center gap-2 text-sm text-[#EDEDED] transition-colors hover:text-[#0000FF]">
               View all works 
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -155,17 +156,16 @@ export default function CaseStudiesSection() {
           </div>
           {/* Col 2 (Hero image in center) */}
           <div className="group relative min-h-[400px] h-full w-full overflow-hidden rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
-            <img
-              src={centerProject.image}
-              loading="lazy"
-              alt={centerProject.alt}
+            <video
+              src="/videos/center-video.mp4"
+              aria-label={centerProject.alt}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
               className="object-cover w-full h-full rounded-[20px]"
             />
-            <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none" />
-            <div className="absolute left-0 right-0 bottom-0 p-6 transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-10">
-              <h4 className="text-3xl font-medium text-white">{centerProject.title}</h4>
-              <p className="text-sm text-[#0000FF] mt-2">{centerProject.subtitle}</p>
-            </div>
           </div>
           {/* Col 3 */}
           <div className="flex flex-col gap-[20px]">

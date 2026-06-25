@@ -25,6 +25,21 @@
 ._*
 *.pem
 
+# assets
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.avif
+*.ico
+*.mp4
+*.mov
+*.webm
+*.mp3
+*.wav
+*.zip
+
 # debug
 npm-debug.log*
 yarn-debug.log*

@@ -7,6 +7,8 @@ import Container from "../common/Container";
 import Reveal from "../common/Reveal";
 import { servicesData } from "../../data/services";
 
+const serviceCardBackground = "/Banners/service-card-banner.jpg";
+
 export default function ServicesSection() {
   return (
     <section className="relative z-10 bg-[#050505] py-24 md:py-32 overflow-hidden border-t border-white/5">
@@ -37,9 +39,7 @@ export default function ServicesSection() {
             transition={{ delay: 0.1 }}
             className="md:col-span-4 md:col-start-9 flex flex-col items-end justify-end"
           >
-            <p className="text-[#CDCDCD] text-[16px] mb-6 leading-[1.3] w-[300px] text-end">
-              Four core disciplines, one singular mission: build brands that command attention, earn loyalty, and drive growth.
-            </p>
+           
           </motion.div>
         </div>
 
@@ -55,13 +55,24 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden flex flex-col justify-between rounded-[20px] bg-[#0000FF] border border-[#0000FF] p-8 md:p-10 transition-colors duration-500 hover:bg-[#0000D6] hover:border-[#0000D6] min-h-[380px]"
+                className="group relative overflow-hidden flex flex-col justify-between rounded-[20px] border border-white/10 p-8 md:p-10 transition-colors duration-500 hover:border-white/25 min-h-[380px]"
               >
+                <img
+                  src={serviceCardBackground}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  aria-hidden="true"
+                  className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/85 via-black/35 to-black/10 transition-opacity duration-500 group-hover:opacity-90" />
+
                 {/* Radial Glow Drop 
                   A large, blurred circle placed slightly above the top edge.
                   Fades in and drops down slightly (translate-y) on hover.
                 */}
-                <div className="absolute -top-[150px] left-1/2 w-[300px] h-[300px] -translate-x-1/2 rounded-full bg-white/20 blur-[80px] pointer-events-none opacity-0 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-8 z-0" />
+                <div className="absolute -top-[150px] left-1/2 z-[2] w-[300px] h-[300px] -translate-x-1/2 rounded-full bg-white/20 blur-[80px] pointer-events-none opacity-0 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-8" />
 
                 {/* Content Wrapper - Keeps text above the glow (z-10) */}
                 <div className="relative z-10">

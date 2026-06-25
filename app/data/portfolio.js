@@ -342,6 +342,65 @@ const chaiKaifGalleryImages = [
   "/case-studies/chai-kaif/Untitled-5-22.jpg",
 ];
 
+const asirGalleryImages = [
+  "/case-studies/asir/asir copy-01.jpg",
+  "/case-studies/asir/asir copy-02.jpg",
+  "/case-studies/asir/asir copy-03.jpg",
+  "/case-studies/asir/asir copy-04.jpg",
+  "/case-studies/asir/asir copy-06.jpg",
+  "/case-studies/asir/asir copy-07.jpg",
+  "/case-studies/asir/asir copy-08.jpg",
+  "/case-studies/asir/asir copy-09.jpg",
+  "/case-studies/asir/asir copy-10.jpg",
+  "/case-studies/asir/asir copy-11.jpg",
+];
+
+const orlandsGalleryImages = [
+  "/case-studies/orlands/Untitled-7-01.jpg",
+  "/case-studies/orlands/Untitled-7-02.jpg",
+  "/case-studies/orlands/Untitled-7-03.jpg",
+  "/case-studies/orlands/Untitled-7-04.jpg",
+  "/case-studies/orlands/Untitled-7-05.jpg",
+  "/case-studies/orlands/Untitled-7-06.jpg",
+  "/case-studies/orlands/Untitled-7-07.jpg",
+  "/case-studies/orlands/Untitled-7-08.jpg",
+  "/case-studies/orlands/Untitled-7-09.jpg",
+];
+
+const richMountGalleryImages = [
+  "/case-studies/rich-mount/BRAND GUIDE-01.jpg",
+  "/case-studies/rich-mount/BRAND GUIDE-02.jpg",
+  "/case-studies/rich-mount/BRAND GUIDE-03.jpg",
+  "/case-studies/rich-mount/BRAND GUIDE-04.jpg",
+  "/case-studies/rich-mount/BRAND GUIDE-05.jpg",
+  "/case-studies/rich-mount/BRAND GUIDE-06.jpg",
+  "/case-studies/rich-mount/BRAND GUIDE-07.jpg",
+  "/case-studies/rich-mount/BRAND GUIDE-08.jpg",
+];
+
+const royalGymGalleryImages = [
+  "/case-studies/Royal-gym/IMG_0843.JPG.jpeg",
+  "/case-studies/Royal-gym/IMG_0844.JPG.jpeg",
+  "/case-studies/Royal-gym/IMG_0845.JPG.jpeg",
+  "/case-studies/Royal-gym/IMG_0846.JPG.jpeg",
+  "/case-studies/Royal-gym/IMG_0847.JPG.jpeg",
+  "/case-studies/Royal-gym/IMG_0848.JPG.jpeg",
+  "/case-studies/Royal-gym/IMG_0849.JPG.jpeg",
+  "/case-studies/Royal-gym/IMG_0850.JPG.jpeg",
+];
+
+const yujaGalleryImages = [
+  "/case-studies/Yuja/yuja-01.jpg",
+  "/case-studies/Yuja/yuja-02.jpg",
+  "/case-studies/Yuja/yuja-03.jpg",
+  "/case-studies/Yuja/yuja-04.jpg",
+  "/case-studies/Yuja/yuja-05.jpg",
+  "/case-studies/Yuja/yuja-06.jpg",
+  "/case-studies/Yuja/yuja-07.jpg",
+  "/case-studies/Yuja/yuja-08.jpg",
+  "/case-studies/Yuja/yuja-09.jpg",
+];
+
 const haloHiveGalleryImages = Array.from({ length: 30 }, (_, index) => {
   const imageNumber = String(index + 1).padStart(2, "0");
   return `/case-studies/Halo-Hive/HALO HIVE-${imageNumber}.jpg`;
@@ -367,6 +426,7 @@ export const portfolioPageProjects = [
     category: "Apparel",
     year: "2023",
     heroImage: "/case-studies/Underdwag/Cover/dog.jpg",
+    portfolioImage: "/case-studies/Underdwag/Untitled-8-01.jpg",
     description:
       "An apparel brand presentation built around bold product styling, campaign-ready layouts, and expressive streetwear visuals.",
     services: ["Identity", "Art direction", "Campaign design"],
@@ -575,5 +635,65 @@ export const portfolioPageProjects = [
       "A broad brand system with extensive visual applications, campaign pieces, and presentation assets for a cohesive rollout.",
     services: ["Brand identity", "Guidelines", "Campaign design"],
     gallery: haloHiveGalleryImages,
+  },
+  {
+    slug: "asir",
+    title: "Asir",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/asir/cover/cover.jpg",
+    description:
+      "A clean brand presentation with polished identity applications, consistent layouts, and campaign-ready visual assets.",
+    services: ["Brand identity", "Presentation", "Campaign design"],
+    gallery: asirGalleryImages,
+  },
+  {
+    slug: "orlands",
+    title: "Orlands",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/orlands/cover/01.jpg",
+    description:
+      "A refined identity project with structured brand visuals, practical applications, and cohesive launch materials.",
+    services: ["Brand identity", "Guidelines", "Digital design"],
+    gallery: orlandsGalleryImages,
+  },
+  {
+    slug: "rich-mount",
+    title: "Rich Mount",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/rich-mount/cover/BRAND GUIDE-07.jpg",
+    description:
+      "A brand guideline project with strong visual structure, professional applications, and clear identity rules.",
+    services: ["Brand identity", "Guidelines", "Presentation"],
+    gallery: richMountGalleryImages,
+  },
+  {
+    slug: "royal-gym",
+    title: "Royal Gym",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/Royal-gym/Cover/IMG_0843.JPG.jpeg",
+    description:
+      "A bold fitness brand presentation with energetic visuals, practical brand applications, and strong campaign frames.",
+    services: ["Brand identity", "Art direction", "Campaign design"],
+    gallery: royalGymGalleryImages,
+  },
+  {
+    slug: "yuja",
+    title: "Yuja",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/Yuja/cover/yuja-01.jpg",
+    description:
+      "A fresh brand identity project with bright visuals, cohesive layouts, and polished presentation assets.",
+    services: ["Brand identity", "Packaging", "Campaign design"],
+    gallery: yujaGalleryImages,
   },
 ];

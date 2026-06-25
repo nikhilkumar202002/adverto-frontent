@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Camera, Clapperboard, Palette, Users } from "lucide-react";
 import Container from "../components/common/Container";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
 
@@ -76,29 +75,6 @@ const teamMembers = [
   },
 ];
 
-const teamStats = [
-  {
-    label: "Creative Direction",
-    value: "Brand-first",
-    icon: Palette,
-  },
-  {
-    label: "Production",
-    value: "Film-ready",
-    icon: Camera,
-  },
-  {
-    label: "Post Production",
-    value: "Detail-led",
-    icon: Clapperboard,
-  },
-  {
-    label: "Team Culture",
-    value: "Human",
-    icon: Users,
-  },
-];
-
 export default function OurTeamPage() {
   return (
     <div className="relative bg-[#050505] text-white">
@@ -131,38 +107,6 @@ export default function OurTeamPage() {
                 Production Hands
               </h2>
             </div>
-            <div className="flex items-end md:col-span-4 md:col-start-9">
-              <p className="max-w-[380px] text-[16px] leading-[1.45] text-white/55 md:text-right">
-                A focused crew of strategists, designers, filmmakers, editors,
-                and people operators shaping brand stories from concept to
-                execution.
-              </p>
-            </div>
-          </div>
-
-          <div className="mb-[20px] grid grid-cols-1 gap-[20px] md:grid-cols-2 lg:grid-cols-4">
-            {teamStats.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.label}
-                  className="rounded-[20px] border border-[#0000FF] bg-[#0000FF] p-6 text-white md:p-8"
-                >
-                  <div className="mb-10 flex items-center justify-between gap-5">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 text-white">
-                      <Icon size={20} strokeWidth={1.5} />
-                    </div>
-                    <p className="text-right text-xs uppercase tracking-[0.18em] text-white/75">
-                      {item.label}
-                    </p>
-                  </div>
-                  <p className="text-right text-2xl font-medium text-white">
-                    {item.value}
-                  </p>
-                </div>
-              );
-            })}
           </div>
 
           <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 lg:grid-cols-4">
@@ -189,17 +133,12 @@ export default function OurTeamPage() {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7">
-                  <div>
-                    <p className="mb-2 text-xs uppercase tracking-[0.16em] text-[#0000FF]">
-                      {member.discipline}
-                    </p>
-                    <h3 className="text-2xl font-medium text-white md:text-3xl">
-                      {member.name}
-                    </h3>
-                    <p className="mt-2 text-sm leading-snug text-white/60">
-                      {member.role}
-                    </p>
-                  </div>
+                  <h3 className="text-2xl font-medium text-white md:text-3xl">
+                    {member.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-snug text-white/60">
+                    {member.role}
+                  </p>
                 </div>
               </article>
             ))}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./TeamSection.module.css";
@@ -181,7 +181,7 @@ export default function TeamSection() {
   const cardRefs    = useRef([]);
   const projectsRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const cards = cardRefs.current.filter(Boolean);
       const total = cards.length;
@@ -240,7 +240,7 @@ export default function TeamSection() {
             start:   "top top",
             end:     `+=${scrollLength}%`,
             scrub,
-            pin:     sectionRef.current,
+            pin:     stickyRef.current,
             pinSpacing: true,
             pinType: "fixed",
             anticipatePin: 0.6,
@@ -340,7 +340,7 @@ export default function TeamSection() {
       return () => {
         clearTimeout(resizeTimer);
         window.removeEventListener("resize", onResize);
-        timeline?.scrollTrigger?.kill();
+        timeline?.scrollTrigger?.kill(true);
         timeline?.kill();
       };
     }, sectionRef);

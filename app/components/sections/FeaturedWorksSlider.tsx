@@ -9,6 +9,7 @@ type PortfolioProject = {
   subtitle: string;
   category: string;
   heroImage: string;
+  portfolioImage?: string;
 };
 
 const projects = portfolioPageProjects as PortfolioProject[];
@@ -75,7 +76,7 @@ export default function FeaturedWorksSlider() {
                     className="group relative mx-2 h-[360px] w-[280px] shrink-0 overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
                   >
                     <Image
-                      src={project.heroImage}
+                      src={project.portfolioImage ?? project.heroImage}
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 280px, 380px"
