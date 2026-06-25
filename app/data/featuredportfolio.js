@@ -64,19 +64,19 @@ const splitEveryOther = (items, startIndex) =>
 
 export const featuredPortfolioTiles = {
   leftTop: {
-    intervalMs: 2200,
+    intervalMs: 1200,
     projects: splitEveryOther(squareImages, 0),
   },
   leftBottom: {
-    intervalMs: 3000,
+    intervalMs: 1500,
     projects: splitEveryOther(landscapeImages, 0),
   },
   rightTop: {
-    intervalMs: 3600,
+    intervalMs: 1800,
     projects: splitEveryOther(landscapeImages, 1),
   },
   rightBottom: {
-    intervalMs: 4200,
+    intervalMs: 2100,
     projects: splitEveryOther(squareImages, 1),
   },
 };
