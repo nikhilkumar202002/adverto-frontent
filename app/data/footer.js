@@ -17,8 +17,8 @@ export const footerData = {
   company: [
     { label: "Our Team", href: "/team" },
     { label: "Careers", href: "/careers" },
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms-and-conditions" },
     { label: "Support", href: "/support" },
     { label: "FAQ", href: "/faq" },
   ]

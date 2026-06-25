@@ -144,11 +144,11 @@ export default function Footer() {
           </nav>
 
           <div className="flex flex-wrap items-center justify-center gap-3 md:justify-end md:gap-5">
-            <Link href="/privacy" className="transition-colors hover:text-white">
+            <Link href="/privacy-policy" className="transition-colors hover:text-white">
               Privacy Policy
             </Link>
             <span className="text-white/25">|</span>
-            <Link href="/terms" className="transition-colors hover:text-white">
+            <Link href="/terms-and-conditions" className="transition-colors hover:text-white">
               Terms &amp; Conditions
             </Link>
           </div>
