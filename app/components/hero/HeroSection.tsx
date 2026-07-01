@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Container from "../common/Container";
 import Button from "../common/Button";
 import { MoveDown } from "lucide-react";
@@ -24,7 +26,61 @@ const sliderContent = [
   "Visual Identity",
 ];
 
+const headlineWords = ["We", "build", "brands", "that", "leads", "markets."];
+
 export default function HeroSection() {
+  const subheadingRef = useRef<HTMLParagraphElement | null>(null);
+  const actionsRef = useRef<HTMLDivElement | null>(null);
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useEffect(() => {
+    const words = wordRefs.current.filter(Boolean);
+    const buttons = actionsRef.current?.children
+      ? Array.from(actionsRef.current.children)
+      : [];
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      tl.fromTo(
+        subheadingRef.current,
+        { autoAlpha: 0, y: 14 },
+        { autoAlpha: 1, y: 0, duration: 0.65 },
+        0.15
+      )
+        .fromTo(
+          words,
+          {
+            autoAlpha: 0,
+            yPercent: 115,
+            rotateX: -18,
+          },
+          {
+            autoAlpha: 1,
+            yPercent: 0,
+            rotateX: 0,
+            duration: 0.9,
+            stagger: 0.08,
+          },
+          0.25
+        )
+        .fromTo(
+          buttons,
+          { autoAlpha: 0, y: 18 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.65,
+            stagger: 0.08,
+            clearProps: "transform,opacity,visibility",
+          },
+          "-=0.35"
+        );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       className="relative flex min-h-[720px] w-full items-center justify-center overflow-hidden sm:min-h-screen sm:min-h-[100svh]"
@@ -48,6 +104,7 @@ export default function HeroSection() {
           className="flex w-full max-w-[1100px] flex-col items-center justify-center text-center"
         >
           <p
+            ref={subheadingRef}
             className="mb-4 text-center text-xs tracking-[0.1em] text-[#0000FF] sm:text-sm md:text-[14px]"
           >
             Creative Agency Est. 2023
@@ -55,8 +112,25 @@ export default function HeroSection() {
 
           <h1
             className="mx-auto w-full max-w-[13ch] text-[42px] font-medium leading-[0.92] sm:text-6xl md:text-[72px] lg:max-w-[13.5ch] lg:text-[86px] lg:leading-[0.9] xl:text-[93px]"
+            aria-label={headlineWords.join(" ")}
           >
-            We build brands that leads markets.
+            {headlineWords.map((word, index) => (
+              <span
+                key={`${word}-${index}`}
+                className="inline-block overflow-hidden align-bottom"
+                aria-hidden="true"
+              >
+                <span
+                  ref={(el) => {
+                    wordRefs.current[index] = el;
+                  }}
+                  className="inline-block will-change-transform"
+                >
+                  {word}
+                </span>
+                {index < headlineWords.length - 1 ? "\u00A0" : null}
+              </span>
+            ))}
           </h1>
 
           {/* <p
@@ -66,7 +140,10 @@ export default function HeroSection() {
             experiences crafted for modern businesses.
           </p> */}
 
-          <div className="mt-7 flex w-full flex-row flex-wrap items-center justify-center gap-4 sm:mt-8 sm:w-auto sm:gap-5">
+          <div
+            ref={actionsRef}
+            className="mt-7 flex w-full flex-row flex-wrap items-center justify-center gap-4 sm:mt-8 sm:w-auto sm:gap-5"
+          >
             <Button tone="white">View Works</Button>
 
             <Button variant="secondary" hoverTone="white">

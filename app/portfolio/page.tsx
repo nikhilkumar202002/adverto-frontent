@@ -2,12 +2,19 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Container from "../components/common/Container";
 import { portfolioPageProjects } from "../data/portfolio";
+import ServiceVideoShowcase from "../service/ServiceVideoShowcase";
 
 export default function PortfolioPage() {
   return (
     <section className="relative bg-[#050505] pt-32 pb-24 md:pt-40 md:pb-32">
       <Container>
-        <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-12">
+    
+
+        <div className="mb-20 md:mb-28">
+          <ServiceVideoShowcase />
+        </div>
+
+    <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-12">
           <div className="md:col-span-7">
             <p className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
@@ -24,7 +31,6 @@ export default function PortfolioPage() {
             </p> */}
           </div>
         </div>
-
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {portfolioPageProjects.map((project) => (
             <Link

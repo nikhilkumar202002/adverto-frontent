@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import Container from "../components/common/Container";
 import { servicesData } from "../data/services";
 import ServiceHeroContent from "./ServiceHeroContent";
-import ServiceVideoShowcase from "./ServiceVideoShowcase";
 
 export const metadata: Metadata = {
   title: "Creative Services | Adverto",
@@ -99,12 +98,6 @@ export default function ServicePage() {
               );
             })}
           </div>
-        </Container>
-      </section>
-
-      <section className="relative z-10 border-t border-white/5 py-24 md:py-32">
-        <Container>
-          <ServiceVideoShowcase />
         </Container>
       </section>
     </div>

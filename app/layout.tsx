@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <NoiseOverlay />
         <CustomCursor />
         <Navbar />
-          <main className="relative z-10">
+          <main className="relative z-10 min-h-[100svh]">
             {children}
           </main>
         {/* <CtaSection /> */}

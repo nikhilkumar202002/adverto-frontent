@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 
 import Container from "../common/Container";
@@ -9,20 +10,41 @@ import Button from "../common/Button";
 import NavLink from "./NavLink";
 import MobileMenu from "./MobileMenu";
 
-const navItems = [
+export type NavItem = {
+  label: string;
+  href: string;
+  activePaths?: string[];
+};
+
+const navItems: NavItem[] = [
   { label: "Work", href: "/portfolio" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Team", href: "/team" },
-  { label: "Contact", href: "/contact" },
+  { label: "Services", href: "/services", activePaths: ["/services", "/service"] },
+  { label: "About", href: "/about", activePaths: ["/about", "/about-us"] },
+  { label: "Team", href: "/team", activePaths: ["/team", "/our-team"] },
+  { label: "Contact", href: "/contact", activePaths: ["/contact", "/contact-us"] },
 ];
 
+const isNavItemActive = (path: string, item: NavItem) => {
+  const paths = item.activePaths ?? [item.href];
+
+  return paths.some((activePath) => {
+    return path === activePath || path.startsWith(`${activePath}/`);
+  });
+};
+
 export default function Navbar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isTransparent, setIsTransparent] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
   const lastScrollYRef = useRef(0);
+  const activePath = pendingHref ?? pathname;
+
+  useEffect(() => {
+    setPendingHref(null);
+  }, [pathname]);
 
   useEffect(() => {
     lastScrollYRef.current = window.scrollY;
@@ -97,6 +119,8 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   label={item.label}
+                  isActive={isNavItemActive(activePath, item)}
+                  onNavigate={() => setPendingHref(item.href)}
                 />
               ))}
             </nav>
@@ -119,6 +143,8 @@ export default function Navbar() {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         navItems={navItems}
+        activePath={activePath}
+        onNavigate={setPendingHref}
       />
     </>
   );

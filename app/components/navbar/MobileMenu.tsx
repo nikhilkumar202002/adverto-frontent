@@ -2,15 +2,20 @@
 
 import Link from "next/link";
 import { X } from "lucide-react";
+import type { NavItem } from "./Navbar";
 
 export default function MobileMenu({
   isOpen,
   setIsOpen,
   navItems,
+  activePath,
+  onNavigate,
 }: {
   isOpen: boolean;
   setIsOpen: (v: boolean) => void;
-  navItems: { label: string; href: string }[];
+  navItems: NavItem[];
+  activePath: string;
+  onNavigate: (href: string) => void;
 }) {
   return (
     <div
@@ -33,16 +38,34 @@ export default function MobileMenu({
 
       {/* Links */}
       <div className="flex h-[80vh] flex-col items-center justify-center gap-10">
-        {navItems.map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            onClick={() => setIsOpen(false)}
-            className="text-[14px] font-normal uppercase tracking-wider text-[#EDEDED] transition hover:text-[#0000FF]"
-          >
-            {item.label}
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const activePaths = item.activePaths ?? [item.href];
+          const isActive = activePaths.some((path) => {
+            return activePath === path || activePath.startsWith(`${path}/`);
+          });
+
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              aria-current={isActive ? "page" : undefined}
+              onClick={() => {
+                onNavigate(item.href);
+                setIsOpen(false);
+              }}
+              className={`relative text-[14px] font-normal uppercase tracking-wider transition hover:text-[#0000FF] ${
+                isActive ? "text-white" : "text-[#EDEDED]"
+              }`}
+            >
+              {item.label}
+              <span
+                className={`absolute -bottom-2 left-0 h-[1px] bg-[#0000FF] transition-all duration-300 ${
+                  isActive ? "w-full" : "w-0"
+                }`}
+              />
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
