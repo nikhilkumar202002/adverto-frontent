@@ -205,6 +205,13 @@ export default function TeamSection() {
         timeline?.kill();
         gsap.killTweensOf([cards, projectsRef.current]);
 
+        if (isMobile) {
+          gsap.set(cards, { clearProps: "all" });
+          gsap.set(projectsRef.current, { autoAlpha: 1 });
+          ScrollTrigger.refresh();
+          return;
+        }
+
         /* ── Set initial depth positions ─────────────────────────────── */
         cards.forEach((card, i) => {
           const z = isMobile

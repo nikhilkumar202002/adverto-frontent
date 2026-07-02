@@ -551,28 +551,78 @@
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .section {
-    --card-w: clamp(140px, 42vw, 210px);
+    --card-w: min(78vw, 330px);
+    overflow: visible;
   }
 
   .sticky {
-    min-height: 560px;
-    height: 100vh;
-    perspective: 86vh;
-    perspective-origin: 50% 45%;
+    height: auto;
+    min-height: 0;
+    display: block;
+    overflow: visible;
+    padding: 64px 0 46px;
+    perspective: none;
+    transform-style: flat;
+  }
+
+  .deck {
+    position: relative;
+    inset: auto;
+    z-index: 10;
+    display: flex;
+    height: auto;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 0 20px 4px;
+    scroll-padding-left: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    perspective: none;
+    transform-style: flat;
+    scrollbar-width: none;
+    will-change: auto;
+  }
+
+  .deck::-webkit-scrollbar {
+    display: none;
   }
 
   .card {
-    top: var(--mobile-card-top);
-    left: var(--mobile-card-left);
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: auto;
+    flex: 0 0 var(--card-w);
+    scroll-snap-align: start;
     border-radius: var(--card-radius);
+    opacity: 1;
+    transform: none;
+    transform-style: flat;
+    will-change: auto;
+    contain: layout paint;
   }
 
   .featuredCard {
-    --card-w: clamp(140px, 42vw, 210px);
+    --card-w: min(78vw, 330px);
   }
 
   .visibleStart {
-    --card-w: clamp(150px, 46vw, 225px);
+    --card-w: min(78vw, 330px);
+  }
+
+  .imageWrap {
+    aspect-ratio: 4 / 5;
+    background: #111;
+  }
+
+  .imageParallaxInner,
+  .image {
+    height: 100%;
+  }
+
+  .image {
+    object-fit: cover;
   }
 
   .cardBody {
@@ -619,7 +669,11 @@
   }
 
   .scrollCue {
-    right: 14px;
+    display: none;
+  }
+
+  .projectsText {
+    display: none;
   }
 }
 
@@ -649,19 +703,19 @@
 
 @media (max-width: 480px) {
   .section {
-    --card-w: clamp(132px, 42vw, 184px);
+    --card-w: min(78vw, 300px);
   }
 
   .featuredCard {
-    --card-w: clamp(132px, 42vw, 184px);
+    --card-w: min(78vw, 300px);
   }
 
   .visibleStart {
-    --card-w: clamp(146px, 48vw, 204px);
+    --card-w: min(78vw, 300px);
   }
 
   .sticky {
-    min-height: 560px;
+    min-height: 0;
   }
 
   .projectsHeading {

@@ -11,6 +11,7 @@ import {
   Send,
 } from "lucide-react";
 import Container from "../components/common/Container";
+import CustomSelect from "../components/common/CustomSelect";
 
 export const metadata: Metadata = {
   title: "Contact Adverto | Branding & Creative Agency",
@@ -58,6 +59,13 @@ const projectTypes = [
   "Social Media",
   "Website / Digital",
   "Full Launch",
+];
+
+const budgetRanges = [
+  "Under 1 lakh",
+  "1 lakh to 3 lakh",
+  "3 lakh to 7 lakh",
+  "7 lakh plus",
 ];
 
 const responseSteps = [
@@ -195,54 +203,19 @@ export default function ContactPage() {
                 />
               </label>
 
-              <label className="block">
-                <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
-                  Service
-                </span>
-                <select
-                  name="service"
-                  defaultValue=""
-                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
-                  required
-                >
-                  <option value="" disabled className="bg-black text-white">
-                    Select a service
-                  </option>
-                  {projectTypes.map((type) => (
-                    <option key={type} value={type} className="bg-black text-white">
-                      {type}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <CustomSelect
+                label="Service"
+                name="service"
+                placeholder="Select a service"
+                options={projectTypes}
+              />
 
-              <label className="block">
-                <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
-                  Budget
-                </span>
-                <select
-                  name="budget"
-                  defaultValue=""
-                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
-                  required
-                >
-                  <option value="" disabled className="bg-black text-white">
-                    Select a range
-                  </option>
-                  <option value="Under 1 lakh" className="bg-black text-white">
-                    Under 1 lakh
-                  </option>
-                  <option value="1 lakh to 3 lakh" className="bg-black text-white">
-                    1 lakh to 3 lakh
-                  </option>
-                  <option value="3 lakh to 7 lakh" className="bg-black text-white">
-                    3 lakh to 7 lakh
-                  </option>
-                  <option value="7 lakh plus" className="bg-black text-white">
-                    7 lakh plus
-                  </option>
-                </select>
-              </label>
+              <CustomSelect
+                label="Budget"
+                name="budget"
+                placeholder="Select a range"
+                options={budgetRanges}
+              />
 
               <label className="block md:col-span-2">
                 <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
