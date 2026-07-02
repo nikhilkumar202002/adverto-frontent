@@ -6,8 +6,8 @@
 .banner {
   position: relative;
   width: 100%;
-  height: calc(50vw + (var(--banner-steps) * 64vh));
-  min-height: calc(50vw + (var(--banner-steps) * 420px));
+  height: calc(100vh + (var(--banner-steps) * 64vh));
+  min-height: 100vh;
   background: #050505;
 }
 
@@ -15,8 +15,8 @@
   position: sticky;
   top: 0;
   width: 100%;
-  aspect-ratio: 2 / 1;
-  min-height: auto;
+  height: 100vh;
+  min-height: 0;
   overflow: hidden;
   background: #050505;
 }
@@ -101,10 +101,10 @@
   align-items: center;
   justify-content: center;
   font-family: "CreatoDisplay", sans-serif;
-  font-size: clamp(72px, 10vw, 140px);
-  font-weight: 800;
+  font-size: clamp(88px, 12vw, 170px);
+  font-weight: 600;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: -8.5px;
   text-align: center;
   color: #ffffff;
   text-shadow: 0 16px 48px rgba(0, 0, 0, 0.58);
@@ -115,8 +115,15 @@
 .wordText {
   display: inline-block;
   margin-inline: auto;
-  transform: scaleX(0.9);
+  font-kerning: normal;
+  transform: none;
   transform-origin: center;
+}
+
+.wordText::after {
+  content: ".";
+  font-style: normal;
+  font-weight: 600;
 }
 
 .italicLead {
@@ -174,13 +181,12 @@
 @media (max-width: 768px) {
   .banner {
     height: calc(100vh + (var(--banner-steps) * 38vh));
-    min-height: calc(520px + (var(--banner-steps) * 210px));
+    min-height: 100vh;
   }
 
   .bannerFrame {
     height: 100vh;
     min-height: 0;
-    aspect-ratio: auto;
   }
 
   .wordWheel {
@@ -189,7 +195,7 @@
   }
 
   .wheelWord {
-    font-size: clamp(52px, 15vw, 86px);
+    font-size: clamp(64px, 18vw, 108px);
   }
 
   .scrollArrow {
@@ -200,14 +206,13 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .banner {
-    height: calc(72vh + (var(--banner-steps) * 46vh));
-    min-height: calc(560px + (var(--banner-steps) * 280px));
+    height: calc(100vh + (var(--banner-steps) * 46vh));
+    min-height: 100vh;
   }
 
   .bannerFrame {
-    height: 72vh;
-    min-height: 560px;
-    aspect-ratio: auto;
+    height: 100vh;
+    min-height: 0;
   }
 
   .wordWheel {
@@ -216,18 +221,18 @@
   }
 
   .wheelWord {
-    font-size: clamp(76px, 10vw, 112px);
+    font-size: clamp(88px, 12vw, 136px);
   }
 }
 
 @media (max-width: 480px) {
   .banner {
     height: calc(100vh + (var(--banner-steps) * 34vh));
-    min-height: calc(480px + (var(--banner-steps) * 180px));
+    min-height: 100vh;
   }
 
   .wheelWord {
-    font-size: clamp(46px, 14vw, 68px);
+    font-size: clamp(56px, 17vw, 84px);
   }
 }
 

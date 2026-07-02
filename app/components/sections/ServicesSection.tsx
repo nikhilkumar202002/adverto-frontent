@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import Container from "../common/Container";
 import Reveal from "../common/Reveal";
 import { servicesData } from "../../data/services";
+import styles from "./ServicesSection.module.css";
 
 const serviceCardBackground = "/Banners/service-card-banner.jpg";
 
@@ -14,9 +15,9 @@ export default function ServicesSection() {
     <section className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5">
       <Container>
         <Reveal>
-        {/* --- SECTION HEADER --- */}
+   
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 items-end">
-          {/* Title (Left, spans 7 cols) */}
+        
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -26,12 +27,11 @@ export default function ServicesSection() {
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-1 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>WHAT WE DO
             </p>
-            <h2 className="text-[clamp(36px,11vw,45px)] md:text-[clamp(50px,6.4vw,60px)] lg:text-[65px] font-medium leading-[1.05] text-[#EDEDED]">
+            <h2 className={`${styles.servicesHeading} font-medium leading-[1.05] text-[#EDEDED]`}>
               Creative Services
             </h2>
           </motion.div>
 
-          {/* Description (Right, starts at col 9, spans 4 cols) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export default function ServicesSection() {
         </div>
 
         {/* --- SERVICES GRID --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
+        <div className={`${styles.servicesGrid} gap-4 md:gap-5 lg:gap-6`}>
           {servicesData.map((service, index) => {
             const Icon = service.icon;
             

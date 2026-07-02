@@ -11,6 +11,7 @@ import Reveal from "../common/Reveal";
 import { moreProjects } from "../../data/moreProjects";
 import { caseStudyCollageProjects } from "../../data/portfolio";
 import { featuredPortfolioTiles } from "../../data/featuredportfolio";
+import styles from "./CaseStudiesSection.module.css";
 
 type FeaturedPortfolioProject = {
   id: string;
@@ -126,7 +127,7 @@ export default function CaseStudiesSection() {
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-2 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>SELECTED WORK
             </p>
-            <h2 className="text-[clamp(36px,11vw,45px)] md:text-[clamp(50px,6.4vw,60px)] lg:text-[65px] font-medium leading-[1] text-[#EDEDED]">
+            <h2 className={`${styles.caseStudiesHeading} font-medium leading-[1] text-[#EDEDED]`}>
               Case Studies & <br /> Campaigns
             </h2>
           </motion.div>
