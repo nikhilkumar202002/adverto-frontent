@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Container from "../components/common/Container";
-import HeroBanner from "../components/HeroBanner/HeroBanner";
 
 export const metadata: Metadata = {
   title: "Our Team | Adverto",
@@ -78,20 +77,19 @@ const teamMembers = [
 export default function OurTeamPage() {
   return (
     <div className="relative bg-[#050505] text-white">
-      <div className="relative">
-        <HeroBanner />
-        <div className="pointer-events-none absolute inset-0 z-10 flex items-end">
-          <Container className="pb-12 md:pb-20">
-            <p className="mb-4 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
-              <span className="h-[1px] w-[30px] bg-[#0000FF]" />
-              Our Team
-            </p>
-            <h1 className="max-w-[980px] text-[54px] font-medium leading-[0.9] text-[#EDEDED] md:text-[110px]">
-              The People Behind the Work
-            </h1>
-          </Container>
-        </div>
-      </div>
+      <section className="relative overflow-hidden bg-[#050505]">
+        <Image
+          src="/Banners/Team-banner.jpg"
+          alt="Adverto team"
+          width={1920}
+          height={1080}
+          priority
+          sizes="100vw"
+          className="h-auto w-full"
+        />
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#050505] to-transparent md:h-56" />
+      </section>
 
       <section className="relative z-10 py-24 md:py-32">
         <Container>

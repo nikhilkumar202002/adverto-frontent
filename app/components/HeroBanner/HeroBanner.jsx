@@ -19,21 +19,29 @@ const BANNER_IMAGES = [
 ];
 
 export default function HeroBanner() {
-  const bannerRef    = useRef(null);
-  const photoRef     = useRef(null);
-  const arrowRef     = useRef(null);
-  const imageRefs    = useRef([]);
+  const bannerRef = useRef(null);
+  const photoRef = useRef(null);
+  const arrowRef = useRef(null);
+  const imageRefs = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const imageLayers = imageRefs.current.filter(Boolean);
 
-      gsap.set(imageLayers, { opacity: 0, scale: 1, visibility: "visible" });
-      gsap.set(imageLayers[0], { opacity: 1 });
+      if (!imageLayers.length) return;
+
+      gsap.set(imageLayers, {
+        opacity: 1,
+        scale: 1,
+        filter: "brightness(1)",
+        yPercent: 105,
+        visibility: "visible",
+        zIndex: (index) => index + 1,
+      });
+      gsap.set(imageLayers[0], { yPercent: 0 });
 
       /* ── Entrance animation ───────────────────── */
       const entranceTl = gsap.timeline({ defaults: { ease: "expo.out" } });
-
       entranceTl
         .fromTo(
           photoRef.current,
@@ -48,47 +56,47 @@ export default function HeroBanner() {
           1.6
         );
 
-      const dissolveTl = gsap.timeline({
+      const stackTl = gsap.timeline({
         scrollTrigger: {
-          id: "hero-banner-dissolve",
+          id: "hero-banner-stack",
           trigger: bannerRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.4,
+          scrub: 1.25,
           invalidateOnRefresh: true,
         },
       });
 
       imageLayers.slice(1).forEach((layer, index) => {
         const previousLayer = imageLayers[index];
-        const transitionAt = index * 1.6;
+        const transitionAt = index * 1.08;
 
-        dissolveTl
+        stackTl
           .to(
             previousLayer,
             {
-              opacity: 0,
-              scale: 0.985,
-              duration: 0.7,
+              scale: 0.94,
+              duration: 0.95,
               ease: "none",
             },
             transitionAt
           )
-          .fromTo(
+          .to(
             layer,
             {
-              opacity: 0,
-              scale: 1.015,
-            },
-            {
-              opacity: 1,
-              scale: 1,
-              duration: 0.8,
+              yPercent: 0,
+              duration: 0.95,
               ease: "none",
             },
-            transitionAt + 0.78
+            transitionAt
           );
       });
+
+      stackTl.to(
+        arrowRef.current,
+        { opacity: 0, y: 14, duration: 0.24, ease: "none" },
+        0
+      );
 
     }, bannerRef);
 

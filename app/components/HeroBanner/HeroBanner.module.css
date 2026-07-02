@@ -6,8 +6,8 @@
 .banner {
   position: relative;
   width: 100%;
-  height: calc(50vw + (var(--banner-steps) * 125vh));
-  min-height: calc(50vw + (var(--banner-steps) * 760px));
+  height: calc(50vw + (var(--banner-steps) * 78vh));
+  min-height: calc(50vw + (var(--banner-steps) * 480px));
   background: #050505;
 }
 
@@ -34,7 +34,9 @@
   inset: 0;
   opacity: 0;
   visibility: hidden;
-  will-change: opacity, transform;
+  overflow: hidden;
+  transform-origin: center bottom;
+  will-change: filter, transform;
 }
 
 .photoLayer:first-child {
@@ -219,6 +221,17 @@
 
 /* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .banner {
+    height: calc(60vh + (var(--banner-steps) * 62vh));
+    min-height: calc(440px + (var(--banner-steps) * 360px));
+  }
+
+  .bannerFrame {
+    height: 60vh;
+    min-height: 440px;
+    aspect-ratio: auto;
+  }
+
   .content {
     padding: 24px 24px 32px;
   }

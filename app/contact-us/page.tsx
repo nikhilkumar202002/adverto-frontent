@@ -202,14 +202,14 @@ export default function ContactPage() {
                 <select
                   name="service"
                   defaultValue=""
-                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
+                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
                   required
                 >
-                  <option value="" disabled>
+                  <option value="" disabled className="bg-black text-white">
                     Select a service
                   </option>
                   {projectTypes.map((type) => (
-                    <option key={type} value={type}>
+                    <option key={type} value={type} className="bg-black text-white">
                       {type}
                     </option>
                   ))}
@@ -223,16 +223,24 @@ export default function ContactPage() {
                 <select
                   name="budget"
                   defaultValue=""
-                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
+                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black px-4 text-[16px] text-white outline-none transition-colors focus:border-[#0000FF]"
                   required
                 >
-                  <option value="" disabled>
+                  <option value="" disabled className="bg-black text-white">
                     Select a range
                   </option>
-                  <option value="Under 1 lakh">Under 1 lakh</option>
-                  <option value="1 lakh to 3 lakh">1 lakh to 3 lakh</option>
-                  <option value="3 lakh to 7 lakh">3 lakh to 7 lakh</option>
-                  <option value="7 lakh plus">7 lakh plus</option>
+                  <option value="Under 1 lakh" className="bg-black text-white">
+                    Under 1 lakh
+                  </option>
+                  <option value="1 lakh to 3 lakh" className="bg-black text-white">
+                    1 lakh to 3 lakh
+                  </option>
+                  <option value="3 lakh to 7 lakh" className="bg-black text-white">
+                    3 lakh to 7 lakh
+                  </option>
+                  <option value="7 lakh plus" className="bg-black text-white">
+                    7 lakh plus
+                  </option>
                 </select>
               </label>
 
