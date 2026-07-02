@@ -111,22 +111,22 @@ export default function CaseStudiesSection() {
   const centerProject = caseStudyCollageProjects[2];
 
   return (
-    <section className="relative z-10 bg-[#050505] py-24 md:py-32 overflow-hidden">
+    <section className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
       <Container>
         <Reveal>
         {/* --- 1. SECTION HEADER --- */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-[50px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 lg:mb-[50px]">
           {/* Title (Left, spans 6 cols) */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-6"
+            className="md:col-span-7 lg:col-span-6"
           >
-            <p className="text-[#0000FF] uppercase text-[14px] tracking-[1] mb-2 flex items-center gap-2">
+            <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-2 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>SELECTED WORK
             </p>
-            <h2 className="text-[45px] md:text-[65px] font-medium leading-[1] text-[#EDEDED]">
+            <h2 className="text-[clamp(36px,11vw,45px)] md:text-[clamp(50px,6.4vw,60px)] lg:text-[65px] font-medium leading-[1] text-[#EDEDED]">
               Case Studies & <br /> Campaigns
             </h2>
           </motion.div>
@@ -137,7 +137,7 @@ export default function CaseStudiesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="md:col-span-4 md:col-start-9 flex flex-col items-start justify-end md:items-end"
+            className="md:col-span-5 md:col-start-8 lg:col-span-4 lg:col-start-9 flex flex-col items-start justify-end md:items-end"
           >
         
             <Link href="/portfolio" className="group flex items-center gap-2 text-sm text-[#EDEDED] transition-colors hover:text-[#0000FF]">
@@ -153,25 +153,25 @@ export default function CaseStudiesSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group grid grid-cols-1 md:grid-cols-2 items-center mb-[20px] overflow-hidden rounded-[20px] border border-[#252525] bg-[#080808]"
+            className="group grid grid-cols-1 md:grid-cols-2 items-center mb-5 overflow-hidden rounded-[16px] md:rounded-[20px] border border-[#252525] bg-[#080808]"
           >
-            <div className="relative aspect-[3492/2000] overflow-hidden rounded-[20px] bg-white/5 md:aspect-auto md:h-[500px]">
+            <div className="relative aspect-[3492/2000] overflow-hidden rounded-[16px] md:rounded-[20px] bg-white/5 md:aspect-auto md:h-[420px] lg:h-[500px]">
               <RotatingCampaignImage />
-              <div className="pointer-events-none absolute inset-0 rounded-[20px] bg-black/10" />
+              <div className="pointer-events-none absolute inset-0 rounded-[16px] md:rounded-[20px] bg-black/10" />
             </div>
 
-            <div className="flex flex-col justify-center p-6 md:min-h-[500px] md:p-12">
+            <div className="flex flex-col justify-center p-5 sm:p-6 md:min-h-[420px] md:p-8 lg:min-h-[500px] lg:p-12">
               <p className="text-[#0000FF] uppercase tracking-[0.15em] text-xs mb-3">Grand Reopening Campaign</p>
-              <h3 className="text-3xl md:text-4xl font-medium text-[#EDEDED] mb-4">
+              <h3 className="text-[26px] sm:text-3xl md:text-[32px] lg:text-4xl font-medium leading-[1.08] text-[#EDEDED] mb-4">
                 Koickal Gold & Diamonds | Harippadinte Puthiya Thilakkam
               </h3>
-              <p className="text-white/50 text-sm mb-4 leading-relaxed">
+              <p className="text-white/50 text-[14px] md:text-[15px] mb-4 leading-relaxed">
                 For the grand reopening of Koickal Gold & Diamonds, Harippad, we created &quot;Harippadinte
                 Puthiya Thilakkam&quot; as the central idea of the campaign, reflecting both the renewed spirit
                 of the brand and the pride of the town it serves. More than just a tagline, it was crafted
                 to celebrate a new chapter while staying true to the brand&apos;s legacy of trust and elegance.
               </p>
-              <p className="text-white/50 text-sm mb-8 leading-relaxed">
+              <p className="text-white/50 text-[14px] md:text-[15px] mb-0 md:mb-4 leading-relaxed">
                 To give the campaign a distinctive identity, we custom-designed the typography from the
                 ground up, transforming the concept into a memorable visual statement. From ideation to
                 execution, every element was carefully crafted to capture the essence of celebration,
@@ -183,9 +183,9 @@ export default function CaseStudiesSection() {
 
         {/* --- 3. COLLAGE GRID (3 Columns) --- */}
         <Reveal>
-        <div className="grid grid-cols-1 gap-[20px] md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
           {/* Col 1 */}
-          <div className="flex flex-col gap-[20px]">
+          <div className="flex flex-col gap-4 md:gap-5">
              <RotatingPortfolioTile
                projects={featuredPortfolioTiles.leftTop.projects}
                intervalMs={featuredPortfolioTiles.leftTop.intervalMs}
@@ -198,7 +198,7 @@ export default function CaseStudiesSection() {
              />
           </div>
           {/* Col 2 (Hero image in center) */}
-          <div className="group relative min-h-[400px] h-full w-full overflow-hidden rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF]">
+          <div className="group relative min-h-[340px] md:min-h-[420px] lg:min-h-[400px] h-full w-full overflow-hidden rounded-[16px] md:rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] md:row-span-2 lg:row-span-1">
             <video
               src="/videos/center-video.mp4"
               aria-label={centerProject.alt}
@@ -207,11 +207,11 @@ export default function CaseStudiesSection() {
               loop
               playsInline
               preload="metadata"
-              className="object-cover w-full h-full rounded-[20px]"
+              className="object-cover w-full h-full rounded-[16px] md:rounded-[20px]"
             />
           </div>
           {/* Col 3 */}
-          <div className="flex flex-col gap-[20px]">
+          <div className="flex flex-col gap-4 md:gap-5 md:col-span-2 md:grid md:grid-cols-2 lg:col-span-1 lg:flex lg:grid-cols-none">
              <RotatingPortfolioTile
                projects={featuredPortfolioTiles.rightTop.projects}
                intervalMs={featuredPortfolioTiles.rightTop.intervalMs}

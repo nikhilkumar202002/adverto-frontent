@@ -16,27 +16,27 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="relative z-10 bg-[#050505] py-24 md:py-32 border-t border-white/5 overflow-hidden">
+    <section className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden">
       <Container>
         <Reveal>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-8 items-start">
 
           {/* --- LEFT COLUMN: Header --- */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 sticky"
+            className="md:col-span-5 lg:col-span-5"
           >
-            <p className="text-[#0000FF] uppercase text-[14px] tracking-[1] mb-1 flex items-center gap-2">
+            <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-1 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>FAQ
             </p>
-            <h2 className="text-[45px] md:text-[60px] font-medium leading-[1] text-[#EDEDED] mb-6">
+            <h2 className="text-[clamp(36px,11vw,45px)] md:text-[clamp(48px,6vw,56px)] lg:text-[60px] font-medium leading-[1] text-[#EDEDED] mb-4 md:mb-6">
               Common <br /> Questions
             </h2>
-            <p className="text-white/50 text-[17px]">
+            <p className="text-white/50 text-[15px] md:text-[16px] lg:text-[17px] leading-[1.5]">
               Not finding what you need? Reach out directly <br className="hidden md:block" />
-              at <a href="mailto:connectadvertoads@gmail.com" className="text-white hover:text-[#0000FF] transition-colors">connectadvertoads@gmail.com</a>
+              at <a href="mailto:connectadvertoads@gmail.com" className="break-words text-white hover:text-[#0000FF] transition-colors">connectadvertoads@gmail.com</a>
             </p>
           </motion.div>
 
@@ -46,7 +46,7 @@ export default function FaqSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="lg:col-span-7 border-t border-white/10"
+            className="md:col-span-7 lg:col-span-7 border-t border-white/10"
           >
             {faqData.map((faq, index) => {
               const isOpen = openIndex === index;
@@ -60,9 +60,9 @@ export default function FaqSection() {
                 >
                   <button
                     onClick={() => toggleAccordion(index)}
-                    className="w-full flex items-center justify-between py-6 md:py-8 text-left group"
+                    className="w-full flex items-center justify-between py-5 md:py-6 lg:py-8 text-left group"
                   >
-                    <h3 className="text-lg md:text-xl font-medium text-[#EDEDED] group-hover:text-[#0000FF] transition-colors pr-8">
+                    <h3 className="text-[17px] md:text-lg lg:text-xl font-medium leading-[1.25] text-[#EDEDED] group-hover:text-[#0000FF] transition-colors pr-5 md:pr-8">
                       {faq.question}
                     </h3>
 
@@ -108,7 +108,7 @@ export default function FaqSection() {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="pb-8 text-white/50 text-[15px] leading-[1.6] max-w-[90%]">
+                        <p className="pb-6 md:pb-8 text-white/50 text-[14px] md:text-[15px] leading-[1.6] max-w-full md:max-w-[92%]">
                           {faq.answer}
                         </p>
                       </motion.div>

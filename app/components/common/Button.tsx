@@ -23,7 +23,7 @@ export default function Button({
   hoverTone = "blue",
 }: ButtonProps) {
   const base =
-    "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-[22px] py-[12px] text-[14px] font-normal transition-all duration-300 tracking-wide";
+    "group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-3 text-[13px] sm:px-[22px] sm:py-[12px] sm:text-[14px] font-normal transition-all duration-300 tracking-wide";
 
   const primary =
     tone === "white"

@@ -26,8 +26,8 @@ export default function InfiniteProjectSlider({
   return (
     <div className="project-marquee w-full overflow-hidden">
       <Reveal>
-        <div className="flex items-center justify-between mb-4 max-xl:px-[60px] max-lg:px-[40px] max-md:px-[24px]">
-          <p className="text-[#0000FF] uppercase text-[14px] tracking-[0.1em] flex items-center gap-3">
+        <div className="flex items-center justify-between mb-4 px-5 sm:px-6 md:px-10 lg:px-[60px] xl:px-[80px]">
+          <p className="text-[#0000FF] uppercase text-[12px] md:text-[14px] tracking-[0.1em] flex items-center gap-3">
             <span className="w-[30px] h-[1px] bg-[#0000FF]" />
             MORE PROJECTS
           </p>
@@ -76,7 +76,7 @@ export default function InfiniteProjectSlider({
                   href={`/portfolio/${project.slug || project.id}`}
                   key={`${setIndex}-${project.id}-${index}`}
                   data-cursor-ignore="true"
-                  className="project-marquee__card group relative mx-2 h-[180px] w-[260px] overflow-hidden rounded-[15px] border border-b-2 border-transparent bg-[#1A1A1A] transition-colors duration-300 ease-out"
+                  className="project-marquee__card group relative mx-1.5 md:mx-2 h-[142px] w-[210px] sm:h-[160px] sm:w-[232px] md:h-[180px] md:w-[260px] overflow-hidden rounded-[12px] md:rounded-[15px] border border-b-2 border-transparent bg-[#1A1A1A] transition-colors duration-300 ease-out"
                 >
                   <div className="absolute inset-0 bg-[#0A0A0A] z-0" />
 
@@ -85,16 +85,16 @@ export default function InfiniteProjectSlider({
                     alt={project.title}
                     loading="lazy"
                     decoding="async"
-                    className="relative z-0 h-full w-full rounded-[15px] object-cover"
+                    className="relative z-0 h-full w-full rounded-[12px] md:rounded-[15px] object-cover"
                   />
 
                   <div className="project-marquee__hover-layer pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-1/2 translate-y-full bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100" />
 
-                  <div className="absolute left-4 bottom-4 z-20">
-                    <h4 className="text-[15px] text-white font-medium tracking-wide">
+                  <div className="absolute left-3 bottom-3 md:left-4 md:bottom-4 z-20">
+                    <h4 className="text-[13px] md:text-[15px] text-white font-medium tracking-wide">
                       {project.title}
                     </h4>
-                    <p className="text-[13px] text-white/90 font-medium tracking-wide">
+                    <p className="text-[11px] md:text-[13px] text-white/90 font-medium tracking-wide">
                       {project.subtitle}
                     </p>
                   </div>

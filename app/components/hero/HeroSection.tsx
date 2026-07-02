@@ -83,7 +83,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative flex min-h-[720px] w-full items-center justify-center overflow-hidden sm:min-h-screen sm:min-h-[100svh]"
+      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-screen md:min-h-[100svh]"
       data-navbar-transparent
     >
       <div
@@ -99,19 +99,19 @@ export default function HeroSection() {
         ))}
       </div>
 
-      <Container className="relative z-10 flex min-h-[720px] items-center justify-center pb-32 pt-32 sm:min-h-screen sm:min-h-[100svh] sm:pb-36 sm:pt-32 lg:pt-32">
+      <Container className="relative z-10 flex min-h-[100svh] items-center justify-center pb-28 pt-28 md:min-h-screen md:min-h-[100svh] md:pb-[136px] md:pt-[120px] lg:pb-36 lg:pt-32">
         <div
           className="flex w-full max-w-[1100px] flex-col items-center justify-center text-center"
         >
           <p
             ref={subheadingRef}
-            className="mb-4 text-center text-xs tracking-[0.1em] text-[#0000FF] sm:text-sm md:text-[14px]"
+            className="mb-4 text-center text-[11px] tracking-[0.1em] text-[#0000FF] sm:text-xs md:text-[14px]"
           >
             Creative Agency Est. 2023
           </p>
 
           <h1
-            className="mx-auto w-full max-w-[13ch] text-[42px] font-medium leading-[0.92] sm:text-6xl md:text-[72px] lg:max-w-[13.5ch] lg:text-[86px] lg:leading-[0.9] xl:text-[93px]"
+            className="mx-auto w-full max-w-[13ch] text-[clamp(40px,13vw,58px)] font-medium leading-[0.92] sm:text-[64px] md:max-w-[13.5ch] md:text-[clamp(68px,8vw,78px)] lg:text-[86px] lg:leading-[0.9] xl:text-[93px]"
             aria-label={headlineWords.join(" ")}
           >
             {headlineWords.map((word, index) => (
@@ -142,7 +142,7 @@ export default function HeroSection() {
 
           <div
             ref={actionsRef}
-            className="mt-7 flex w-full flex-row flex-wrap items-center justify-center gap-4 sm:mt-8 sm:w-auto sm:gap-5"
+            className="mt-7 flex w-full max-w-[360px] flex-col items-stretch justify-center gap-3 sm:mt-8 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-5"
           >
             <Button tone="white">View Works</Button>
 
@@ -153,7 +153,7 @@ export default function HeroSection() {
         </div>
       </Container>
 
-      <div className="absolute bottom-20 left-0 z-20 flex w-full items-center justify-center sm:bottom-24">
+      <div className="absolute bottom-[72px] left-0 z-20 flex w-full items-center justify-center sm:bottom-20 md:bottom-24">
         <button
           aria-label="Scroll to explore"
           className="flex flex-col items-center gap-2 text-white/70 hover:text-white"

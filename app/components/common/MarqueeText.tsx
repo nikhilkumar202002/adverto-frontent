@@ -8,7 +8,7 @@ interface MarqueeTextProps {
 
 export default function MarqueeText({ items = [] }: MarqueeTextProps) {
   return (
-    <div className="relative flex w-full overflow-hidden border-y border-white/10 bg-black py-5">
+    <div className="relative flex w-full overflow-hidden border-y border-white/10 bg-black py-3.5 md:py-5">
 
       <style>{`
         @keyframes marquee {
@@ -29,11 +29,11 @@ export default function MarqueeText({ items = [] }: MarqueeTextProps) {
           <div key={setIndex} className="flex shrink-0 items-center">
             {items.map((item, index) => (
               <React.Fragment key={index}>
-                <span className="mx-8 text-[15px] font-regular tracking-[0.10em] text-[#9A9A9A] uppercase">
+                <span className="mx-5 md:mx-8 text-[12px] md:text-[15px] font-regular tracking-[0.10em] text-[#9A9A9A] uppercase">
                   {item}
                 </span>
 
-                <span className="text-xl leading-none text-[#0000FF]">•</span>
+                <span className="text-base md:text-xl leading-none text-[#0000FF]">•</span>
               </React.Fragment>
             ))}
           </div>

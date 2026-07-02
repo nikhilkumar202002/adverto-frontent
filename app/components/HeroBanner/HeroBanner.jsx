@@ -8,37 +8,37 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BANNER_IMAGES = [
-  "/Banners/Squad-01.webp",
-  "/Banners/Squad-02.webp",
-  "/Banners/Squad-03.webp",
-  "/Banners/Squad-04.webp",
-  "/Banners/Squad-05.webp",
-  "/Banners/Squad-07.webp",
-  "/Banners/Squad-08.webp",
+const HERO_IMAGE = "/Banners/Squad-bg-banner.webp";
+const ROTATING_WORDS = [
+  "Research",
+  "Strategy",
+  "Design",
+  "Production",
+  "Marketing",
+  "Growth",
 ];
 
 export default function HeroBanner() {
   const bannerRef = useRef(null);
   const photoRef = useRef(null);
   const arrowRef = useRef(null);
-  const imageRefs = useRef([]);
+  const wordWheelRef = useRef(null);
+  const wordRefs = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const imageLayers = imageRefs.current.filter(Boolean);
+      const words = wordRefs.current.filter(Boolean);
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      const slotGap = isMobile ? 132 : 154;
 
-      if (!imageLayers.length) return;
+      if (!words.length) return;
 
-      gsap.set(imageLayers, {
-        opacity: 1,
-        scale: 1,
-        filter: "brightness(1)",
-        yPercent: 105,
+      gsap.set(words, {
+        yPercent: (index) => index * slotGap,
+        opacity: (index) => (index === 0 ? 1 : index === 1 ? 0.24 : 0),
+        scale: (index) => (index === 0 ? 1 : 0.82),
         visibility: "visible",
-        zIndex: (index) => index + 1,
       });
-      gsap.set(imageLayers[0], { yPercent: 0 });
 
       /* ── Entrance animation ───────────────────── */
       const entranceTl = gsap.timeline({ defaults: { ease: "expo.out" } });
@@ -48,6 +48,12 @@ export default function HeroBanner() {
           { scale: 1.12, filter: "blur(14px)" },
           { scale: 1, filter: "blur(0px)", duration: 1.6 },
           0
+        )
+        .fromTo(
+          wordWheelRef.current,
+          { opacity: 0, y: 28, rotateX: -18 },
+          { opacity: 1, y: 0, rotateX: 0, duration: 1.1 },
+          0.5
         )
         .fromTo(
           arrowRef.current,
@@ -67,29 +73,24 @@ export default function HeroBanner() {
         },
       });
 
-      imageLayers.slice(1).forEach((layer, index) => {
-        const previousLayer = imageLayers[index];
-        const transitionAt = index * 1.08;
+      ROTATING_WORDS.slice(1).forEach((_, stepIndex) => {
+        const activeIndex = stepIndex + 1;
 
-        stackTl
-          .to(
-            previousLayer,
-            {
-              scale: 0.94,
-              duration: 0.95,
-              ease: "none",
-            },
-            transitionAt
-          )
-          .to(
-            layer,
-            {
-              yPercent: 0,
-              duration: 0.95,
-              ease: "none",
-            },
-            transitionAt
-          );
+        stackTl.to(words, {
+          yPercent: (index) => (index - activeIndex) * slotGap,
+          opacity: (index) => {
+            const distance = Math.abs(index - activeIndex);
+            if (distance === 0) return 1;
+            if (distance === 1) return 0.24;
+            return 0;
+          },
+          scale: (index) => {
+            const distance = Math.abs(index - activeIndex);
+            return distance === 0 ? 1 : 0.82;
+          },
+          duration: 1,
+          ease: "none",
+        });
       });
 
       stackTl.to(
@@ -107,32 +108,45 @@ export default function HeroBanner() {
     <section
       ref={bannerRef}
       className={styles.banner}
-      style={{ "--banner-steps": BANNER_IMAGES.length - 1 }}
+      style={{ "--banner-steps": ROTATING_WORDS.length - 1 }}
     >
       <div className={styles.bannerFrame}>
         {/* Background photo */}
         <div ref={photoRef} className={styles.photo}>
-          {BANNER_IMAGES.map((src, index) => (
-            <div
-              key={src}
-              ref={(el) => (imageRefs.current[index] = el)}
-              className={styles.photoLayer}
-            >
-              <Image
-                src={src}
-                alt={`Adverto team banner ${index + 1}`}
-                fill
-                sizes="100vw"
-                priority={index === 0}
-                className={styles.photoImg}
-                draggable={false}
-              />
-            </div>
-          ))}
+          <Image
+            src={HERO_IMAGE}
+            alt="Adverto squad"
+            fill
+            sizes="100vw"
+            preload
+            className={styles.photoImg}
+            draggable={false}
+          />
         </div>
 
         {/* Grain */}
         <div className={styles.grain} aria-hidden="true" />
+
+        <div className={styles.rotatorContent}>
+          <div
+            ref={wordWheelRef}
+            className={styles.wordWheel}
+            aria-label="Adverto process"
+          >
+            {ROTATING_WORDS.map((word, index) => (
+              <span
+                key={word}
+                ref={(el) => (wordRefs.current[index] = el)}
+                className={styles.wheelWord}
+              >
+                <span className={styles.wordText}>
+                  <span className={styles.italicLead}>{word.slice(0, 2)}</span>
+                  {word.slice(2)}
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
 
         {/* Scroll arrow */}
         <div ref={arrowRef} className={styles.scrollArrow} aria-hidden="true">

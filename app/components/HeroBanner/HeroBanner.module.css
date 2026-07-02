@@ -6,8 +6,8 @@
 .banner {
   position: relative;
   width: 100%;
-  height: calc(50vw + (var(--banner-steps) * 78vh));
-  min-height: calc(50vw + (var(--banner-steps) * 480px));
+  height: calc(50vw + (var(--banner-steps) * 64vh));
+  min-height: calc(50vw + (var(--banner-steps) * 420px));
   background: #050505;
 }
 
@@ -29,26 +29,11 @@
   overflow: hidden;
 }
 
-.photoLayer {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  overflow: hidden;
-  transform-origin: center bottom;
-  will-change: filter, transform;
-}
-
-.photoLayer:first-child {
-  opacity: 1;
-  visibility: visible;
-}
-
 .photoImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center center;
   display: block;
   -webkit-user-drag: none;
 }
@@ -64,113 +49,79 @@
   pointer-events: none;
 }
 
-/* ── Content ────────────────────────────────────────────────────── */
-.content {
+.bannerFrame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  height: clamp(140px, 24vw, 340px);
+  background: linear-gradient(0deg, #050505 0%, rgba(5, 5, 5, 0.78) 34%, rgba(5, 5, 5, 0) 100%);
+  pointer-events: none;
+}
+
+/* ── Rotating words ─────────────────────────────────────────────── */
+.rotatorContent {
   position: absolute;
   inset: 0;
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(28px, 5vw, 72px) clamp(24px, 6vw, 88px);
+  z-index: 5;
+  display: grid;
+  place-items: center;
   pointer-events: none;
-  will-change: transform, opacity, filter;
 }
 
-/* ── Meta row ───────────────────────────────────────────────────── */
-.metaRow {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: clamp(16px, 2.5vh, 30px);
-}
-
-.metaLabel,
-.metaYear {
-  font-family: "CreatoDisplay", sans-serif;
-  font-size: clamp(9px, 0.8vw, 11px);
-  font-weight: 600;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: rgba(240, 236, 227, 0.45);
-}
-
-.metaLine {
-  flex: 0 0 48px;
-  height: 1px;
-  background: rgba(200, 169, 110, 0.5);
-  transform-origin: left;
-}
-
-/* ── Title ──────────────────────────────────────────────────────── */
-.title {
-  font-family: "CreatoDisplay", sans-serif;
-  font-size: clamp(56px, 10vw, 148px);
-  font-weight: 300;
-  line-height: 0.88;
-  color: #f0ece3;
-  margin: 0 0 clamp(14px, 2vh, 28px);
-  letter-spacing: -0.02em;
-  perspective: 800px;
+.wordWheel {
+  position: relative;
+  width: min(82vw, 840px);
+  height: clamp(280px, 34vw, 520px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  opacity: 0;
+  perspective: 900px;
   transform-style: preserve-3d;
-}
-
-.titleWord {
-  display: inline-block;
-  margin-right: 0.22em;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 22%,
+    #000 78%,
+    transparent 100%
+  );
   will-change: transform, opacity;
 }
 
-.titleWord:nth-child(2),
-.titleWord:nth-child(4) {
-  font-style: italic;
-  background: linear-gradient(120deg, #f0ece3 0%, #c8a96e 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ── Descriptor ─────────────────────────────────────────────────── */
-.descriptor {
-  font-family: "CreatoDisplay", sans-serif;
-  font-size: clamp(15px, 1.6vw, 22px);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(240, 236, 227, 0.5);
-  margin: 0 0 clamp(20px, 4vh, 44px);
-  letter-spacing: 0.04em;
-  max-width: 540px;
-}
-
-/* ── Bottom row ─────────────────────────────────────────────────── */
-.bottomRow {
+.wheelWord {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  translate: -50% -50%;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-
-.teamCount {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.countNumber {
+  align-items: center;
+  justify-content: center;
   font-family: "CreatoDisplay", sans-serif;
-  font-size: clamp(32px, 3.5vw, 52px);
+  font-size: clamp(72px, 10vw, 140px);
   font-weight: 800;
-  color: rgba(240, 236, 227, 0.08);
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 16px 48px rgba(0, 0, 0, 0.58);
+  visibility: hidden;
+  will-change: transform, opacity;
 }
 
-.countLabel {
-  font-family: "CreatoDisplay", sans-serif;
-  font-size: clamp(9px, 0.8vw, 11px);
+.wordText {
+  display: inline-block;
+  margin-inline: auto;
+  transform: scaleX(0.9);
+  transform-origin: center;
+}
+
+.italicLead {
+  font-style: italic;
   font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(240, 236, 227, 0.3);
 }
 
 /* ── Scroll arrow ───────────────────────────────────────────────── */
@@ -178,7 +129,7 @@
   position: absolute;
   bottom: clamp(24px, 4vh, 44px);
   right: clamp(24px, 4vw, 56px);
-  z-index: 5;
+  z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -222,24 +173,61 @@
 /* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .banner {
-    height: calc(60vh + (var(--banner-steps) * 62vh));
-    min-height: calc(440px + (var(--banner-steps) * 360px));
+    height: calc(100vh + (var(--banner-steps) * 38vh));
+    min-height: calc(520px + (var(--banner-steps) * 210px));
   }
 
   .bannerFrame {
-    height: 60vh;
-    min-height: 440px;
+    height: 100vh;
+    min-height: 0;
     aspect-ratio: auto;
   }
 
-  .content {
-    padding: 24px 24px 32px;
+  .wordWheel {
+    width: 92vw;
+    height: clamp(220px, 42svh, 320px);
   }
 
-  .bottomRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+  .wheelWord {
+    font-size: clamp(52px, 15vw, 86px);
+  }
+
+  .scrollArrow {
+    right: 18px;
+    bottom: 22px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .banner {
+    height: calc(72vh + (var(--banner-steps) * 46vh));
+    min-height: calc(560px + (var(--banner-steps) * 280px));
+  }
+
+  .bannerFrame {
+    height: 72vh;
+    min-height: 560px;
+    aspect-ratio: auto;
+  }
+
+  .wordWheel {
+    width: 88vw;
+    height: clamp(280px, 36vh, 420px);
+  }
+
+  .wheelWord {
+    font-size: clamp(76px, 10vw, 112px);
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    height: calc(100vh + (var(--banner-steps) * 34vh));
+    min-height: calc(480px + (var(--banner-steps) * 180px));
+  }
+
+  .wheelWord {
+    font-size: clamp(46px, 14vw, 68px);
   }
 }
 

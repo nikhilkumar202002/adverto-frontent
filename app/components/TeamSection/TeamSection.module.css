@@ -551,12 +551,12 @@
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .section {
-    --card-w: clamp(155px, 43vw, 225px);
+    --card-w: clamp(140px, 42vw, 210px);
   }
 
   .sticky {
-    min-height: 680px;
-    height: 100svh;
+    min-height: 560px;
+    height: 100vh;
     perspective: 86vh;
     perspective-origin: 50% 45%;
   }
@@ -568,11 +568,11 @@
   }
 
   .featuredCard {
-    --card-w: clamp(155px, 43vw, 225px);
+    --card-w: clamp(140px, 42vw, 210px);
   }
 
   .visibleStart {
-    --card-w: clamp(170px, 48vw, 245px);
+    --card-w: clamp(150px, 46vw, 225px);
   }
 
   .cardBody {
@@ -601,7 +601,7 @@
   }
 
   .memberName {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .memberDivider {
@@ -610,7 +610,7 @@
 
   .memberRole {
     max-width: 15em;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0;
   }
 
@@ -623,21 +623,45 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .section {
-    --card-w: clamp(145px, 44vw, 195px);
-  }
-
-  .featuredCard {
-    --card-w: clamp(145px, 44vw, 195px);
-  }
-
-  .visibleStart {
-    --card-w: clamp(160px, 50vw, 220px);
+    --card-w: clamp(180px, 22vw, 245px);
   }
 
   .sticky {
-    min-height: 640px;
+    min-height: 700px;
+    perspective-origin: 50% 46%;
+  }
+
+  .visibleStart {
+    --card-w: clamp(220px, 27vw, 300px);
+  }
+
+  .memberName {
+    font-size: 18px;
+  }
+
+  .memberRole {
+    font-size: 13px;
+    max-width: 16em;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    --card-w: clamp(132px, 42vw, 184px);
+  }
+
+  .featuredCard {
+    --card-w: clamp(132px, 42vw, 184px);
+  }
+
+  .visibleStart {
+    --card-w: clamp(146px, 48vw, 204px);
+  }
+
+  .sticky {
+    min-height: 560px;
   }
 
   .projectsHeading {
