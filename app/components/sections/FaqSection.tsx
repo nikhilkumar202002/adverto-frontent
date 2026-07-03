@@ -2,10 +2,73 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Plus, X } from "lucide-react";
 import Container from "../common/Container";
-import Reveal from "../common/Reveal";
 import { faqData } from "../../data/faqs";
+
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 56 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: smoothEase },
+  },
+};
+
+const staggerRowVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.16,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const headingWords = [["Common"], ["Questions"]];
+
+function WordRevealHeading() {
+  return (
+    <motion.h2
+      className="mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] text-[#EDEDED] md:mb-6 md:text-[clamp(48px,6vw,56px)] lg:text-[60px]"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.7 }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.08,
+          },
+        },
+      }}
+    >
+      {headingWords.map((line, lineIndex) => (
+        <span key={lineIndex} className="block overflow-hidden pb-[0.08em]">
+          {line.map((word) => (
+            <motion.span
+              key={`${lineIndex}-${word}`}
+              className="mr-[0.18em] inline-block"
+              variants={{
+                hidden: { opacity: 0, y: "100%" },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: smoothEase },
+                },
+              }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </span>
+      ))}
+    </motion.h2>
+  );
+}
 
 export default function FaqSection() {
 
@@ -20,26 +83,27 @@ export default function FaqSection() {
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.18 }}
+      transition={{ duration: 0.7, ease: smoothEase }}
     >
       <Container>
-        <Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-8 items-start">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-8 items-start"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.35 }}
+          variants={staggerRowVariants}
+        >
 
           {/* --- LEFT COLUMN: Header --- */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={fadeUpVariants}
             className="md:col-span-5 lg:col-span-5"
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-1 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>FAQ
             </p>
-            <h2 className="text-[clamp(36px,11vw,45px)] md:text-[clamp(48px,6vw,56px)] lg:text-[60px] font-medium leading-[1] text-[#EDEDED] mb-4 md:mb-6">
-              Common <br /> Questions
-            </h2>
+            <WordRevealHeading />
             <p className="text-white/50 text-[15px] md:text-[16px] lg:text-[17px] leading-[1.5]">
               Not finding what you need? Reach out directly <br className="hidden md:block" />
               at <a href="mailto:connectadvertoads@gmail.com" className="break-words text-white hover:text-[#0000FF] transition-colors">connectadvertoads@gmail.com</a>
@@ -48,10 +112,7 @@ export default function FaqSection() {
 
           {/* --- RIGHT COLUMN: Accordion --- */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            variants={fadeUpVariants}
             className="md:col-span-7 lg:col-span-7 border-t border-white/10"
           >
             {faqData.map((faq, index) => {
@@ -125,8 +186,7 @@ export default function FaqSection() {
             })}
           </motion.div>
 
-        </div>
-        </Reveal>
+        </motion.div>
       </Container>
     </motion.section>
   );
