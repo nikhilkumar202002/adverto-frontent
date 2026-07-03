@@ -62,6 +62,7 @@ const projectTypes = [
 ];
 
 const budgetRanges = [
+  "Under 50k",
   "Under 1 lakh",
   "1 lakh to 3 lakh",
   "3 lakh to 7 lakh",

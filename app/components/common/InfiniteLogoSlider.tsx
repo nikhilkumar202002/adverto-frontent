@@ -39,9 +39,9 @@ export default function InfiniteLogoSlider() {
                   <div
                     key={`${setIndex}-${logo.id}`}
                     // Width is calculated to show exactly 6 on desktop, 4 on tablet, 3 on mobile
-                    className="flex w-[33vw] md:w-[25vw] lg:w-[calc(1200px/7)] shrink-0 items-center justify-center opacity-40 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                    className="flex w-[33vw] md:w-[25vw] lg:w-[calc(1200px/7)] shrink-0 items-center justify-center opacity-100 grayscale-0 transition-all duration-300 xl:opacity-40 xl:grayscale xl:hover:opacity-100 xl:hover:grayscale-0"
                   >
-                    <div className="flex items-center transition-transform duration-300 ease-out hover:scale-110">
+                    <div className="flex items-center transition-transform duration-300 ease-out xl:hover:scale-110">
                       <Icon size={100} className="text-white" />
                     </div>
                   </div>

@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Container from "../common/Container";
 import InfiniteProjectSlider from "../common/InfiniteProjectSlider";
-import Reveal from "../common/Reveal";
 import { moreProjects } from "../../data/moreProjects";
 import { caseStudyCollageProjects } from "../../data/portfolio";
 import { featuredPortfolioTiles } from "../../data/featuredportfolio";
@@ -34,6 +34,69 @@ const koickalCampaignImages = [
   "/campaigns/04.webp",
   "/campaigns/05.webp",
 ];
+
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 56 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: smoothEase },
+  },
+};
+
+const staggerRowVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.16,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const headingWords = [["Case", "Studies", "&"], ["Campaigns"]];
+
+function WordRevealHeading() {
+  return (
+    <motion.h2
+      className={`${styles.caseStudiesHeading} font-medium leading-[1.08] text-[#EDEDED]`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.7 }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.08,
+          },
+        },
+      }}
+    >
+      {headingWords.map((line, lineIndex) => (
+        <span key={lineIndex} className="block overflow-hidden pb-[0.08em]">
+          {line.map((word) => (
+            <motion.span
+              key={`${lineIndex}-${word}`}
+              className="mr-[0.18em] inline-block"
+              variants={{
+                hidden: { opacity: 0, y: "100%" },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: smoothEase },
+                },
+              }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </span>
+      ))}
+    </motion.h2>
+  );
+}
 
 function RotatingPortfolioTile({
   projects,
@@ -100,8 +163,8 @@ function RotatingCampaignImage() {
           src={activeImage}
           alt="Koickal Gold & Diamonds campaign visual"
           fill
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105 md:object-cover"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
         />
       </motion.div>
     </AnimatePresence>
@@ -116,34 +179,32 @@ export default function CaseStudiesSection() {
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
+      viewport={{ once: false, amount: 0.18 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <Container>
-        <Reveal>
         {/* --- 1. SECTION HEADER --- */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 lg:mb-[50px]">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 lg:mb-[50px]"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.35 }}
+          variants={staggerRowVariants}
+        >
           {/* Title (Left, spans 6 cols) */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={fadeUpVariants}
             className="md:col-span-7 lg:col-span-6"
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-2 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>SELECTED WORK
             </p>
-            <h2 className={`${styles.caseStudiesHeading} font-medium leading-[1] text-[#EDEDED]`}>
-              Case Studies & <br /> Campaigns
-            </h2>
+            <WordRevealHeading />
           </motion.div>
 
           {/* Description & Link (Right, starts at col 9, spans 4 cols) */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            variants={fadeUpVariants}
             className="md:col-span-5 md:col-start-8 lg:col-span-4 lg:col-start-9 flex flex-col items-start justify-end md:items-end"
           >
         
@@ -152,60 +213,71 @@ export default function CaseStudiesSection() {
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* --- 2. FEATURED PROJECT 1 (KOICKAL) --- */}
-        <Reveal>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="group grid grid-cols-1 md:grid-cols-2 items-center mb-5 overflow-hidden rounded-[16px] md:rounded-[20px] border border-[#252525] bg-[#080808]"
-          >
-            <div className="relative aspect-[3492/2000] overflow-hidden rounded-[16px] md:rounded-[20px] bg-white/5 md:aspect-auto md:h-[420px] lg:h-[500px]">
-              <RotatingCampaignImage />
-              <div className="pointer-events-none absolute inset-0 rounded-[16px] md:rounded-[20px] bg-black/10" />
-            </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.22 }}
+          variants={fadeUpVariants}
+          className="group mb-5 grid grid-cols-1 items-center overflow-hidden rounded-[16px] border border-[#252525] bg-[#080808] md:rounded-[20px] lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)]"
+        >
+          <div className="relative aspect-[3492/2000] w-full overflow-hidden rounded-[16px] bg-white/5 md:rounded-[20px] lg:h-[500px] lg:aspect-auto">
+            <RotatingCampaignImage />
+            <div className="pointer-events-none absolute inset-0 rounded-[16px] md:rounded-[20px] bg-black/10" />
+          </div>
 
-            <div className="flex flex-col justify-center p-5 sm:p-6 md:min-h-[420px] md:p-8 lg:min-h-[500px] lg:p-12">
-              <p className="text-[#0000FF] uppercase tracking-[0.15em] text-xs mb-3">Grand Reopening Campaign</p>
-              <h3 className="text-[26px] sm:text-3xl md:text-[32px] lg:text-4xl font-medium leading-[1.08] text-[#EDEDED] mb-4">
-                Koickal Gold & Diamonds | Harippadinte Puthiya Thilakkam
-              </h3>
-              <p className="text-white/50 text-[14px] md:text-[15px] mb-4 leading-relaxed">
-                For the grand reopening of Koickal Gold & Diamonds, Harippad, we created &quot;Harippadinte
-                Puthiya Thilakkam&quot; as the central idea of the campaign, reflecting both the renewed spirit
-                of the brand and the pride of the town it serves. More than just a tagline, it was crafted
-                to celebrate a new chapter while staying true to the brand&apos;s legacy of trust and elegance.
-              </p>
-              <p className="text-white/50 text-[14px] md:text-[15px] mb-0 md:mb-4 leading-relaxed">
-                To give the campaign a distinctive identity, we custom-designed the typography from the
-                ground up, transforming the concept into a memorable visual statement. From ideation to
-                execution, every element was carefully crafted to capture the essence of celebration,
-                sophistication, and renewal.
-              </p>
-            </div>
-          </motion.div>
-        </Reveal>
+          <div className="flex flex-col justify-center p-5 sm:p-6 md:p-8 lg:min-h-[500px] lg:p-10 xl:p-12">
+            <p className="mb-3 text-[11px] uppercase tracking-[0.15em] text-[#0000FF] md:text-xs">Grand Reopening Campaign</p>
+            <h3 className="mb-4 max-w-[720px] text-[25px] font-medium leading-[1.08] text-[#EDEDED] sm:text-[30px] md:text-[22px] lg:text-[35px] xl:text-4xl">
+              Koickal Gold & Diamonds | Harippadinte Puthiya Thilakkam
+            </h3>
+            <p className="mb-4 max-w-[720px] text-[14px] leading-[1.65] text-white/50 md:text-[15px] lg:text-[14px] xl:text-[15px]">
+              For the grand reopening of Koickal Gold & Diamonds, Harippad, we created &quot;Harippadinte
+              Puthiya Thilakkam&quot; as the central idea of the campaign, reflecting both the renewed spirit
+              of the brand and the pride of the town it serves. More than just a tagline, it was crafted
+              to celebrate a new chapter while staying true to the brand&apos;s legacy of trust and elegance.
+            </p>
+            <p className="mb-0 max-w-[720px] text-[14px] leading-[1.65] text-white/50 md:text-[15px] lg:text-[14px] xl:text-[15px]">
+              To give the campaign a distinctive identity, we custom-designed the typography from the
+              ground up, transforming the concept into a memorable visual statement. From ideation to
+              execution, every element was carefully crafted to capture the essence of celebration,
+              sophistication, and renewal.
+            </p>
+          </div>
+        </motion.div>
 
         {/* --- 3. COLLAGE GRID (3 Columns) --- */}
-        <Reveal>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
+        <motion.div
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.18 }}
+          variants={staggerRowVariants}
+        >
           {/* Col 1 */}
           <div className="flex flex-col gap-4 md:gap-5">
-             <RotatingPortfolioTile
-               projects={featuredPortfolioTiles.leftTop.projects}
-               intervalMs={featuredPortfolioTiles.leftTop.intervalMs}
-               className="aspect-square"
-             />
-             <RotatingPortfolioTile
-               projects={featuredPortfolioTiles.leftBottom.projects}
-               intervalMs={featuredPortfolioTiles.leftBottom.intervalMs}
-               className="aspect-[4/3]"
-             />
+            <motion.div variants={fadeUpVariants}>
+              <RotatingPortfolioTile
+                projects={featuredPortfolioTiles.leftTop.projects}
+                intervalMs={featuredPortfolioTiles.leftTop.intervalMs}
+                className="aspect-square"
+              />
+            </motion.div>
+            <motion.div variants={fadeUpVariants}>
+              <RotatingPortfolioTile
+                projects={featuredPortfolioTiles.leftBottom.projects}
+                intervalMs={featuredPortfolioTiles.leftBottom.intervalMs}
+                className="aspect-[4/3]"
+              />
+            </motion.div>
           </div>
           {/* Col 2 (Hero image in center) */}
-          <div className="group relative min-h-[340px] md:min-h-[420px] lg:min-h-[400px] h-full w-full overflow-hidden rounded-[16px] md:rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] md:row-span-2 lg:row-span-1">
+          <motion.div
+            variants={fadeUpVariants}
+            className="group relative min-h-[340px] md:min-h-[420px] lg:min-h-[400px] h-full w-full overflow-hidden rounded-[16px] md:rounded-[20px] border border-transparent transition-colors duration-300 group-hover:border-b-2 group-hover:border-b-[#0000FF] md:row-span-2 lg:row-span-1"
+          >
             <video
               src="/videos/center-video.mp4"
               aria-label={centerProject.alt}
@@ -216,27 +288,35 @@ export default function CaseStudiesSection() {
               preload="metadata"
               className="object-cover w-full h-full rounded-[16px] md:rounded-[20px]"
             />
-          </div>
+          </motion.div>
           {/* Col 3 */}
           <div className="flex flex-col gap-4 md:gap-5 md:col-span-2 md:grid md:grid-cols-2 lg:col-span-1 lg:flex lg:grid-cols-none">
-             <RotatingPortfolioTile
-               projects={featuredPortfolioTiles.rightTop.projects}
-               intervalMs={featuredPortfolioTiles.rightTop.intervalMs}
-               className="aspect-[4/3]"
-             />
-             <RotatingPortfolioTile
-               projects={featuredPortfolioTiles.rightBottom.projects}
-               intervalMs={featuredPortfolioTiles.rightBottom.intervalMs}
-               className="aspect-square"
-             />
+            <motion.div variants={fadeUpVariants}>
+              <RotatingPortfolioTile
+                projects={featuredPortfolioTiles.rightTop.projects}
+                intervalMs={featuredPortfolioTiles.rightTop.intervalMs}
+                className="aspect-[4/3]"
+              />
+            </motion.div>
+            <motion.div variants={fadeUpVariants}>
+              <RotatingPortfolioTile
+                projects={featuredPortfolioTiles.rightBottom.projects}
+                intervalMs={featuredPortfolioTiles.rightBottom.intervalMs}
+                className="aspect-square"
+              />
+            </motion.div>
           </div>
-        </div>
-        </Reveal>
+        </motion.div>
 
-         <div className="mt-12 md:mt-24">
-        <InfiniteProjectSlider projects={moreProjects} />
-      </div>
-        </Reveal>
+        <motion.div
+          className="mt-12 md:mt-24"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.22 }}
+          variants={fadeUpVariants}
+        >
+          <InfiniteProjectSlider projects={moreProjects} />
+        </motion.div>
       </Container>
 
      

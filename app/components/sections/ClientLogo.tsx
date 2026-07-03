@@ -53,13 +53,13 @@ export default function ClientLogo() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
-                  className="group flex items-center justify-center w-full h-full p-2 sm:p-3 md:p-4 transition-transform duration-300 hover:scale-110"
+                  className="group flex items-center justify-center w-full h-full p-2 sm:p-3 md:p-4 transition-transform duration-300 xl:hover:scale-110"
                 >
                   {/* Rendering the logo icon with a size prop. 
                       You can adjust the size depending on your base image resolutions */}
                   <Icon 
                     size={100} 
-                    className="max-w-[88px] max-h-[56px] sm:max-w-[104px] sm:max-h-[68px] md:max-w-[112px] md:max-h-[74px] lg:max-w-[120px] lg:max-h-[80px] w-auto h-auto object-contain opacity-80 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0" 
+                    className="max-w-[88px] max-h-[56px] sm:max-w-[104px] sm:max-h-[68px] md:max-w-[112px] md:max-h-[74px] lg:max-w-[120px] lg:max-h-[80px] w-auto h-auto object-contain opacity-100 grayscale-0 transition-all duration-300 xl:opacity-80 xl:grayscale xl:group-hover:opacity-100 xl:group-hover:grayscale-0" 
                   />
                 </motion.div>
               );
