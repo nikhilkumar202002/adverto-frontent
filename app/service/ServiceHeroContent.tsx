@@ -37,7 +37,7 @@ export default function ServiceHeroContent() {
     >
       <motion.p
         variants={itemVariants}
-        className="mb-4 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]"
+        className="mb-3 flex items-center gap-3 text-[12px] uppercase tracking-[0.1em] text-[#0000FF] sm:text-[13px] md:mb-4 md:text-[14px]"
       >
         <span className="h-[1px] w-[30px] bg-[#0000FF]" />
         Creative Services
@@ -45,14 +45,14 @@ export default function ServiceHeroContent() {
 
       <motion.h1
         variants={itemVariants}
-        className="max-w-[980px] text-[52px] font-medium leading-[0.95] text-[#EDEDED] md:text-[100px]"
+        className="w-full text-[40px] font-medium leading-[0.95] text-[#EDEDED] sm:max-w-[12ch] sm:text-[52px] md:max-w-[820px] md:text-[76px] lg:max-w-[940px] lg:text-[92px] xl:text-[100px]"
       >
         Brand, Campaign & Content Systems
       </motion.h1>
 
       <motion.p
         variants={itemVariants}
-        className="mt-6 max-w-[520px] text-[16px] leading-[1.45] text-white/55"
+        className="mt-5 max-w-[460px] text-[14px] leading-[1.5] text-white/55 sm:text-[15px] md:mt-6 md:max-w-[520px] md:text-[16px]"
       >
         We connect strategy, design, production, and distribution into one
         creative workflow for ambitious brands.
