@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 const horizontalVideos = [
@@ -60,15 +60,19 @@ function PlaylistVideo({
   label: string;
   className: string;
 }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [playbackOrder, setPlaybackOrder] = useState([0]);
   const [orderIndex, setOrderIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
   const activeIndex = playbackOrder[orderIndex] ?? 0;
-  const activeVideo = videos[activeIndex];
+  const activeVideo = videos[activeIndex] ?? videos[0];
   const AudioIcon = isMuted ? VolumeX : Volume2;
 
   const playNextVideo = () => {
-    if (videos.length < 2) return;
+    if (videos.length < 2) {
+      videoRef.current?.play().catch(() => undefined);
+      return;
+    }
 
     if (orderIndex < playbackOrder.length - 1) {
       setOrderIndex((currentValue) => currentValue + 1);
@@ -79,19 +83,32 @@ function PlaylistVideo({
     setOrderIndex(0);
   };
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !activeVideo) return;
+
+    video.load();
+    video.play().catch(() => undefined);
+  }, [activeVideo]);
+
   return (
     <>
       <video
+        ref={videoRef}
         key={activeVideo}
         src={activeVideo}
         aria-label={label}
         autoPlay
         muted={isMuted}
         playsInline
-        preload="metadata"
+        preload="auto"
         onEnded={playNextVideo}
+        onError={playNextVideo}
+        onStalled={playNextVideo}
         className={className}
-      />
+      >
+        Your browser does not support the video tag.
+      </video>
       <button
         type="button"
         aria-label={isMuted ? `Unmute ${label}` : `Mute ${label}`}

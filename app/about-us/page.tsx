@@ -75,12 +75,12 @@ export default function AboutUsPage() {
           className="absolute inset-0 z-0 bg-[linear-gradient(180deg,rgba(3,3,3,0.35)_0%,rgba(3,3,3,0.02)_42%,rgba(3,3,3,0.72)_100%)]"
         />
 
-        <Container className="relative z-10 flex min-h-screen min-h-[100svh] flex-col justify-between py-28 md:py-32">
+        <Container className="relative z-10 flex min-h-screen min-h-[100svh] flex-col justify-between py-25 md:py-28">
           <div />
 
           <div className="about-reveal-up max-w-[760px]">
-            <h1 className="text-[80px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5]">
-              Attention engineered into brand action.
+            <h1 className="text-[120px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5]">
+              Meet Adverto
             </h1>
           </div>
         </Container>

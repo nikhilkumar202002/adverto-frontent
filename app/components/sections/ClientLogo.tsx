@@ -11,7 +11,7 @@ export default function ClientLogo() {
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
+      viewport={{ once: false, amount: 0.18 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       
@@ -24,7 +24,7 @@ export default function ClientLogo() {
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               className="text-[#0000FF] uppercase text-[11px] md:text-[13px] lg:text-[14px] tracking-[0.15em] mb-3 md:mb-4 flex items-center gap-3 justify-center"
             >
               <span className="w-[20px] md:w-[30px] h-[1px] bg-[#0000FF]"></span>
@@ -34,7 +34,7 @@ export default function ClientLogo() {
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: 0.1 }}
               className="text-[clamp(32px,9vw,40px)] md:text-[clamp(46px,5.6vw,54px)] lg:text-[60px] font-medium leading-[1.1] text-[#EDEDED]"
             >
@@ -51,7 +51,7 @@ export default function ClientLogo() {
                   key={logo.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
                   className="group flex items-center justify-center w-full h-full p-2 sm:p-3 md:p-4 transition-transform duration-300 hover:scale-110"
                 >

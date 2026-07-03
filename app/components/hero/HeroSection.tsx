@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Container from "../common/Container";
 import Button from "../common/Button";
@@ -29,17 +29,28 @@ const sliderContent = [
 const headlineWords = ["We", "build", "brands", "that", "leads", "markets."];
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const subheadingRef = useRef<HTMLParagraphElement | null>(null);
   const actionsRef = useRef<HTMLDivElement | null>(null);
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
-  useEffect(() => {
-    const words = wordRefs.current.filter(Boolean);
-    const buttons = actionsRef.current?.children
-      ? Array.from(actionsRef.current.children)
-      : [];
-
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      const words = wordRefs.current.filter(Boolean);
+      const buttons = actionsRef.current?.children
+        ? Array.from(actionsRef.current.children)
+        : [];
+      const animatedElements = [
+        subheadingRef.current,
+        ...words,
+        ...buttons,
+      ].filter(Boolean);
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(animatedElements, { clearProps: "all" });
+        return;
+      }
+
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
       tl.fromTo(
@@ -61,6 +72,7 @@ export default function HeroSection() {
             rotateX: 0,
             duration: 0.9,
             stagger: 0.08,
+            clearProps: "transform,opacity,visibility",
           },
           0.25
         )
@@ -76,13 +88,14 @@ export default function HeroSection() {
           },
           "-=0.35"
         );
-    });
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
     <section
+      ref={sectionRef}
       className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-screen md:min-h-[100svh]"
       data-navbar-transparent
     >

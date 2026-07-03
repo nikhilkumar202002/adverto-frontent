@@ -47,7 +47,7 @@ export default function HeroBanner() {
           id: "hero-banner-entrance",
           trigger: bannerRef.current,
           start: "top 72%",
-          once: true,
+          toggleActions: "play reverse play reverse",
         },
       });
       entranceTl

@@ -116,7 +116,7 @@ export default function CaseStudiesSection() {
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
+      viewport={{ once: false, amount: 0.18 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <Container>
@@ -127,7 +127,7 @@ export default function CaseStudiesSection() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="md:col-span-7 lg:col-span-6"
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-2 flex items-center gap-2">
@@ -142,7 +142,7 @@ export default function CaseStudiesSection() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.1 }}
             className="md:col-span-5 md:col-start-8 lg:col-span-4 lg:col-start-9 flex flex-col items-start justify-end md:items-end"
           >
@@ -159,7 +159,7 @@ export default function CaseStudiesSection() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="group grid grid-cols-1 md:grid-cols-2 items-center mb-5 overflow-hidden rounded-[16px] md:rounded-[20px] border border-[#252525] bg-[#080808]"
           >
             <div className="relative aspect-[3492/2000] overflow-hidden rounded-[16px] md:rounded-[20px] bg-white/5 md:aspect-auto md:h-[420px] lg:h-[500px]">

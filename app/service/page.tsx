@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Container from "../components/common/Container";
+import Reveal from "../components/common/Reveal";
 import { servicesData } from "../data/services";
 import ServiceHeroContent from "./ServiceHeroContent";
 
@@ -34,7 +35,8 @@ export default function ServicePage() {
 
       <section className="relative z-10 py-24 md:py-32">
         <Container>
-          <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
+          <Reveal once={false}>
+            <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
               <p className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
                 <span className="h-[1px] w-[30px] bg-[#0000FF]" />
@@ -47,19 +49,18 @@ export default function ServicePage() {
               </h2>
             </div>
             <div className="flex items-end md:col-span-4 md:col-start-9">
-              {/* <p className="max-w-[360px] text-[16px] leading-[1.45] text-white/55 md:text-right">
-                Choose one focused discipline or combine them into a complete
-                launch plan.
-              </p> */}
+        
             </div>
           </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 gap-x-[20px] gap-y-[20px] md:grid-cols-2 lg:grid-cols-4">
-            {servicesData.map((service) => {
+            {servicesData.map((service, index) => {
               const Icon = service.icon;
 
               return (
-                <article
+                <Reveal key={service.id} delay={index * 0.08} y={36} once={false}>
+                  <article
                   key={service.id}
                   className="group relative min-h-[480px] overflow-hidden rounded-[20px] border border-white/10 bg-[#0000FF] p-6 text-white transition-colors duration-500 hover:border-white/25 hover:bg-[#0000cc] md:min-h-[540px] md:p-8"
                 >
@@ -94,7 +95,8 @@ export default function ServicePage() {
                       />
                     </Link>
                   </div>
-                </article>
+                  </article>
+                </Reveal>
               );
             })}
           </div>
