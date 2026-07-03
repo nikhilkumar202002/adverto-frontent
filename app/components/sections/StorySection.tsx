@@ -1,9 +1,73 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
+import type { Variants } from "framer-motion";
 import Container from "../common/Container";
 import { useEffect, useRef, useState } from "react";
 // import InfiniteLogoSlider from "../common/InfiniteLogoSlider";
+
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 56 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: smoothEase },
+  },
+};
+
+const staggerRowVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.16,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const headingWords = [["Two", "friends."], ["One", "shared", "vision."]];
+
+function WordRevealHeading() {
+  return (
+    <motion.h2
+      className="mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] tracking-tight text-[#EDEDED] md:text-[clamp(50px,6.5vw,60px)] lg:text-[70px]"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.7 }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.08,
+          },
+        },
+      }}
+    >
+      {headingWords.map((line, lineIndex) => (
+        <span key={lineIndex} className="block overflow-hidden pb-[0.08em]">
+          {line.map((word) => (
+            <motion.span
+              key={`${lineIndex}-${word}`}
+              className="mr-[0.18em] inline-block"
+              variants={{
+                hidden: { opacity: 0, y: "100%" },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: smoothEase },
+                },
+              }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </span>
+      ))}
+    </motion.h2>
+  );
+}
 
 function useCount(target: number, start: boolean, duration = 1400) {
   const [value, setValue] = useState(0);
@@ -55,27 +119,28 @@ export default function StorySection() {
       className="relative z-10 bg-[#050505] border-t border-white/5 py-16 sm:py-20 md:py-24 lg:py-32"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.18 }}
+      transition={{ duration: 0.7, ease: smoothEase }}
     >
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-8">
+        <motion.div
+          className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8 lg:gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.35 }}
+          variants={staggerRowVariants}
+        >
           
           {/* --- LEFT COLUMN: Header & Story --- */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            variants={fadeUpVariants}
             className="md:col-span-6 flex flex-col justify-start"
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-2 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>OUR STORY
             </p>
             
-            <h2 className="text-[clamp(36px,11vw,45px)] md:text-[clamp(50px,6.5vw,60px)] lg:text-[70px] font-medium leading-[1] text-[#EDEDED] mb-4 tracking-tight">
-              Two friends. <br className="hidden md:block" />One shared vision.
-            </h2>
+            <WordRevealHeading />
             
             <p className="text-[#888888] text-[15px] md:text-[16px] leading-[1.5] max-w-[500px]">
               Founded in 2023, Adverto was built around one belief: that extraordinary creative work changes business outcomes. We combine strategic intelligence with bold visual thinking to create brands that lead categories.
@@ -84,10 +149,7 @@ export default function StorySection() {
 
           {/* --- RIGHT COLUMN: Quote & Stats --- */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={fadeUpVariants}
             className="md:col-span-6 lg:col-span-5 lg:col-start-8 flex flex-col justify-center"
           >
             <h3 className="text-[18px] md:text-[19px] lg:text-[20px] font-medium text-white mb-1 leading-snug">
@@ -104,8 +166,9 @@ export default function StorySection() {
             {/* Stats - start counting when this section is revealed */}
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               {parsedStats.map((p, i) => (
-                <div
+                <motion.div
                   key={i}
+                  variants={fadeUpVariants}
                   className="bg-[#0000FF] border border-[#0000FF] rounded-[12px] md:rounded-[15px] p-4 sm:p-5 md:p-6 lg:p-8 flex min-h-[116px] flex-col justify-center transition-colors duration-300 hover:bg-[#0000D6] hover:border-[#0000D6]"
                 >
                   <h4 className="text-white text-2xl sm:text-3xl md:text-[34px] lg:text-4xl font-medium mb-1">
@@ -114,13 +177,13 @@ export default function StorySection() {
                   <p className="text-white text-[12px] md:text-[13px] leading-[1.25] tracking-wide">
                     {p.label}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
 
           </motion.div>
 
-        </div>
+        </motion.div>
 
         {/* --- INFINITE LOGO SLIDER --- */}
         {/* <div className="mt-20">

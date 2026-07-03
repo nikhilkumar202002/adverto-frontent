@@ -30,6 +30,46 @@ const staggerRowVariants: Variants = {
   },
 };
 
+const headingWords = ["Creative", "Services"];
+
+function WordRevealHeading() {
+  return (
+    <motion.h2
+      className={`${styles.servicesHeading} font-medium leading-[1.05] text-[#EDEDED]`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.7 }}
+      variants={{
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.08,
+          },
+        },
+      }}
+    >
+      <span className="block overflow-hidden pb-[0.08em]">
+        {headingWords.map((word) => (
+          <motion.span
+            key={word}
+            className="mr-[0.18em] inline-block"
+            variants={{
+              hidden: { opacity: 0, y: "100%" },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.8, ease: smoothEase },
+              },
+            }}
+          >
+            {word}
+          </motion.span>
+        ))}
+      </span>
+    </motion.h2>
+  );
+}
+
 export default function ServicesSection() {
   return (
     <motion.section
@@ -41,7 +81,7 @@ export default function ServicesSection() {
     >
       <Container>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 items-end"
+          className="mb-[25px] grid grid-cols-1 items-end gap-6 md:grid-cols-12 md:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.35 }}
@@ -54,9 +94,7 @@ export default function ServicesSection() {
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-1 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>WHAT WE DO
             </p>
-            <h2 className={`${styles.servicesHeading} font-medium leading-[1.05] text-[#EDEDED]`}>
-              Creative Services
-            </h2>
+            <WordRevealHeading />
           </motion.div>
 
           <motion.div 
