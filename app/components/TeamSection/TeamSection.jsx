@@ -200,7 +200,7 @@ export default function TeamSection() {
             id: "team-section-reveal",
             trigger: sectionRef.current,
             start: "top 78%",
-            toggleActions: "play reverse play reverse",
+            once: true,
           },
         }
       );

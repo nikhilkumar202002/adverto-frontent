@@ -35,7 +35,7 @@ export default function StorySection() {
     { value: "96%", label: "Client Retention" },
   ];
   const sectionRef = useRef<HTMLElement | null>(null);
-  const inView = useInView(sectionRef, { once: false, amount: 0.35 });
+  const inView = useInView(sectionRef, { once: true, amount: 0.35 });
   const parsedStats = stats.map((stat) => {
     const match = stat.value.match(/(\d+)/);
     const num = match ? Number(match[1]) : 0;
@@ -55,7 +55,7 @@ export default function StorySection() {
       className="relative z-10 bg-[#050505] border-t border-white/5 py-16 sm:py-20 md:py-24 lg:py-32"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: false, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <Container>
@@ -65,7 +65,7 @@ export default function StorySection() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="md:col-span-6 flex flex-col justify-start"
           >
@@ -86,7 +86,7 @@ export default function StorySection() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="md:col-span-6 lg:col-span-5 lg:col-start-8 flex flex-col justify-center"
           >

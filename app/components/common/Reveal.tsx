@@ -20,7 +20,7 @@ export default function Reveal({
   duration = 0.8,
   y = 80,
   amount = 0.18,
-  once = false,
+  once = true,
 }: RevealProps) {
   return (
     <motion.div
