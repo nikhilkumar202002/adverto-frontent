@@ -90,14 +90,6 @@ export default function InfiniteProjectSlider({
 
                   <div className="project-marquee__hover-layer pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-1/2 translate-y-full bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100" />
 
-                  <div className="absolute left-3 bottom-3 md:left-4 md:bottom-4 z-20">
-                    <h4 className="text-[13px] md:text-[15px] text-white font-medium tracking-wide">
-                      {project.title}
-                    </h4>
-                    <p className="text-[11px] md:text-[13px] text-white/90 font-medium tracking-wide">
-                      {project.subtitle}
-                    </p>
-                  </div>
                 </Link>
               ))}
             </div>

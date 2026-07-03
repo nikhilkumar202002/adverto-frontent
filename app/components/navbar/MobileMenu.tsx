@@ -27,8 +27,20 @@ export default function MobileMenu({
     >
       {/* Top */}
       <div className="flex items-center justify-between border-b border-white/10 px-[24px] py-6">
-        <Link href="/" className="text-[14px] font-normal uppercase tracking-[0.2em] text-[#EDEDED]">
-          Adverto
+        <Link
+          href="/"
+          aria-label="Adverto home"
+          className="inline-block transition hover:opacity-90"
+          onClick={() => setIsOpen(false)}
+        >
+          <img
+            src="/main-logo.svg"
+            alt="Adverto"
+            width={128}
+            height={32}
+            decoding="async"
+            className="h-8 w-auto"
+          />
         </Link>
 
         <button onClick={() => setIsOpen(false)}>

@@ -83,11 +83,6 @@ export default function FeaturedWorksSlider() {
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute left-5 right-5 bottom-5 translate-y-3 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      <h3 className="text-[25px] font-medium leading-none tracking-[-0.02em] text-white">
-                        {project.title}
-                      </h3>
-                    </div>
                   </Link>
                 ))}
               </div>
