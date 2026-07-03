@@ -186,7 +186,7 @@ export default function HeroSection() {
 
           <div
             ref={actionsRef}
-            className="mt-7 flex w-full max-w-[360px] flex-col items-stretch justify-center gap-3 sm:mt-8 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-5"
+            className="mt-7 flex flex-row flex-wrap items-center justify-center gap-2.5 sm:mt-8 sm:gap-5"
           >
             <Button tone="white">View Works</Button>
 

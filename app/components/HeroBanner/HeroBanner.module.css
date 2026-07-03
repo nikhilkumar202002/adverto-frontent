@@ -104,7 +104,7 @@
   font-size: clamp(88px, 12vw, 170px);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -8.5px;
+  letter-spacing: -7px;
   text-align: center;
   color: #ffffff;
   text-shadow: 0 16px 48px rgba(0, 0, 0, 0.58);
@@ -196,6 +196,7 @@
 
   .wheelWord {
     font-size: clamp(64px, 18vw, 108px);
+    letter-spacing: -3px;
   }
 
   .scrollArrow {
@@ -233,6 +234,7 @@
 
   .wheelWord {
     font-size: clamp(56px, 17vw, 84px);
+    letter-spacing: -2px;
   }
 }
 

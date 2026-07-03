@@ -107,7 +107,7 @@ export default function Navbar() {
               width={128}
               height={32}
               decoding="async"
-              className="h-8 w-auto"
+              className="h-6 w-auto md:h-8"
             />
           </Link>
 

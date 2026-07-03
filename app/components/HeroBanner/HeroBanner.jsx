@@ -29,7 +29,7 @@ export default function HeroBanner() {
     const ctx = gsap.context(() => {
       const words = wordRefs.current.filter(Boolean);
       const isMobile = window.matchMedia("(max-width: 768px)").matches;
-      const slotGap = isMobile ? 132 : 154;
+      const slotGap = isMobile ? 208 : 154;
 
       if (!words.length) return;
 

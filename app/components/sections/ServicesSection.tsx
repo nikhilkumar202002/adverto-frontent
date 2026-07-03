@@ -1,14 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Container from "../common/Container";
-import Reveal from "../common/Reveal";
 import { servicesData } from "../../data/services";
 import styles from "./ServicesSection.module.css";
 
 const serviceCardBackground = "/Banners/service-card-banner.jpg";
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 56 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: smoothEase },
+  },
+};
+
+const staggerRowVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.16,
+      delayChildren: 0.08,
+    },
+  },
+};
 
 export default function ServicesSection() {
   return (
@@ -16,18 +36,19 @@ export default function ServicesSection() {
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.18 }}
+      transition={{ duration: 0.7, ease: smoothEase }}
     >
       <Container>
-        <Reveal>
-   
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 items-end">
-        
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 items-end"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.35 }}
+          variants={staggerRowVariants}
+        >
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={fadeUpVariants}
             className="md:col-span-7"
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-1 flex items-center gap-2">
@@ -39,28 +60,28 @@ export default function ServicesSection() {
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            variants={fadeUpVariants}
             className="md:col-span-4 md:col-start-9 flex flex-col items-end justify-end"
           >
            
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* --- SERVICES GRID --- */}
-        <div className={`${styles.servicesGrid} gap-4 md:gap-5 lg:gap-6`}>
-          {servicesData.map((service, index) => {
+        <motion.div
+          className={`${styles.servicesGrid} gap-4 md:gap-5 lg:gap-6`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.18 }}
+          variants={staggerRowVariants}
+        >
+          {servicesData.map((service) => {
             const Icon = service.icon;
             
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={fadeUpVariants}
                 className="group relative overflow-hidden flex flex-col justify-between rounded-[16px] md:rounded-[20px] border border-white/10 p-5 sm:p-6 md:p-8 lg:p-10 transition-colors duration-500 hover:border-white/25 min-h-[300px] sm:min-h-[340px] md:min-h-[360px] lg:min-h-[380px]"
               >
                 <img
@@ -112,8 +133,7 @@ export default function ServicesSection() {
               </motion.div>
             );
           })}
-        </div>
-        </Reveal>
+        </motion.div>
       </Container>
     </motion.section>
   );
