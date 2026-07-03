@@ -34,10 +34,12 @@ const Preloader = ({ duration = 2200, onComplete }: PreloaderProps) => {
 
       completeTimer = window.setTimeout(() => {
         setIsLeaving(true);
-        onComplete?.();
 
         removeTimer = window.setTimeout(() => {
           setIsVisible(false);
+          (window as typeof window & { __advertoPreloaderComplete?: boolean }).__advertoPreloaderComplete = true;
+          window.dispatchEvent(new Event("adverto:preloader-complete"));
+          onComplete?.();
         }, 650);
       }, 180);
     };

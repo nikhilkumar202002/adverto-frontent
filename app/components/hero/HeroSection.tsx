@@ -35,6 +35,8 @@ export default function HeroSection() {
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useLayoutEffect(() => {
+    let removePreloaderListener = () => {};
+
     const ctx = gsap.context(() => {
       const words = wordRefs.current.filter(Boolean);
       const buttons = actionsRef.current?.children
@@ -46,12 +48,19 @@ export default function HeroSection() {
         ...buttons,
       ].filter(Boolean);
 
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reduceMotion) {
         gsap.set(animatedElements, { clearProps: "all" });
         return;
       }
 
-      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+      gsap.set(animatedElements, { autoAlpha: 0 });
+
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { ease: "power4.out" },
+      });
 
       tl.fromTo(
         subheadingRef.current,
@@ -88,9 +97,31 @@ export default function HeroSection() {
           },
           "-=0.35"
         );
+
+      const playHeroReveal = () => {
+        tl.play(0);
+      };
+
+      const preloaderComplete = (window as typeof window & {
+        __advertoPreloaderComplete?: boolean;
+      }).__advertoPreloaderComplete;
+
+      if (preloaderComplete) {
+        playHeroReveal();
+      } else {
+        window.addEventListener("adverto:preloader-complete", playHeroReveal, {
+          once: true,
+        });
+        removePreloaderListener = () => {
+          window.removeEventListener("adverto:preloader-complete", playHeroReveal);
+        };
+      };
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      removePreloaderListener();
+      ctx.revert();
+    };
   }, []);
 
   return (

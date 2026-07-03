@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 const horizontalVideos = [
-  "/videos/horizontal/Img%200864.mp4",
   "/videos/horizontal/Img%200865.mp4",
   "/videos/horizontal/IMG_0866.mp4",
   "/videos/horizontal/Img%200867.mp4",
@@ -15,6 +14,7 @@ const horizontalVideos = [
   "/videos/horizontal/Img%200881.mp4",
   "/videos/horizontal/Img%200882.mp4",
   "/videos/horizontal/Img%200883.mp4",
+  "/videos/horizontal/Img%200864.mp4",
 ];
 
 const verticalVideos = [

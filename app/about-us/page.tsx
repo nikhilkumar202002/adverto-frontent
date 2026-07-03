@@ -57,7 +57,7 @@ const backgroundSquares = [
 export default function AboutUsPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#030303] text-white">
-      <section className="relative flex min-h-screen min-h-[100svh] overflow-hidden">
+      <section className="relative flex min-h-[680px] overflow-hidden md:min-h-screen md:min-h-[100svh]">
         <div
           aria-hidden
           className="absolute inset-0 z-0 grid grid-cols-4 grid-rows-10 bg-black sm:grid-cols-8 sm:grid-rows-5"
@@ -75,11 +75,11 @@ export default function AboutUsPage() {
           className="absolute inset-0 z-0 bg-[linear-gradient(180deg,rgba(3,3,3,0.35)_0%,rgba(3,3,3,0.02)_42%,rgba(3,3,3,0.72)_100%)]"
         />
 
-        <Container className="relative z-10 flex min-h-screen min-h-[100svh] flex-col justify-between py-25 md:py-28">
+        <Container className="relative z-10 flex min-h-[680px] flex-col justify-between pb-[35px] pt-24 md:min-h-screen md:min-h-[100svh] md:pb-[35px] md:pt-28">
           <div />
 
           <div className="about-reveal-up max-w-[760px]">
-            <h1 className="text-[120px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5]">
+            <h1 className="text-[58px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5] sm:text-[72px] md:text-[96px] lg:text-[120px]">
               Meet Adverto
             </h1>
           </div>

@@ -96,7 +96,7 @@ export default function ContactPage() {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Contact Us
             </p>
-            <h1 className="max-w-[920px] text-[52px] font-medium leading-[0.95] text-[#EDEDED] md:text-[96px]">
+            <h1 className="max-w-[920px] text-[32px] font-medium leading-[0.95] text-[#EDEDED] md:text-[96px]">
               Start Your Next Brand Project
             </h1>
           </div>
