@@ -16,7 +16,13 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden">
+    <motion.section
+      className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
       <Container>
         <Reveal>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-8 items-start">
@@ -122,6 +128,6 @@ export default function FaqSection() {
         </div>
         </Reveal>
       </Container>
-    </section>
+    </motion.section>
   );
 }

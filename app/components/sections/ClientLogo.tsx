@@ -7,7 +7,13 @@ import { clientLogos } from "../../data/logos";
 
 export default function ClientLogo() {
   return (
-    <section className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5">
+    <motion.section
+      className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
       
 
 
@@ -61,6 +67,6 @@ export default function ClientLogo() {
           </div>
         </Reveal>
       </Container>
-    </section>
+    </motion.section>
   );
 }

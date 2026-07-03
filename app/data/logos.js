@@ -63,6 +63,8 @@ const logoFiles = [
   "Asset 1@500x.png",
   "Asset 2@500x.png",
   "ayan@500x.png",
+  "Jerrys-Educare-HD.png",
+  "LOGOS-12.png",
 ];
 
 export const clientLogos = logoFiles.map((file, idx) => {

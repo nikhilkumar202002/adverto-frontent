@@ -41,7 +41,15 @@ export default function HeroBanner() {
       });
 
       /* ── Entrance animation ───────────────────── */
-      const entranceTl = gsap.timeline({ defaults: { ease: "expo.out" } });
+      const entranceTl = gsap.timeline({
+        defaults: { ease: "expo.out" },
+        scrollTrigger: {
+          id: "hero-banner-entrance",
+          trigger: bannerRef.current,
+          start: "top 72%",
+          once: true,
+        },
+      });
       entranceTl
         .fromTo(
           photoRef.current,

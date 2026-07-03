@@ -189,6 +189,22 @@ export default function TeamSection() {
       let resizeTimer;
       let viewportWidth = window.innerWidth;
 
+      gsap.fromTo(
+        sectionRef.current,
+        { autoAlpha: 0 },
+        {
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            id: "team-section-reveal",
+            trigger: sectionRef.current,
+            start: "top 78%",
+            once: true,
+          },
+        }
+      );
+
       ScrollTrigger.config({
         ignoreMobileResize: true,
         autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
