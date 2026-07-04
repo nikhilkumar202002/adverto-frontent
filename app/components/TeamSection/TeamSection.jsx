@@ -124,15 +124,15 @@ const ZOOM_POSITIONS = [
 ];
 
 const MOBILE_ZOOM_POSITIONS = [
-  { top: 18, left: 30 },
-  { top: 48, left: 70 },
-  { top: 24, left: 70 },
-  { top: 52, left: 30 },
-  { top: 18, left: 32 },
-  { top: 50, left: 68 },
-  { top: 26, left: 68 },
-  { top: 54, left: 32 },
-  { top: 42, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
+  { top: 26, left: 50 },
 ];
 
 /* ── Individual Card ─────────────────────────────────────────────────────────── */
@@ -283,7 +283,7 @@ export default function TeamSection() {
                 card,
                 {
                   z: index === 0 ? firstPairDepth : nextPairDepth,
-                  duration: 3.4,
+                  duration: 2.8,
                   ease: "none",
                 },
                 0
@@ -292,13 +292,13 @@ export default function TeamSection() {
                 card,
                 {
                   opacity: 0,
-                  duration: 0.45,
+                  duration: 0.4,
                   ease: "none",
                 },
-                2.95
+                2.35
               );
 
-            timeline.add(cardTl, index * 1.05);
+            timeline.add(cardTl, index === 0 ? 0 : ">");
           });
         } else if (cards.length >= 2) {
           timeline.to(

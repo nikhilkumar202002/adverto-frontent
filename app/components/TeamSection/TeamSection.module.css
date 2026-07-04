@@ -554,7 +554,7 @@
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .section {
-    --card-w: min(78vw, 330px);
+    --card-w: min(62vw, 260px);
     overflow: hidden;
   }
 
@@ -595,11 +595,11 @@
   }
 
   .featuredCard {
-    --card-w: min(78vw, 330px);
+    --card-w: min(62vw, 260px);
   }
 
   .visibleStart {
-    --card-w: min(78vw, 330px);
+    --card-w: min(62vw, 260px);
   }
 
   .imageWrap {
@@ -699,15 +699,15 @@
 
 @media (max-width: 480px) {
   .section {
-    --card-w: min(78vw, 300px);
+    --card-w: min(64vw, 230px);
   }
 
   .featuredCard {
-    --card-w: min(78vw, 300px);
+    --card-w: min(64vw, 230px);
   }
 
   .visibleStart {
-    --card-w: min(78vw, 300px);
+    --card-w: min(64vw, 230px);
   }
 
   .sticky {
