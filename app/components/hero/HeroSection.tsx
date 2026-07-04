@@ -1,7 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import Container from "../common/Container";
 import Button from "../common/Button";
 import { MoveDown } from "lucide-react";
@@ -28,105 +29,100 @@ const sliderContent = [
 
 const headlineWords = ["We", "build", "brands", "that", "leads", "markets."];
 
+const easeOut: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const heroSequenceVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.16,
+    },
+  },
+};
+
+const fadeUpVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 22,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.2,
+      ease: easeOut,
+    },
+  },
+};
+
+const headingVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const wordVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: "100%",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.35,
+      ease: easeOut,
+    },
+  },
+};
+
+const buttonRowVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.24,
+      staggerChildren: 0.14,
+    },
+  },
+};
+
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const subheadingRef = useRef<HTMLParagraphElement | null>(null);
-  const actionsRef = useRef<HTMLDivElement | null>(null);
-  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [isPreloaderComplete, setIsPreloaderComplete] = useState(false);
 
-  useLayoutEffect(() => {
-    let removePreloaderListener = () => {};
+  useEffect(() => {
+    let revealTimer: number | undefined;
 
-    const ctx = gsap.context(() => {
-      const words = wordRefs.current.filter(Boolean);
-      const buttons = actionsRef.current?.children
-        ? Array.from(actionsRef.current.children)
-        : [];
-      const animatedElements = [
-        subheadingRef.current,
-        ...words,
-        ...buttons,
-      ].filter(Boolean);
+    const startHeroReveal = () => {
+      setIsPreloaderComplete(true);
+    };
 
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const preloaderComplete = (window as typeof window & {
+      __advertoPreloaderComplete?: boolean;
+    }).__advertoPreloaderComplete;
 
-      if (reduceMotion) {
-        gsap.set(animatedElements, { clearProps: "all" });
-        return;
-      }
-
-      gsap.set(animatedElements, { autoAlpha: 0 });
-
-      const tl = gsap.timeline({
-        paused: true,
-        defaults: { ease: "power4.out" },
-      });
-
-      tl.fromTo(
-        subheadingRef.current,
-        { autoAlpha: 0, y: 14 },
-        { autoAlpha: 1, y: 0, duration: 0.65 },
-        0.15
-      )
-        .fromTo(
-          words,
-          {
-            autoAlpha: 0,
-            yPercent: 115,
-            rotateX: -18,
-          },
-          {
-            autoAlpha: 1,
-            yPercent: 0,
-            rotateX: 0,
-            duration: 0.9,
-            stagger: 0.08,
-            clearProps: "transform,opacity,visibility",
-          },
-          0.25
-        )
-        .fromTo(
-          buttons,
-          { autoAlpha: 0, y: 18 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.65,
-            stagger: 0.08,
-            clearProps: "transform,opacity,visibility",
-          },
-          "-=0.35"
-        );
-
-      const playHeroReveal = () => {
-        tl.play(0);
+    if (preloaderComplete) {
+      revealTimer = window.setTimeout(startHeroReveal, 0);
+      return () => {
+        if (revealTimer) window.clearTimeout(revealTimer);
       };
+    }
 
-      const preloaderComplete = (window as typeof window & {
-        __advertoPreloaderComplete?: boolean;
-      }).__advertoPreloaderComplete;
-
-      if (preloaderComplete) {
-        playHeroReveal();
-      } else {
-        window.addEventListener("adverto:preloader-complete", playHeroReveal, {
-          once: true,
-        });
-        removePreloaderListener = () => {
-          window.removeEventListener("adverto:preloader-complete", playHeroReveal);
-        };
-      };
-    }, sectionRef);
+    window.addEventListener("adverto:preloader-complete", startHeroReveal, {
+      once: true,
+    });
 
     return () => {
-      removePreloaderListener();
-      ctx.revert();
+      window.removeEventListener("adverto:preloader-complete", startHeroReveal);
+      if (revealTimer) window.clearTimeout(revealTimer);
     };
   }, []);
 
   return (
     <section
-      ref={sectionRef}
       className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-screen md:min-h-[100svh]"
       data-navbar-transparent
     >
@@ -144,19 +140,23 @@ export default function HeroSection() {
       </div>
 
       <Container className="relative z-10 flex min-h-[100svh] items-center justify-center pb-28 pt-28 md:min-h-screen md:min-h-[100svh] md:pb-[136px] md:pt-[120px] lg:pb-36 lg:pt-32">
-        <div
+        <motion.div
           className="flex w-full max-w-[1100px] flex-col items-center justify-center text-center"
+          initial="hidden"
+          animate={isPreloaderComplete ? "visible" : "hidden"}
+          variants={heroSequenceVariants}
         >
-          <p
-            ref={subheadingRef}
+          <motion.p
             className="mb-4 text-center text-[11px] tracking-[0.1em] text-[#0000FF] sm:text-xs md:text-[14px]"
+            variants={fadeUpVariants}
           >
             Creative Agency Est. 2023
-          </p>
+          </motion.p>
 
-          <h1
+          <motion.h1
             className="mx-auto w-full max-w-[13ch] text-[clamp(40px,13vw,58px)] font-medium leading-[0.92] sm:text-[64px] md:max-w-[13.5ch] md:text-[clamp(68px,8vw,78px)] lg:text-[86px] lg:leading-[0.9] xl:text-[93px]"
             aria-label={headlineWords.join(" ")}
+            variants={headingVariants}
           >
             {headlineWords.map((word, index) => (
               <span
@@ -164,18 +164,16 @@ export default function HeroSection() {
                 className="inline-block overflow-hidden align-bottom"
                 aria-hidden="true"
               >
-                <span
-                  ref={(el) => {
-                    wordRefs.current[index] = el;
-                  }}
+                <motion.span
                   className="inline-block will-change-transform"
+                  variants={wordVariants}
                 >
                   {word}
-                </span>
+                </motion.span>
                 {index < headlineWords.length - 1 ? "\u00A0" : null}
               </span>
             ))}
-          </h1>
+          </motion.h1>
 
           {/* <p
             className="mt-3 max-w-[34rem] text-sm leading-[1.25] text-white/60 sm:text-base md:mt-3 md:text-[20px] md:leading-[1.1]"
@@ -184,17 +182,21 @@ export default function HeroSection() {
             experiences crafted for modern businesses.
           </p> */}
 
-          <div
-            ref={actionsRef}
+          <motion.div
             className="mt-7 flex flex-row flex-wrap items-center justify-center gap-2.5 sm:mt-8 sm:gap-5"
+            variants={buttonRowVariants}
           >
-            <Button tone="white">View Works</Button>
+            <motion.div variants={fadeUpVariants}>
+              <Button tone="white">View Works</Button>
+            </motion.div>
 
-            <Button variant="secondary" hoverTone="white">
-              Book Consultation
-            </Button>
-          </div>
-        </div>
+            <motion.div variants={fadeUpVariants}>
+              <Button variant="secondary" hoverTone="white">
+                Book Consultation
+              </Button>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </Container>
 
       <div className="absolute bottom-[72px] left-0 z-20 flex w-full items-center justify-center sm:bottom-20 md:bottom-24">

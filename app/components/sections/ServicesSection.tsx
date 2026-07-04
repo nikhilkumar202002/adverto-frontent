@@ -9,127 +9,121 @@ import { servicesData } from "../../data/services";
 import styles from "./ServicesSection.module.css";
 
 const serviceCardBackground = "/Banners/service-card-banner.jpg";
+const headingWords = ["Creative", "Services"];
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 56 },
+const sectionRevealViewport = {
+  once: false,
+  amount: 0.25,
+};
+
+const fadeFromLeft: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -56,
+  },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: smoothEase },
-  },
-};
-
-const staggerRowVariants: Variants = {
-  hidden: {},
-  visible: {
+    x: 0,
     transition: {
-      staggerChildren: 0.16,
-      delayChildren: 0.08,
+      duration: 1.25,
+      ease: smoothEase,
     },
   },
 };
 
-const servicesSequenceVariants: Variants = {
-  hidden: {},
+const fadeFromRight: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 56,
+  },
   visible: {
+    opacity: 1,
+    x: 0,
     transition: {
-      staggerChildren: 0.32,
+      duration: 1.25,
+      ease: smoothEase,
     },
   },
 };
 
-const servicesGridVariants: Variants = {
+const staggerGroup: Variants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 0.08,
-      staggerChildren: 0.14,
+      staggerChildren: 0.18,
     },
   },
 };
 
-const headingWords = ["Creative", "Services"];
-
-function WordRevealHeading() {
+function StaticHeading() {
   return (
-    <motion.h2
+    <h2
       className={`${styles.servicesHeading} font-medium leading-[1.05] text-[#EDEDED]`}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.08,
-          },
-        },
-      }}
     >
-      <span className="block overflow-hidden pb-[0.08em]">
+      <span className="block pb-[0.08em]">
         {headingWords.map((word) => (
-          <motion.span
+          <span
             key={word}
             className="mr-[0.18em] inline-block"
-            variants={{
-              hidden: { opacity: 0, y: "100%" },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.8, ease: smoothEase },
-              },
-            }}
           >
             {word}
-          </motion.span>
+          </span>
         ))}
       </span>
-    </motion.h2>
+    </h2>
   );
 }
 
 export default function ServicesSection() {
   return (
-    <motion.section
+    <section
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.18 }}
-      variants={servicesSequenceVariants}
     >
       <Container>
-        <motion.div
+        <div
           className="mb-[25px] grid grid-cols-1 items-end gap-6 md:grid-cols-12 md:gap-8"
-          variants={staggerRowVariants}
         >
           <motion.div 
-            variants={fadeUpVariants}
             className="md:col-span-7"
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionRevealViewport}
+            variants={fadeFromLeft}
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-1 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>WHAT WE DO
             </p>
-            <WordRevealHeading />
+            <StaticHeading />
           </motion.div>
 
           <motion.div 
-            variants={fadeUpVariants}
             className="md:col-span-4 md:col-start-9 flex flex-col items-end justify-end"
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionRevealViewport}
+            variants={fadeFromRight}
           >
            
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* --- SERVICES GRID --- */}
         <motion.div
           className={`${styles.servicesGrid} gap-4 md:gap-5 lg:gap-6`}
-          variants={servicesGridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={sectionRevealViewport}
+          variants={staggerGroup}
         >
           {servicesData.map((service) => {
             const Icon = service.icon;
+            const cardVariants = Number(service.id) % 2 === 0 ? fadeFromRight : fadeFromLeft;
             
             return (
               <motion.div
                 key={service.id}
-                variants={fadeUpVariants}
+                variants={cardVariants}
                 className="group relative overflow-hidden flex flex-col justify-between rounded-[16px] md:rounded-[20px] border border-white/10 p-5 sm:p-6 md:p-8 lg:p-10 transition-colors duration-500 hover:border-white/25 min-h-[300px] sm:min-h-[340px] md:min-h-[360px] lg:min-h-[380px]"
               >
                 <img
@@ -183,6 +177,6 @@ export default function ServicesSection() {
           })}
         </motion.div>
       </Container>
-    </motion.section>
+    </section>
   );
 }

@@ -7,66 +7,71 @@ import { Plus, X } from "lucide-react";
 import Container from "../common/Container";
 import { faqData } from "../../data/faqs";
 
+const headingWords = [["Common"], ["Questions"]];
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 56 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: smoothEase },
-  },
+const sectionRevealViewport = {
+  once: false,
+  amount: 0.25,
 };
 
-const staggerRowVariants: Variants = {
-  hidden: {},
+const fadeFromLeft: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -56,
+  },
   visible: {
+    opacity: 1,
+    x: 0,
     transition: {
-      staggerChildren: 0.16,
-      delayChildren: 0.08,
+      duration: 1.25,
+      ease: smoothEase,
     },
   },
 };
 
-const headingWords = [["Common"], ["Questions"]];
+const fadeFromRight: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 56,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.25,
+      ease: smoothEase,
+    },
+  },
+};
 
-function WordRevealHeading() {
+const staggerGroup: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.14,
+    },
+  },
+};
+
+function StaticHeading() {
   return (
-    <motion.h2
+    <h2
       className="mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] text-[#EDEDED] md:mb-6 md:text-[clamp(48px,6vw,56px)] lg:text-[60px]"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.7 }}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.08,
-          },
-        },
-      }}
     >
       {headingWords.map((line, lineIndex) => (
-        <span key={lineIndex} className="block overflow-hidden pb-[0.08em]">
+        <span key={lineIndex} className="block pb-[0.08em]">
           {line.map((word) => (
-            <motion.span
+            <span
               key={`${lineIndex}-${word}`}
               className="mr-[0.18em] inline-block"
-              variants={{
-                hidden: { opacity: 0, y: "100%" },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: smoothEase },
-                },
-              }}
             >
               {word}
-            </motion.span>
+            </span>
           ))}
         </span>
       ))}
-    </motion.h2>
+    </h2>
   );
 }
 
@@ -79,31 +84,26 @@ export default function FaqSection() {
   };
 
   return (
-    <motion.section
+    <section
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: smoothEase }}
     >
       <Container>
-        <motion.div
+        <div
           className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-8 items-start"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={staggerRowVariants}
         >
 
           {/* --- LEFT COLUMN: Header --- */}
           <motion.div
-            variants={fadeUpVariants}
             className="md:col-span-5 lg:col-span-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionRevealViewport}
+            variants={fadeFromLeft}
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-1 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>FAQ
             </p>
-            <WordRevealHeading />
+            <StaticHeading />
             <p className="text-white/50 text-[15px] md:text-[16px] lg:text-[17px] leading-[1.5]">
               Not finding what you need? Reach out directly <br className="hidden md:block" />
               at <a href="mailto:connectadvertoads@gmail.com" className="break-words text-white hover:text-[#0000FF] transition-colors">connectadvertoads@gmail.com</a>
@@ -112,15 +112,19 @@ export default function FaqSection() {
 
           {/* --- RIGHT COLUMN: Accordion --- */}
           <motion.div
-            variants={fadeUpVariants}
             className="md:col-span-7 lg:col-span-7 border-t border-white/10"
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionRevealViewport}
+            variants={staggerGroup}
           >
             {faqData.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
-                <div
+                <motion.div
                   key={faq.id}
+                  variants={fadeFromRight}
                   className={`border-b transition-colors duration-300 ${
                     isOpen ? "border-[#0000FF]" : "border-white/10"
                   }`}
@@ -181,13 +185,13 @@ export default function FaqSection() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>
 
-        </motion.div>
+        </div>
       </Container>
-    </motion.section>
+    </section>
   );
 }

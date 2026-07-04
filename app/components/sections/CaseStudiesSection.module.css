@@ -7,6 +7,16 @@
   will-change: transform, opacity, clip-path;
 }
 
+@media (max-width: 1300px) {
+  .featuredCaseStudyTitle {
+    font-size: 20px;
+  }
+
+  .featuredCaseStudyLastDescription {
+    display: none;
+  }
+}
+
 @media (min-width: 768px) {
   .caseStudiesHeading {
     font-size: clamp(50px, 6.4vw, 60px);

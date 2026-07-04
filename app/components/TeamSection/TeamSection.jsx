@@ -189,22 +189,6 @@ export default function TeamSection() {
       let resizeTimer;
       let viewportWidth = window.innerWidth;
 
-      gsap.fromTo(
-        sectionRef.current,
-        { autoAlpha: 0 },
-        {
-          autoAlpha: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            id: "team-section-reveal",
-            trigger: sectionRef.current,
-            start: "top 78%",
-            once: true,
-          },
-        }
-      );
-
       ScrollTrigger.config({
         ignoreMobileResize: true,
         autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
@@ -212,7 +196,7 @@ export default function TeamSection() {
 
       const setupAnimation = () => {
         const isMobile = window.innerWidth < 768;
-        const scrollLength = isMobile ? total * 58 : total * 36;
+        const scrollLength = isMobile ? total * 66 : total * 44;
         const scrub = isMobile ? 0.75 : 0.65;
         const firstPairDepth = isMobile ? "118vh" : "110vh";
         const nextPairDepth = isMobile ? "108vh" : "100vh";
@@ -360,17 +344,23 @@ export default function TeamSection() {
           ">"
         );
 
-        timeline.fromTo(
+        timeline.to(
           projectsRef.current,
           {
-            autoAlpha: 0,
+            autoAlpha: 1,
+            duration: 0.2,
+            ease: "none",
+            overwrite: "auto",
           },
+          ">"
+        );
+
+        timeline.to(
+          projectsRef.current,
           {
             autoAlpha: 1,
-            duration: 0.9,
-            ease: "power1.out",
-            immediateRender: false,
-            overwrite: "auto",
+            duration: isMobile ? 1.4 : 1.2,
+            ease: "none",
           },
           ">"
         );
@@ -424,7 +414,7 @@ export default function TeamSection() {
           ))}
         </div>
 
-        {/* Projects Text Fade Up */}
+        {/* Projects Text */}
         <div
           ref={projectsRef}
           className={styles.projectsText}

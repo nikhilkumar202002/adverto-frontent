@@ -6,66 +6,71 @@ import Container from "../common/Container";
 import { useEffect, useRef, useState } from "react";
 // import InfiniteLogoSlider from "../common/InfiniteLogoSlider";
 
+const headingWords = [["Two", "friends."], ["One", "shared", "vision."]];
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 56 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: smoothEase },
-  },
+const sectionRevealViewport = {
+  once: false,
+  amount: 0.25,
 };
 
-const staggerRowVariants: Variants = {
-  hidden: {},
+const fadeFromLeft: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -56,
+  },
   visible: {
+    opacity: 1,
+    x: 0,
     transition: {
-      staggerChildren: 0.16,
-      delayChildren: 0.08,
+      duration: 1.25,
+      ease: smoothEase,
     },
   },
 };
 
-const headingWords = [["Two", "friends."], ["One", "shared", "vision."]];
+const fadeFromRight: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 56,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.25,
+      ease: smoothEase,
+    },
+  },
+};
 
-function WordRevealHeading() {
+const staggerGroup: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+function StaticHeading() {
   return (
-    <motion.h2
+    <h2
       className="mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] tracking-tight text-[#EDEDED] md:text-[clamp(50px,6.5vw,60px)] lg:text-[70px]"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.7 }}
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.08,
-          },
-        },
-      }}
     >
       {headingWords.map((line, lineIndex) => (
-        <span key={lineIndex} className="block overflow-hidden pb-[0.08em]">
+        <span key={lineIndex} className="block pb-[0.08em]">
           {line.map((word) => (
-            <motion.span
+            <span
               key={`${lineIndex}-${word}`}
               className="mr-[0.18em] inline-block"
-              variants={{
-                hidden: { opacity: 0, y: "100%" },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: smoothEase },
-                },
-              }}
             >
               {word}
-            </motion.span>
+            </span>
           ))}
         </span>
       ))}
-    </motion.h2>
+    </h2>
   );
 }
 
@@ -114,33 +119,28 @@ export default function StorySection() {
   const counts = [count0, count1, count2, count3];
 
   return (
-    <motion.section
+    <section
       ref={sectionRef}
       className="relative z-10 bg-[#050505] border-t border-white/5 py-16 sm:py-20 md:py-24 lg:py-32"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: smoothEase }}
     >
       <Container>
-        <motion.div
+        <div
           className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8 lg:gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={staggerRowVariants}
         >
           
           {/* --- LEFT COLUMN: Header & Story --- */}
           <motion.div 
-            variants={fadeUpVariants}
             className="md:col-span-6 flex flex-col justify-start"
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionRevealViewport}
+            variants={fadeFromLeft}
           >
             <p className="text-[#0000FF] uppercase text-[12px] md:text-[13px] lg:text-[14px] tracking-[0.12em] mb-2 flex items-center gap-2">
               <span className="w-[30px] h-[1px] bg-[#0000FF]"></span>OUR STORY
             </p>
             
-            <WordRevealHeading />
+            <StaticHeading />
             
             <p className="text-[#888888] text-[15px] md:text-[16px] leading-[1.5] max-w-[500px]">
               Founded in 2023, Adverto was built around one belief: that extraordinary creative work changes business outcomes. We combine strategic intelligence with bold visual thinking to create brands that lead categories.
@@ -149,26 +149,38 @@ export default function StorySection() {
 
           {/* --- RIGHT COLUMN: Quote & Stats --- */}
           <motion.div 
-            variants={fadeUpVariants}
             className="md:col-span-6 lg:col-span-5 lg:col-start-8 flex flex-col justify-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={sectionRevealViewport}
+            variants={staggerGroup}
           >
-            <h3 className="text-[18px] md:text-[19px] lg:text-[20px] font-medium text-white mb-1 leading-snug">
+            <motion.h3
+              className="text-[18px] md:text-[19px] lg:text-[20px] font-medium text-white mb-1 leading-snug"
+              variants={fadeFromRight}
+            >
               &ldquo;Built on Trust. Proven Through Results.&rdquo;
-            </h3>
+            </motion.h3>
             
-            <p className="text-[#888888] text-[15px] md:text-[16px] lg:text-[17px] leading-[1.5] mb-6">
+            <motion.p
+              className="text-[#888888] text-[15px] md:text-[16px] lg:text-[17px] leading-[1.5] mb-6"
+              variants={fadeFromRight}
+            >
               Behind every number is a project delivered, a challenge solved, and a relationship built on trust.
-            </p>
+            </motion.p>
 
             {/* Blue Divider */}
-            <div className="w-12 h-[2px] bg-[#0000FF] mb-7 md:mb-8 lg:mb-10" />
+            <motion.div
+              className="w-12 h-[2px] bg-[#0000FF] mb-7 md:mb-8 lg:mb-10"
+              variants={fadeFromRight}
+            />
 
-            {/* Stats - start counting when this section is revealed */}
+            {/* Stats start counting when this section enters the viewport. */}
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               {parsedStats.map((p, i) => (
                 <motion.div
                   key={i}
-                  variants={fadeUpVariants}
+                  variants={fadeFromRight}
                   className="bg-[#0000FF] border border-[#0000FF] rounded-[12px] md:rounded-[15px] p-4 sm:p-5 md:p-6 lg:p-8 flex min-h-[116px] flex-col justify-center transition-colors duration-300 hover:bg-[#0000D6] hover:border-[#0000D6]"
                 >
                   <h4 className="text-white text-2xl sm:text-3xl md:text-[34px] lg:text-4xl font-medium mb-1">
@@ -183,13 +195,13 @@ export default function StorySection() {
 
           </motion.div>
 
-        </motion.div>
+        </div>
 
         {/* --- INFINITE LOGO SLIDER --- */}
         {/* <div className="mt-20">
           <InfiniteLogoSlider />
         </div> */}
       </Container>
-    </motion.section>
+    </section>
   );
 }
