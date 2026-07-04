@@ -6,6 +6,7 @@ import NoiseOverlay from "./components/common/NoiseOverlay";
 import CustomCursor from "./components/common/CustomCursor";
 import Preloader from "./components/common/Preloader";
 import SmoothScroll from "./components/common/SmoothScroll";
+import ScrollTopWhatsapp from "./components/common/ScrollTopWhatsapp";
 // import CtaSection from "./components/sections/CtaSection";
 import Footer from "./components/footer/Footer";
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main className="relative z-10 min-h-[100svh]">
             {children}
           </main>
+          <ScrollTopWhatsapp />
           {/* <CtaSection /> */}
           <Footer />
         </SmoothScroll>

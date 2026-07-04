@@ -44,7 +44,7 @@ const fadeIn: Variants = {
 function StaticHeading() {
   return (
     <h2
-      className="text-[clamp(32px,9vw,40px)] md:text-[clamp(46px,5.6vw,54px)] lg:text-[60px] font-medium leading-[1.1] text-[#EDEDED]"
+      className="section-breakpoint-heading text-[clamp(32px,9vw,40px)] md:text-[clamp(46px,5.6vw,54px)] lg:text-[60px] font-medium leading-[1.1] text-[#EDEDED]"
     >
       <span className="block pb-[0.08em]">
         {headingWords.map((word) => (

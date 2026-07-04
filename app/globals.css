@@ -159,3 +159,10 @@ body {
 .about-reveal-up-delay {
   animation-delay: 260ms;
 }
+
+@media (min-width: 1024px) and (max-width: 1300px) {
+  .section-breakpoint-heading {
+    font-size: 56px !important;
+    line-height: 1 !important;
+  }
+}

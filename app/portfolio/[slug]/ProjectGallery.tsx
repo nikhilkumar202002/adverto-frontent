@@ -6,6 +6,8 @@ import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
 type ProjectGalleryProps = {
   images: string[];
   title: string;
+  gridClassName?: string;
+  itemClassName?: string;
 };
 
 type GalleryItemProps = {
@@ -13,9 +15,10 @@ type GalleryItemProps = {
   index: number;
   title: string;
   onOpen: () => void;
+  itemClassName?: string;
 };
 
-function GalleryItem({ image, index, title, onOpen }: GalleryItemProps) {
+function GalleryItem({ image, index, title, onOpen, itemClassName = "" }: GalleryItemProps) {
   const itemRef = useRef<HTMLButtonElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [rowSpan, setRowSpan] = useState(24);
@@ -65,7 +68,7 @@ function GalleryItem({ image, index, title, onOpen }: GalleryItemProps) {
       type="button"
       onClick={onOpen}
       style={{ gridRowEnd: `span ${rowSpan}` }}
-      className="group relative w-full overflow-hidden bg-[#0A0A0A] text-left"
+      className={`group relative w-full overflow-hidden bg-[#0A0A0A] text-left ${itemClassName}`}
       aria-label={`Open ${title} gallery image ${index + 1}`}
     >
       <img
@@ -84,7 +87,12 @@ function GalleryItem({ image, index, title, onOpen }: GalleryItemProps) {
   );
 }
 
-export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
+export default function ProjectGallery({
+  images,
+  title,
+  gridClassName = "grid-cols-2 gap-[6px] md:grid-cols-3",
+  itemClassName = "",
+}: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const activeImage = activeIndex === null ? null : images[activeIndex];
 
@@ -131,13 +139,14 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
 
   return (
     <>
-      <div className="grid grid-cols-2 items-start gap-[6px] [grid-auto-rows:8px] md:col-span-8 md:grid-cols-3">
+      <div className={`grid items-start [grid-auto-rows:8px] md:col-span-8 ${gridClassName}`}>
         {images.map((image, index) => (
           <GalleryItem
             key={`${image}-${index}`}
             image={image}
             index={index}
             title={title}
+            itemClassName={itemClassName}
             onOpen={() => setActiveIndex(index)}
           />
         ))}

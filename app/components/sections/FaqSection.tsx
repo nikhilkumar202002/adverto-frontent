@@ -57,7 +57,7 @@ const staggerGroup: Variants = {
 function StaticHeading() {
   return (
     <h2
-      className="mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] text-[#EDEDED] md:mb-6 md:text-[clamp(48px,6vw,56px)] lg:text-[60px]"
+      className="section-breakpoint-heading mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] text-[#EDEDED] md:mb-6 md:text-[clamp(48px,6vw,56px)] lg:text-[60px]"
     >
       {headingWords.map((line, lineIndex) => (
         <span key={lineIndex} className="block pb-[0.08em]">

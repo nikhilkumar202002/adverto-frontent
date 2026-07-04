@@ -7,14 +7,8 @@
   will-change: transform, opacity, clip-path;
 }
 
-@media (max-width: 1300px) {
-  .featuredCaseStudyTitle {
-    font-size: 20px;
-  }
-
-  .featuredCaseStudyLastDescription {
-    display: none;
-  }
+.featuredCaseStudyReadMore {
+  display: none;
 }
 
 @media (min-width: 768px) {
@@ -32,6 +26,25 @@
 @media (min-width: 1024px) and (max-width: 1100px) {
   .caseStudiesHeading {
     font-size: 56px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1300px) {
+  .caseStudiesHeading {
+    font-size: 56px;
+    line-height: 1;
+  }
+
+  .featuredCaseStudyTitle {
+    font-size: 20px;
+  }
+
+  .featuredCaseStudyLastDescription {
+    display: none;
+  }
+
+  .featuredCaseStudyReadMore {
+    display: inline-flex;
   }
 }
 

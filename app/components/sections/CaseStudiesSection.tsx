@@ -269,6 +269,13 @@ export default function CaseStudiesSection() {
               execution, every element was carefully crafted to capture the essence of celebration,
               sophistication, and renewal.
             </p>
+            <Link
+              href="/campigns/koickal-gold-diamonds"
+              className={`${styles.featuredCaseStudyReadMore} group mt-5 items-center gap-2 text-sm text-[#EDEDED] transition-colors hover:text-[#0000FF]`}
+            >
+              Read more
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
           </motion.div>
         </div>
 
