@@ -116,7 +116,7 @@ export default function ClientLogo() {
                       You can adjust the size depending on your base image resolutions */}
                   <Icon 
                     size={100} 
-                    className="max-w-[88px] max-h-[56px] sm:max-w-[104px] sm:max-h-[68px] md:max-w-[112px] md:max-h-[74px] lg:max-w-[120px] lg:max-h-[80px] w-auto h-auto object-contain opacity-100 grayscale-0 transition-all duration-300 xl:opacity-80 xl:grayscale xl:group-hover:opacity-100 xl:group-hover:grayscale-0" 
+                    className="max-w-[88px] max-h-[56px] sm:max-w-[104px] sm:max-h-[68px] md:max-w-[112px] md:max-h-[74px] lg:max-w-[120px] lg:max-h-[80px] w-auto h-auto object-contain opacity-80 grayscale transition-all duration-300 xl:group-hover:opacity-100 xl:group-hover:grayscale-0" 
                   />
                 </div>
               );

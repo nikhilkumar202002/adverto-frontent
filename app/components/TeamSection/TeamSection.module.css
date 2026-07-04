@@ -215,6 +215,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: inherit;
+  overflow: hidden;
   will-change: transform;
 }
 
@@ -227,6 +229,7 @@
   object-position: center center;
   filter:         grayscale(1) brightness(0.92);
   display:        block;
+  border-radius:  inherit;
   -webkit-user-drag: none;
 }
 
@@ -552,55 +555,43 @@
 @media (max-width: 768px) {
   .section {
     --card-w: min(78vw, 330px);
-    overflow: visible;
+    overflow: hidden;
   }
 
   .sticky {
-    height: auto;
-    min-height: 0;
-    display: block;
-    overflow: visible;
-    padding: 64px 0 46px;
-    perspective: none;
-    transform-style: flat;
+    height: 100svh;
+    min-height: 560px;
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    perspective: 100vh;
+    perspective-origin: 50% 48%;
+    transform-style: preserve-3d;
   }
 
   .deck {
-    position: relative;
-    inset: auto;
+    position: absolute;
+    inset: 0;
     z-index: 10;
-    display: flex;
-    height: auto;
-    gap: 16px;
-    overflow-x: auto;
-    overflow-y: visible;
-    padding: 0 20px 4px;
-    scroll-padding-left: 20px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    perspective: none;
-    transform-style: flat;
-    scrollbar-width: none;
-    will-change: auto;
-  }
-
-  .deck::-webkit-scrollbar {
-    display: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    perspective: 100vh;
+    perspective-origin: 50% 48%;
+    transform-style: preserve-3d;
+    will-change: transform;
   }
 
   .card {
-    position: relative;
-    top: auto;
-    left: auto;
-    z-index: auto;
-    flex: 0 0 var(--card-w);
-    scroll-snap-align: start;
-    border-radius: var(--card-radius);
-    opacity: 1;
-    transform: none;
-    transform-style: flat;
-    will-change: auto;
-    contain: layout paint;
+    position: absolute;
+    top: var(--mobile-card-top);
+    left: var(--mobile-card-left);
+    border-radius: 0;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    contain: layout;
   }
 
   .featuredCard {
@@ -614,11 +605,16 @@
   .imageWrap {
     aspect-ratio: 4 / 5;
     background: #111;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    clip-path: inset(0 round var(--card-radius));
+    transform: translateZ(0);
   }
 
   .imageParallaxInner,
   .image {
     height: 100%;
+    border-radius: var(--card-radius);
   }
 
   .image {
@@ -673,7 +669,7 @@
   }
 
   .projectsText {
-    display: none;
+    display: flex;
   }
 }
 
@@ -715,7 +711,7 @@
   }
 
   .sticky {
-    min-height: 0;
+    min-height: 540px;
   }
 
   .projectsHeading {

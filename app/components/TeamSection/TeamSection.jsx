@@ -221,13 +221,6 @@ export default function TeamSection() {
         timeline?.kill();
         gsap.killTweensOf([cards, projectsRef.current]);
 
-        if (isMobile) {
-          gsap.set(cards, { clearProps: "all" });
-          gsap.set(projectsRef.current, { autoAlpha: 1 });
-          ScrollTrigger.refresh();
-          return;
-        }
-
         /* ── Set initial depth positions ─────────────────────────────── */
         cards.forEach((card, i) => {
           const z = isMobile
@@ -271,9 +264,45 @@ export default function TeamSection() {
           },
         });
 
-        if (cards.length >= 2) {
+        if (isMobile) {
+          cards.forEach((card, index) => {
+            const cardTl = gsap.timeline();
+
+            cardTl
+              .set(card, { zIndex: total + index }, 0)
+              .to(
+                card,
+                {
+                  opacity: 1,
+                  duration: 0.35,
+                  ease: "none",
+                },
+                0
+              )
+              .to(
+                card,
+                {
+                  z: index === 0 ? firstPairDepth : nextPairDepth,
+                  duration: 3.4,
+                  ease: "none",
+                },
+                0
+              )
+              .to(
+                card,
+                {
+                  opacity: 0,
+                  duration: 0.45,
+                  ease: "none",
+                },
+                2.95
+              );
+
+            timeline.add(cardTl, index * 1.05);
+          });
+        } else if (cards.length >= 2) {
           timeline.to(
-            isMobile ? cards[0] : cards.slice(0, 2),
+            cards.slice(0, 2),
             {
               z: firstPairDepth,
               duration: 4,
@@ -281,45 +310,45 @@ export default function TeamSection() {
             },
             0
           );
+
+          cards.slice(2).forEach((card, offsetIndex) => {
+            const index = offsetIndex + 2;
+            const cardTl = gsap.timeline();
+            const timelineSlot = Math.floor(offsetIndex / 2);
+
+            cardTl
+              .set(card, { zIndex: total + index }, 0)
+              .to(
+                card,
+                {
+                  z: nextPairDepth,
+                  duration: 4,
+                  ease: "none",
+                },
+                0
+              )
+              .to(
+                card,
+                {
+                  opacity: 1,
+                  duration: 1,
+                  ease: "none",
+                },
+                0.4
+              )
+              .to(
+                card,
+                {
+                  opacity: 0,
+                  duration: 0.35,
+                  ease: "none",
+                },
+                3.65
+              );
+
+            timeline.add(cardTl, timelineSlot);
+          });
         }
-
-        cards.slice(isMobile ? 1 : 2).forEach((card, offsetIndex) => {
-          const index = offsetIndex + (isMobile ? 1 : 2);
-          const cardTl = gsap.timeline();
-          const timelineSlot = isMobile ? offsetIndex * 1.15 : Math.floor(offsetIndex / 2);
-
-          cardTl
-            .set(card, { zIndex: total + index }, 0)
-            .to(
-              card,
-              {
-                z: nextPairDepth,
-                duration: 4,
-                ease: "none",
-              },
-              0
-            )
-            .to(
-              card,
-              {
-                opacity: 1,
-                duration: 1,
-                ease: "none",
-              },
-              0.4
-            )
-            .to(
-              card,
-              {
-                opacity: 0,
-                duration: 0.35,
-                ease: "none",
-              },
-              3.65
-            );
-
-          timeline.add(cardTl, timelineSlot);
-        });
 
         timeline.to(
           cards,

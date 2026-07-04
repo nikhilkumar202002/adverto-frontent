@@ -19,6 +19,21 @@ export const metadata: Metadata = {
     "Start a branding, advertising, video production, or social media project with Adverto.",
 };
 
+const phoneNumbers = [
+  {
+    value: "+91 73565 60800",
+    href: "tel:+917356560800",
+  },
+  {
+    value: "+91 96052 83348",
+    href: "tel:+919605283348",
+  },
+  {
+    value: "+91 97479 12011",
+    href: "tel:+919747912011",
+  },
+];
+
 const contactMethods = [
   {
     label: "Email",
@@ -28,8 +43,7 @@ const contactMethods = [
   },
   {
     label: "Phone",
-    value: "+91 73565 60800",
-    href: "tel:+917356560800",
+    phoneNumbers,
     icon: Phone,
   },
   {
@@ -89,7 +103,7 @@ const responseSteps = [
 
 export default function ContactPage() {
   return (
-    <section className="relative overflow-hidden bg-[#050505] pt-32 pb-24 text-white md:pt-40 md:pb-32">
+    <section className="relative overflow-hidden bg-[#050505] pt-32 pb-24 text-white md:pt-36 md:pb-28 lg:pt-40 lg:pb-32">
       <Container>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8">
@@ -97,7 +111,7 @@ export default function ContactPage() {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Contact Us
             </p>
-            <h1 className="max-w-[920px] text-[32px] font-medium leading-[0.95] text-[#EDEDED] md:text-[96px]">
+            <h1 className="max-w-[920px] text-[32px] font-medium leading-[0.95] text-[#EDEDED] md:text-[56px] lg:text-[96px]">
               Start Your Next Brand Project
             </h1>
           </div>
@@ -109,11 +123,44 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-[20px] lg:grid-cols-12">
+        <div className="mt-12 grid grid-cols-1 gap-[20px] md:mt-14 lg:mt-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="grid grid-cols-1 gap-[20px]">
               {contactMethods.map((method) => {
                 const Icon = method.icon;
+
+                if ("phoneNumbers" in method) {
+                  return (
+                    <div
+                      key={method.label}
+                      className="group flex min-h-[150px] items-start justify-between gap-6 rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-colors duration-300 hover:border-[#0000FF] hover:bg-[#0f0f0f] md:p-8"
+                    >
+                      <div>
+                        <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-[20px] border border-white/10 text-[#0000FF] transition-colors duration-300 group-hover:border-[#0000FF]/50 group-hover:bg-[#0000FF]/10">
+                          <Icon size={20} strokeWidth={1.6} />
+                        </div>
+                        <p className="mb-2 text-xs uppercase tracking-[0.18em] text-white/35">
+                          {method.label}
+                        </p>
+                        <div className="flex flex-col items-start gap-1 text-xl font-medium leading-snug text-white">
+                          {phoneNumbers.map((number) => (
+                            <a
+                              key={number.href}
+                              href={number.href}
+                              className="transition-colors duration-300 hover:text-[#0000FF]"
+                            >
+                              {number.value}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                      <Phone
+                        size={18}
+                        className="mt-1 text-white/35 transition-colors duration-300 group-hover:text-white"
+                      />
+                    </div>
+                  );
+                }
 
                 return (
                   <Link

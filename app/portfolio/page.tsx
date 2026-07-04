@@ -20,7 +20,7 @@ export default function PortfolioPage() {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Portfolio
             </p>
-            <h1 className="w-full text-[40px] font-medium leading-[0.95] text-[#EDEDED] sm:text-[48px] md:max-w-[620px] md:text-[64px] lg:max-w-[700px] lg:text-[76px] xl:text-[82px]">
+            <h1 className="w-full text-[40px] font-medium leading-[0.95] text-[#EDEDED] sm:text-[48px] md:max-w-[560px] md:text-[52px] lg:max-w-[700px] lg:text-[76px] xl:text-[82px]">
               Branding & Creative Portfolio
             </h1>
           </div>
