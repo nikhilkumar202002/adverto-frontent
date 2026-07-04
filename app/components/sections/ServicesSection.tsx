@@ -30,15 +30,31 @@ const staggerRowVariants: Variants = {
   },
 };
 
+const servicesSequenceVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.32,
+    },
+  },
+};
+
+const servicesGridVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.08,
+      staggerChildren: 0.14,
+    },
+  },
+};
+
 const headingWords = ["Creative", "Services"];
 
 function WordRevealHeading() {
   return (
     <motion.h2
       className={`${styles.servicesHeading} font-medium leading-[1.05] text-[#EDEDED]`}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.7 }}
       variants={{
         hidden: {},
         visible: {
@@ -74,17 +90,14 @@ export default function ServicesSection() {
   return (
     <motion.section
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: false, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: smoothEase }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.18 }}
+      variants={servicesSequenceVariants}
     >
       <Container>
         <motion.div
           className="mb-[25px] grid grid-cols-1 items-end gap-6 md:grid-cols-12 md:gap-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.35 }}
           variants={staggerRowVariants}
         >
           <motion.div 
@@ -108,10 +121,7 @@ export default function ServicesSection() {
         {/* --- SERVICES GRID --- */}
         <motion.div
           className={`${styles.servicesGrid} gap-4 md:gap-5 lg:gap-6`}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.18 }}
-          variants={staggerRowVariants}
+          variants={servicesGridVariants}
         >
           {servicesData.map((service) => {
             const Icon = service.icon;

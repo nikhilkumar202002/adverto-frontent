@@ -35,7 +35,7 @@ function WordRevealHeading() {
       className="mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] tracking-tight text-[#EDEDED] md:text-[clamp(50px,6.5vw,60px)] lg:text-[70px]"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.7 }}
+      viewport={{ once: true, amount: 0.7 }}
       variants={{
         hidden: {},
         visible: {
@@ -119,7 +119,7 @@ export default function StorySection() {
       className="relative z-10 bg-[#050505] border-t border-white/5 py-16 sm:py-20 md:py-24 lg:py-32"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: false, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.7, ease: smoothEase }}
     >
       <Container>
@@ -127,7 +127,7 @@ export default function StorySection() {
           className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8 lg:gap-8"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.35 }}
           variants={staggerRowVariants}
         >
           

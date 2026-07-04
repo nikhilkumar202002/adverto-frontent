@@ -16,7 +16,6 @@ const page = () => {
   return (
     <>
       <HeroSection />
-
       <CaseStudiesSection />
       <ServicesSection />
       <StorySection />

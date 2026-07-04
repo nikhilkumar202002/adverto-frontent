@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import NoiseOverlay from "./components/common/NoiseOverlay";
 import CustomCursor from "./components/common/CustomCursor";
 import Preloader from "./components/common/Preloader";
+import SmoothScroll from "./components/common/SmoothScroll";
 // import CtaSection from "./components/sections/CtaSection";
 import Footer from "./components/footer/Footer";
 
@@ -24,17 +25,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className="relative overflow-x-hidden bg-black text-white">
-        <Preloader />
-        <NoiseOverlay />
-        <CustomCursor />
-        <Navbar />
+        <SmoothScroll>
+          <Preloader />
+          <NoiseOverlay />
+          <CustomCursor />
+          <Navbar />
           <main className="relative z-10 min-h-[100svh]">
             {children}
           </main>
-        {/* <CtaSection /> */}
-        <Footer />
+          {/* <CtaSection /> */}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

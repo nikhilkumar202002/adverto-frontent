@@ -36,7 +36,7 @@ function WordRevealHeading() {
       className="mb-4 text-[clamp(36px,11vw,45px)] font-medium leading-[1.08] text-[#EDEDED] md:mb-6 md:text-[clamp(48px,6vw,56px)] lg:text-[60px]"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.7 }}
+      viewport={{ once: true, amount: 0.7 }}
       variants={{
         hidden: {},
         visible: {
@@ -83,7 +83,7 @@ export default function FaqSection() {
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: false, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.7, ease: smoothEase }}
     >
       <Container>
@@ -91,7 +91,7 @@ export default function FaqSection() {
           className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-8 items-start"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.35 }}
           variants={staggerRowVariants}
         >
 

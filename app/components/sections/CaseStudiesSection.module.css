@@ -2,6 +2,11 @@
   font-size: clamp(36px, 11vw, 45px);
 }
 
+.featuredCaseStudy {
+  transform-origin: center bottom;
+  will-change: transform, opacity, clip-path;
+}
+
 @media (min-width: 768px) {
   .caseStudiesHeading {
     font-size: clamp(50px, 6.4vw, 60px);
@@ -17,5 +22,12 @@
 @media (min-width: 1024px) and (max-width: 1100px) {
   .caseStudiesHeading {
     font-size: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featuredCaseStudy {
+    clip-path: none !important;
+    transform: none !important;
   }
 }

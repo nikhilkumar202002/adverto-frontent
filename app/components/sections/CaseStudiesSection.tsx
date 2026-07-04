@@ -56,6 +56,67 @@ const staggerRowVariants: Variants = {
   },
 };
 
+const caseStudiesSequenceVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.34,
+    },
+  },
+};
+
+const caseStudyRevealVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 96,
+    clipPath: "inset(16% 0% 0% 0% round 20px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    clipPath: "inset(0% 0% 0% 0% round 20px)",
+    transition: {
+      duration: 0.95,
+      ease: smoothEase,
+      staggerChildren: 0.14,
+      delayChildren: 0.16,
+    },
+  },
+};
+
+const mediaRevealVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 1.08,
+    clipPath: "inset(0% 100% 0% 0% round 20px)",
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    clipPath: "inset(0% 0% 0% 0% round 20px)",
+    transition: { duration: 1, ease: smoothEase },
+  },
+};
+
+const copyRevealVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.72, ease: smoothEase },
+  },
+};
+
+const caseStudyGridVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.14,
+    },
+  },
+};
+
 const headingWords = [["Case", "Studies", "&"], ["Campaigns"]];
 
 function WordRevealHeading() {
@@ -64,7 +125,7 @@ function WordRevealHeading() {
       className={`${styles.caseStudiesHeading} font-medium leading-[1.08] text-[#EDEDED]`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.7 }}
+      viewport={{ once: true, amount: 0.7 }}
       variants={{
         hidden: {},
         visible: {
@@ -177,18 +238,15 @@ export default function CaseStudiesSection() {
   return (
     <motion.section
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: false, amount: 0.18 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.18 }}
+      variants={caseStudiesSequenceVariants}
     >
       <Container>
         {/* --- 1. SECTION HEADER --- */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-10 lg:mb-[50px]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.35 }}
           variants={staggerRowVariants}
         >
           {/* Title (Left, spans 6 cols) */}
@@ -217,44 +275,44 @@ export default function CaseStudiesSection() {
 
         {/* --- 2. FEATURED PROJECT 1 (KOICKAL) --- */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.22 }}
-          variants={fadeUpVariants}
-          className="group mb-5 grid grid-cols-1 items-center overflow-hidden rounded-[16px] border border-[#252525] bg-[#080808] md:rounded-[20px] lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)]"
+          variants={caseStudyRevealVariants}
+          className={`${styles.featuredCaseStudy} group mb-5 grid grid-cols-1 items-center overflow-hidden rounded-[16px] border border-[#252525] bg-[#080808] md:rounded-[20px] lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)]`}
         >
-          <div className="relative aspect-[3492/2000] w-full overflow-hidden rounded-[16px] bg-white/5 md:rounded-[20px] lg:h-[500px] lg:aspect-auto">
+          <motion.div
+            variants={mediaRevealVariants}
+            className="relative aspect-[3492/2000] w-full overflow-hidden rounded-[16px] bg-white/5 md:rounded-[20px] lg:h-[500px] lg:aspect-auto"
+          >
             <RotatingCampaignImage />
             <div className="pointer-events-none absolute inset-0 rounded-[16px] md:rounded-[20px] bg-black/10" />
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col justify-center p-5 sm:p-6 md:p-8 lg:min-h-[500px] lg:p-10 xl:p-12">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.15em] text-[#0000FF] md:text-xs">Grand Reopening Campaign</p>
-            <h3 className="mb-4 max-w-[720px] text-[25px] font-medium leading-[1.08] text-[#EDEDED] sm:text-[30px] md:text-[22px] lg:text-[35px] xl:text-4xl">
+          <motion.div
+            variants={staggerRowVariants}
+            className="flex flex-col justify-center p-5 sm:p-6 md:p-8 lg:min-h-[500px] lg:p-10 xl:p-12"
+          >
+            <motion.p variants={copyRevealVariants} className="mb-3 text-[11px] uppercase tracking-[0.15em] text-[#0000FF] md:text-xs">Grand Reopening Campaign</motion.p>
+            <motion.h3 variants={copyRevealVariants} className="mb-4 max-w-[720px] text-[25px] font-medium leading-[1.08] text-[#EDEDED] sm:text-[30px] md:text-[22px] lg:text-[35px] xl:text-4xl">
               Koickal Gold & Diamonds | Harippadinte Puthiya Thilakkam
-            </h3>
-            <p className="mb-4 max-w-[720px] text-[14px] leading-[1.65] text-white/50 md:text-[15px] lg:text-[14px] xl:text-[15px]">
+            </motion.h3>
+            <motion.p variants={copyRevealVariants} className="mb-4 max-w-[720px] text-[14px] leading-[1.65] text-white/50 md:text-[15px] lg:text-[14px] xl:text-[15px]">
               For the grand reopening of Koickal Gold & Diamonds, Harippad, we created &quot;Harippadinte
               Puthiya Thilakkam&quot; as the central idea of the campaign, reflecting both the renewed spirit
               of the brand and the pride of the town it serves. More than just a tagline, it was crafted
               to celebrate a new chapter while staying true to the brand&apos;s legacy of trust and elegance.
-            </p>
-            <p className="mb-0 max-w-[720px] text-[14px] leading-[1.65] text-white/50 md:text-[15px] lg:text-[14px] xl:text-[15px]">
+            </motion.p>
+            <motion.p variants={copyRevealVariants} className="mb-0 max-w-[720px] text-[14px] leading-[1.65] text-white/50 md:text-[15px] lg:text-[14px] xl:text-[15px]">
               To give the campaign a distinctive identity, we custom-designed the typography from the
               ground up, transforming the concept into a memorable visual statement. From ideation to
               execution, every element was carefully crafted to capture the essence of celebration,
               sophistication, and renewal.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </motion.div>
 
         {/* --- 3. COLLAGE GRID (3 Columns) --- */}
         <motion.div
           className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.18 }}
-          variants={staggerRowVariants}
+          variants={caseStudyGridVariants}
         >
           {/* Col 1 */}
           <div className="flex flex-col gap-4 md:gap-5">
@@ -310,9 +368,6 @@ export default function CaseStudiesSection() {
 
         <motion.div
           className="mt-12 md:mt-24"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.22 }}
           variants={fadeUpVariants}
         >
           <InfiniteProjectSlider projects={moreProjects} />
