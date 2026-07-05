@@ -98,7 +98,7 @@ const staggerGroup: Variants = {
 function StaticHeading() {
   return (
     <h2
-      className={`${styles.caseStudiesHeading} font-medium leading-[1.08] text-[#EDEDED]`}
+      className={`${styles.caseStudiesHeading} font-medium text-[#EDEDED]`}
     >
       {headingWords.map((line, lineIndex) => (
         <span key={lineIndex} className="block pb-[0.08em]">
@@ -233,7 +233,7 @@ export default function CaseStudiesSection() {
 
         {/* --- 2. FEATURED PROJECT 1 (KOICKAL) --- */}
         <div
-          className={`${styles.featuredCaseStudy} group mb-5 grid grid-cols-1 items-center overflow-hidden rounded-[16px] border border-[#252525] bg-[#080808] md:rounded-[20px] lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)]`}
+          className={`${styles.featuredCaseStudy} group mb-5 grid grid-cols-1 items-center gap-4 overflow-hidden rounded-[16px] border border-[#252525] bg-[#080808] p-3 md:rounded-[20px] md:p-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:gap-6`}
         >
           <motion.div
             className="relative aspect-[3492/2000] w-full overflow-hidden rounded-[16px] bg-white/5 md:rounded-[20px]"
@@ -247,7 +247,7 @@ export default function CaseStudiesSection() {
           </motion.div>
 
           <motion.div
-            className="flex flex-col justify-center p-5 sm:p-6 md:p-8 lg:p-10 xl:p-12"
+            className="flex flex-col justify-center p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8"
             initial="hidden"
             whileInView="visible"
             viewport={sectionRevealViewport}

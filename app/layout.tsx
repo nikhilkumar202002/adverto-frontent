@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Navbar from "./components/navbar/Navbar";
 import NoiseOverlay from "./components/common/NoiseOverlay";
 import CustomCursor from "./components/common/CustomCursor";
+import PageTransition from "./components/common/PageTransition";
 import Preloader from "./components/common/Preloader";
 import SmoothScroll from "./components/common/SmoothScroll";
 import ScrollTopWhatsapp from "./components/common/ScrollTopWhatsapp";
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="relative overflow-x-hidden bg-black text-white">
         <SmoothScroll>
           <Preloader />
+          <PageTransition />
           <NoiseOverlay />
           <CustomCursor />
           <Navbar />
