@@ -68,7 +68,7 @@ function GalleryItem({ image, index, title, onOpen, itemClassName = "" }: Galler
       type="button"
       onClick={onOpen}
       style={{ gridRowEnd: `span ${rowSpan}` }}
-      className={`group relative w-full overflow-hidden bg-[#0A0A0A] text-left ${itemClassName}`}
+      className={`group relative w-full overflow-hidden rounded-[20px] bg-[#0A0A0A] text-left ${itemClassName}`}
       aria-label={`Open ${title} gallery image ${index + 1}`}
     >
       <img
@@ -90,7 +90,7 @@ function GalleryItem({ image, index, title, onOpen, itemClassName = "" }: Galler
 export default function ProjectGallery({
   images,
   title,
-  gridClassName = "grid-cols-2 gap-[6px] md:grid-cols-3",
+  gridClassName = "grid-cols-2 gap-[10px] md:gap-[20px] xl:grid-cols-3",
   itemClassName = "",
 }: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -139,7 +139,7 @@ export default function ProjectGallery({
 
   return (
     <>
-      <div className={`grid items-start [grid-auto-rows:8px] md:col-span-8 ${gridClassName}`}>
+      <div className={`grid items-start [grid-auto-rows:8px] ${gridClassName}`}>
         {images.map((image, index) => (
           <GalleryItem
             key={`${image}-${index}`}

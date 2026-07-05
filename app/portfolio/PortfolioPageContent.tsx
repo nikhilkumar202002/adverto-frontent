@@ -129,7 +129,7 @@ export default function PortfolioPageContent({
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Portfolio
             </p>
-            <h1 className="w-full text-[40px] font-medium leading-[0.95] text-[#EDEDED] sm:text-[48px] md:max-w-[560px] md:text-[52px] lg:max-w-[700px] lg:text-[76px] xl:text-[82px]">
+            <h1 className="w-full text-[38px] font-medium leading-[0.98] text-[#EDEDED] sm:text-[46px] md:max-w-[560px] md:text-[50px] lg:max-w-[620px] lg:text-[64px] xl:max-w-[700px] xl:text-[76px]">
               Branding & Creative Portfolio
             </h1>
           </motion.div>
