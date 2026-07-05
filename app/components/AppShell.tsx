@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import Preloader from "./Preloader/Preloader";
 import Navbar from "./navbar/Navbar";
 import NoiseOverlay from "./common/NoiseOverlay";
@@ -10,8 +10,6 @@ import ScrollTopWhatsapp from "./common/ScrollTopWhatsapp";
 import Footer from "./footer/Footer";
 
 export default function AppShell({ children }: { children: ReactNode }) {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <>
       <SmoothScroll>
@@ -22,7 +20,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         <ScrollTopWhatsapp />
         <Footer />
       </SmoothScroll>
-      {isLoading ? <Preloader onComplete={() => setIsLoading(false)} /> : null}
+      <Preloader />
     </>
   );
 }

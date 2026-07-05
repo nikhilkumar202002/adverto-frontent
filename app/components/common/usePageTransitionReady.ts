@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 declare global {
   interface Window {
-    __advertoPreloaderComplete?: boolean;
     __advertoPageTransitionComplete?: boolean;
   }
 }
@@ -24,11 +23,10 @@ export default function usePageTransitionReady(waitForPageTransition = false) {
     const isTransitionReady = () => {
       if (!waitForPageTransition) return true;
 
-      const preloaderComplete = window.__advertoPreloaderComplete === true;
       const pageTransitionComplete =
         window.__advertoPageTransitionComplete !== false;
 
-      return preloaderComplete && pageTransitionComplete;
+      return pageTransitionComplete;
     };
 
     const handleReadyEvent = () => {
@@ -41,7 +39,6 @@ export default function usePageTransitionReady(waitForPageTransition = false) {
       finishOnNextFrame();
     }
 
-    window.addEventListener("adverto:preloader-complete", handleReadyEvent);
     window.addEventListener(
       "adverto:page-transition-complete",
       handleReadyEvent,
@@ -49,10 +46,6 @@ export default function usePageTransitionReady(waitForPageTransition = false) {
 
     return () => {
       if (frameId) window.cancelAnimationFrame(frameId);
-      window.removeEventListener(
-        "adverto:preloader-complete",
-        handleReadyEvent,
-      );
       window.removeEventListener(
         "adverto:page-transition-complete",
         handleReadyEvent,

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Container from "../common/Container";
@@ -91,36 +90,6 @@ const buttonRowVariants: Variants = {
 };
 
 export default function HeroSection() {
-  const [isPreloaderComplete, setIsPreloaderComplete] = useState(false);
-
-  useEffect(() => {
-    let revealTimer: number | undefined;
-
-    const startHeroReveal = () => {
-      setIsPreloaderComplete(true);
-    };
-
-    const preloaderComplete = (window as typeof window & {
-      __advertoPreloaderComplete?: boolean;
-    }).__advertoPreloaderComplete;
-
-    if (preloaderComplete) {
-      revealTimer = window.setTimeout(startHeroReveal, 0);
-      return () => {
-        if (revealTimer) window.clearTimeout(revealTimer);
-      };
-    }
-
-    window.addEventListener("adverto:preloader-complete", startHeroReveal, {
-      once: true,
-    });
-
-    return () => {
-      window.removeEventListener("adverto:preloader-complete", startHeroReveal);
-      if (revealTimer) window.clearTimeout(revealTimer);
-    };
-  }, []);
-
   return (
     <section
       className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-screen md:min-h-[100svh]"
@@ -143,7 +112,7 @@ export default function HeroSection() {
         <motion.div
           className="flex w-full max-w-[1100px] flex-col items-center justify-center text-center"
           initial="hidden"
-          animate={isPreloaderComplete ? "visible" : "hidden"}
+          animate="visible"
           variants={heroSequenceVariants}
         >
           <motion.p

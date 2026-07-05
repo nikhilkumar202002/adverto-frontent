@@ -1,63 +1,63 @@
-.overlay {
-  --loader-blue: #1f43ff;
-  --loader-white: #ffffff;
-
+.preloader {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  display: grid;
-  place-items: center;
-  min-height: 100svh;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: var(--loader-blue);
   pointer-events: auto;
+  will-change: opacity;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-color: #1f43ff;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.logoGroup {
+  position: relative;
+  width: clamp(122px, 18vw, 190px);
+  aspect-ratio: 222.02 / 210.13;
   will-change: transform;
 }
 
-.logo {
-  position: relative;
-  width: clamp(110px, 18vw, 178px);
-  aspect-ratio: 222.02 / 210.13;
-  overflow: hidden;
-}
-
-.bar,
-.circle {
+.rectangle {
   position: absolute;
-  display: block;
-  background: var(--loader-white);
-  user-select: none;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  will-change: opacity, transform;
-}
-
-.bar {
-  left: 65.5%;
   top: 50%;
+  left: 65.5%;
   z-index: 2;
   width: 23.3%;
   height: 100%;
-  border-radius: 0;
   clip-path: polygon(0 0, 57.1% 0, 100% 100%, 42.9% 100%);
-  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  opacity: 0;
+  backface-visibility: hidden;
+  will-change: opacity, transform;
 }
 
 .circle {
-  left: 30.35%;
+  position: absolute;
   top: 68%;
+  left: 30.35%;
   z-index: 1;
   width: 60.1%;
   aspect-ratio: 1;
-  border-radius: 999px;
-  transform: translate(-50%, -50%);
-  transform-origin: center center;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0;
+  backface-visibility: hidden;
+  will-change: opacity, transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .overlay,
-  .bar,
+  .preloader,
+  .background,
+  .logoGroup,
+  .rectangle,
   .circle {
     will-change: auto;
   }

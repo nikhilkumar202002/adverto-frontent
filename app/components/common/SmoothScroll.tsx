@@ -29,12 +29,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
     lenis.on("scroll", updateScrollTrigger);
     scrollToTop();
-    window.addEventListener("adverto:preloader-complete", scrollToTop, {
-      once: true,
-    });
 
     return () => {
-      window.removeEventListener("adverto:preloader-complete", scrollToTop);
       lenis.off("scroll", updateScrollTrigger);
       lenis.destroy();
     };
