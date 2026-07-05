@@ -96,14 +96,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-20 overflow-hidden bg-black text-white md:min-h-[100svh]">
-      <Container className="relative z-10 flex min-h-[420px] flex-col justify-between py-8 md:min-h-[100svh] md:py-10">
-        <div className="flex flex-1 flex-col items-center justify-center py-8 text-center md:py-0">
-          <h2 className="text-[clamp(52px,18vw,92px)] font-semibold leading-[0.82] tracking-normal text-[#f4f3ef] md:text-[clamp(72px,17vw,300px)] md:leading-[0.78]">
+    <footer className="relative z-20 overflow-hidden bg-black text-white lg:min-h-[100svh]">
+      <Container className="relative z-10 flex min-h-[520px] flex-col justify-between py-8 md:min-h-[720px] md:py-10 lg:min-h-[100svh]">
+        <div className="flex flex-1 flex-col items-center justify-center py-10 text-center md:py-0">
+          <h2 className="text-[clamp(52px,18vw,92px)] font-semibold leading-[0.82] tracking-normal text-[#f4f3ef] md:text-[clamp(86px,14vw,150px)] md:leading-[0.8] xl:text-[clamp(130px,17vw,300px)] xl:leading-[0.78]">
             Let<span className="text-[#0000FF]">&apos;</span>s Talk
           </h2>
 
-          <Button href="/contact" className="mt-8 md:mt-20">
+          <Button href="/contact" className="mt-8 md:mt-12 xl:mt-20">
             Contact Us
           </Button>
         </div>
@@ -111,7 +111,7 @@ export default function Footer() {
         <button
           type="button"
           onClick={moveToTop}
-          className="absolute bottom-[110px] right-[clamp(24px,4vw,80px)] hidden h-[74px] items-center gap-5 rounded-[22px] bg-white/15 pl-10 pr-2 text-[18px] font-semibold text-white/70 transition-colors duration-300 hover:bg-white/20 hover:text-white lg:inline-flex"
+          className="absolute bottom-[110px] right-[clamp(24px,4vw,80px)] hidden h-[74px] items-center gap-5 rounded-[22px] bg-white/15 pl-10 pr-2 text-[18px] font-semibold text-white/70 transition-colors duration-300 hover:bg-white/20 hover:text-white xl:inline-flex"
           aria-label="Move to top"
         >
           Move to top
@@ -120,8 +120,8 @@ export default function Footer() {
           </span>
         </button>
 
-        <div className="grid items-center gap-4 pb-1 text-[14px] text-white/60 md:grid-cols-3 md:gap-6 md:text-[15px]">
-          <p className="text-center md:text-left">
+        <div className="grid items-center gap-4 pb-1 text-[13px] text-white/60 md:text-[14px] lg:grid-cols-3 lg:gap-6 lg:text-[15px]">
+          <p className="text-center lg:text-left">
             Adverto © {currentYear} All rights reserved
           </p>
 
@@ -143,7 +143,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 md:justify-end md:gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-end lg:gap-5">
             <Link href="/privacy-policy" className="transition-colors hover:text-white">
               Privacy Policy
             </Link>

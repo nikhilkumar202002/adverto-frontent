@@ -124,53 +124,49 @@ export default function ServicesSection() {
               <motion.div
                 key={service.id}
                 variants={cardVariants}
-                className="group relative overflow-hidden flex flex-col justify-between rounded-[16px] md:rounded-[20px] border border-white/10 p-5 sm:p-6 md:p-8 lg:p-10 transition-colors duration-500 hover:border-white/25 min-h-[300px] sm:min-h-[340px] md:min-h-[360px] lg:min-h-[380px]"
               >
-                <img
-                  src={serviceCardBackground}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  aria-hidden="true"
-                  className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                <Link
+                  href={service.link}
+                  className="group relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[16px] border border-white/10 p-5 transition-colors duration-500 hover:border-white/25 sm:min-h-[340px] sm:p-6 md:min-h-[360px] md:rounded-[20px] md:p-8 lg:min-h-[380px] lg:p-10"
+                >
+                  <img
+                    src={serviceCardBackground}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    aria-hidden="true"
+                    className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
 
-                <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/85 via-black/35 to-black/10 transition-opacity duration-500 group-hover:opacity-90" />
+                  <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/85 via-black/35 to-black/10 transition-opacity duration-500 group-hover:opacity-90" />
 
-                {/* Radial Glow Drop 
-                  A large, blurred circle placed slightly above the top edge.
-                  Fades in and drops down slightly (translate-y) on hover.
-                */}
-                <div className="absolute -top-[150px] left-1/2 z-[2] w-[300px] h-[300px] -translate-x-1/2 rounded-full bg-white/20 blur-[80px] pointer-events-none opacity-0 transition-all duration-700 group-hover:opacity-100 group-hover:translate-y-8" />
+                  <div className="pointer-events-none absolute -top-[150px] left-1/2 z-[2] h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-white/20 opacity-0 blur-[80px] transition-all duration-700 group-hover:translate-y-8 group-hover:opacity-100" />
 
-                {/* Content Wrapper - Keeps text above the glow (z-10) */}
-                <div className="relative z-10">
-                  {/* Number & Icon */}
-                  <div className="flex flex-col gap-4 md:gap-5 lg:gap-6 mb-4">
-                    <span className="text-white font-medium text-base md:text-lg">
-                      {service.id}
-                    </span>
-                    <div className="w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-md border border-white/30 transition-colors duration-500 group-hover:border-white/70 group-hover:bg-white/10">
-                      <Icon className="text-white" size={20} strokeWidth={1.5} />
+                  <div className="relative z-10">
+                    <div className="mb-4 flex flex-col gap-4 md:gap-5 lg:gap-6">
+                      <span className="text-base font-medium text-white md:text-lg">
+                        {service.id}
+                      </span>
+                      <div className="flex h-11 w-11 items-center justify-center rounded-md border border-white/30 transition-colors duration-500 group-hover:border-white/70 group-hover:bg-white/10 md:h-12 md:w-12">
+                        <Icon className="text-white" size={20} strokeWidth={1.5} />
+                      </div>
                     </div>
+
+                    <h3 className="mb-2 text-lg font-medium text-white md:text-xl">
+                      {service.title}
+                    </h3>
+                    <p className="mb-4 text-[14px] leading-[1.45] text-white/75 md:text-[15px] lg:text-[16px]">
+                      {service.description}
+                    </p>
                   </div>
 
-                  {/* Text Content */}
-                  <h3 className="text-lg md:text-xl font-medium text-white mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-white/75 text-[14px] md:text-[15px] lg:text-[16px] leading-[1.45] mb-4">
-                    {service.description}
-                  </p>
-                </div>
-
-                {/* Explore Link */}
-                <Link 
-                  href={service.link}
-                  className="relative z-10 flex items-center gap-2 text-[12px] font-medium tracking-[0.1em] text-white/75 uppercase transition-colors duration-300 group-hover:text-white mt-auto w-max"
-                >
-                  Explore 
-                  <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <span className="relative z-10 mt-auto flex w-max items-center gap-2 text-[12px] font-medium uppercase tracking-[0.1em] text-white/75 transition-colors duration-300 group-hover:text-white">
+                    Explore
+                    <ArrowRight
+                      size={14}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </span>
                 </Link>
               </motion.div>
             );
