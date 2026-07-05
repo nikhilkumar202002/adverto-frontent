@@ -1,0 +1,51 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #1f43ff;
+  pointer-events: auto;
+}
+
+.logo {
+  position: relative;
+  width: clamp(118px, 16vw, 178px);
+  aspect-ratio: 126.31 / 119.91;
+}
+
+.rectangle,
+.circle {
+  position: absolute;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  filter: brightness(0) invert(1);
+  will-change: opacity, transform;
+}
+
+.rectangle {
+  left: 65.5%;
+  top: 50%;
+  width: auto;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  left: 30.1%;
+  top: 68%;
+  width: 60.3%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rectangle,
+  .circle {
+    will-change: auto;
+  }
+}

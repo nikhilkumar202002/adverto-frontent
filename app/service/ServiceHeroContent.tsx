@@ -6,6 +6,7 @@ import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import usePageTransitionReady from "../components/common/usePageTransitionReady";
 
 const headlineText = "Brand, Campaign & Content Systems";
+const mobileHeadlineText = "Brand,\nCampaign &\nContent Systems";
 const easeOut: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const contentVariants: Variants = {
@@ -57,7 +58,13 @@ export default function ServiceHeroContent({
       <InnerBannerHeading
         text={headlineText}
         active={isReady}
-        className="sm:max-w-[12ch] md:max-w-[820px] lg:max-w-[940px]"
+        className="hidden md:block md:max-w-[820px] lg:max-w-[940px]"
+      />
+      <InnerBannerHeading
+        text={mobileHeadlineText}
+        active={isReady}
+        variant="custom"
+        className="block text-[45px] font-medium leading-[0.94] text-[#EDEDED] md:hidden"
       />
 
       <motion.p

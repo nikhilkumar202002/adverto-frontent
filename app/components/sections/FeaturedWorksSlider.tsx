@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { portfolioPageProjects } from "../../data/portfolio";
+import InnerBannerHeading from "../common/InnerBannerHeading";
 import Reveal from "../common/Reveal";
 
 type PortfolioProject = {
@@ -31,9 +32,13 @@ export default function FeaturedWorksSlider({
       <Reveal waitForPageTransition={waitForPageTransition}>
         <div className="mb-10 flex items-end justify-between gap-6 px-[80px] max-xl:px-[60px] max-lg:px-[40px] max-md:px-[24px]">
           <div>
-            <h2 className="max-w-[720px] text-[42px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5] md:text-[72px]">
-              Selected projects in motion.
-            </h2>
+            <InnerBannerHeading
+              as="h2"
+              text="Selected projects in motion."
+              variant="custom"
+              className="max-w-[720px] text-[42px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5] md:text-[72px]"
+              waitForPageTransition={waitForPageTransition}
+            />
           </div>
           <Link
             href="/portfolio"

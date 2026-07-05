@@ -40,7 +40,7 @@ const verticalVideos = [
 ];
 
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const titleText = "Frames That Move Brands";
+const titleText = "Frames That\nMove Brands";
 
 const labelReveal: Variants = {
   hidden: {
@@ -191,11 +191,12 @@ export default function ServiceVideoShowcase({
 
   return (
     <div>
-      <div className="mb-12 max-w-[1100px]">
+      <div className="mb-[25px] max-w-[1100px] md:mb-12">
         <motion.p
           className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]"
           initial="hidden"
-          animate={animationState}
+          whileInView={motionReady ? "visible" : "hidden"}
+          viewport={{ once: false, amount: 0.35 }}
           variants={labelReveal}
         >
           <span className="h-[1px] w-[30px] bg-[#0000FF]" />
@@ -205,7 +206,9 @@ export default function ServiceVideoShowcase({
           as="h2"
           text={titleText}
           active={motionReady}
-          className="max-w-[10ch]"
+          revealOnScroll
+          variant="custom"
+          className="max-w-[720px] text-[45px] font-medium leading-[0.94] text-[#EDEDED] min-[720px]:text-[50px] min-[920px]:text-[55px] lg:max-w-[1100px] lg:text-[76px] min-[1320px]:text-[100px]"
         />
       </div>
 

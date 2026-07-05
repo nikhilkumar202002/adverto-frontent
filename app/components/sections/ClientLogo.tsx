@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Container from "../common/Container";
+import InnerBannerHeading from "../common/InnerBannerHeading";
 import usePageTransitionReady from "../common/usePageTransitionReady";
 import { clientLogos } from "../../data/logos";
 
@@ -89,7 +90,18 @@ export default function ClientLogo({
               <span className="w-[20px] md:w-[30px] h-[1px] bg-[#0000FF]"></span>
             </p>
             <div>
-              <StaticHeading />
+              {waitForPageTransition ? (
+                <InnerBannerHeading
+                  as="h2"
+                  text={headingWords.join(" ")}
+                  variant="custom"
+                  className="section-breakpoint-heading text-[clamp(32px,9vw,40px)] md:text-[clamp(46px,5.6vw,54px)] lg:text-[60px] font-medium leading-[1.1] text-[#EDEDED]"
+                  active={isReady}
+                  waitForPageTransition={waitForPageTransition}
+                />
+              ) : (
+                <StaticHeading />
+              )}
             </div>
           </motion.div>
 

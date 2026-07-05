@@ -108,16 +108,16 @@ export default function OurTeamPage() {
         <Container>
           <Reveal x={-56} y={0} once={false} waitForPageTransition>
             <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
-              <div className="md:col-span-7">
+              <div className="md:col-span-12 xl:col-span-7">
                 <p className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
                   <span className="h-[1px] w-[30px] bg-[#0000FF]" />
                   Studio Team
                 </p>
                 <InnerBannerHeading
                   as="h2"
-                  text="Creative Minds, Production Hands"
+                  text={"Creative Minds,\nProduction Hands"}
                   variant="custom"
-                  className="w-full text-[36px] font-medium leading-[1] text-[#EDEDED] sm:text-[44px] md:text-[58px] lg:text-[66px] xl:text-[70px]"
+                  className="w-full max-w-[900px] text-[36px] font-medium leading-[1] text-[#EDEDED] sm:text-[44px] md:text-[58px] lg:text-[66px] xl:max-w-[720px] xl:text-[70px]"
                 />
               </div>
             </div>

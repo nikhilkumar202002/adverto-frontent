@@ -1,4 +1,5 @@
 import Container from "../common/Container";
+import InnerBannerHeading from "../common/InnerBannerHeading";
 import Reveal from "../common/Reveal";
 
 const principles = [
@@ -29,9 +30,13 @@ export default function HowItsWork({
                     <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                     How We Work
                   </p>
-                  <h2 className="mb-8 max-w-[680px] text-[42px] font-medium leading-[0.96] tracking-[-0.03em] text-[#F5F5F5] md:text-[68px]">
-                    Strategy, creativity, and execution in one clear direction.
-                  </h2>
+                  <InnerBannerHeading
+                    as="h2"
+                    text="Strategy, creativity, and execution in one clear direction."
+                    variant="custom"
+                    className="mb-8 max-w-[680px] text-[42px] font-medium leading-[0.96] tracking-[-0.03em] text-[#F5F5F5] md:text-[68px]"
+                    waitForPageTransition={waitForPageTransition}
+                  />
                   <div className="max-w-[760px] space-y-5 text-[17px] leading-[1.65] text-white/60 md:text-[19px]">
                     <p>
                       Every project begins with understanding the business. From
@@ -57,9 +62,13 @@ export default function HowItsWork({
                   <span className="h-[1px] w-[34px] bg-white" />
                   What We Believe
                 </p>
-                <h3 className="mb-6 text-[34px] font-medium leading-[1] tracking-[-0.03em] text-white md:text-[48px]">
-                  Purpose first. Thoughtfully executed.
-                </h3>
+                <InnerBannerHeading
+                  as="h3"
+                  text="Purpose first. Thoughtfully executed."
+                  variant="custom"
+                  className="mb-6 text-[34px] font-medium leading-[1] tracking-[-0.03em] text-white md:text-[48px]"
+                  waitForPageTransition={waitForPageTransition}
+                />
                 <div className="space-y-5 text-[16px] leading-[1.65] text-white/75 md:text-[18px]">
                   <p>
                     We believe good design should solve problems, not just look

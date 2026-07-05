@@ -10,6 +10,7 @@ type InnerBannerHeadingProps = {
   active?: boolean;
   className?: string;
   highlightPrefix?: string;
+  revealOnScroll?: boolean;
   variant?: "banner" | "custom";
   waitForPageTransition?: boolean;
 };
@@ -51,13 +52,17 @@ export default function InnerBannerHeading({
   active = true,
   className = "",
   highlightPrefix,
+  revealOnScroll = true,
   variant = "banner",
   waitForPageTransition = true,
 }: InnerBannerHeadingProps) {
   const isReady = usePageTransitionReady(waitForPageTransition);
-  const words = text.split(" ").filter(Boolean);
-  const allWords = highlightPrefix ? [highlightPrefix, ...words] : words;
-  const label = allWords.join(" ");
+  const lines = text.split("\n").map((line) => line.split(" ").filter(Boolean));
+  const allLines =
+    highlightPrefix && lines.length > 0
+      ? [[highlightPrefix, ...lines[0]], ...lines.slice(1)]
+      : lines;
+  const label = allLines.map((line) => line.join(" ")).join(" ");
   const MotionHeading =
     as === "h2" ? motion.h2 : as === "h3" ? motion.h3 : motion.h1;
   const variantClassName =
@@ -70,24 +75,32 @@ export default function InnerBannerHeading({
       className={`${variantClassName} ${className}`}
       aria-label={label}
       initial="hidden"
-      animate={active && isReady ? "visible" : "hidden"}
+      animate={revealOnScroll ? undefined : active && isReady ? "visible" : "hidden"}
+      whileInView={revealOnScroll && active && isReady ? "visible" : undefined}
+      viewport={revealOnScroll ? { once: false, amount: 0.35 } : undefined}
       variants={headingVariants}
     >
-      {allWords.map((word, index) => (
-        <span
-          key={`${word}-${index}`}
-          className="inline-block overflow-hidden align-bottom pb-[0.12em]"
-          aria-hidden="true"
-        >
-          <motion.span
-            className={`inline-block origin-bottom will-change-transform ${
-              highlightPrefix && index === 0 ? "text-[#0000FF]" : ""
-            }`}
-            variants={wordVariants}
-          >
-            {word}
-          </motion.span>
-          {index < allWords.length - 1 ? "\u00A0" : null}
+      {allLines.map((line, lineIndex) => (
+        <span key={`${line.join("-")}-${lineIndex}`} className="block">
+          {line.map((word, wordIndex) => (
+            <span
+              key={`${word}-${lineIndex}-${wordIndex}`}
+              className="inline-block overflow-hidden align-bottom pb-[0.12em]"
+              aria-hidden="true"
+            >
+              <motion.span
+                className={`inline-block origin-bottom will-change-transform ${
+                  highlightPrefix && lineIndex === 0 && wordIndex === 0
+                    ? "text-[#0000FF]"
+                    : ""
+                }`}
+                variants={wordVariants}
+              >
+                {word}
+              </motion.span>
+              {wordIndex < line.length - 1 ? "\u00A0" : null}
+            </span>
+          ))}
         </span>
       ))}
     </MotionHeading>

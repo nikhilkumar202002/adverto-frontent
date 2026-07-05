@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -41,30 +42,6 @@ const fadeFromLeft: Variants = {
   },
 };
 
-const fadeFromRight: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 56,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.85,
-      ease: smoothEase,
-    },
-  },
-};
-
-const staggerGroup: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.045,
-    },
-  },
-};
-
 const gridCardReveal: Variants = {
   hidden: {
     opacity: 0,
@@ -82,10 +59,47 @@ const gridCardReveal: Variants = {
   },
 };
 
+const portfolioScrollKey = "adverto:portfolio-scroll-y";
+const portfolioRestoreKey = "adverto:portfolio-restore-on-return";
+
 export default function PortfolioPageContent({
   projects,
 }: PortfolioPageContentProps) {
   const motionReady = usePageTransitionReady(true);
+  const savePortfolioScroll = useCallback(() => {
+    sessionStorage.setItem(portfolioScrollKey, String(window.scrollY));
+    sessionStorage.setItem(portfolioRestoreKey, "true");
+  }, []);
+
+  useEffect(() => {
+    const shouldRestore =
+      sessionStorage.getItem(portfolioRestoreKey) === "true";
+    const storedScrollY = sessionStorage.getItem(portfolioScrollKey);
+
+    if (!motionReady || !shouldRestore || !storedScrollY) return;
+
+    const scrollY = Number(storedScrollY);
+    if (!Number.isFinite(scrollY)) return;
+
+    sessionStorage.removeItem(portfolioRestoreKey);
+    sessionStorage.removeItem(portfolioScrollKey);
+
+    let frameId = 0;
+    let settleTimer: number | undefined;
+
+    frameId = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: scrollY, behavior: "instant" });
+
+      settleTimer = window.setTimeout(() => {
+        window.scrollTo({ top: scrollY, behavior: "instant" });
+      }, 180);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      if (settleTimer) window.clearTimeout(settleTimer);
+    };
+  }, [motionReady]);
 
   return (
     <section className="relative bg-[#050505] pb-[25px] pt-32 md:pb-32 md:pt-40">
@@ -94,9 +108,9 @@ export default function PortfolioPageContent({
           <ServiceVideoShowcase motionReady={motionReady} />
         </div>
 
-        <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-12">
+        <div className="mb-[25px] grid grid-cols-1 gap-8 md:mb-14 md:grid-cols-12">
           <motion.div
-            className="md:col-span-7"
+            className="md:col-span-12 lg:col-span-10"
             initial="hidden"
             whileInView={motionReady ? "visible" : "hidden"}
             viewport={sectionRevealViewport}
@@ -107,28 +121,29 @@ export default function PortfolioPageContent({
               Portfolio
             </p>
             <InnerBannerHeading
-              text="Branding & Creative Portfolio"
+              text={"Branding &\nCreative Portfolio"}
               active={motionReady}
-              className="md:max-w-[760px] lg:max-w-[900px]"
+              revealOnScroll
+              variant="custom"
+              className="max-w-[720px] text-[45px] font-medium leading-[0.94] text-[#EDEDED] min-[720px]:text-[50px] min-[920px]:text-[55px] lg:max-w-[1100px] lg:text-[76px] min-[1320px]:text-[100px]"
             />
           </motion.div>
         </div>
 
-        <motion.div
-          className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
-          initial="hidden"
-          whileInView={motionReady ? "visible" : "hidden"}
-          viewport={{ once: true, amount: 0.08 }}
-          variants={staggerGroup}
-        >
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
               <motion.div
                 key={project.slug}
+                initial="hidden"
+                whileInView={motionReady ? "visible" : "hidden"}
+                viewport={{ once: false, amount: 0.16 }}
                 variants={gridCardReveal}
+                transition={{ delay: 0.045 }}
                 className="will-change-transform [transform:translateZ(0)]"
               >
                 <Link
                   href={`/portfolio/${project.slug}`}
+                  onClick={savePortfolioScroll}
                   className="group relative block overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A]"
                 >
                   <div className="aspect-[4/3] overflow-hidden">
@@ -147,7 +162,7 @@ export default function PortfolioPageContent({
                 </Link>
               </motion.div>
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
