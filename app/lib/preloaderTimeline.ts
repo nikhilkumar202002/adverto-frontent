@@ -1,22 +1,21 @@
 import gsap from "gsap";
 
-export const BG_FADE_IN = 0.3;
-export const RECT_GROW = 0.72;
-export const RECT_FALL = 0.78;
-export const CIRCLE_GROW = 1.02;
-export const LOGO_SETTLE_OVERLAP = 0.34;
-export const HOLD = 0.72;
-export const TRANSITION_DURATION = 1.18;
-export const LOADER_FADE_OUT = 0.25;
+export const BG_FADE_IN = 0.45;
+export const LINE_RAISE = 0.7;
+export const BAR_FALL = 0.9;
+export const GROUND_HOLD = 0.22;
+export const CIRCLE_POP = 0.85;
+export const HOLD = 1;
+export const TRANSITION_DURATION = 1.35;
+export const LOADER_FADE_OUT = 0.35;
 
-const RECT_INITIAL_Y = 14;
-const RECT_FALL_X = -54;
-const RECT_FALL_Y = 48;
-const RECT_FALL_ROTATION = -66;
-const RECT_INITIAL_SCALE_X = 0.9;
-const RECT_INITIAL_SCALE_Y = 0.06;
-const CIRCLE_INITIAL_Y = 10;
 const COVER_SAFETY_MARGIN = 48;
+const BAR_GROUND_Y = 52;
+const BAR_FINAL_Y = 0;
+const BAR_GROUND_ROTATION = -90;
+const BAR_FINAL_ROTATION = -42;
+const CIRCLE_START_Y = 66;
+const CIRCLE_FINAL_Y = 22;
 
 export type PreloaderRefs = {
   container: HTMLDivElement;
@@ -36,8 +35,7 @@ export function computeCoverScale(circleElement: HTMLElement) {
   const viewportDiagonal = Math.hypot(window.innerWidth, window.innerHeight);
   const requiredDiameter = viewportDiagonal + COVER_SAFETY_MARGIN * 2;
   const currentDiameter = circleElement.getBoundingClientRect().width || 1;
-
-  return (requiredDiameter / currentDiameter) * 1.16;
+  return (requiredDiameter / currentDiameter) * 1.15;
 }
 
 export function createPreloaderTimeline({
@@ -54,77 +52,83 @@ export function createPreloaderTimeline({
 
   timeline.timeScale(timeScale);
 
-  gsap.set([rectangle, circle], {
-    xPercent: -50,
-    yPercent: -50,
+  // Set initial position: circle rests precisely at the bottom-left flank of the diagonal bar
+  gsap.set(circle, {
+    x: -34,
+    y: CIRCLE_START_Y,
+    scale: 0,
+    opacity: 1,
     transformOrigin: "50% 50%",
   });
+
+  // Set initial position: thin line rises perfectly straight before it falls.
+  gsap.set(rectangle, {
+    opacity: 0,
+    rotation: 0,
+    scaleX: 0.14, // Extremely thin line
+    scaleY: 0,    // Starts at 0 height so it can raise upwards
+    y: 20,
+    transformOrigin: "50% 100%", // Anchored at the bottom tip to grow straight UP
+  });
+
   gsap.set(logoGroup, {
     transformOrigin: "50% 50%",
   });
-  gsap.set(rectangle, {
-    opacity: 0,
-    x: 0,
-    y: RECT_INITIAL_Y,
-    rotation: 0,
-    scaleX: RECT_INITIAL_SCALE_X,
-    scaleY: RECT_INITIAL_SCALE_Y,
-    transformOrigin: "50% 100%",
-  });
-  gsap.set(circle, {
-    opacity: 0,
-    y: CIRCLE_INITIAL_Y,
-    scale: 0,
+  gsap.set(background, {
+    opacity: 1,
   });
 
   timeline
-    .fromTo(
-      background,
-      { opacity: 0 },
-      { opacity: 1, duration: BG_FADE_IN, ease: "power1.out" },
-    )
+    // 1. RAISE UP: Thin line shoots upward into view
     .to(rectangle, {
       opacity: 1,
-      y: 0,
-      scaleX: 1,
+      rotation: 0,
       scaleY: 1,
-      duration: RECT_GROW,
-      ease: "expo.out",
+      y: 0,
+      duration: LINE_RAISE,
+      ease: "power3.out",
     })
+    // 3. FALL TO THE LEFT & THICKEN: Tilts diagonally to -42° while expanding to full width
     .to(rectangle, {
-      x: RECT_FALL_X,
-      y: RECT_FALL_Y,
-      rotation: RECT_FALL_ROTATION,
-      duration: RECT_FALL,
+      rotation: BAR_GROUND_ROTATION,
+      scaleX: 1,
+      y: BAR_GROUND_Y,
+      transformOrigin: "50% 50%", // Switch pivot to center for smooth diagonal landing
+      duration: BAR_FALL,
       ease: "power3.in",
     })
+    .to({}, { duration: GROUND_HOLD })
+    // 4. CIRCLE ENLARGE: Pops out from the fallen base right as the bar lands
     .to(circle, {
-      opacity: 1,
       scale: 1,
-      y: 0,
-      duration: CIRCLE_GROW,
+      y: CIRCLE_FINAL_Y,
+      duration: CIRCLE_POP,
       ease: "power3.out",
     })
     .to(
       rectangle,
       {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        duration: CIRCLE_GROW - LOGO_SETTLE_OVERLAP,
+        rotation: BAR_FINAL_ROTATION,
+        y: BAR_FINAL_Y,
+        duration: CIRCLE_POP,
         ease: "power3.out",
       },
-      `<+=${LOGO_SETTLE_OVERLAP}`,
+      "<",
     )
+    // 5. Hold the completed logo clearly on screen
     .to({}, { duration: HOLD })
     .set(circle, {
-      zIndex: 3,
+      zIndex: 10,
     })
+    // 6. ZOOM IN: Circle expands massively to reveal the homepage
     .to(circle, {
       scale: () => computeCoverScale(circle),
+      x: 0,
+      y: 0,
       duration: TRANSITION_DURATION,
       ease: "power4.inOut",
     })
+    // 7. Fade out preloader wrapper
     .to(container, {
       opacity: 0,
       duration: LOADER_FADE_OUT,

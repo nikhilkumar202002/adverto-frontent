@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background-color: #0000ff;
   pointer-events: auto;
   will-change: opacity;
 }
@@ -13,39 +14,39 @@
 .background {
   position: absolute;
   inset: 0;
-  background-color: #1f43ff;
-  opacity: 0;
+  background-color: #0000FF;
+  opacity: 1;
   will-change: opacity;
 }
 
+/* Centered container keeping fixed logo proportions */
 .logoGroup {
   position: relative;
-  width: clamp(122px, 18vw, 190px);
-  aspect-ratio: 222.02 / 210.13;
+  width: clamp(140px, 18vw, 190px);
+  height: clamp(140px, 18vw, 190px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   will-change: transform;
 }
 
+/* Crisp rectangular bar centered in the wrapper */
 .rectangle {
   position: absolute;
-  top: 50%;
-  left: 65.5%;
-  z-index: 2;
-  width: 23.3%;
-  height: 100%;
-  clip-path: polygon(0 0, 57.1% 0, 100% 100%, 42.9% 100%);
+  width: 24px;
+  height: 144px;
   background-color: #ffffff;
+  border-radius: 0px; /* 100% sharp 90-degree corners */
   opacity: 0;
   backface-visibility: hidden;
   will-change: opacity, transform;
 }
 
+/* Circle centered in the wrapper (GSAP moves it to the flank) */
 .circle {
   position: absolute;
-  top: 68%;
-  left: 30.35%;
-  z-index: 1;
-  width: 60.1%;
-  aspect-ratio: 1;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   background-color: #ffffff;
   opacity: 0;
