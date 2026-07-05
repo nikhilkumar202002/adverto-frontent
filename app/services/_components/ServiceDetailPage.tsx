@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import Container from "../../components/common/Container";
 import Button from "../../components/common/Button";
+import InnerBannerHeading from "../../components/common/InnerBannerHeading";
 import Reveal from "../../components/common/Reveal";
 import { serviceDetails, type ServiceSlug } from "../serviceDetails";
 
@@ -17,7 +18,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
   return (
     <main className="relative overflow-x-hidden bg-black text-white">
       <section
-        className="relative flex min-h-[620px] items-end overflow-hidden border-b border-white/5 pb-12 pt-32 sm:min-h-[660px] md:min-h-[700px] md:pb-16 xl:min-h-[76vh]"
+        className="relative flex min-h-[680px] items-end overflow-hidden border-b border-white/5 pb-12 pt-32 md:pb-16 min-[1320px]:min-h-[100vh]"
         data-navbar-transparent
       >
         <div aria-hidden className="absolute inset-0 z-0">
@@ -41,10 +42,11 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                 <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                 {service.eyebrow}
               </p>
-              <h1 className="max-w-[960px] text-[48px] font-medium leading-[0.92] tracking-[-0.035em] text-[#F5F5F5] sm:text-[62px] md:text-[74px] lg:text-[88px] xl:text-[104px]">
-                <span className="text-[#0000FF]">{service.id}</span>{" "}
-                {service.title}
-              </h1>
+              <InnerBannerHeading
+                text={service.title}
+                highlightPrefix={service.id}
+                className="max-w-[960px]"
+              />
             </Reveal>
           </div>
         </Container>

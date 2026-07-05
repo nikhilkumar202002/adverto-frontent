@@ -2,14 +2,18 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import usePageTransitionReady from "../components/common/usePageTransitionReady";
+
+const headlineText = "Brand, Campaign & Content Systems";
+const easeOut: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const contentVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.16,
       delayChildren: 0.18,
     },
   },
@@ -23,7 +27,7 @@ const itemVariants: Variants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.75,
-      ease: [0.22, 1, 0.36, 1],
+      ease: easeOut,
     },
   },
 };
@@ -50,12 +54,11 @@ export default function ServiceHeroContent({
         Creative Services
       </motion.p>
 
-      <motion.h1
-        variants={itemVariants}
-        className="w-full text-[40px] font-medium leading-[0.95] text-[#EDEDED] sm:max-w-[12ch] sm:text-[52px] md:max-w-[820px] md:text-[76px] lg:max-w-[940px] lg:text-[92px] xl:text-[100px]"
-      >
-        Brand, Campaign & Content Systems
-      </motion.h1>
+      <InnerBannerHeading
+        text={headlineText}
+        active={isReady}
+        className="sm:max-w-[12ch] md:max-w-[820px] lg:max-w-[940px]"
+      />
 
       <motion.p
         variants={itemVariants}

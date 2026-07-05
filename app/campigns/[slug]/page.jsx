@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Container from "../../components/common/Container";
+import InnerBannerHeading from "../../components/common/InnerBannerHeading";
 import { campaignProjects } from "../../data/campaigns";
 import ProjectGallery from "../../portfolio/[slug]/ProjectGallery";
 
@@ -51,9 +52,7 @@ export default async function CampaignPage({ params }) {
             <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#0000FF]">
               {campaign.subtitle}
             </p>
-            <h1 className="section-breakpoint-heading text-[48px] font-medium leading-[0.9] text-[#EDEDED] md:text-[86px] lg:text-[110px]">
-              {campaign.title}
-            </h1>
+            <InnerBannerHeading text={campaign.title} />
           </div>
           <div className="md:col-span-4">
             <p className="text-[16px] leading-[1.5] text-white/55">

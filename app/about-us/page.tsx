@@ -59,7 +59,7 @@ export default function AboutUsPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#030303] text-white">
       <section
-        className="relative flex min-h-[680px] md:min-h-[100vh] items-end overflow-hidden border-b border-white/5 pb-[40px]"
+        className="relative flex min-h-[680px] items-end overflow-hidden border-b border-white/5 pb-[40px] min-[1320px]:min-h-[100vh]"
         data-navbar-transparent
       >
         <div

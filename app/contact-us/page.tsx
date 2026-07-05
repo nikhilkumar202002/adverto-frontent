@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Container from "../components/common/Container";
 import CustomSelect from "../components/common/CustomSelect";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import Reveal from "../components/common/Reveal";
 
 export const metadata: Metadata = {
@@ -118,9 +119,10 @@ export default function ContactPage() {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Contact Us
             </p>
-            <h1 className="max-w-[920px] text-[32px] font-medium leading-[0.95] text-[#EDEDED] md:text-[56px] lg:text-[96px]">
-              Start Your Next Brand Project
-            </h1>
+            <InnerBannerHeading
+              text="Start Your Next Brand Project"
+              className="max-w-[920px]"
+            />
           </Reveal>
           <Reveal
             className="md:col-span-4"

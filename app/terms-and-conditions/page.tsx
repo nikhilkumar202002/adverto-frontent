@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "../components/common/Container";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | Adverto",
@@ -83,9 +84,7 @@ export default function TermsAndConditionsPage() {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Terms &amp; Conditions
             </p>
-            <h1 className="text-[52px] font-medium leading-[0.95] text-[#EDEDED] md:text-[88px]">
-              Website And Service Terms
-            </h1>
+            <InnerBannerHeading text="Website And Service Terms" />
           </div>
           <div className="flex items-end md:col-span-4">
             <p className="max-w-[360px] text-[16px] leading-[1.5] text-white/50 md:text-right">

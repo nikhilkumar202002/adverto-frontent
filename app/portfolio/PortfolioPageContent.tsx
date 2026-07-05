@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Container from "../components/common/Container";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import ServiceVideoShowcase from "../service/ServiceVideoShowcase";
 
 type PortfolioProject = {
@@ -104,9 +105,11 @@ export default function PortfolioPageContent({
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Portfolio
             </p>
-            <h1 className="w-full text-[38px] font-medium leading-[0.98] text-[#EDEDED] sm:text-[46px] md:max-w-[560px] md:text-[50px] lg:max-w-[620px] lg:text-[64px] xl:max-w-[700px] xl:text-[76px]">
-              Branding & Creative Portfolio
-            </h1>
+            <InnerBannerHeading
+              text="Branding & Creative Portfolio"
+              active={motionReady}
+              className="md:max-w-[760px] lg:max-w-[900px]"
+            />
           </motion.div>
         </div>
 

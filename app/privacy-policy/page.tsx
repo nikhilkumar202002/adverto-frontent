@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Container from "../components/common/Container";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Adverto",
@@ -69,9 +70,7 @@ export default function PrivacyPolicyPage() {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Privacy Policy
             </p>
-            <h1 className="text-[52px] font-medium leading-[0.95] text-[#EDEDED] md:text-[88px]">
-              How We Handle Your Information
-            </h1>
+            <InnerBannerHeading text="How We Handle Your Information" />
           </div>
           <div className="flex items-end md:col-span-4">
             <p className="max-w-[360px] text-[16px] leading-[1.5] text-white/50 md:text-right">

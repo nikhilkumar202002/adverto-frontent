@@ -16,7 +16,7 @@ export default function ServicePage() {
   return (
     <div className="relative bg-[#050505] text-white">
       <section
-        className="relative flex min-h-[680px] md:min-h-[100vh] items-end overflow-hidden border-b border-white/5 pb-[40px]"
+        className="relative flex min-h-[680px] items-end overflow-hidden border-b border-white/5 pb-[40px] min-[1320px]:min-h-[100vh]"
         data-navbar-transparent
       >
         <div aria-hidden className="absolute inset-0 z-0 bg-black">
@@ -35,7 +35,13 @@ export default function ServicePage() {
 
       <section className="relative z-10 py-16 sm:py-20 md:py-24 lg:py-32">
         <Container>
-          <Reveal once={false} waitForPageTransition>
+          <Reveal
+            y={28}
+            scale={0.92}
+            duration={0.9}
+            once={false}
+            waitForPageTransition
+          >
             <div className="mb-[25px] grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
               <div className="md:col-span-12">
                 <p className="mb-2 flex items-center gap-3 text-[12px] uppercase tracking-[0.1em] text-[#0000FF] sm:text-[13px] md:mb-3 md:text-[14px]">

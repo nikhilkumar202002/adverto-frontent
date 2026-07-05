@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Container from "../components/common/Container";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import { campaignProjects } from "../data/campaigns";
 
 export const metadata = {
@@ -19,9 +20,10 @@ export default function CampaignsPage() {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Campaigns
             </p>
-            <h1 className="section-breakpoint-heading w-full text-[40px] font-medium leading-[0.95] text-[#EDEDED] sm:text-[48px] md:max-w-[760px] md:text-[52px] lg:text-[76px] xl:text-[82px]">
-              Campaigns & Launch Stories
-            </h1>
+            <InnerBannerHeading
+              text="Campaigns & Launch Stories"
+              className="md:max-w-[760px]"
+            />
           </div>
           <div className="md:col-span-4 md:flex md:items-end">
             <p className="max-w-[420px] text-[15px] leading-[1.6] text-white/50 md:text-[16px]">

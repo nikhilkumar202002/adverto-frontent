@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Container from "../../components/common/Container";
+import InnerBannerHeading from "../../components/common/InnerBannerHeading";
 import Reveal from "../../components/common/Reveal";
 import { portfolioPageProjects } from "../../data/portfolio";
 import ProjectGallery from "./ProjectGallery";
@@ -69,9 +70,7 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
             once={false}
             waitForPageTransition
           >
-            <h1 className="portfolio-page-heading">
-              {project.title}
-            </h1>
+            <InnerBannerHeading text={project.title} />
           </Reveal>
           <Reveal
             className="portfolio-header-right"

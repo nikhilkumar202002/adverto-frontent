@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import usePageTransitionReady from "../components/common/usePageTransitionReady";
 
 const titleReveal: Variants = {
@@ -31,9 +32,7 @@ export default function AboutHeroTitle() {
       animate={isReady ? "visible" : "hidden"}
       variants={titleReveal}
     >
-      <h1 className="text-[58px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5] sm:text-[72px] md:text-[96px] lg:text-[120px]">
-        Meet Adverto
-      </h1>
+      <InnerBannerHeading text="Meet Adverto" active={isReady} />
     </motion.div>
   );
 }
