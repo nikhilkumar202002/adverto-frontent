@@ -134,9 +134,12 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
                 <span className="h-[1px] w-[30px] bg-[#0000FF]" />
                 Gallery
               </p>
-              <h2 className="text-4xl font-medium leading-none text-[#EDEDED] md:text-5xl">
-                Project Visuals
-              </h2>
+              <InnerBannerHeading
+                as="h2"
+                text="Project Visuals"
+                variant="custom"
+                className="text-4xl font-medium leading-none text-[#EDEDED] md:text-5xl"
+              />
             </Reveal>
           </div>
           <Reveal

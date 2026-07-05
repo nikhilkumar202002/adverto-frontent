@@ -53,9 +53,12 @@ export default function CampaignsPage() {
                   <p className="mb-2 text-[11px] uppercase tracking-[0.16em] text-[#0000FF]">
                     {campaign.subtitle}
                   </p>
-                  <h2 className="text-xl font-medium leading-tight text-white md:text-2xl">
-                    {campaign.title}
-                  </h2>
+                  <InnerBannerHeading
+                    as="h2"
+                    text={campaign.title}
+                    variant="custom"
+                    className="text-xl font-medium leading-tight text-white md:text-2xl"
+                  />
                 </div>
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0000FF] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <ArrowUpRight size={18} />

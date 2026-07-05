@@ -98,9 +98,12 @@ export default async function CampaignPage({ params }) {
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Gallery
             </p>
-            <h2 className="text-4xl font-medium leading-none text-[#EDEDED] md:text-5xl">
-              Campaign Visuals
-            </h2>
+            <InnerBannerHeading
+              as="h2"
+              text="Campaign Visuals"
+              variant="custom"
+              className="text-4xl font-medium leading-none text-[#EDEDED] md:text-5xl"
+            />
           </div>
           <ProjectGallery
             images={campaign.gallery}
