@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { usePathname, useRouter } from "next/navigation";
 
-const TILE_COUNT = 24;
+const TILE_COUNT = 12;
 const tiles = Array.from({ length: TILE_COUNT }, (_, index) => index);
 
 const isModifiedClick = (event: MouseEvent) =>
@@ -109,13 +109,15 @@ export default function PageTransition() {
       if (nextUrl.pathname === currentUrl.pathname && nextUrl.search === currentUrl.search) return;
 
       event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
       coverPage(`${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`);
     };
 
-    document.addEventListener("click", handleClick);
+    document.addEventListener("click", handleClick, true);
 
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener("click", handleClick, true);
     };
   }, [coverPage]);
 
@@ -146,13 +148,13 @@ export default function PageTransition() {
     <div
       ref={overlayRef}
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[9997] grid grid-cols-4 grid-rows-6 opacity-0 sm:grid-cols-6 sm:grid-rows-4"
+      className="pointer-events-none fixed inset-0 z-[9997] flex min-h-svh opacity-0"
     >
       {tiles.map((tile) => (
         <span
           key={tile}
           ref={(element) => setTileRef(element, tile)}
-          className="block h-full w-full origin-top scale-y-0 bg-[#0000FF]"
+          className="block min-h-svh flex-1 origin-top scale-y-0 bg-[#0000FF]"
         />
       ))}
     </div>
