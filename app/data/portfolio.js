@@ -401,6 +401,120 @@ const yujaGalleryImages = [
   "/case-studies/Yuja/yuja-09.jpg",
 ];
 
+const summerSlateGalleryImages = [
+  "/case-studies/summer-slate/sumer slate-01.jpg",
+  "/case-studies/summer-slate/sumer slate-02.jpg",
+  "/case-studies/summer-slate/sumer slate-03.jpg",
+  "/case-studies/summer-slate/sumer slate-04.jpg",
+  "/case-studies/summer-slate/sumer slate-05.jpg",
+  "/case-studies/summer-slate/sumer slate-06.jpg",
+];
+
+const zivaGalleryImages = [
+  "/case-studies/ziva/ziva post-01-01.jpg",
+  "/case-studies/ziva/ziva post-01-02.jpg",
+  "/case-studies/ziva/ziva post-01-03.jpg",
+  "/case-studies/ziva/ziva post-01-04.jpg",
+  "/case-studies/ziva/ziva post-01-05.jpg",
+  "/case-studies/ziva/ziva post-01-06.jpg",
+  "/case-studies/ziva/ziva post-01-07.jpg",
+  "/case-studies/ziva/ziva post-01-08.jpg",
+  "/case-studies/ziva/ziva post-01-09.jpg",
+];
+
+const alSamaGalleryImages = [
+  "/case-studies/alsama/al sama-01.jpg",
+  "/case-studies/alsama/al sama-02.jpg",
+  "/case-studies/alsama/al sama-03.jpg",
+  "/case-studies/alsama/al sama-04.jpg",
+  "/case-studies/alsama/al sama-05.jpg",
+  "/case-studies/alsama/al sama-06.jpg",
+  "/case-studies/alsama/al sama-07.jpg",
+  "/case-studies/alsama/al sama-08.jpg",
+  "/case-studies/alsama/al sama-09.jpg",
+  "/case-studies/alsama/al sama-10.jpg",
+  "/case-studies/alsama/al sama-11.jpg",
+  "/case-studies/alsama/al sama-12.jpg",
+  "/case-studies/alsama/al sama-13.jpg",
+];
+
+const arabSeasonGalleryImages = [
+  "/case-studies/arabseason/Untitled-1-01.jpg",
+  "/case-studies/arabseason/Untitled-1-02.jpg",
+  "/case-studies/arabseason/Untitled-1-03.jpg",
+  "/case-studies/arabseason/Untitled-1-04.jpg",
+  "/case-studies/arabseason/Untitled-1-05.jpg",
+  "/case-studies/arabseason/Untitled-1-06.jpg",
+  "/case-studies/arabseason/Untitled-1-07.jpg",
+  "/case-studies/arabseason/Untitled-1-08.jpg",
+  "/case-studies/arabseason/Untitled-1-09.jpg",
+];
+
+const beruGalleryImages = [
+  "/case-studies/beru/Untitled-1-01.jpg",
+  "/case-studies/beru/Untitled-1-02.jpg",
+  "/case-studies/beru/Untitled-1-03.jpg",
+  "/case-studies/beru/Untitled-1-04.jpg",
+  "/case-studies/beru/Untitled-1-05.jpg",
+  "/case-studies/beru/Untitled-1-06.jpg",
+  "/case-studies/beru/Untitled-1-07.jpg",
+  "/case-studies/beru/Untitled-1-08.jpg",
+];
+
+const darexGalleryImages = [
+  "/case-studies/darex/DAREX BRANDING..-01-01.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-02.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-03.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-04.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-05.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-06.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-07.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-08.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-09.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-10.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-11.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-12.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-13.jpg",
+  "/case-studies/darex/DAREX BRANDING..-01-14.jpg",
+];
+
+const handstromGalleryImages = [
+  "/case-studies/handstrom/handstrom-01.jpg",
+  "/case-studies/handstrom/handstrom-02.jpg",
+  "/case-studies/handstrom/handstrom-03.jpg",
+  "/case-studies/handstrom/handstrom-04.jpg",
+  "/case-studies/handstrom/handstrom-05.jpg",
+  "/case-studies/handstrom/handstrom-06.jpg",
+  "/case-studies/handstrom/handstrom-07.jpg",
+];
+
+const kmGalleryImages = [
+  "/case-studies/km/Untitled-1-01.jpg",
+  "/case-studies/km/Untitled-1-02.jpg",
+  "/case-studies/km/Untitled-1-03.jpg",
+  "/case-studies/km/Untitled-1-04.jpg",
+  "/case-studies/km/Untitled-1-05.jpg",
+  "/case-studies/km/Untitled-1-06.jpg",
+  "/case-studies/km/Untitled-1-07.jpg",
+  "/case-studies/km/Untitled-1-08.jpg",
+  "/case-studies/km/Untitled-1-09.jpg",
+  "/case-studies/km/Untitled-1-10.jpg",
+];
+
+const potagoGalleryImages = [
+  "/case-studies/Potago/potago-01.jpg",
+  "/case-studies/Potago/potago-02.jpg",
+  "/case-studies/Potago/potago-03.jpg",
+  "/case-studies/Potago/potago-04.jpg",
+  "/case-studies/Potago/potago-05.jpg",
+  "/case-studies/Potago/potago-06.jpg",
+  "/case-studies/Potago/potago-07.jpg",
+  "/case-studies/Potago/potago-08.jpg",
+  "/case-studies/Potago/potago-09.jpg",
+  "/case-studies/Potago/potago-10.jpg",
+  "/case-studies/Potago/potago-11.jpg",
+];
+
 const haloHiveGalleryImages = Array.from({ length: 30 }, (_, index) => {
   const imageNumber = String(index + 1).padStart(2, "0");
   return `/case-studies/Halo-Hive/HALO HIVE-${imageNumber}.jpg`;
@@ -695,5 +809,113 @@ export const portfolioPageProjects = [
       "A fresh brand identity project with bright visuals, cohesive layouts, and polished presentation assets.",
     services: ["Brand identity", "Packaging", "Campaign design"],
     gallery: yujaGalleryImages,
+  },
+  {
+    slug: "summer-slate",
+    title: "Summer Slate",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/summer-slate/cover/Cover.jpg",
+    description:
+      "A fresh brand presentation with warm visual applications, polished layouts, and campaign-ready identity assets.",
+    services: ["Brand identity", "Art direction", "Campaign design"],
+    gallery: summerSlateGalleryImages,
+  },
+  {
+    slug: "ziva",
+    title: "Ziva",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/ziva/cover/cover.jpg",
+    description:
+      "A refined identity project with cohesive brand applications, social-ready visuals, and polished presentation assets.",
+    services: ["Brand identity", "Presentation", "Digital design"],
+    gallery: zivaGalleryImages,
+  },
+  {
+    slug: "al-sama",
+    title: "Al Sama",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/alsama/Cover/Cover.jpg",
+    description:
+      "A clean brand system with structured layouts, consistent visual assets, and launch-ready campaign materials.",
+    services: ["Brand identity", "Guidelines", "Campaign design"],
+    gallery: alSamaGalleryImages,
+  },
+  {
+    slug: "arab-season",
+    title: "Arab Season",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/arabseason/cover/cover.jpg",
+    description:
+      "A vibrant brand presentation with bold applications, campaign frames, and cohesive visual storytelling.",
+    services: ["Brand identity", "Art direction", "Digital design"],
+    gallery: arabSeasonGalleryImages,
+  },
+  {
+    slug: "beru",
+    title: "Beru",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/beru/cover/cover.jpg",
+    description:
+      "A modern identity presentation with practical applications, clean layouts, and campaign-ready visual assets.",
+    services: ["Brand identity", "Presentation", "Campaign design"],
+    gallery: beruGalleryImages,
+  },
+  {
+    slug: "darex",
+    title: "Darex",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/darex/cover/cover.jpg",
+    description:
+      "A bold brand identity project with strong visual applications, product-led layouts, and polished rollout assets.",
+    services: ["Brand identity", "Packaging", "Campaign design"],
+    gallery: darexGalleryImages,
+  },
+  {
+    slug: "handstrom",
+    title: "Handstrom",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/handstrom/Cover/Cover.jpg",
+    description:
+      "A professional identity system with structured brand visuals, clean applications, and presentation-ready assets.",
+    services: ["Brand identity", "Guidelines", "Digital design"],
+    gallery: handstromGalleryImages,
+  },
+  {
+    slug: "km",
+    title: "KM",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/km/cover/cover.jpg",
+    description:
+      "A cohesive branding project with clear visual hierarchy, polished applications, and campaign-ready layouts.",
+    services: ["Brand identity", "Presentation", "Campaign design"],
+    gallery: kmGalleryImages,
+  },
+  {
+    slug: "potago",
+    title: "Potago",
+    subtitle: "Branding - 2024",
+    category: "Branding",
+    year: "2024",
+    heroImage: "/case-studies/Potago/Cover/Cover.jpg",
+    description:
+      "A bright brand presentation with expressive visual assets, product-forward layouts, and cohesive campaign pieces.",
+    services: ["Brand identity", "Packaging", "Digital design"],
+    gallery: potagoGalleryImages,
   },
 ];
