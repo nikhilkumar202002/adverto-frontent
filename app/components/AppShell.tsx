@@ -14,18 +14,15 @@ export default function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <>
-      {isLoading ? (
-        <Preloader onComplete={() => setIsLoading(false)} />
-      ) : (
-        <SmoothScroll>
-          <NoiseOverlay />
-          <CustomCursor />
-          <Navbar />
-          <main className="relative z-10 min-h-[100svh]">{children}</main>
-          <ScrollTopWhatsapp />
-          <Footer />
-        </SmoothScroll>
-      )}
+      <SmoothScroll>
+        <NoiseOverlay />
+        <CustomCursor />
+        <Navbar />
+        <main className="relative z-10 min-h-[100svh]">{children}</main>
+        <ScrollTopWhatsapp />
+        <Footer />
+      </SmoothScroll>
+      {isLoading ? <Preloader onComplete={() => setIsLoading(false)} /> : null}
     </>
   );
 }

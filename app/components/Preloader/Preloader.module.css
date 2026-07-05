@@ -1,4 +1,7 @@
 .overlay {
+  --loader-blue: #1f43ff;
+  --loader-white: #ffffff;
+
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -6,45 +9,55 @@
   place-items: center;
   min-height: 100svh;
   overflow: hidden;
-  background: #1f43ff;
+  background: var(--loader-blue);
   pointer-events: auto;
+  will-change: transform;
 }
 
 .logo {
   position: relative;
-  width: clamp(118px, 16vw, 178px);
-  aspect-ratio: 126.31 / 119.91;
+  width: clamp(110px, 18vw, 178px);
+  aspect-ratio: 222.02 / 210.13;
+  overflow: hidden;
 }
 
-.rectangle,
+.bar,
 .circle {
   position: absolute;
   display: block;
+  background: var(--loader-white);
   user-select: none;
   pointer-events: none;
-  filter: brightness(0) invert(1);
+  opacity: 0;
+  visibility: hidden;
   will-change: opacity, transform;
 }
 
-.rectangle {
+.bar {
   left: 65.5%;
   top: 50%;
-  width: auto;
+  z-index: 2;
+  width: 23.3%;
   height: 100%;
+  border-radius: 0;
+  clip-path: polygon(0 0, 57.1% 0, 100% 100%, 42.9% 100%);
   transform: translate(-50%, -50%);
 }
 
 .circle {
-  left: 30.1%;
+  left: 30.35%;
   top: 68%;
-  width: 60.3%;
-  height: auto;
+  z-index: 1;
+  width: 60.1%;
+  aspect-ratio: 1;
+  border-radius: 999px;
   transform: translate(-50%, -50%);
   transform-origin: center center;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rectangle,
+  .overlay,
+  .bar,
   .circle {
     will-change: auto;
   }
