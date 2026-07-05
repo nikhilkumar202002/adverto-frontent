@@ -82,9 +82,12 @@ export default function PrivacyPolicyPage() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="sticky top-28 rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6">
-              <h2 className="mb-4 text-2xl font-medium text-[#EDEDED]">
-                Adverto
-              </h2>
+              <InnerBannerHeading
+                as="h2"
+                text="Adverto"
+                variant="custom"
+                className="mb-4 text-2xl font-medium text-[#EDEDED]"
+              />
               <p className="text-[15px] leading-[1.6] text-white/50">
                 This policy explains how we collect and use information when you
                 visit our website, contact us, or discuss a project with our
@@ -99,9 +102,12 @@ export default function PrivacyPolicyPage() {
                 key={section.title}
                 className="rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 md:p-8"
               >
-                <h2 className="mb-4 text-2xl font-medium text-[#EDEDED] md:text-3xl">
-                  {section.title}
-                </h2>
+                <InnerBannerHeading
+                  as="h2"
+                  text={section.title}
+                  variant="custom"
+                  className="mb-4 text-2xl font-medium text-[#EDEDED] md:text-3xl"
+                />
                 <div className="space-y-4">
                   {section.body.map((paragraph) => (
                     <p

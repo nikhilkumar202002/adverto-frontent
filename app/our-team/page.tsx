@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Container from "../components/common/Container";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import Reveal from "../components/common/Reveal";
 
 export const metadata: Metadata = {
@@ -112,11 +113,12 @@ export default function OurTeamPage() {
                   <span className="h-[1px] w-[30px] bg-[#0000FF]" />
                   Studio Team
                 </p>
-                <h2 className="w-full text-[36px] font-medium leading-[1] text-[#EDEDED] sm:text-[44px] md:text-[58px] lg:text-[66px] xl:text-[70px]">
-                  Creative Minds,
-                  <br />
-                  Production Hands
-                </h2>
+                <InnerBannerHeading
+                  as="h2"
+                  text="Creative Minds, Production Hands"
+                  variant="custom"
+                  className="w-full text-[36px] font-medium leading-[1] text-[#EDEDED] sm:text-[44px] md:text-[58px] lg:text-[66px] xl:text-[70px]"
+                />
               </div>
             </div>
           </Reveal>
@@ -152,9 +154,12 @@ export default function OurTeamPage() {
                   </div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7">
-                    <h3 className="text-2xl font-medium text-white md:text-3xl">
-                      {member.name}
-                    </h3>
+                    <InnerBannerHeading
+                      as="h3"
+                      text={member.name}
+                      variant="custom"
+                      className="text-2xl font-medium text-white md:text-3xl"
+                    />
                     <p className="mt-2 text-sm leading-snug text-white/60">
                       {member.role}
                     </p>

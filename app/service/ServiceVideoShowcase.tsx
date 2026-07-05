@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
+import InnerBannerHeading from "../components/common/InnerBannerHeading";
 
 const horizontalVideos = [
   "/videos/horizontal/Img%200865.mp4",
@@ -39,7 +40,7 @@ const verticalVideos = [
 ];
 
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const titleLines = ["Frames That Move", "Brands"];
+const titleText = "Frames That Move Brands";
 
 const labelReveal: Variants = {
   hidden: {
@@ -51,31 +52,6 @@ const labelReveal: Variants = {
     y: 0,
     transition: {
       duration: 0.55,
-      ease: smoothEase,
-    },
-  },
-};
-
-const headingGroup: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      delayChildren: 0.12,
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const headingLineReveal: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 34,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
       ease: smoothEase,
     },
   },
@@ -215,7 +191,7 @@ export default function ServiceVideoShowcase({
 
   return (
     <div>
-      <div className="mb-12 max-w-[760px]">
+      <div className="mb-12 max-w-[1100px]">
         <motion.p
           className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]"
           initial="hidden"
@@ -225,20 +201,12 @@ export default function ServiceVideoShowcase({
           <span className="h-[1px] w-[30px] bg-[#0000FF]" />
           Video Work
         </motion.p>
-        <motion.h2
-          className="text-[45px] font-medium leading-[1] text-[#EDEDED] md:text-[70px]"
-          initial="hidden"
-          animate={animationState}
-          variants={headingGroup}
-        >
-          {titleLines.map((line) => (
-            <span key={line} className="block overflow-hidden pb-[0.04em]">
-              <motion.span className="block" variants={headingLineReveal}>
-                {line}
-              </motion.span>
-            </span>
-          ))}
-        </motion.h2>
+        <InnerBannerHeading
+          as="h2"
+          text={titleText}
+          active={motionReady}
+          className="max-w-[10ch]"
+        />
       </div>
 
       <motion.div

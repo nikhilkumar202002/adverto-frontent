@@ -241,9 +241,12 @@ export default function ContactPage() {
                     <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#0000FF]">
                       Project Inquiry
                     </p>
-                    <h2 className="text-3xl font-medium leading-tight text-[#EDEDED] md:text-4xl">
-                      Tell us what you need
-                    </h2>
+                    <InnerBannerHeading
+                      as="h2"
+                      text="Tell us what you need"
+                      variant="custom"
+                      className="text-3xl font-medium leading-tight text-[#EDEDED] md:text-4xl"
+                    />
                   </div>
                   <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-[20px] border border-white/10 text-[#0000FF] md:flex">
                     <MessageSquareText size={20} strokeWidth={1.6} />
@@ -351,9 +354,12 @@ export default function ContactPage() {
                           className="text-white/25"
                         />
                       </div>
-                      <h3 className="mb-3 text-xl font-medium text-[#EDEDED]">
-                        {step.title}
-                      </h3>
+                      <InnerBannerHeading
+                        as="h3"
+                        text={step.title}
+                        variant="custom"
+                        className="mb-3 text-xl font-medium text-[#EDEDED]"
+                      />
                       <p className="text-[15px] leading-[1.45] text-white/45">
                         {step.text}
                       </p>

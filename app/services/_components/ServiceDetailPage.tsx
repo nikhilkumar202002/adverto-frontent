@@ -71,9 +71,12 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                         <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                         Service Scope
                       </p>
-                      <h2 className="max-w-[620px] text-[38px] font-medium leading-[0.96] tracking-[-0.035em] text-[#F5F5F5] sm:text-[44px] md:text-[54px] lg:text-[62px] xl:text-[72px]">
-                        What&apos;s included in this service.
-                      </h2>
+                      <InnerBannerHeading
+                        as="h2"
+                        text="What's included in this service."
+                        variant="custom"
+                        className="max-w-[620px] text-[38px] font-medium leading-[0.96] tracking-[-0.035em] text-[#F5F5F5] sm:text-[44px] md:text-[54px] lg:text-[62px] xl:text-[72px]"
+                      />
                     </Reveal>
                     <span className="hidden text-[54px] font-medium leading-none text-white/[0.06] md:block xl:text-[64px]">
                       {service.id}
@@ -108,9 +111,12 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                             <Check size={16} strokeWidth={2} />
                           </span>
                         </div>
-                        <h3 className="text-[23px] font-medium leading-[1.05] tracking-[-0.025em] text-white/86 md:text-[28px] xl:text-[32px]">
-                          {item}
-                        </h3>
+                        <InnerBannerHeading
+                          as="h3"
+                          text={item}
+                          variant="custom"
+                          className="text-[23px] font-medium leading-[1.05] tracking-[-0.025em] text-white/86 md:text-[28px] xl:text-[32px]"
+                        />
                       </div>
                     </Reveal>
                   ))}
@@ -127,9 +133,12 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                     <p className="mb-2 text-[12px] uppercase tracking-[0.18em] text-white/35">
                       Current Service
                     </p>
-                    <h3 className="text-[30px] font-medium leading-none tracking-[-0.03em] text-white md:text-[36px] xl:text-[42px]">
-                      {service.title}
-                    </h3>
+                    <InnerBannerHeading
+                      as="h3"
+                      text={service.title}
+                      variant="custom"
+                      className="text-[30px] font-medium leading-none tracking-[-0.03em] text-white md:text-[36px] xl:text-[42px]"
+                    />
                   </div>
                   <Link
                     href="/contact-us"

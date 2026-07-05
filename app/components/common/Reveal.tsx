@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import usePageTransitionReady from "./usePageTransitionReady";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -26,12 +27,19 @@ export default function Reveal({
   scale = 1,
   amount = 0.18,
   once = true,
+  waitForPageTransition = true,
 }: RevealProps) {
+  const isReady = usePageTransitionReady(waitForPageTransition);
+
   return (
     <motion.div
       className={className}
       initial={{ opacity: 0, x, y, scale }}
-      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+      whileInView={
+        isReady
+          ? { opacity: 1, x: 0, y: 0, scale: 1 }
+          : { opacity: 0, x, y, scale }
+      }
       viewport={{ once, amount }}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
     >

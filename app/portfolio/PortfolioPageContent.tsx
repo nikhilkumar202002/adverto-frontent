@@ -6,6 +6,7 @@ import type { Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Container from "../components/common/Container";
 import InnerBannerHeading from "../components/common/InnerBannerHeading";
+import usePageTransitionReady from "../components/common/usePageTransitionReady";
 import ServiceVideoShowcase from "../service/ServiceVideoShowcase";
 
 type PortfolioProject = {
@@ -84,7 +85,7 @@ const gridCardReveal: Variants = {
 export default function PortfolioPageContent({
   projects,
 }: PortfolioPageContentProps) {
-  const motionReady = true;
+  const motionReady = usePageTransitionReady(true);
 
   return (
     <section className="relative bg-[#050505] pb-[25px] pt-32 md:pb-32 md:pt-40">
