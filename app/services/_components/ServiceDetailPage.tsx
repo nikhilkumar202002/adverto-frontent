@@ -16,7 +16,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
   return (
     <main className="relative overflow-x-hidden bg-black text-white">
       <section
-        className="relative flex min-h-[72vh] items-end overflow-hidden border-b border-white/5 pb-12 pt-32 md:min-h-[76vh] md:pb-16"
+        className="relative flex min-h-[620px] items-end overflow-hidden border-b border-white/5 pb-12 pt-32 sm:min-h-[660px] md:min-h-[700px] md:pb-16 xl:min-h-[76vh]"
         data-navbar-transparent
       >
         <div aria-hidden className="absolute inset-0 z-0">
@@ -30,11 +30,11 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-12">
-              <p className="mb-4 flex items-center gap-3 text-[13px] uppercase tracking-[0.18em] text-[#0000FF]">
+              <p className="mb-4 flex items-center gap-3 text-[12px] uppercase tracking-[0.18em] text-[#0000FF] sm:text-[13px]">
                 <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                 {service.eyebrow}
               </p>
-              <h1 className="max-w-[960px] text-[56px] font-medium leading-[0.9] tracking-[-0.04em] text-[#F5F5F5] md:text-[104px]">
+              <h1 className="max-w-[960px] text-[48px] font-medium leading-[0.92] tracking-[-0.035em] text-[#F5F5F5] sm:text-[62px] md:text-[74px] lg:text-[88px] xl:text-[104px]">
                 <span className="text-[#0000FF]">{service.id}</span>{" "}
                 {service.title}
               </h1>
@@ -45,8 +45,8 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
 
       <section className="relative z-10 py-20 md:py-28">
         <Container>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-start">
-            <div className="md:col-span-8">
+          <div className="grid grid-cols-1 gap-8 xl:grid-cols-12 xl:items-start">
+            <div className="xl:col-span-8">
               <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-black">
                 <div className="relative border-b border-white/10 p-5 md:p-8">
                   <div className="mb-10 flex items-start justify-between gap-8">
@@ -55,16 +55,16 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                         <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                         Service Scope
                       </p>
-                      <h2 className="max-w-[620px] text-[42px] font-medium leading-[0.94] tracking-[-0.04em] text-[#F5F5F5] md:text-[72px]">
+                      <h2 className="max-w-[620px] text-[38px] font-medium leading-[0.96] tracking-[-0.035em] text-[#F5F5F5] sm:text-[44px] md:text-[54px] lg:text-[62px] xl:text-[72px]">
                         What&apos;s included in this service.
                       </h2>
                     </div>
-                    <span className="hidden text-[64px] font-medium leading-none text-white/[0.06] md:block">
+                    <span className="hidden text-[54px] font-medium leading-none text-white/[0.06] md:block xl:text-[64px]">
                       {service.id}
                     </span>
                   </div>
 
-                  <p className="max-w-[680px] text-[17px] leading-[1.6] text-white/55">
+                  <p className="max-w-[680px] text-[15px] leading-[1.6] text-white/55 md:text-[16px] xl:text-[17px]">
                     Each item is shaped around the business goal, then connected
                     into a clear system for brand, campaign, content, or growth.
                   </p>
@@ -84,7 +84,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                           <Check size={16} strokeWidth={2} />
                         </span>
                       </div>
-                      <h3 className="text-[24px] font-medium leading-[1.05] tracking-[-0.025em] text-white/86 md:text-[32px]">
+                      <h3 className="text-[23px] font-medium leading-[1.05] tracking-[-0.025em] text-white/86 md:text-[28px] xl:text-[32px]">
                         {item}
                       </h3>
                     </div>
@@ -93,14 +93,14 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
               </div>
             </div>
 
-            <aside className="md:sticky md:top-28 md:col-span-4 md:self-start">
+            <aside className="xl:sticky xl:top-28 xl:col-span-4 xl:self-start">
               <div className="rounded-[20px] border border-white/10 bg-[#080808] p-5 md:p-8">
                 <div className="mb-8 flex items-start justify-between gap-6">
                   <div>
                     <p className="mb-2 text-[12px] uppercase tracking-[0.18em] text-white/35">
                       Current Service
                     </p>
-                    <h3 className="text-[30px] font-medium leading-none tracking-[-0.03em] text-white md:text-[42px]">
+                    <h3 className="text-[30px] font-medium leading-none tracking-[-0.03em] text-white md:text-[36px] xl:text-[42px]">
                       {service.title}
                     </h3>
                   </div>
