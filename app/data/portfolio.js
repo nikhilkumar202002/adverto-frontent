@@ -520,7 +520,177 @@ const haloHiveGalleryImages = Array.from({ length: 30 }, (_, index) => {
   return `/case-studies/Halo-Hive/HALO HIVE-${imageNumber}.jpg`;
 });
 
-export const portfolioPageProjects = [
+const sharedBrandingServices = ["Brand Development", "Visual Communication"];
+
+const portfolioProjectDetails = {
+  spices: {
+    title: "SPICES GLOBAL",
+    category: "Spices Brand",
+    year: "2026",
+  },
+  underdwag: {
+    title: "UNDERDWAG",
+    category: "Clothing Brand",
+    year: "2025",
+  },
+  crevo: {
+    title: "CREVO",
+    category: "Crafting Brand",
+    year: "2025",
+  },
+  azbery: {
+    title: "AZBERY",
+    category: "Clothing Brand",
+    year: "2026",
+  },
+  belanto: {
+    title: "BELANTO",
+    category: "Cafe Brand",
+    year: "2023",
+  },
+  charutha: {
+    title: "CHARUTHA",
+    category: "Construction Brand",
+    year: "2024",
+  },
+  neveu: {
+    title: "NEVEU",
+    category: "Clothing Brand",
+    year: "2023",
+  },
+  "soma-beach": {
+    title: "SOMA BEACH",
+    category: "Festival Brand",
+    year: "2023",
+  },
+  "prime-edge": {
+    title: "PRIME EDGE",
+    category: "Global Networking Brand",
+    year: "2025",
+  },
+  thavala: {
+    title: "THAVALA",
+    category: "Landscaping Brand",
+    year: "2026",
+  },
+  sora: {
+    title: "SORA",
+    category: "Podcast Brand",
+    year: "2026",
+  },
+  fins: {
+    title: "FINS",
+    category: "Interior Design Brand",
+    year: "2023",
+  },
+  govoyajo: {
+    title: "GOVOYAJO",
+    category: "Tours & Travels",
+    year: "2025",
+  },
+  mistwish: {
+    title: "MISTWISH",
+    category: "Perfume Brand",
+    year: "2023",
+  },
+  "water-can": {
+    title: "WATER CAN",
+    category: "Minerals Brand",
+    year: "2026",
+  },
+  ayan: {
+    title: "AYAN CUPPA",
+    category: "Cafe Brand",
+    year: "2024",
+  },
+  bridex: {
+    title: "BRIDEX",
+    category: "Makeup Academy",
+    year: "2026",
+  },
+  "chai-kaif": {
+    title: "CHAI KAIF",
+    category: "Cafe Brand",
+    year: "2023",
+  },
+  "halo-hive": {
+    title: "HALO HIVE",
+    category: "Digital Tec Brand",
+    year: "2026",
+  },
+  asir: {
+    title: "ASIR",
+    category: "Juice & Beverage",
+    year: "2025",
+  },
+  orlands: {
+    title: "ORLANDS",
+    category: "Real Estate Brand",
+    year: "2025",
+  },
+  "rich-mount": {
+    title: "RICH MOUNT",
+    category: "Contracting Co. Brand",
+    year: "2023",
+  },
+  "royal-gym": {
+    title: "ROYAL FITNESS",
+    category: "Fitness Brand",
+    year: "2024",
+  },
+  yuja: {
+    title: "YUJA",
+    category: "Music Brand",
+    year: "2024",
+  },
+  km: {
+    title: "KM",
+    category: "Foundation",
+    year: "2023",
+  },
+  darex: {
+    title: "DAREX",
+    category: "Grooming Brand",
+    year: "2024",
+  },
+  "summer-slate": {
+    title: "SUMMERSLATE",
+    category: "Film Production Brand",
+    year: "2025",
+  },
+  "arab-season": {
+    title: "ARAB SEASON",
+    category: "Advertising Agency Brand",
+    year: "2024",
+  },
+  beru: {
+    title: "BERU",
+    category: "Beach Resort Brand",
+    year: "2025",
+  },
+  ziva: {
+    title: "ZIVA QA",
+    category: "Clothing Brand",
+    year: "2025",
+  },
+  handstrom: {
+    title: "HANDSTROM",
+    category: "Surgical Equipment Brand",
+    year: "2024",
+  },
+  potago: {
+    title: "POTAGO",
+    category: "Cafe Brand",
+    year: "2025",
+  },
+  "al-sama": {
+    title: "AL SAMA",
+    category: "Investments Brand",
+    year: "2025",
+  },
+};
+
+const portfolioPageProjectsBase = [
   {
     slug: "spices",
     title: "Spices",
@@ -919,3 +1089,18 @@ export const portfolioPageProjects = [
     gallery: potagoGalleryImages,
   },
 ];
+
+export const portfolioPageProjects = portfolioPageProjectsBase.map((project) => {
+  const details = portfolioProjectDetails[project.slug];
+  const category = details?.category ?? project.category;
+  const year = details?.year ?? project.year;
+
+  return {
+    ...project,
+    title: details?.title ?? project.title,
+    category,
+    year,
+    subtitle: `${category} · ${year}`,
+    services: sharedBrandingServices,
+  };
+});

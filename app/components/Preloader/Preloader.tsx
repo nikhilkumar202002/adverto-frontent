@@ -19,7 +19,6 @@ const BAR_FALL = 0.56;
 const CIRCLE_GROW = 0.92;
 const LOGO_SETTLE = 0.48;
 const HOLD = 0.72;
-const BREATH = 0.34;
 const REVEAL = 1.18;
 const LOADER_FADE = 0.3;
 const CIRCLE_ENTRY_OVERLAP = "-=0.24";
@@ -33,8 +32,6 @@ const BAR_FALL_X = -8;
 const BAR_SETTLE_X = 0;
 const BAR_INITIAL_SCALE_X = 0.88;
 const BAR_INITIAL_SCALE_Y = 0.08;
-const LOGO_BREATH_SCALE = 1.025;
-const BREATH_REPEAT_COUNT = 3;
 const CIRCLE_INITIAL_Y = 8;
 const CIRCLE_REVEAL_SCALE = 80;
 
@@ -144,7 +141,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             scale: 1,
             y: 0,
             duration: CIRCLE_GROW,
-            ease: "back.out(1.85)",
+            ease: "power3.out",
           },
           CIRCLE_ENTRY_OVERLAP,
         )
@@ -160,13 +157,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           "<+=0.2",
         )
         .to({}, { duration: HOLD })
-        .to(logo, {
-          scale: LOGO_BREATH_SCALE,
-          duration: BREATH,
-          yoyo: true,
-          repeat: BREATH_REPEAT_COUNT,
-          ease: "sine.inOut",
-        })
         .set(logo, { overflow: "visible" })
         .set(circle, { zIndex: 3 })
         .to(circle, {
