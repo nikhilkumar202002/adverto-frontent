@@ -61,26 +61,26 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
           </Link>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-[4px] xl:grid-cols-12 xl:items-end xl:gap-8">
+        <div className="portfolio-single-header">
           <Reveal
-            className="xl:col-span-8"
+            className="portfolio-header-left"
             x={-56}
             y={0}
             once={false}
             waitForPageTransition
           >
-            <h1 className="text-[56px] font-medium leading-[0.9] text-[#EDEDED] md:text-[84px] lg:text-[96px] xl:text-[110px]">
+            <h1 className="portfolio-page-heading">
               {project.title}
             </h1>
           </Reveal>
           <Reveal
-            className="xl:col-span-4"
+            className="portfolio-header-right"
             x={56}
             y={0}
             once={false}
             waitForPageTransition
           >
-            <p className="text-[15px] leading-[1.5] text-white/55 lg:text-[16px]">
+            <p className="portfolio-page-description">
               {project.description}
             </p>
           </Reveal>
