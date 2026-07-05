@@ -29,13 +29,13 @@ export default function ServicePage() {
         </div>
 
         <Container className="relative z-10">
-          <ServiceHeroContent />
+          <ServiceHeroContent waitForPageTransition />
         </Container>
       </section>
 
       <section className="relative z-10 py-16 sm:py-20 md:py-24 lg:py-32">
         <Container>
-          <Reveal once={false}>
+          <Reveal once={false} waitForPageTransition>
             <div className="mb-[25px] grid grid-cols-1 gap-8 md:grid-cols-12 md:items-end">
               <div className="md:col-span-12">
                 <p className="mb-2 flex items-center gap-3 text-[12px] uppercase tracking-[0.1em] text-[#0000FF] sm:text-[13px] md:mb-3 md:text-[14px]">
@@ -58,7 +58,13 @@ export default function ServicePage() {
               const Icon = service.icon;
 
               return (
-                <Reveal key={service.id} delay={index * 0.08} y={36} once={false}>
+                <Reveal
+                  key={service.id}
+                  delay={index * 0.08}
+                  y={36}
+                  once={false}
+                  waitForPageTransition
+                >
                   <article
                     className="group relative flex min-h-[360px] flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0000FF] p-5 pt-28 text-white transition-colors duration-500 hover:border-white/25 hover:bg-[#0000cc] sm:min-h-[390px] sm:p-6 sm:pt-32 md:min-h-[430px] md:p-7 md:pt-36 lg:min-h-[460px] lg:p-8 lg:pt-36 min-[1200px]:pt-0"
                   >

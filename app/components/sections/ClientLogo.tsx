@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Container from "../common/Container";
+import usePageTransitionReady from "../common/usePageTransitionReady";
 import { clientLogos } from "../../data/logos";
 
 const headingWords = ["Brands", "We", "Helped", "Grow"];
@@ -60,7 +61,13 @@ function StaticHeading() {
   );
 }
 
-export default function ClientLogo() {
+export default function ClientLogo({
+  waitForPageTransition = false,
+}: {
+  waitForPageTransition?: boolean;
+}) {
+  const isReady = usePageTransitionReady(waitForPageTransition);
+
   return (
     <section
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5"
@@ -70,7 +77,7 @@ export default function ClientLogo() {
           <motion.div
             className="flex flex-col items-center text-center mb-10 sm:mb-12 md:mb-16 lg:mb-24"
             initial="hidden"
-            whileInView="visible"
+            whileInView={isReady ? "visible" : "hidden"}
             viewport={sectionRevealViewport}
             variants={fadeFromLeft}
           >
@@ -90,7 +97,7 @@ export default function ClientLogo() {
           <motion.div
             className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-8 sm:gap-y-10 md:gap-y-14 lg:gap-y-16 items-center justify-items-center"
             initial="hidden"
-            whileInView="visible"
+            whileInView={isReady ? "visible" : "hidden"}
             viewport={sectionRevealViewport}
             variants={fadeIn}
           >

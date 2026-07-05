@@ -8,13 +8,17 @@ const principles = [
   "Value over visibility alone",
 ];
 
-export default function HowItsWork() {
+export default function HowItsWork({
+  waitForPageTransition = false,
+}: {
+  waitForPageTransition?: boolean;
+}) {
   return (
     <section className="relative z-10 border-y border-white/5 bg-[#030303] py-24 text-white md:py-32">
       <Container>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-stretch">
           <div className="lg:col-span-7">
-            <Reveal className="h-full">
+            <Reveal className="h-full" waitForPageTransition={waitForPageTransition}>
               <div className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-[#080808] p-6 md:p-10">
                 <div
                   aria-hidden
@@ -47,7 +51,7 @@ export default function HowItsWork() {
           </div>
 
           <div className="lg:col-span-5">
-            <Reveal className="h-full">
+            <Reveal className="h-full" waitForPageTransition={waitForPageTransition}>
               <div className="relative h-full overflow-hidden rounded-[20px] border border-[#0000FF] bg-[#0000FF] p-6 md:p-10">
                 <p className="mb-4 flex items-center gap-3 text-[13px] uppercase tracking-[0.16em] text-white">
                   <span className="h-[1px] w-[34px] bg-white" />

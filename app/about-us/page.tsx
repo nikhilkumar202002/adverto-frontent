@@ -4,6 +4,7 @@ import AboutScrolling from "../components/sections/AboutScrolling";
 import ClientLogo from "../components/sections/ClientLogo";
 import FeaturedWorksSlider from "../components/sections/FeaturedWorksSlider";
 import HowItsWork from "../components/sections/HowItsWork";
+import AboutHeroTitle from "./AboutHeroTitle";
 
 export const metadata: Metadata = {
   title: "About Adverto | Creative Advertising Agency",
@@ -79,17 +80,13 @@ export default function AboutUsPage() {
         />
 
         <Container className="relative z-10">
-          <div className="about-reveal-up max-w-[760px]">
-            <h1 className="text-[58px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5] sm:text-[72px] md:text-[96px] lg:text-[120px]">
-              Meet Adverto
-            </h1>
-          </div>
+          <AboutHeroTitle />
         </Container>
       </section>
       <AboutScrolling />
-      <HowItsWork />
-      <FeaturedWorksSlider />
-      <ClientLogo />
+      <HowItsWork waitForPageTransition />
+      <FeaturedWorksSlider waitForPageTransition />
+      <ClientLogo waitForPageTransition />
     </main>
   );
 }

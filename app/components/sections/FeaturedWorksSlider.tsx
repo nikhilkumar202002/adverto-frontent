@@ -21,10 +21,14 @@ const featuredProjects = [...projects].sort((a, b) => {
   return aScore - bScore;
 });
 
-export default function FeaturedWorksSlider() {
+export default function FeaturedWorksSlider({
+  waitForPageTransition = false,
+}: {
+  waitForPageTransition?: boolean;
+}) {
   return (
     <section className="relative z-10 overflow-hidden bg-[#030303] py-24 text-white">
-      <Reveal>
+      <Reveal waitForPageTransition={waitForPageTransition}>
         <div className="mb-10 flex items-end justify-between gap-6 px-[80px] max-xl:px-[60px] max-lg:px-[40px] max-md:px-[24px]">
           <div>
             <h2 className="max-w-[720px] text-[42px] font-medium leading-[0.95] tracking-[-0.03em] text-[#F5F5F5] md:text-[72px]">
@@ -64,7 +68,7 @@ export default function FeaturedWorksSlider() {
         }
       `}</style>
 
-      <Reveal>
+      <Reveal waitForPageTransition={waitForPageTransition}>
         <div className="w-full overflow-hidden">
           <div className="featured-work-track flex w-max items-stretch">
             {[0, 1].map((setIndex) => (

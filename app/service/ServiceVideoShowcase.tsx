@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
 
 const horizontalVideos = [
@@ -35,6 +37,89 @@ const verticalVideos = [
   "/videos/vertical/Img%201786.mp4",
   "/videos/vertical/Img%201788.mp4",
 ];
+
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const titleLines = ["Frames That Move", "Brands"];
+
+const labelReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 18,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: smoothEase,
+    },
+  },
+};
+
+const headingGroup: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.12,
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const headingLineReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 34,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: smoothEase,
+    },
+  },
+};
+
+const videoGridReveal: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.62,
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const videoFromLeft: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -56,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.85,
+      ease: smoothEase,
+    },
+  },
+};
+
+const videoFromRight: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 56,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.85,
+      ease: smoothEase,
+    },
+  },
+};
 
 function createShuffledIndexes(length: number, previousIndex?: number) {
   const indexes = Array.from({ length }, (_, index) => index);
@@ -121,36 +206,69 @@ function PlaylistVideo({
   );
 }
 
-export default function ServiceVideoShowcase() {
+export default function ServiceVideoShowcase({
+  motionReady = true,
+}: {
+  motionReady?: boolean;
+}) {
+  const animationState = motionReady ? "visible" : "hidden";
+
   return (
     <div>
       <div className="mb-12 max-w-[760px]">
-        <p className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
+        <motion.p
+          className="mb-3 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]"
+          initial="hidden"
+          animate={animationState}
+          variants={labelReveal}
+        >
           <span className="h-[1px] w-[30px] bg-[#0000FF]" />
           Video Work
-        </p>
-        <h2 className="text-[45px] font-medium leading-[1] text-[#EDEDED] md:text-[70px]">
-          Frames That Move Brands
-        </h2>
+        </motion.p>
+        <motion.h2
+          className="text-[45px] font-medium leading-[1] text-[#EDEDED] md:text-[70px]"
+          initial="hidden"
+          animate={animationState}
+          variants={headingGroup}
+        >
+          {titleLines.map((line) => (
+            <span key={line} className="block overflow-hidden pb-[0.04em]">
+              <motion.span className="block" variants={headingLineReveal}>
+                {line}
+              </motion.span>
+            </span>
+          ))}
+        </motion.h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-4">
-        <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-3">
+      <motion.div
+        className="grid grid-cols-1 gap-5 lg:grid-cols-4"
+        initial="hidden"
+        animate={animationState}
+        variants={videoGridReveal}
+      >
+        <motion.div
+          className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-3"
+          variants={videoFromLeft}
+        >
           <PlaylistVideo
             videos={horizontalVideos}
             label="Horizontal service video reel"
             className="aspect-video h-full w-full object-contain"
           />
-        </div>
+        </motion.div>
 
-        <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-1">
+        <motion.div
+          className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] lg:col-span-1"
+          variants={videoFromRight}
+        >
           <PlaylistVideo
             videos={verticalVideos}
             label="Vertical service video reel"
             className="aspect-[9/16] h-full w-full object-contain"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

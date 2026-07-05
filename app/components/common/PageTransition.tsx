@@ -7,8 +7,19 @@ import { usePathname, useRouter } from "next/navigation";
 const TILE_COUNT = 12;
 const tiles = Array.from({ length: TILE_COUNT }, (_, index) => index);
 
+declare global {
+  interface Window {
+    __advertoPageTransitionComplete?: boolean;
+  }
+}
+
 const isModifiedClick = (event: MouseEvent) =>
   event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+
+const markPageTransitionComplete = () => {
+  window.__advertoPageTransitionComplete = true;
+  window.dispatchEvent(new Event("adverto:page-transition-complete"));
+};
 
 export default function PageTransition() {
   const router = useRouter();
@@ -40,6 +51,7 @@ export default function PageTransition() {
           gsap.set(overlay, { autoAlpha: 0, pointerEvents: "none" });
           isTransitioningRef.current = false;
           pendingPathRef.current = null;
+          markPageTransitionComplete();
         },
       })
       .to(tileElements, {
@@ -63,6 +75,7 @@ export default function PageTransition() {
       }
 
       isTransitioningRef.current = true;
+      window.__advertoPageTransitionComplete = false;
       pendingPathRef.current = new URL(href, window.location.origin).pathname;
 
       gsap.killTweensOf([overlay, tileElements]);
@@ -91,7 +104,10 @@ export default function PageTransition() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      markPageTransitionComplete();
+      return;
+    }
 
     const handleClick = (event: MouseEvent) => {
       if (isTransitioningRef.current || isModifiedClick(event)) return;
@@ -124,12 +140,16 @@ export default function PageTransition() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      markPageTransitionComplete();
+      return;
+    }
 
     if (!hasMountedRef.current) {
       hasMountedRef.current = true;
       gsap.set(overlayRef.current, { autoAlpha: 0, pointerEvents: "none" });
       gsap.set(tileRefs.current.filter(Boolean), { scaleY: 0 });
+      markPageTransitionComplete();
       return;
     }
 

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Container from "../components/common/Container";
 import CustomSelect from "../components/common/CustomSelect";
+import Reveal from "../components/common/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact Adverto | Branding & Creative Agency",
@@ -106,7 +107,13 @@ export default function ContactPage() {
     <section className="relative overflow-hidden bg-[#050505] pt-32 pb-24 text-white md:pt-36 md:pb-28 lg:pt-40 lg:pb-32">
       <Container>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-8">
+          <Reveal
+            className="md:col-span-8"
+            x={-56}
+            y={0}
+            once={false}
+            waitForPageTransition
+          >
             <p className="mb-4 flex items-center gap-3 text-[14px] uppercase tracking-[0.1em] text-[#0000FF]">
               <span className="h-[1px] w-[30px] bg-[#0000FF]" />
               Contact Us
@@ -114,17 +121,30 @@ export default function ContactPage() {
             <h1 className="max-w-[920px] text-[32px] font-medium leading-[0.95] text-[#EDEDED] md:text-[56px] lg:text-[96px]">
               Start Your Next Brand Project
             </h1>
-          </div>
-          <div className="md:col-span-4">
+          </Reveal>
+          <Reveal
+            className="md:col-span-4"
+            x={56}
+            y={0}
+            once={false}
+            waitForPageTransition
+          >
             <p className="max-w-[380px] text-[16px] leading-[1.45] text-white/55 md:ml-auto">
               Bring us a launch, rebrand, campaign, or content challenge. We
               will shape it into a clear creative plan and production path.
             </p>
-          </div>
+          </Reveal>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-[20px] md:mt-14 lg:mt-16 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <Reveal
+            className="lg:col-span-5"
+            x={-40}
+            y={0}
+            amount={0.08}
+            once
+            waitForPageTransition
+          >
             <div className="grid grid-cols-1 gap-[20px]">
               {contactMethods.map((method) => {
                 const Icon = method.icon;
@@ -202,127 +222,145 @@ export default function ContactPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 md:p-8 lg:col-span-7">
-            <div className="mb-10 flex items-start justify-between gap-6">
-              <div>
-                <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#0000FF]">
-                  Project Inquiry
-                </p>
-                <h2 className="text-3xl font-medium leading-tight text-[#EDEDED] md:text-4xl">
-                  Tell us what you need
-                </h2>
-              </div>
-              <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-[20px] border border-white/10 text-[#0000FF] md:flex">
-                <MessageSquareText size={20} strokeWidth={1.6} />
-              </div>
-            </div>
+          <Reveal
+            className="lg:col-span-7"
+            x={40}
+            y={0}
+            amount={0.08}
+            once
+            waitForPageTransition
+          >
+            <div className="grid grid-cols-1 gap-[20px]">
+              <div className="rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 md:p-8">
+                <div className="mb-10 flex items-start justify-between gap-6">
+                  <div>
+                    <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#0000FF]">
+                      Project Inquiry
+                    </p>
+                    <h2 className="text-3xl font-medium leading-tight text-[#EDEDED] md:text-4xl">
+                      Tell us what you need
+                    </h2>
+                  </div>
+                  <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-[20px] border border-white/10 text-[#0000FF] md:flex">
+                    <MessageSquareText size={20} strokeWidth={1.6} />
+                  </div>
+                </div>
 
-            <form
-              action="mailto:connectadvertoads@gmail.com"
-              method="post"
-              encType="text/plain"
-              className="grid grid-cols-1 gap-5 md:grid-cols-2"
-            >
-              <label className="block">
-                <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
-                  Name
-                </span>
-                <input
-                  name="name"
-                  type="text"
-                  required
-                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
-                  placeholder="Your name"
-                />
-              </label>
-
-              <label className="block">
-                <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
-                  Email
-                </span>
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
-                  placeholder="you@example.com"
-                />
-              </label>
-
-              <CustomSelect
-                label="Service"
-                name="service"
-                placeholder="Select a service"
-                options={projectTypes}
-              />
-
-              <CustomSelect
-                label="Budget"
-                name="budget"
-                placeholder="Select a range"
-                options={budgetRanges}
-              />
-
-              <label className="block md:col-span-2">
-                <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
-                  Project Details
-                </span>
-                <textarea
-                  name="message"
-                  required
-                  rows={7}
-                  className="w-full resize-none rounded-[20px] border border-white/10 bg-black/30 p-4 text-[16px] leading-relaxed text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
-                  placeholder="Tell us about the goal, timeline, audience, and deliverables."
-                />
-              </label>
-
-              <div className="flex flex-col gap-4 md:col-span-2 md:flex-row md:items-center md:justify-between">
-                <p className="max-w-[420px] text-sm leading-relaxed text-white/40">
-                  The form opens your email client with the project details. For
-                  direct email, write to connectadvertoads@gmail.com.
-                </p>
-                <button
-                  type="submit"
-                  className="group inline-flex h-14 items-center justify-center gap-3 rounded-[20px] bg-[#0000FF] px-7 text-[14px] font-medium tracking-wide text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]"
+                <form
+                  action="mailto:connectadvertoads@gmail.com"
+                  method="post"
+                  encType="text/plain"
+                  className="grid grid-cols-1 gap-5 md:grid-cols-2"
                 >
-                  Send Inquiry
-                  <Send
-                    size={18}
-                    strokeWidth={1.8}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+                  <label className="block">
+                    <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
+                      Name
+                    </span>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
+                      placeholder="Your name"
+                    />
+                  </label>
 
-        <div className="mt-[20px] grid grid-cols-1 gap-[20px] md:grid-cols-3">
-          {responseSteps.map((step) => (
-            <div
-              key={step.id}
-              className="min-h-[220px] rounded-[20px] border border-white/10 bg-[#080808] p-6 md:p-8"
-            >
-              <div className="mb-10 flex items-center justify-between gap-5">
-                <span className="text-lg font-medium text-[#0000FF]">
-                  {step.id}
-                </span>
-                <BriefcaseBusiness
-                  size={20}
-                  strokeWidth={1.5}
-                  className="text-white/25"
-                />
+                  <label className="block">
+                    <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
+                      Email
+                    </span>
+                    <input
+                      name="email"
+                      type="email"
+                      required
+                      className="h-14 w-full rounded-[20px] border border-white/10 bg-black/30 px-4 text-[16px] text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
+                      placeholder="you@example.com"
+                    />
+                  </label>
+
+                  <CustomSelect
+                    label="Service"
+                    name="service"
+                    placeholder="Select a service"
+                    options={projectTypes}
+                  />
+
+                  <CustomSelect
+                    label="Budget"
+                    name="budget"
+                    placeholder="Select a range"
+                    options={budgetRanges}
+                  />
+
+                  <label className="block md:col-span-2">
+                    <span className="mb-2 block text-xs uppercase tracking-[0.16em] text-white/35">
+                      Project Details
+                    </span>
+                    <textarea
+                      name="message"
+                      required
+                      rows={7}
+                      className="w-full resize-none rounded-[20px] border border-white/10 bg-black/30 p-4 text-[16px] leading-relaxed text-white outline-none transition-colors placeholder:text-white/25 focus:border-[#0000FF]"
+                      placeholder="Tell us about the goal, timeline, audience, and deliverables."
+                    />
+                  </label>
+
+                  <div className="flex flex-col gap-4 md:col-span-2 md:flex-row md:items-center md:justify-between">
+                    <p className="max-w-[420px] text-sm leading-relaxed text-white/40">
+                      The form opens your email client with the project details. For
+                      direct email, write to connectadvertoads@gmail.com.
+                    </p>
+                    <button
+                      type="submit"
+                      className="group inline-flex h-14 items-center justify-center gap-3 rounded-[20px] bg-[#0000FF] px-7 text-[14px] font-medium tracking-wide text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,0,255,0.45)]"
+                    >
+                      Send Inquiry
+                      <Send
+                        size={18}
+                        strokeWidth={1.8}
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    </button>
+                  </div>
+                </form>
               </div>
-              <h3 className="mb-3 text-xl font-medium text-[#EDEDED]">
-                {step.title}
-              </h3>
-              <p className="text-[15px] leading-[1.45] text-white/45">
-                {step.text}
-              </p>
+
+              <div className="grid grid-cols-1 gap-[20px] md:grid-cols-3">
+                {responseSteps.map((step, index) => (
+                  <Reveal
+                    key={step.id}
+                    delay={index * 0.06}
+                    duration={0.55}
+                    y={28}
+                    amount={0.12}
+                    once
+                    waitForPageTransition
+                  >
+                    <div className="flex min-h-[220px] flex-col rounded-[20px] border border-white/10 bg-[#080808] p-6 md:min-h-[240px] md:p-8 lg:min-h-[284px]">
+                      <div className="mb-10 flex items-center justify-between gap-5">
+                        <span className="text-lg font-medium text-[#0000FF]">
+                          {step.id}
+                        </span>
+                        <BriefcaseBusiness
+                          size={20}
+                          strokeWidth={1.5}
+                          className="text-white/25"
+                        />
+                      </div>
+                      <h3 className="mb-3 text-xl font-medium text-[#EDEDED]">
+                        {step.title}
+                      </h3>
+                      <p className="text-[15px] leading-[1.45] text-white/45">
+                        {step.text}
+                      </p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
             </div>
-          ))}
+          </Reveal>
         </div>
       </Container>
     </section>

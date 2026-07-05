@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import usePageTransitionReady from "../components/common/usePageTransitionReady";
 
 const contentVariants: Variants = {
   hidden: { opacity: 0 },
@@ -27,13 +28,19 @@ const itemVariants: Variants = {
   },
 };
 
-export default function ServiceHeroContent() {
+export default function ServiceHeroContent({
+  waitForPageTransition = false,
+}: {
+  waitForPageTransition?: boolean;
+}) {
+  const isReady = usePageTransitionReady(waitForPageTransition);
+
   return (
     <motion.div
       className="max-w-[980px]"
       variants={contentVariants}
       initial="hidden"
-      animate="visible"
+      animate={isReady ? "visible" : "hidden"}
     >
       <motion.p
         variants={itemVariants}
