@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import Container from "../../components/common/Container";
 import Button from "../../components/common/Button";
+import Reveal from "../../components/common/Reveal";
 import { serviceDetails, type ServiceSlug } from "../serviceDetails";
 
 type ServiceDetailPageProps = {
@@ -29,7 +30,13 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
 
         <Container className="relative z-10">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-12">
+            <Reveal
+              className="lg:col-span-12"
+              x={-56}
+              y={0}
+              once={false}
+              waitForPageTransition
+            >
               <p className="mb-4 flex items-center gap-3 text-[12px] uppercase tracking-[0.18em] text-[#0000FF] sm:text-[13px]">
                 <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                 {service.eyebrow}
@@ -38,7 +45,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                 <span className="text-[#0000FF]">{service.id}</span>{" "}
                 {service.title}
               </h1>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>
@@ -47,10 +54,17 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
         <Container>
           <div className="grid grid-cols-1 gap-8 xl:grid-cols-12 xl:items-start">
             <div className="xl:col-span-8">
-              <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-black">
+              <Reveal y={36} amount={0.08} once waitForPageTransition>
+                <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-black">
                 <div className="relative border-b border-white/10 p-5 md:p-8">
                   <div className="mb-10 flex items-start justify-between gap-8">
-                    <div>
+                    <Reveal
+                      x={-40}
+                      y={0}
+                      amount={0.2}
+                      once={false}
+                      waitForPageTransition
+                    >
                       <p className="mb-4 flex items-center gap-3 text-[12px] uppercase tracking-[0.18em] text-[#0000FF]">
                         <span className="h-[1px] w-[34px] bg-[#0000FF]" />
                         Service Scope
@@ -58,43 +72,54 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                       <h2 className="max-w-[620px] text-[38px] font-medium leading-[0.96] tracking-[-0.035em] text-[#F5F5F5] sm:text-[44px] md:text-[54px] lg:text-[62px] xl:text-[72px]">
                         What&apos;s included in this service.
                       </h2>
-                    </div>
+                    </Reveal>
                     <span className="hidden text-[54px] font-medium leading-none text-white/[0.06] md:block xl:text-[64px]">
                       {service.id}
                     </span>
                   </div>
 
-                  <p className="max-w-[680px] text-[15px] leading-[1.6] text-white/55 md:text-[16px] xl:text-[17px]">
-                    Each item is shaped around the business goal, then connected
-                    into a clear system for brand, campaign, content, or growth.
-                  </p>
+                  <Reveal y={24} amount={0.3} once={false} waitForPageTransition>
+                    <p className="max-w-[680px] text-[15px] leading-[1.6] text-white/55 md:text-[16px] xl:text-[17px]">
+                      Each item is shaped around the business goal, then connected
+                      into a clear system for brand, campaign, content, or growth.
+                    </p>
+                  </Reveal>
                 </div>
 
                 <div className="relative grid grid-cols-1 gap-[1px] bg-white/10 md:grid-cols-2">
                   {service.items.map((item, index) => (
-                    <div
+                    <Reveal
                       key={item}
-                      className="group min-h-[180px] bg-black p-5 transition-colors duration-300 hover:bg-[#050505] md:p-7"
+                      delay={index * 0.045}
+                      duration={0.55}
+                      y={28}
+                      amount={0.12}
+                      once
+                      waitForPageTransition
                     >
-                      <div className="mb-10 flex items-center justify-between gap-6">
-                        <span className="text-[13px] uppercase tracking-[0.16em] text-white/22 transition-colors duration-300 group-hover:text-[#0000FF]">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-[#0000FF] transition-colors duration-300 group-hover:border-[#0000FF] group-hover:bg-[#0000FF] group-hover:text-white">
-                          <Check size={16} strokeWidth={2} />
-                        </span>
+                      <div className="group min-h-[180px] bg-black p-5 transition-colors duration-300 hover:bg-[#050505] md:p-7">
+                        <div className="mb-10 flex items-center justify-between gap-6">
+                          <span className="text-[13px] uppercase tracking-[0.16em] text-white/22 transition-colors duration-300 group-hover:text-[#0000FF]">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-[#0000FF] transition-colors duration-300 group-hover:border-[#0000FF] group-hover:bg-[#0000FF] group-hover:text-white">
+                            <Check size={16} strokeWidth={2} />
+                          </span>
+                        </div>
+                        <h3 className="text-[23px] font-medium leading-[1.05] tracking-[-0.025em] text-white/86 md:text-[28px] xl:text-[32px]">
+                          {item}
+                        </h3>
                       </div>
-                      <h3 className="text-[23px] font-medium leading-[1.05] tracking-[-0.025em] text-white/86 md:text-[28px] xl:text-[32px]">
-                        {item}
-                      </h3>
-                    </div>
+                    </Reveal>
                   ))}
                 </div>
               </div>
+              </Reveal>
             </div>
 
             <aside className="xl:sticky xl:top-28 xl:col-span-4 xl:self-start">
-              <div className="rounded-[20px] border border-white/10 bg-[#080808] p-5 md:p-8">
+              <Reveal x={40} y={0} amount={0.08} once waitForPageTransition>
+                <div className="rounded-[20px] border border-white/10 bg-[#080808] p-5 md:p-8">
                 <div className="mb-8 flex items-start justify-between gap-6">
                   <div>
                     <p className="mb-2 text-[12px] uppercase tracking-[0.18em] text-white/35">
@@ -151,6 +176,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
                   </div>
                 </div>
               </div>
+              </Reveal>
             </aside>
           </div>
         </Container>

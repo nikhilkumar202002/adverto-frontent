@@ -97,8 +97,8 @@ export default function Footer() {
 
   return (
     <footer className="relative z-20 overflow-hidden bg-black text-white lg:min-h-[100svh]">
-      <Container className="relative z-10 flex min-h-[520px] flex-col justify-between py-8 md:min-h-[720px] md:py-10 lg:min-h-[100svh]">
-        <div className="flex flex-1 flex-col items-center justify-center py-10 text-center md:py-0">
+      <Container className="relative z-10 flex min-h-[520px] flex-col justify-between py-10 md:min-h-[720px] lg:min-h-[100svh]">
+        <div className="flex flex-1 flex-col items-center justify-center py-10 text-center">
           <h2 className="text-[clamp(52px,18vw,92px)] font-semibold leading-[0.82] tracking-normal text-[#f4f3ef] md:text-[clamp(86px,14vw,150px)] md:leading-[0.8] xl:text-[clamp(130px,17vw,300px)] xl:leading-[0.78]">
             Let<span className="text-[#0000FF]">&apos;</span>s Talk
           </h2>

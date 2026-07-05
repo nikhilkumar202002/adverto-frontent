@@ -29,6 +29,14 @@ export default function InfiniteProjectSlider({
           <span className="w-[30px] h-[1px] bg-[#0000FF]" />
           MORE PROJECTS
         </p>
+
+        <Link
+          href="/portfolio"
+          aria-label="View all projects"
+          className="text-[#0000FF] uppercase text-[12px] md:text-[14px] tracking-[0.1em] hover:underline"
+        >
+          VIEW ALL
+        </Link>
       </div>
 
       <style>{`
