@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -84,31 +83,7 @@ const gridCardReveal: Variants = {
 export default function PortfolioPageContent({
   projects,
 }: PortfolioPageContentProps) {
-  const [motionReady, setMotionReady] = useState(false);
-
-  useEffect(() => {
-    if (window.__advertoPageTransitionComplete) {
-      setMotionReady(true);
-      return;
-    }
-
-    const handleTransitionComplete = () => {
-      setMotionReady(true);
-    };
-
-    window.addEventListener(
-      "adverto:page-transition-complete",
-      handleTransitionComplete,
-      { once: true },
-    );
-
-    return () => {
-      window.removeEventListener(
-        "adverto:page-transition-complete",
-        handleTransitionComplete,
-      );
-    };
-  }, []);
+  const motionReady = true;
 
   return (
     <section className="relative bg-[#050505] pb-[25px] pt-32 md:pb-32 md:pt-40">

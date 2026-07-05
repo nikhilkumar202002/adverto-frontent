@@ -44,6 +44,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setPendingHref(null);
+    setIsOpen(false);
   }, [pathname]);
 
   useEffect(() => {

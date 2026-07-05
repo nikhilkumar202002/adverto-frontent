@@ -16,7 +16,7 @@ export default function ServicePage() {
   return (
     <div className="relative bg-[#050505] text-white">
       <section
-        className="relative flex min-h-[680px] items-end overflow-hidden border-b border-white/5 pb-[40px]"
+        className="relative flex min-h-[680px] md:min-h-[100vh] items-end overflow-hidden border-b border-white/5 pb-[40px]"
         data-navbar-transparent
       >
         <div aria-hidden className="absolute inset-0 z-0 bg-black">
