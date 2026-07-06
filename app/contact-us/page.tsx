@@ -120,7 +120,7 @@ export default function ContactPage() {
               Contact Us
             </p>
             <InnerBannerHeading
-              text="Start Your Next Brand Project"
+              text="Your Next Move Starts Here."
               className="max-w-[920px]"
             />
           </Reveal>
