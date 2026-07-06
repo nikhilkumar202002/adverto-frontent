@@ -5,8 +5,8 @@ import type { Variants } from "framer-motion";
 import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import usePageTransitionReady from "../components/common/usePageTransitionReady";
 
-const headlineText = "Brand, Campaign & Content Systems";
-const mobileHeadlineText = "Brand,\nCampaign &\nContent Systems";
+const headlineText = "Everything Behind Great Brands.";
+const mobileHeadlineText = "Everything\nBehind Great\nBrands.";
 const easeOut: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const contentVariants: Variants = {
@@ -71,8 +71,8 @@ export default function ServiceHeroContent({
         variants={itemVariants}
         className="mt-5 max-w-[460px] text-[14px] leading-[1.5] text-white/55 sm:text-[15px] md:mt-6 md:max-w-[520px] md:text-[16px]"
       >
-        We connect strategy, design, production, and distribution into one
-        creative workflow for ambitious brands.
+        From strategy and branding to campaigns, content, and production we
+        build the creative systems that help businesses grow.
       </motion.p>
     </motion.div>
   );

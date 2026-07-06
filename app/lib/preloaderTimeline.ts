@@ -19,6 +19,8 @@ const BAR_FINAL_X = -18;
 const CIRCLE_START_Y = 116;
 const CIRCLE_FINAL_Y = 36;
 const CIRCLE_FINAL_X = -88;
+const BASE_CIRCLE_DIAMETER = 148;
+const BAR_START_Y = 20;
 
 export type PreloaderRefs = {
   container: HTMLDivElement;
@@ -41,12 +43,19 @@ export function computeCoverScale(circleElement: HTMLElement) {
   return (requiredDiameter / currentDiameter) * 1.15;
 }
 
+function getLogoPositionScale(circleElement: HTMLElement) {
+  const currentDiameter = circleElement.getBoundingClientRect().width || BASE_CIRCLE_DIAMETER;
+  return currentDiameter / BASE_CIRCLE_DIAMETER;
+}
+
 export function createPreloaderTimeline({
   refs,
   onComplete,
   timeScale = 1,
 }: CreateTimelineOptions) {
   const { background, logoGroup, rectangle, circle, container } = refs;
+  const logoPositionScale = getLogoPositionScale(circle);
+  const scaled = (value: number) => value * logoPositionScale;
 
   const timeline = gsap.timeline({
     paused: true,
@@ -57,8 +66,8 @@ export function createPreloaderTimeline({
 
   // Set initial position: circle rests precisely at the bottom-left flank of the diagonal bar
   gsap.set(circle, {
-    x: CIRCLE_FINAL_X,
-    y: CIRCLE_START_Y,
+    x: scaled(CIRCLE_FINAL_X),
+    y: scaled(CIRCLE_START_Y),
     scale: 0,
     opacity: 1,
     zIndex: 1,
@@ -73,7 +82,7 @@ export function createPreloaderTimeline({
     rotation: 0,
     scaleX: 0.1,
     scaleY: 0,
-    y: 20,
+    y: scaled(BAR_START_Y),
     transformOrigin: "50% 100%",
   });
 
@@ -96,10 +105,10 @@ export function createPreloaderTimeline({
     })
     // 2. Fall fully to the base before the circle grows.
     .to(rectangle, {
-      x: BAR_GROUND_X,
+      x: scaled(BAR_GROUND_X),
       rotation: BAR_GROUND_ROTATION,
       scaleX: 1,
-      y: BAR_GROUND_Y,
+      y: scaled(BAR_GROUND_Y),
       transformOrigin: "50% 100%",
       duration: BAR_FALL,
       ease: "power3.in",
@@ -108,16 +117,16 @@ export function createPreloaderTimeline({
     // 3. Pop the circle in behind the bar to form the finished mark.
     .to(circle, {
       scale: 1,
-      y: CIRCLE_FINAL_Y,
+      y: scaled(CIRCLE_FINAL_Y),
       duration: CIRCLE_POP,
       ease: "power3.out",
     })
     .to(
       rectangle,
       {
-        x: BAR_FINAL_X,
+        x: scaled(BAR_FINAL_X),
         rotation: BAR_FINAL_ROTATION,
-        y: BAR_FINAL_Y,
+        y: scaled(BAR_FINAL_Y),
         duration: CIRCLE_POP,
         ease: "power3.out",
       },

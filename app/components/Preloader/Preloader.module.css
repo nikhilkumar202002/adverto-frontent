@@ -66,3 +66,21 @@
     will-change: auto;
   }
 }
+
+@media (max-width: 640px) {
+  .logoGroup {
+    width: 168px;
+    height: 168px;
+    transform: translateX(24px);
+  }
+
+  .rectangle {
+    width: 104px;
+    height: 139px;
+  }
+
+  .circle {
+    width: 86px;
+    height: 86px;
+  }
+}
