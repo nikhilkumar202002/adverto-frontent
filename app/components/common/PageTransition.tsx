@@ -6,6 +6,10 @@ import { usePathname, useRouter } from "next/navigation";
 
 const TILE_COUNT = 12;
 const tiles = Array.from({ length: TILE_COUNT }, (_, index) => index);
+const homeProjectScrollKey = "adverto:home-project-scroll-y";
+const homeProjectRestoreKey = "adverto:home-project-restore-on-return";
+const portfolioScrollKey = "adverto:portfolio-scroll-y";
+const portfolioRestoreKey = "adverto:portfolio-restore-on-return";
 
 declare global {
   interface Window {
@@ -21,6 +25,23 @@ const markPageTransitionComplete = () => {
   window.dispatchEvent(new Event("adverto:page-transition-complete"));
 };
 
+const saveHomeProjectScroll = (currentPath: string, nextPath: string) => {
+  if (currentPath !== "/" || !nextPath.startsWith("/portfolio/")) return;
+
+  sessionStorage.setItem(homeProjectScrollKey, String(window.scrollY));
+  sessionStorage.setItem(homeProjectRestoreKey, "true");
+};
+
+const isPortfolioDetailPath = (path: string) =>
+  path.startsWith("/portfolio/") && path !== "/portfolio/";
+
+const savePortfolioScroll = (currentPath: string, nextPath: string) => {
+  if (currentPath !== "/portfolio" || !isPortfolioDetailPath(nextPath)) return;
+
+  sessionStorage.setItem(portfolioScrollKey, String(window.scrollY));
+  sessionStorage.setItem(portfolioRestoreKey, "true");
+};
+
 export default function PageTransition() {
   const router = useRouter();
   const pathname = usePathname();
@@ -28,6 +49,7 @@ export default function PageTransition() {
   const tileRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const isTransitioningRef = useRef(false);
   const pendingPathRef = useRef<string | null>(null);
+  const pendingScrollTopRef = useRef(false);
   const hasMountedRef = useRef(false);
 
   const setTileRef = useCallback((element: HTMLSpanElement | null, index: number) => {
@@ -65,12 +87,13 @@ export default function PageTransition() {
   }, []);
 
   const coverPage = useCallback(
-    (href: string) => {
+    (href: string, scrollToTop = false) => {
       const overlay = overlayRef.current;
       const tileElements = tileRefs.current.filter(Boolean);
+      pendingScrollTopRef.current = scrollToTop;
 
       if (!overlay || tileElements.length === 0) {
-        router.push(href);
+        router.push(href, { scroll: false });
         return;
       }
 
@@ -86,7 +109,7 @@ export default function PageTransition() {
         .timeline({
           defaults: { ease: "power3.inOut" },
           onComplete: () => {
-            router.push(href);
+            router.push(href, { scroll: false });
           },
         })
         .to(tileElements, {
@@ -124,10 +147,17 @@ export default function PageTransition() {
       if (nextUrl.origin !== currentUrl.origin) return;
       if (nextUrl.pathname === currentUrl.pathname && nextUrl.search === currentUrl.search) return;
 
+      saveHomeProjectScroll(currentUrl.pathname, nextUrl.pathname);
+      savePortfolioScroll(currentUrl.pathname, nextUrl.pathname);
+
       event.preventDefault();
       event.stopPropagation();
       event.stopImmediatePropagation();
-      coverPage(`${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`);
+      coverPage(
+        `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`,
+        currentUrl.pathname === "/portfolio" &&
+          isPortfolioDetailPath(nextUrl.pathname),
+      );
     };
 
     document.addEventListener("click", handleClick, true);
@@ -151,6 +181,11 @@ export default function PageTransition() {
       gsap.set(tileRefs.current.filter(Boolean), { scaleY: 0 });
       markPageTransitionComplete();
       return;
+    }
+
+    if (pendingScrollTopRef.current) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      pendingScrollTopRef.current = false;
     }
 
     if (!isTransitioningRef.current && pendingPathRef.current !== pathname) {
