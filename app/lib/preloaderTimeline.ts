@@ -10,12 +10,15 @@ export const TRANSITION_DURATION = 1.35;
 export const LOADER_FADE_OUT = 0.35;
 
 const COVER_SAFETY_MARGIN = 48;
-const BAR_GROUND_Y = 52;
+const BAR_GROUND_Y = 0;
 const BAR_FINAL_Y = 0;
-const BAR_GROUND_ROTATION = -90;
-const BAR_FINAL_ROTATION = -42;
-const CIRCLE_START_Y = 66;
-const CIRCLE_FINAL_Y = 22;
+const BAR_GROUND_ROTATION = -64;
+const BAR_FINAL_ROTATION = 0;
+const BAR_GROUND_X = 0;
+const BAR_FINAL_X = -18;
+const CIRCLE_START_Y = 116;
+const CIRCLE_FINAL_Y = 36;
+const CIRCLE_FINAL_X = -88;
 
 export type PreloaderRefs = {
   container: HTMLDivElement;
@@ -54,21 +57,24 @@ export function createPreloaderTimeline({
 
   // Set initial position: circle rests precisely at the bottom-left flank of the diagonal bar
   gsap.set(circle, {
-    x: -34,
+    x: CIRCLE_FINAL_X,
     y: CIRCLE_START_Y,
     scale: 0,
     opacity: 1,
+    zIndex: 1,
     transformOrigin: "50% 50%",
   });
 
   // Set initial position: thin line rises perfectly straight before it falls.
   gsap.set(rectangle, {
     opacity: 0,
+    zIndex: 2,
+    x: 0,
     rotation: 0,
-    scaleX: 0.14, // Extremely thin line
-    scaleY: 0,    // Starts at 0 height so it can raise upwards
+    scaleX: 0.1,
+    scaleY: 0,
     y: 20,
-    transformOrigin: "50% 100%", // Anchored at the bottom tip to grow straight UP
+    transformOrigin: "50% 100%",
   });
 
   gsap.set(logoGroup, {
@@ -79,7 +85,7 @@ export function createPreloaderTimeline({
   });
 
   timeline
-    // 1. RAISE UP: Thin line shoots upward into view
+    // 1. Raise the thin vertical line into view.
     .to(rectangle, {
       opacity: 1,
       rotation: 0,
@@ -88,17 +94,18 @@ export function createPreloaderTimeline({
       duration: LINE_RAISE,
       ease: "power3.out",
     })
-    // 3. FALL TO THE LEFT & THICKEN: Tilts diagonally to -42° while expanding to full width
+    // 2. Fall fully to the base before the circle grows.
     .to(rectangle, {
+      x: BAR_GROUND_X,
       rotation: BAR_GROUND_ROTATION,
       scaleX: 1,
       y: BAR_GROUND_Y,
-      transformOrigin: "50% 50%", // Switch pivot to center for smooth diagonal landing
+      transformOrigin: "50% 100%",
       duration: BAR_FALL,
       ease: "power3.in",
     })
     .to({}, { duration: GROUND_HOLD })
-    // 4. CIRCLE ENLARGE: Pops out from the fallen base right as the bar lands
+    // 3. Pop the circle in behind the bar to form the finished mark.
     .to(circle, {
       scale: 1,
       y: CIRCLE_FINAL_Y,
@@ -108,6 +115,7 @@ export function createPreloaderTimeline({
     .to(
       rectangle,
       {
+        x: BAR_FINAL_X,
         rotation: BAR_FINAL_ROTATION,
         y: BAR_FINAL_Y,
         duration: CIRCLE_POP,
