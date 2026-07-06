@@ -21,12 +21,7 @@ export default function ServicePage() {
         data-navbar-transparent
       >
         <div aria-hidden className="absolute inset-0 z-0 bg-black">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px]" />
-          <div className="absolute left-1/2 top-1/2 h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(72,88,255,0.58),rgba(0,0,255,0.34)_38%,rgba(0,0,0,0)_72%)] opacity-80 blur-[120px] md:h-[1040px] md:w-[1040px]" />
-          <div className="absolute bottom-[-14%] right-[-8%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(0,0,255,0.28),rgba(0,0,0,0)_70%)] opacity-70 blur-[110px] md:h-[620px] md:w-[620px]" />
-          <div className="absolute left-[-10%] top-[12%] h-[340px] w-[340px] rounded-full bg-[radial-gradient(circle,rgba(35,0,124,0.34),rgba(0,0,0,0)_68%)] opacity-60 blur-[96px] md:h-[500px] md:w-[500px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.14)_54%,rgba(0,0,0,0.68)_100%)]" />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-[url('/Banners/Services-banner.jpg')] bg-cover bg-center" />
         </div>
 
         <Container className="relative z-10">
