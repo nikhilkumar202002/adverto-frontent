@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { usePathname, useRouter } from "next/navigation";
+import { saveAboutNavigationState } from "../../about-us/aboutNavigationState";
 
 const TILE_COUNT = 12;
 const tiles = Array.from({ length: TILE_COUNT }, (_, index) => index);
@@ -50,6 +51,9 @@ const saveHomeProjectScroll = (currentPath: string, nextPath: string) => {
 const isPortfolioDetailPath = (path: string) =>
   path.startsWith("/portfolio/") && path !== "/portfolio/";
 
+const isProjectDetailPath = (path: string) =>
+  isPortfolioDetailPath(path) || (path.startsWith("/works/") && path !== "/works/");
+
 const savePortfolioScroll = (currentPath: string, nextPath: string) => {
   if (currentPath !== "/portfolio" || !isPortfolioDetailPath(nextPath)) return;
 
@@ -59,6 +63,14 @@ const savePortfolioScroll = (currentPath: string, nextPath: string) => {
   sessionStorage.setItem(portfolioRestoreKey, "true");
   setScrollCookie(portfolioScrollKey, scrollY);
   setScrollCookie(portfolioRestoreKey, "true");
+};
+
+const saveAboutScroll = (currentPath: string, nextPath: string) => {
+  if (!["/about-us", "/about"].includes(currentPath) || !isProjectDetailPath(nextPath)) {
+    return;
+  }
+
+  saveAboutNavigationState();
 };
 
 export default function PageTransition() {
@@ -168,6 +180,7 @@ export default function PageTransition() {
 
       saveHomeProjectScroll(currentUrl.pathname, nextUrl.pathname);
       savePortfolioScroll(currentUrl.pathname, nextUrl.pathname);
+      saveAboutScroll(currentUrl.pathname, nextUrl.pathname);
 
       event.preventDefault();
       event.stopPropagation();

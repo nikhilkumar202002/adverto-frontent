@@ -5,6 +5,7 @@ import ClientLogo from "../components/sections/ClientLogo";
 import FeaturedWorksSlider from "../components/sections/FeaturedWorksSlider";
 import HowItsWork from "../components/sections/HowItsWork";
 import AboutHeroTitle from "./AboutHeroTitle";
+import AboutNavigationStateRestorer from "./AboutNavigationStateRestorer";
 
 export const metadata: Metadata = {
   title: "About Adverto | Creative Advertising Agency",
@@ -58,6 +59,7 @@ const backgroundSquares = [
 export default function AboutUsPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#030303] text-white">
+      <AboutNavigationStateRestorer />
       <section
         className="relative flex min-h-[680px] items-end overflow-hidden border-b border-white/5 pb-[40px] min-[1320px]:min-h-[100vh]"
         data-navbar-transparent

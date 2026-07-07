@@ -75,13 +75,17 @@ export default function FeaturedWorksSlider({
 
       <Reveal waitForPageTransition={waitForPageTransition}>
         <div className="w-full overflow-hidden">
-          <div className="featured-work-track flex w-max items-stretch">
+          <div
+            className="featured-work-track flex w-max items-stretch"
+            data-about-featured-track
+          >
             {[0, 1].map((setIndex) => (
               <div key={setIndex} className="flex shrink-0 items-stretch">
                 {featuredProjects.map((project, index) => (
                   <Link
                     key={`${setIndex}-${project.slug}-${index}`}
                     href={`/portfolio/${project.slug}`}
+                    data-about-featured-project={project.slug}
                     className="group relative mx-2 h-[360px] w-[280px] shrink-0 overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
                   >
                     <Image
