@@ -5,6 +5,7 @@ import Button from "../../components/common/Button";
 import InnerBannerHeading from "../../components/common/InnerBannerHeading";
 import Reveal from "../../components/common/Reveal";
 import { serviceDetails, type ServiceSlug } from "../serviceDetails";
+import ServiceDetailBackLink from "./ServiceDetailBackLink";
 
 type ServiceDetailPageProps = {
   slug: ServiceSlug;
@@ -30,6 +31,7 @@ export default function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
         </div>
 
         <Container className="relative z-10">
+          <ServiceDetailBackLink />
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
             <Reveal
               className="lg:col-span-12"

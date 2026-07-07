@@ -263,15 +263,15 @@ export default function PortfolioPageContent({
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
               <motion.div
                 key={project.slug}
                 initial="hidden"
                 whileInView={motionReady ? "visible" : "hidden"}
-                viewport={{ once: false, amount: 0.16 }}
+                viewport={{ once: true, amount: 0.12 }}
                 variants={gridCardReveal}
                 transition={{ delay: 0.045 }}
-                className="will-change-transform [transform:translateZ(0)]"
+                className="transform-gpu [contain:layout_paint_style] [content-visibility:auto] [contain-intrinsic-size:320px_240px]"
               >
                 <Link
                   href={`${worksIndexPath}/${project.slug}`}
@@ -282,15 +282,18 @@ export default function PortfolioPageContent({
                     handleProjectKeyDown(project.slug, event)
                   }
                   data-works-project={project.slug}
-                  className="group relative block overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A]"
+                  className="group relative block transform-gpu overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] [contain:layout_paint_style]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={project.heroImage}
                       alt={project.title}
                       fill
+                      loading={index < 3 ? "eager" : "lazy"}
+                      decoding="async"
+                      quality={72}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="transform-gpu object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />

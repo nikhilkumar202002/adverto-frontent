@@ -1,57 +1,79 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
-
-const homeScrollKey = "adverto:home-project-scroll-y";
-const homeRestoreKey = "adverto:home-project-restore-on-return";
+import {
+  clearHomeNavigationState,
+  readHomeNavigationState,
+  type HomeProjectSliderState,
+} from "../../homeNavigationState";
+import usePageTransitionReady from "./usePageTransitionReady";
 
 const scrollToPosition = (top: number) => {
   window.scrollTo(0, top);
   window.dispatchEvent(new CustomEvent("adverto:scroll-to", { detail: { top } }));
 };
 
-const getCookie = (name: string) => {
-  const cookie = document.cookie
-    .split("; ")
-    .find((item) => item.startsWith(`${name}=`));
+const restoreProjectSlider = (state: HomeProjectSliderState | null) => {
+  if (!state) return;
 
-  return cookie ? decodeURIComponent(cookie.split("=").slice(1).join("=")) : null;
-};
+  const track = document.querySelector<HTMLElement>("[data-home-project-track]");
 
-const deleteCookie = (name: string) => {
-  document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
+  if (!track) return;
+
+  const duration = state.animationDuration || 52;
+  const progress = Math.min(Math.max(state.animationProgress, 0), 1);
+
+  window.dispatchEvent(
+    new CustomEvent("adverto:home-project-slider-restore", {
+      detail: state,
+    }),
+  );
+
+  track.style.animationDelay = `${-(duration * progress)}s`;
+  track.style.animationPlayState = "running";
+  track.dataset.restoredProgress = String(progress);
+  track.style.transform = `translate3d(${state.trackTranslateX}px, 0, 0)`;
+
+  window.requestAnimationFrame(() => {
+    track.style.transform = "";
+  });
+
+  if (state.activeProjectId) {
+    document
+      .querySelectorAll<HTMLElement>("[data-home-project-card]")
+      .forEach((card) => {
+        card.dataset.active =
+          card.dataset.homeProjectCard === state.activeProjectId
+            ? "true"
+            : "false";
+      });
+  }
 };
 
 export default function HomeScrollRestore() {
   const pathname = usePathname();
+  const pageTransitionReady = usePageTransitionReady(true);
 
   const restoreHomeScroll = useCallback(() => {
     if (window.location.pathname !== "/") return;
 
-    const shouldRestore =
-      getCookie(homeRestoreKey) === "true" ||
-      sessionStorage.getItem(homeRestoreKey) === "true";
-    const storedScrollY =
-      getCookie(homeScrollKey) ?? sessionStorage.getItem(homeScrollKey);
+    const state = readHomeNavigationState();
 
-    if (!shouldRestore || !storedScrollY) return;
+    if (!state || !Number.isFinite(state.scrollY)) return;
 
-    const scrollY = Number(storedScrollY);
-    if (!Number.isFinite(scrollY)) return;
+    clearHomeNavigationState();
+    const restore = () => {
+      restoreProjectSlider(state.projectSlider);
+      scrollToPosition(state.scrollY);
+    };
 
-    sessionStorage.removeItem(homeRestoreKey);
-    sessionStorage.removeItem(homeScrollKey);
-    deleteCookie(homeRestoreKey);
-    deleteCookie(homeScrollKey);
-
-    scrollToPosition(scrollY);
-
+    restore();
     const frameId = window.requestAnimationFrame(() => {
-      scrollToPosition(scrollY);
+      restore();
     });
-    const settleTimers = [120, 320, 650].map((delay) =>
-      window.setTimeout(() => scrollToPosition(scrollY), delay),
+    const settleTimers = [120, 320, 650, 950].map((delay) =>
+      window.setTimeout(restore, delay),
     );
 
     return () => {
@@ -60,11 +82,11 @@ export default function HomeScrollRestore() {
     };
   }, []);
 
-  useEffect(() => {
-    if (pathname !== "/") return;
+  useLayoutEffect(() => {
+    if (pathname !== "/" || !pageTransitionReady) return;
 
     return restoreHomeScroll();
-  }, [pathname, restoreHomeScroll]);
+  }, [pageTransitionReady, pathname, restoreHomeScroll]);
 
   useEffect(() => {
     const handlePageShow = () => {

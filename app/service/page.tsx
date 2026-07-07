@@ -1,11 +1,12 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Container from "../components/common/Container";
 import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import Reveal from "../components/common/Reveal";
 import { servicesData } from "../data/services";
+import ServiceCardLink from "./ServiceCardLink";
 import ServiceHeroContent from "./ServiceHeroContent";
+import ServiceNavigationStateRestorer from "./ServiceNavigationStateRestorer";
 
 export const metadata: Metadata = {
   title: "Creative Services | Adverto",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export default function ServicePage() {
   return (
     <div className="relative bg-[#050505] text-white">
+      <ServiceNavigationStateRestorer />
       <section
         className="relative flex min-h-[680px] items-end overflow-hidden border-b border-white/5 pb-[40px] min-[1320px]:min-h-[100vh]"
         data-navbar-transparent
@@ -94,7 +96,7 @@ export default function ServicePage() {
                       <p className="mb-6 text-[14px] leading-[1.55] text-white/80 sm:text-[15px] md:mb-7 lg:mb-8 lg:text-[14px] xl:text-[16px]">
                         {service.description}
                       </p>
-                      <Link
+                      <ServiceCardLink
                         href={service.link}
                         className="inline-flex items-center gap-2 border-b border-white/35 pb-1 text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-colors duration-300 hover:border-white sm:text-[12px]"
                       >
@@ -103,7 +105,7 @@ export default function ServicePage() {
                           size={14}
                           className="transition-transform duration-300 group-hover:translate-x-1"
                         />
-                      </Link>
+                      </ServiceCardLink>
                     </div>
                   </article>
                 </Reveal>
