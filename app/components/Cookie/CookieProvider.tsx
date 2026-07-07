@@ -80,21 +80,38 @@ export default function CookieProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const initializeConsent = window.setTimeout(() => {
+    let initializeTimer = 0;
+    let showBannerTimer = 0;
+
+    const showBanner = () => {
+      window.clearTimeout(showBannerTimer);
+      showBannerTimer = window.setTimeout(() => {
+        setIsBannerOpen(true);
+      }, 3000);
+    };
+
+    initializeTimer = window.setTimeout(() => {
       const savedConsent = getConsentCookie();
 
       if (savedConsent) {
-        setConsent(savedConsent);
         loadAnalyticsScripts(savedConsent);
-        setIsBannerOpen(false);
+        setConsent(savedConsent);
         return;
       }
 
-      setIsBannerOpen(true);
+      if (window.__advertoPreloaderComplete) {
+        showBanner();
+      } else {
+        window.addEventListener("adverto:preloader-complete", showBanner, {
+          once: true,
+        });
+      }
     }, 0);
 
     return () => {
-      window.clearTimeout(initializeConsent);
+      window.clearTimeout(initializeTimer);
+      window.clearTimeout(showBannerTimer);
+      window.removeEventListener("adverto:preloader-complete", showBanner);
     };
   }, []);
 

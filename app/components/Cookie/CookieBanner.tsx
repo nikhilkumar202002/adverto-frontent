@@ -28,7 +28,7 @@ export default function CookieBanner() {
           onComplete?.();
           closeBanner();
         },
-        x: -30,
+        y: 30,
       });
     },
     [closeBanner],
@@ -53,12 +53,12 @@ export default function CookieBanner() {
 
     gsap.fromTo(
       card,
-      { autoAlpha: 0, x: -40 },
+      { autoAlpha: 0, y: 40 },
       {
         autoAlpha: 1,
         duration: 0.7,
         ease: "power3.out",
-        x: 0,
+        y: 0,
       },
     );
   }, []);

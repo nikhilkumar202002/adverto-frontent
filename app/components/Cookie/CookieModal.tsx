@@ -57,8 +57,14 @@ export default function CookieModal() {
     if (card) {
       gsap.fromTo(
         card,
-        { autoAlpha: 0, scale: 0.9 },
-        { autoAlpha: 1, duration: 0.42, ease: "power3.out", scale: 1 },
+        { autoAlpha: 0, scale: 0.9, y: 36 },
+        {
+          autoAlpha: 1,
+          duration: 0.42,
+          ease: "power3.out",
+          scale: 1,
+          y: 0,
+        },
       );
 
       const firstFocusable = card.querySelector<HTMLElement>(focusableSelector);

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUp } from "lucide-react";
 import Button from "../common/Button";
 import Container from "../common/Container";
 
@@ -108,17 +107,7 @@ export default function Footer() {
           </Button>
         </div>
 
-        <button
-          type="button"
-          onClick={moveToTop}
-          className="absolute bottom-[110px] right-[clamp(24px,4vw,80px)] hidden h-[74px] items-center gap-5 rounded-[22px] bg-white/15 pl-10 pr-2 text-[18px] font-semibold text-white/70 transition-colors duration-300 hover:bg-white/20 hover:text-white xl:inline-flex"
-          aria-label="Move to top"
-        >
-          Move to top
-          <span className="flex h-[62px] w-[62px] items-center justify-center rounded-[20px] bg-black/20 text-white">
-            <ArrowUp size={24} strokeWidth={1.8} />
-          </span>
-        </button>
+    
 
         <div className="grid items-center gap-4 pb-1 text-[13px] text-white/60 md:text-[14px] lg:grid-cols-3 lg:gap-6 lg:text-[15px]">
           <p className="text-center lg:text-left">
