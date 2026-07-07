@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import AppShell from "./components/AppShell";
+import CookieProvider from "./components/Cookie/CookieProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="relative overflow-x-hidden bg-black text-white">
-        <AppShell>{children}</AppShell>
+        <CookieProvider>
+          <AppShell>{children}</AppShell>
+        </CookieProvider>
       </body>
     </html>
   );

@@ -8,7 +8,6 @@ import {
   type HomeProjectSliderState,
   type HomeServicesGridState,
 } from "../../homeNavigationState";
-import usePageTransitionReady from "./usePageTransitionReady";
 
 const scrollToPosition = (top: number) => {
   window.scrollTo(0, top);
@@ -67,7 +66,6 @@ const restoreServicesGrid = (state: HomeServicesGridState | null | undefined) =>
 
 export default function HomeScrollRestore() {
   const pathname = usePathname();
-  const pageTransitionReady = usePageTransitionReady(true);
 
   const restoreHomeScroll = useCallback(() => {
     if (window.location.pathname !== "/") return;
@@ -87,7 +85,7 @@ export default function HomeScrollRestore() {
     const frameId = window.requestAnimationFrame(() => {
       restore();
     });
-    const settleTimers = [120, 320, 650, 950].map((delay) =>
+    const settleTimers = [80, 180, 360, 700, 1000].map((delay) =>
       window.setTimeout(restore, delay),
     );
 
@@ -98,10 +96,10 @@ export default function HomeScrollRestore() {
   }, []);
 
   useLayoutEffect(() => {
-    if (pathname !== "/" || !pageTransitionReady) return;
+    if (pathname !== "/") return;
 
     return restoreHomeScroll();
-  }, [pageTransitionReady, pathname, restoreHomeScroll]);
+  }, [pathname, restoreHomeScroll]);
 
   useEffect(() => {
     const handlePageShow = () => {
