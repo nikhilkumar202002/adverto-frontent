@@ -9,7 +9,7 @@ export const moreProjects = [
   {
     id: "underdwag",
     slug: "underdwag",
-    title: "Underdwag",
+    title: "UNDERDAWG",
     subtitle: "Apparel · 2023",
     image: "/case-studies/Underdwag/Cover/dog.jpg",
   },
@@ -224,10 +224,10 @@ export const moreProjects = [
     image: "/case-studies/km/cover/cover.jpg",
   },
   {
-    id: "potago",
-    slug: "potago",
-    title: "Potago",
+    id: "POTOGO",
+    slug: "POTOGO",
+    title: "POTOGO",
     subtitle: "Branding 2024",
-    image: "/case-studies/Potago/Cover/Cover.jpg",
+    image: "/case-studies/POTOGO/Cover/Cover.jpg",
   },
 ];

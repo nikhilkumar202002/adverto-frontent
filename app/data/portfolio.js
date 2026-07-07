@@ -44,7 +44,7 @@ export const caseStudyCollageProjects = [
   },
   {
     id: "under-dawg",
-    title: "Under Dawg",
+    title: "UNDERDAWG",
     subtitle: "Apparel · 2023",
     image: "/case-studies/1200-x-900---02.jpg",
     alt: "Under Dawg branded tote bag",
@@ -501,18 +501,18 @@ const kmGalleryImages = [
   "/case-studies/km/Untitled-1-10.jpg",
 ];
 
-const potagoGalleryImages = [
-  "/case-studies/Potago/potago-01.jpg",
-  "/case-studies/Potago/potago-02.jpg",
-  "/case-studies/Potago/potago-03.jpg",
-  "/case-studies/Potago/potago-04.jpg",
-  "/case-studies/Potago/potago-05.jpg",
-  "/case-studies/Potago/potago-06.jpg",
-  "/case-studies/Potago/potago-07.jpg",
-  "/case-studies/Potago/potago-08.jpg",
-  "/case-studies/Potago/potago-09.jpg",
-  "/case-studies/Potago/potago-10.jpg",
-  "/case-studies/Potago/potago-11.jpg",
+const POTOGOGalleryImages = [
+  "/case-studies/POTOGO/potago-01.jpg",
+  "/case-studies/POTOGO/potago-02.jpg",
+  "/case-studies/POTOGO/potago-03.jpg",
+  "/case-studies/POTOGO/potago-04.jpg",
+  "/case-studies/POTOGO/potago-05.jpg",
+  "/case-studies/POTOGO/potago-06.jpg",
+  "/case-studies/POTOGO/potago-07.jpg",
+  "/case-studies/POTOGO/potago-08.jpg",
+  "/case-studies/POTOGO/potago-09.jpg",
+  "/case-studies/POTOGO/potago-10.jpg",
+  "/case-studies/POTOGO/potago-11.jpg",
 ];
 
 const haloHiveGalleryImages = Array.from({ length: 30 }, (_, index) => {
@@ -529,7 +529,7 @@ const portfolioProjectDetails = {
     year: "2026",
   },
   underdwag: {
-    title: "UNDERDWAG",
+    title: "UNDERDAWG",
     category: "Clothing Brand",
     year: "2025",
   },
@@ -678,8 +678,8 @@ const portfolioProjectDetails = {
     category: "Surgical Equipment Brand",
     year: "2024",
   },
-  potago: {
-    title: "POTAGO",
+  POTOGO: {
+    title: "POTOGO",
     category: "Cafe Brand",
     year: "2025",
   },
@@ -705,7 +705,7 @@ const portfolioPageProjectsBase = [
   },
   {
     slug: "underdwag",
-    title: "Underdwag",
+    title: "UNDERDAWG",
     subtitle: "Apparel · 2023",
     category: "Apparel",
     year: "2023",
@@ -1077,16 +1077,16 @@ const portfolioPageProjectsBase = [
     gallery: kmGalleryImages,
   },
   {
-    slug: "potago",
-    title: "Potago",
+    slug: "POTOGO",
+    title: "POTOGO",
     subtitle: "Branding - 2024",
     category: "Branding",
     year: "2024",
-    heroImage: "/case-studies/Potago/Cover/Cover.jpg",
+    heroImage: "/case-studies/POTOGO/Cover/Cover.jpg",
     description:
       "A bright brand presentation with expressive visual assets, product-forward layouts, and cohesive campaign pieces.",
     services: ["Brand identity", "Packaging", "Digital design"],
-    gallery: potagoGalleryImages,
+    gallery: POTOGOGalleryImages,
   },
 ];
 

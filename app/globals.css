@@ -170,7 +170,7 @@ body {
 .portfolio-single-header {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  /* gap: 24px; */
 }
 
 .portfolio-header-left,

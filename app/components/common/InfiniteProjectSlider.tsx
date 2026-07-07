@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import { moreProjects } from "../../data/moreProjects";
 
@@ -17,45 +16,11 @@ interface InfiniteProjectSliderProps {
 }
 
 export const moreProjectsDataset = moreProjects as Project[];
-const homeProjectScrollKey = "adverto:home-project-scroll-y";
-const homeProjectRestoreKey = "adverto:home-project-restore-on-return";
 
 export default function InfiniteProjectSlider({
   projects = moreProjectsDataset,
 }: InfiniteProjectSliderProps) {
   const sliderProjects = projects.length > 0 ? projects : moreProjectsDataset;
-
-  useEffect(() => {
-    if (window.location.pathname !== "/") return;
-
-    const shouldRestore =
-      sessionStorage.getItem(homeProjectRestoreKey) === "true";
-    const storedScrollY = sessionStorage.getItem(homeProjectScrollKey);
-
-    if (!shouldRestore || !storedScrollY) return;
-
-    const scrollY = Number(storedScrollY);
-    if (!Number.isFinite(scrollY)) return;
-
-    sessionStorage.removeItem(homeProjectRestoreKey);
-    sessionStorage.removeItem(homeProjectScrollKey);
-
-    let frameId = 0;
-    let settleTimer: number | undefined;
-
-    frameId = window.requestAnimationFrame(() => {
-      window.scrollTo({ top: scrollY, behavior: "instant" });
-
-      settleTimer = window.setTimeout(() => {
-        window.scrollTo({ top: scrollY, behavior: "instant" });
-      }, 180);
-    });
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      if (settleTimer) window.clearTimeout(settleTimer);
-    };
-  }, []);
 
   return (
     <div className="project-marquee w-full overflow-hidden">

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -61,20 +62,45 @@ const gridCardReveal: Variants = {
 
 const portfolioScrollKey = "adverto:portfolio-scroll-y";
 const portfolioRestoreKey = "adverto:portfolio-restore-on-return";
+const scrollToPosition = (top: number) => {
+  window.dispatchEvent(new CustomEvent("adverto:scroll-to", { detail: { top } }));
+};
+const setScrollCookie = (name: string, value: string) => {
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=1800; SameSite=Lax`;
+};
+const getCookie = (name: string) => {
+  const cookie = document.cookie
+    .split("; ")
+    .find((item) => item.startsWith(`${name}=`));
+
+  return cookie ? decodeURIComponent(cookie.split("=").slice(1).join("=")) : null;
+};
+const deleteCookie = (name: string) => {
+  document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
+};
 
 export default function PortfolioPageContent({
   projects,
 }: PortfolioPageContentProps) {
+  const pathname = usePathname();
   const motionReady = usePageTransitionReady(true);
   const savePortfolioScroll = useCallback(() => {
-    sessionStorage.setItem(portfolioScrollKey, String(window.scrollY));
+    const scrollY = String(window.scrollY);
+
+    sessionStorage.setItem(portfolioScrollKey, scrollY);
     sessionStorage.setItem(portfolioRestoreKey, "true");
+    setScrollCookie(portfolioScrollKey, scrollY);
+    setScrollCookie(portfolioRestoreKey, "true");
   }, []);
 
   useEffect(() => {
+    if (pathname !== "/portfolio") return;
+
     const shouldRestore =
+      getCookie(portfolioRestoreKey) === "true" ||
       sessionStorage.getItem(portfolioRestoreKey) === "true";
-    const storedScrollY = sessionStorage.getItem(portfolioScrollKey);
+    const storedScrollY =
+      getCookie(portfolioScrollKey) ?? sessionStorage.getItem(portfolioScrollKey);
 
     if (!motionReady || !shouldRestore || !storedScrollY) return;
 
@@ -83,23 +109,25 @@ export default function PortfolioPageContent({
 
     sessionStorage.removeItem(portfolioRestoreKey);
     sessionStorage.removeItem(portfolioScrollKey);
+    deleteCookie(portfolioRestoreKey);
+    deleteCookie(portfolioScrollKey);
 
     let frameId = 0;
-    let settleTimer: number | undefined;
+    let settleTimers: number[] = [];
 
     frameId = window.requestAnimationFrame(() => {
-      window.scrollTo({ top: scrollY, behavior: "instant" });
+      scrollToPosition(scrollY);
 
-      settleTimer = window.setTimeout(() => {
-        window.scrollTo({ top: scrollY, behavior: "instant" });
-      }, 180);
+      settleTimers = [180, 420, 700].map((delay) =>
+        window.setTimeout(() => scrollToPosition(scrollY), delay),
+      );
     });
 
     return () => {
       window.cancelAnimationFrame(frameId);
-      if (settleTimer) window.clearTimeout(settleTimer);
+      settleTimers.forEach((timer) => window.clearTimeout(timer));
     };
-  }, [motionReady]);
+  }, [motionReady, pathname]);
 
   return (
     <section className="relative bg-[#050505] pb-[25px] pt-32 md:pb-32 md:pt-40">

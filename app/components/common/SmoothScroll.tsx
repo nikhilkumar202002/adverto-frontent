@@ -21,16 +21,24 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     });
 
     const updateScrollTrigger = () => ScrollTrigger.update();
-    const scrollToTop = () => {
-      window.scrollTo(0, 0);
-      lenis.scrollTo(0, { immediate: true, force: true });
+    const scrollToPosition = (top = 0) => {
+      window.scrollTo(0, top);
+      lenis.scrollTo(top, { immediate: true, force: true });
       ScrollTrigger.refresh();
+    };
+    const scrollToTop = () => scrollToPosition();
+    const handleScrollTo = (event: Event) => {
+      const { top = 0 } = (event as CustomEvent<{ top?: number }>).detail ?? {};
+
+      scrollToPosition(top);
     };
 
     lenis.on("scroll", updateScrollTrigger);
+    window.addEventListener("adverto:scroll-to", handleScrollTo);
     scrollToTop();
 
     return () => {
+      window.removeEventListener("adverto:scroll-to", handleScrollTo);
       lenis.off("scroll", updateScrollTrigger);
       lenis.destroy();
     };

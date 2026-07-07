@@ -25,11 +25,26 @@ const markPageTransitionComplete = () => {
   window.dispatchEvent(new Event("adverto:page-transition-complete"));
 };
 
-const saveHomeProjectScroll = (currentPath: string, nextPath: string) => {
-  if (currentPath !== "/" || !nextPath.startsWith("/portfolio/")) return;
+const scrollToPosition = (top = 0) => {
+  window.dispatchEvent(new CustomEvent("adverto:scroll-to", { detail: { top } }));
+};
 
-  sessionStorage.setItem(homeProjectScrollKey, String(window.scrollY));
+const shouldRestoreHomePosition = (path: string) =>
+  path.startsWith("/portfolio/") || path.startsWith("/services/");
+
+const setScrollCookie = (name: string, value: string) => {
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=1800; SameSite=Lax`;
+};
+
+const saveHomeProjectScroll = (currentPath: string, nextPath: string) => {
+  if (currentPath !== "/" || !shouldRestoreHomePosition(nextPath)) return;
+
+  const scrollY = String(window.scrollY);
+
+  sessionStorage.setItem(homeProjectScrollKey, scrollY);
   sessionStorage.setItem(homeProjectRestoreKey, "true");
+  setScrollCookie(homeProjectScrollKey, scrollY);
+  setScrollCookie(homeProjectRestoreKey, "true");
 };
 
 const isPortfolioDetailPath = (path: string) =>
@@ -38,8 +53,12 @@ const isPortfolioDetailPath = (path: string) =>
 const savePortfolioScroll = (currentPath: string, nextPath: string) => {
   if (currentPath !== "/portfolio" || !isPortfolioDetailPath(nextPath)) return;
 
-  sessionStorage.setItem(portfolioScrollKey, String(window.scrollY));
+  const scrollY = String(window.scrollY);
+
+  sessionStorage.setItem(portfolioScrollKey, scrollY);
   sessionStorage.setItem(portfolioRestoreKey, "true");
+  setScrollCookie(portfolioScrollKey, scrollY);
+  setScrollCookie(portfolioRestoreKey, "true");
 };
 
 export default function PageTransition() {
@@ -155,8 +174,7 @@ export default function PageTransition() {
       event.stopImmediatePropagation();
       coverPage(
         `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`,
-        currentUrl.pathname === "/portfolio" &&
-          isPortfolioDetailPath(nextUrl.pathname),
+        isPortfolioDetailPath(nextUrl.pathname),
       );
     };
 
@@ -183,8 +201,8 @@ export default function PageTransition() {
       return;
     }
 
-    if (pendingScrollTopRef.current) {
-      window.scrollTo({ top: 0, behavior: "instant" });
+    if (pendingScrollTopRef.current || isPortfolioDetailPath(pathname)) {
+      scrollToPosition();
       pendingScrollTopRef.current = false;
     }
 

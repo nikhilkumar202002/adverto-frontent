@@ -96,8 +96,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-20 overflow-hidden bg-black text-white min-[1301px]:min-h-[100svh]">
-      <Container className="relative z-10 flex min-h-[520px] flex-col justify-between py-10 md:min-h-[620px] min-[1301px]:min-h-[100svh]">
+    <footer className="relative z-20 overflow-hidden bg-black text-white">
+      <Container className="relative z-10 flex min-h-[520px] flex-col justify-between py-10 md:min-h-[620px] min-[1301px]:min-h-[640px]">
         <div className="flex flex-1 flex-col items-center justify-center py-10 text-center">
           <h2 className="text-[clamp(52px,18vw,92px)] font-semibold leading-[0.82] tracking-normal text-[#f4f3ef] md:text-[clamp(86px,14vw,150px)] md:leading-[0.8] min-[1301px]:text-[clamp(130px,17vw,300px)] min-[1301px]:leading-[0.78]">
             Let<span className="text-[#0000FF]">&apos;</span>s Talk

@@ -7,6 +7,7 @@ import FaqSection from './components/sections/FaqSection'
 import ClientLogo from './components/sections/ClientLogo'
 import HeroBanner from './components/HeroBanner/HeroBanner'
 import TeamSection from './components/TeamSection/TeamSection'
+import HomeScrollRestore from './components/common/HomeScrollRestore'
 
 const page = () => {
 
@@ -14,6 +15,7 @@ const page = () => {
   return (
     <>
 
+      <HomeScrollRestore />
       <HeroSection />
       <CaseStudiesSection />
       <ServicesSection />

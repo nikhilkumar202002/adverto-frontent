@@ -6,6 +6,7 @@ import InnerBannerHeading from "../../components/common/InnerBannerHeading";
 import Reveal from "../../components/common/Reveal";
 import { portfolioPageProjects } from "../../data/portfolio";
 import ProjectGallery from "./ProjectGallery";
+import PortfolioProjectScrollReset from "./PortfolioProjectScrollReset";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -45,6 +46,7 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
 
   return (
     <article className="relative bg-[#050505] pt-28 pb-24 md:pt-36 md:pb-32">
+      <PortfolioProjectScrollReset slug={slug} />
       <Container>
         <Reveal
           x={-32}
@@ -70,7 +72,11 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
             once={false}
             waitForPageTransition
           >
-            <InnerBannerHeading text={project.title} />
+            <InnerBannerHeading
+              text={project.title}
+              variant="custom"
+              className="w-full pb-[6px] text-[30px] font-medium leading-[1.04] text-[#EDEDED] md:pb-0 md:text-[55px] min-[1320px]:text-[100px]"
+            />
           </Reveal>
           <Reveal
             className="portfolio-header-right"
