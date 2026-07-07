@@ -1,19 +1,45 @@
 .banner {
+  --cookie-banner-gutter: 20px;
+
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  left: var(--cookie-banner-gutter);
   z-index: 10000;
-  width: min(340px, calc(100vw - 48px));
+  width: min(420px, calc(100vw - (var(--cookie-banner-gutter) * 2)));
   height: auto;
   padding: 22px;
   color: #fff;
-  background: rgba(18, 18, 18, 0.85);
+  background: rgba(0, 0, 255, 0.88);
   border: 1px solid #ffffff15;
   border-radius: 18px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 24px 80px rgba(0, 0, 120, 0.48);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   cursor: auto !important;
+}
+
+@media (min-width: 640px) {
+  .banner {
+    --cookie-banner-gutter: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .banner {
+    --cookie-banner-gutter: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner {
+    --cookie-banner-gutter: 60px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .banner {
+    --cookie-banner-gutter: 80px;
+  }
 }
 
 .banner * {
@@ -32,8 +58,9 @@
   width: 34px;
   height: 34px;
   place-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
   font-size: 18px;
 }
@@ -48,7 +75,7 @@
 
 .copy {
   margin: 0 0 18px;
-  color: rgba(255, 255, 255, 0.66);
+  color: rgba(255, 255, 255, 0.86);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -90,12 +117,12 @@
 
 .secondary {
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .textButton {
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.86);
   background: transparent;
 }
 
@@ -105,7 +132,7 @@
 
 @media (max-width: 520px) {
   .banner {
-    right: 24px;
+    right: var(--cookie-banner-gutter);
     width: auto;
   }
 

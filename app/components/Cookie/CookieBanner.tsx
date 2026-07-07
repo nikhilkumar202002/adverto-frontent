@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { Cookie } from "lucide-react";
 import useCookieConsent from "../../hooks/useCookieConsent";
 import styles from "./CookieBanner.module.css";
 
@@ -70,7 +71,7 @@ export default function CookieBanner() {
     >
       <div className={styles.header}>
         <span aria-hidden className={styles.icon}>
-          🍪
+          <Cookie size={18} strokeWidth={1.8} />
         </span>
         <h2 className={styles.title}>Cookies & Privacy</h2>
       </div>
