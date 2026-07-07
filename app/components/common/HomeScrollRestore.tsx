@@ -6,6 +6,7 @@ import {
   clearHomeNavigationState,
   readHomeNavigationState,
   type HomeProjectSliderState,
+  type HomeServicesGridState,
 } from "../../homeNavigationState";
 import usePageTransitionReady from "./usePageTransitionReady";
 
@@ -51,6 +52,19 @@ const restoreProjectSlider = (state: HomeProjectSliderState | null) => {
   }
 };
 
+const restoreServicesGrid = (state: HomeServicesGridState | null | undefined) => {
+  if (!state?.activeServiceHref) return;
+
+  document
+    .querySelectorAll<HTMLElement>("[data-home-service-card]")
+    .forEach((card) => {
+      card.dataset.active =
+        card.dataset.homeServiceCard === state.activeServiceHref
+          ? "true"
+          : "false";
+    });
+};
+
 export default function HomeScrollRestore() {
   const pathname = usePathname();
   const pageTransitionReady = usePageTransitionReady(true);
@@ -65,6 +79,7 @@ export default function HomeScrollRestore() {
     clearHomeNavigationState();
     const restore = () => {
       restoreProjectSlider(state.projectSlider);
+      restoreServicesGrid(state.servicesGrid);
       scrollToPosition(state.scrollY);
     };
 

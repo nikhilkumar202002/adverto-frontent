@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 import {
   clearAboutNavigationState,
@@ -79,7 +79,7 @@ export default function AboutNavigationStateRestorer() {
 
     const state = readAboutNavigationState();
 
-    if (!state) return;
+    if (!state || !Number.isFinite(state.scrollY)) return;
 
     clearAboutNavigationState();
     restoreFeaturedSlider(state.featuredSlider);
@@ -102,7 +102,7 @@ export default function AboutNavigationStateRestorer() {
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!aboutPathnames.has(pathname) || !pageTransitionReady) return;
 
     return restore();

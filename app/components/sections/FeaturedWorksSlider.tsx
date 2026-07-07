@@ -1,5 +1,9 @@
+"use client";
+
+import { useCallback, type KeyboardEvent, type PointerEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { saveAboutNavigationState } from "../../about-us/aboutNavigationState";
 import { portfolioPageProjects } from "../../data/portfolio";
 import InnerBannerHeading from "../common/InnerBannerHeading";
 import Reveal from "../common/Reveal";
@@ -28,6 +32,28 @@ export default function FeaturedWorksSlider({
 }: {
   waitForPageTransition?: boolean;
 }) {
+  const saveStateBeforeNavigation = useCallback(() => {
+    if (!["/about-us", "/about"].includes(window.location.pathname)) return;
+
+    saveAboutNavigationState();
+  }, []);
+  const handleProjectPointerDown = useCallback(
+    (event: PointerEvent<HTMLAnchorElement>) => {
+      if (event.button !== 0) return;
+
+      saveStateBeforeNavigation();
+    },
+    [saveStateBeforeNavigation],
+  );
+  const handleProjectKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLAnchorElement>) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+
+      saveStateBeforeNavigation();
+    },
+    [saveStateBeforeNavigation],
+  );
+
   return (
     <section className="relative z-10 overflow-hidden bg-[#030303] py-24 text-white">
       <Reveal waitForPageTransition={waitForPageTransition}>
@@ -90,6 +116,8 @@ export default function FeaturedWorksSlider({
                     key={`${setIndex}-${project.slug}-${index}`}
                     href={`/portfolio/${project.slug}`}
                     data-about-featured-project={project.slug}
+                    onKeyDownCapture={handleProjectKeyDown}
+                    onPointerDownCapture={handleProjectPointerDown}
                     className="featured-work-card group relative mx-2 h-[360px] w-[280px] shrink-0 transform-gpu overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
                   >
                     <Image

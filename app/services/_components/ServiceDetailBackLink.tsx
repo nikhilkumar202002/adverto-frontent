@@ -1,12 +1,25 @@
 "use client";
 
-import { useCallback, type KeyboardEvent, type PointerEvent } from "react";
+import {
+  useCallback,
+  useState,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { hasHomeNavigationState } from "../../homeNavigationState";
 import { ensureServicePageFallbackState } from "../../service/serviceNavigationState";
 
 export default function ServiceDetailBackLink() {
+  const [backHref] = useState(() =>
+    typeof window !== "undefined" && hasHomeNavigationState()
+      ? "/"
+      : "/services",
+  );
   const ensureFallback = useCallback(() => {
+    if (hasHomeNavigationState()) return;
+
     ensureServicePageFallbackState();
   }, []);
   const handlePointerDown = useCallback(
@@ -28,7 +41,7 @@ export default function ServiceDetailBackLink() {
 
   return (
     <Link
-      href="/services"
+      href={backHref}
       className="mb-8 inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
       onKeyDownCapture={handleKeyDown}
       onPointerDownCapture={handlePointerDown}

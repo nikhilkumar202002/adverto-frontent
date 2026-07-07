@@ -5,8 +5,18 @@ export type HomeProjectSliderState = {
   trackTranslateX: number;
 };
 
+export type HomeServicesGridState = {
+  activeServiceHref: string | null;
+  pathname: string;
+  uiState: {
+    selectedCategory: string | null;
+    selectedTab: string | null;
+  };
+};
+
 export type HomeNavigationState = {
   projectSlider: HomeProjectSliderState | null;
+  servicesGrid?: HomeServicesGridState | null;
   savedAt: number;
   scrollY: number;
 };
@@ -96,12 +106,22 @@ const readProjectSliderState = (): HomeProjectSliderState | null => {
   };
 };
 
-export const saveHomeNavigationState = () => {
-  const state: HomeNavigationState = {
-    projectSlider: readProjectSliderState(),
-    savedAt: Date.now(),
-    scrollY: window.scrollY,
+const readServicesGridState = (
+  activeServiceHref: string | null,
+): HomeServicesGridState => {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  return {
+    activeServiceHref,
+    pathname: window.location.pathname,
+    uiState: {
+      selectedCategory: searchParams.get("category"),
+      selectedTab: searchParams.get("tab"),
+    },
   };
+};
+
+const writeHomeNavigationState = (state: HomeNavigationState) => {
   const serializedState = JSON.stringify(state);
 
   sessionStorage.setItem(stateKey, serializedState);
@@ -110,10 +130,32 @@ export const saveHomeNavigationState = () => {
   setCookie(restoreKey, "true");
 };
 
+export const saveHomeNavigationState = () => {
+  writeHomeNavigationState({
+    projectSlider: readProjectSliderState(),
+    servicesGrid: null,
+    savedAt: Date.now(),
+    scrollY: window.scrollY,
+  });
+};
+
+export const saveHomeServicesGridNavigationState = (
+  activeServiceHref: string,
+) => {
+  writeHomeNavigationState({
+    projectSlider: readProjectSliderState(),
+    servicesGrid: readServicesGridState(activeServiceHref),
+    savedAt: Date.now(),
+    scrollY: window.scrollY,
+  });
+};
+
+export const hasHomeNavigationState = () =>
+  getCookie(restoreKey) === "true" ||
+  sessionStorage.getItem(restoreKey) === "true";
+
 export const readHomeNavigationState = () => {
-  const shouldRestore =
-    getCookie(restoreKey) === "true" ||
-    sessionStorage.getItem(restoreKey) === "true";
+  const shouldRestore = hasHomeNavigationState();
   const serializedState = getCookie(stateKey) ?? sessionStorage.getItem(stateKey);
 
   if (shouldRestore && serializedState) {
@@ -135,6 +177,7 @@ export const readHomeNavigationState = () => {
 
   return {
     projectSlider: null,
+    servicesGrid: null,
     savedAt: Date.now(),
     scrollY,
   };

@@ -1,10 +1,12 @@
 "use client";
 
+import { useCallback, type KeyboardEvent, type PointerEvent } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Container from "../common/Container";
+import { saveHomeServicesGridNavigationState } from "../../homeNavigationState";
 import { servicesData } from "../../data/services";
 import styles from "./ServicesSection.module.css";
 
@@ -76,6 +78,28 @@ function StaticHeading() {
 }
 
 export default function ServicesSection() {
+  const saveStateBeforeNavigation = useCallback((serviceHref: string) => {
+    if (window.location.pathname !== "/") return;
+
+    saveHomeServicesGridNavigationState(serviceHref);
+  }, []);
+  const handleServicePointerDown = useCallback(
+    (serviceHref: string, event: PointerEvent<HTMLAnchorElement>) => {
+      if (event.button !== 0) return;
+
+      saveStateBeforeNavigation(serviceHref);
+    },
+    [saveStateBeforeNavigation],
+  );
+  const handleServiceKeyDown = useCallback(
+    (serviceHref: string, event: KeyboardEvent<HTMLAnchorElement>) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+
+      saveStateBeforeNavigation(serviceHref);
+    },
+    [saveStateBeforeNavigation],
+  );
+
   return (
     <section
       className="relative z-10 bg-[#050505] py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden border-t border-white/5"
@@ -127,6 +151,13 @@ export default function ServicesSection() {
               >
                 <Link
                   href={service.link}
+                  data-home-service-card={service.link}
+                  onKeyDownCapture={(event) =>
+                    handleServiceKeyDown(service.link, event)
+                  }
+                  onPointerDownCapture={(event) =>
+                    handleServicePointerDown(service.link, event)
+                  }
                   className="group relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[16px] border border-white/10 p-5 transition-colors duration-500 hover:border-white/25 sm:min-h-[340px] sm:p-6 md:min-h-[360px] md:rounded-[20px] md:p-8 lg:min-h-[380px] lg:p-10"
                 >
                   <img
