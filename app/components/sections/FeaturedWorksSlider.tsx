@@ -14,13 +14,14 @@ type PortfolioProject = {
 };
 
 const projects = portfolioPageProjects as PortfolioProject[];
+const FEATURED_PROJECT_LIMIT = 14;
 
 const featuredProjects = [...projects].sort((a, b) => {
   const aScore = a.slug.charCodeAt(0) + a.title.length * 7;
   const bScore = b.slug.charCodeAt(0) + b.title.length * 7;
 
   return aScore - bScore;
-});
+}).slice(0, FEATURED_PROJECT_LIMIT);
 
 export default function FeaturedWorksSlider({
   waitForPageTransition = false,
@@ -56,14 +57,17 @@ export default function FeaturedWorksSlider({
         }
 
         .featured-work-track {
-          animation: featured-work-marquee 48s linear infinite;
+          animation: featured-work-marquee 42s linear infinite;
           backface-visibility: hidden;
+          contain: layout paint style;
           transform: translate3d(0, 0, 0);
           will-change: transform;
         }
 
-        .featured-work-track:hover {
-          animation-play-state: paused;
+        .featured-work-card {
+          backface-visibility: hidden;
+          contain: layout paint style;
+          transform: translate3d(0, 0, 0);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -76,7 +80,7 @@ export default function FeaturedWorksSlider({
       <Reveal waitForPageTransition={waitForPageTransition}>
         <div className="w-full overflow-hidden">
           <div
-            className="featured-work-track flex w-max items-stretch"
+            className="featured-work-track flex w-max transform-gpu items-stretch"
             data-about-featured-track
           >
             {[0, 1].map((setIndex) => (
@@ -86,14 +90,16 @@ export default function FeaturedWorksSlider({
                     key={`${setIndex}-${project.slug}-${index}`}
                     href={`/portfolio/${project.slug}`}
                     data-about-featured-project={project.slug}
-                    className="group relative mx-2 h-[360px] w-[280px] shrink-0 overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
+                    className="featured-work-card group relative mx-2 h-[360px] w-[280px] shrink-0 transform-gpu overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
                   >
                     <Image
                       src={project.portfolioImage ?? project.heroImage}
                       alt={project.title}
                       fill
+                      quality={72}
+                      decoding="async"
                       sizes="(max-width: 768px) 280px, 380px"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="transform-gpu object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   </Link>
