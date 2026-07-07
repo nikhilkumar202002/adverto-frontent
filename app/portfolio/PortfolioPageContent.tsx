@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import {
+  useCallback,
+  useLayoutEffect,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -19,6 +25,17 @@ type PortfolioProject = {
 
 type PortfolioPageContentProps = {
   projects: PortfolioProject[];
+};
+
+type WorksPageState = {
+  activeProjectSlug: string | null;
+  filters: {
+    category: string | null;
+    page: string | null;
+    search: string;
+  };
+  savedAt: number;
+  scrollY: number;
 };
 
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -62,11 +79,18 @@ const gridCardReveal: Variants = {
 
 const portfolioScrollKey = "adverto:portfolio-scroll-y";
 const portfolioRestoreKey = "adverto:portfolio-restore-on-return";
+const worksPageStateKey = "adverto:works-page-state";
+const worksPageRestoreKey = "adverto:works-page-restore-on-return";
+const stateMaxAge = 30 * 60;
+
+const worksIndexPathnames = new Set(["/portfolio", "/works"]);
+
 const scrollToPosition = (top: number) => {
+  window.scrollTo(0, top);
   window.dispatchEvent(new CustomEvent("adverto:scroll-to", { detail: { top } }));
 };
 const setScrollCookie = (name: string, value: string) => {
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=1800; SameSite=Lax`;
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${stateMaxAge}; SameSite=Lax`;
 };
 const getCookie = (name: string) => {
   const cookie = document.cookie
@@ -78,49 +102,129 @@ const getCookie = (name: string) => {
 const deleteCookie = (name: string) => {
   document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
 };
+const clearWorksPageState = () => {
+  sessionStorage.removeItem(worksPageStateKey);
+  sessionStorage.removeItem(worksPageRestoreKey);
+  sessionStorage.removeItem(portfolioRestoreKey);
+  sessionStorage.removeItem(portfolioScrollKey);
+  deleteCookie(worksPageStateKey);
+  deleteCookie(worksPageRestoreKey);
+  deleteCookie(portfolioRestoreKey);
+  deleteCookie(portfolioScrollKey);
+};
+const getWorksPageState = (): WorksPageState | null => {
+  const shouldRestore =
+    getCookie(worksPageRestoreKey) === "true" ||
+    sessionStorage.getItem(worksPageRestoreKey) === "true";
+  const serializedState =
+    getCookie(worksPageStateKey) ?? sessionStorage.getItem(worksPageStateKey);
+
+  if (shouldRestore && serializedState) {
+    try {
+      return JSON.parse(serializedState) as WorksPageState;
+    } catch {
+      return null;
+    }
+  }
+
+  const legacyShouldRestore =
+    getCookie(portfolioRestoreKey) === "true" ||
+    sessionStorage.getItem(portfolioRestoreKey) === "true";
+  const legacyScrollY =
+    getCookie(portfolioScrollKey) ?? sessionStorage.getItem(portfolioScrollKey);
+  const scrollY = Number(legacyScrollY);
+
+  if (!legacyShouldRestore || !Number.isFinite(scrollY)) return null;
+
+  return {
+    activeProjectSlug: null,
+    filters: {
+      category: null,
+      page: null,
+      search: window.location.search,
+    },
+    savedAt: Date.now(),
+    scrollY,
+  };
+};
+const buildWorksPageState = (activeProjectSlug: string): WorksPageState => {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  return {
+    activeProjectSlug,
+    filters: {
+      category: searchParams.get("category"),
+      page: searchParams.get("page"),
+      search: window.location.search,
+    },
+    savedAt: Date.now(),
+    scrollY: window.scrollY,
+  };
+};
 
 export default function PortfolioPageContent({
   projects,
 }: PortfolioPageContentProps) {
   const pathname = usePathname();
   const motionReady = usePageTransitionReady(true);
-  const savePortfolioScroll = useCallback(() => {
-    const scrollY = String(window.scrollY);
+  const worksIndexPath = pathname === "/works" ? "/works" : "/portfolio";
+  const saveWorksPageState = useCallback((activeProjectSlug: string) => {
+    const state = buildWorksPageState(activeProjectSlug);
+    const serializedState = JSON.stringify(state);
 
-    sessionStorage.setItem(portfolioScrollKey, scrollY);
-    sessionStorage.setItem(portfolioRestoreKey, "true");
-    setScrollCookie(portfolioScrollKey, scrollY);
-    setScrollCookie(portfolioRestoreKey, "true");
+    sessionStorage.setItem(worksPageStateKey, serializedState);
+    sessionStorage.setItem(worksPageRestoreKey, "true");
+    setScrollCookie(worksPageStateKey, serializedState);
+    setScrollCookie(worksPageRestoreKey, "true");
   }, []);
+  const handleProjectPointerDown = useCallback(
+    (projectSlug: string, event: PointerEvent<HTMLAnchorElement>) => {
+      if (event.button !== 0) return;
 
-  useEffect(() => {
-    if (pathname !== "/portfolio") return;
+      saveWorksPageState(projectSlug);
+    },
+    [saveWorksPageState],
+  );
+  const handleProjectKeyDown = useCallback(
+    (projectSlug: string, event: KeyboardEvent<HTMLAnchorElement>) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
 
-    const shouldRestore =
-      getCookie(portfolioRestoreKey) === "true" ||
-      sessionStorage.getItem(portfolioRestoreKey) === "true";
-    const storedScrollY =
-      getCookie(portfolioScrollKey) ?? sessionStorage.getItem(portfolioScrollKey);
+      saveWorksPageState(projectSlug);
+    },
+    [saveWorksPageState],
+  );
 
-    if (!motionReady || !shouldRestore || !storedScrollY) return;
+  useLayoutEffect(() => {
+    if (!worksIndexPathnames.has(pathname) || !motionReady) return;
 
-    const scrollY = Number(storedScrollY);
-    if (!Number.isFinite(scrollY)) return;
+    const state = getWorksPageState();
 
-    sessionStorage.removeItem(portfolioRestoreKey);
-    sessionStorage.removeItem(portfolioScrollKey);
-    deleteCookie(portfolioRestoreKey);
-    deleteCookie(portfolioScrollKey);
+    if (!state || !Number.isFinite(state.scrollY)) return;
 
+    clearWorksPageState();
     let frameId = 0;
-    let settleTimers: number[] = [];
+    const settleTimers: number[] = [];
+    const restore = () => {
+      if (state.activeProjectSlug) {
+        document
+          .querySelectorAll<HTMLElement>("[data-works-project]")
+          .forEach((card) => {
+            card.dataset.active =
+              card.dataset.worksProject === state.activeProjectSlug
+                ? "true"
+                : "false";
+          });
+      }
 
+      scrollToPosition(state.scrollY);
+    };
+
+    restore();
     frameId = window.requestAnimationFrame(() => {
-      scrollToPosition(scrollY);
-
-      settleTimers = [180, 420, 700].map((delay) =>
-        window.setTimeout(() => scrollToPosition(scrollY), delay),
-      );
+      restore();
+      [120, 300, 650].forEach((delay) => {
+        settleTimers.push(window.setTimeout(restore, delay));
+      });
     });
 
     return () => {
@@ -170,15 +274,23 @@ export default function PortfolioPageContent({
                 className="will-change-transform [transform:translateZ(0)]"
               >
                 <Link
-                  href={`/portfolio/${project.slug}`}
-                  onClick={savePortfolioScroll}
+                  href={`${worksIndexPath}/${project.slug}`}
+                  onPointerDownCapture={(event) =>
+                    handleProjectPointerDown(project.slug, event)
+                  }
+                  onKeyDownCapture={(event) =>
+                    handleProjectKeyDown(project.slug, event)
+                  }
+                  data-works-project={project.slug}
                   className="group relative block overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A]"
                 >
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
                       src={project.heroImage}
                       alt={project.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
