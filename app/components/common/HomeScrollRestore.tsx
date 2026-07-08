@@ -52,8 +52,15 @@ const restoreProjectSlider = (state: HomeProjectSliderState | null) => {
   }
 };
 
-const restoreServicesGrid = (state: HomeServicesGridState | null | undefined) => {
+const restoreServicesGrid = (
+  state: HomeServicesGridState | null | undefined,
+  fallbackTop: number,
+) => {
   if (!state?.activeServiceHref) return;
+
+  const matchingCard = document.querySelector<HTMLElement>(
+    `[data-home-service-card="${state.activeServiceHref}"]`,
+  );
 
   document
     .querySelectorAll<HTMLElement>("[data-home-service-card]")
@@ -63,6 +70,20 @@ const restoreServicesGrid = (state: HomeServicesGridState | null | undefined) =>
           ? "true"
           : "false";
     });
+
+  if (matchingCard) {
+    const top = Math.max(0, fallbackTop - 24);
+    const cardTop =
+      window.scrollY + matchingCard.getBoundingClientRect().top - 24;
+
+    window.scrollTo({ top: Math.max(0, Math.min(cardTop, top)) });
+    window.dispatchEvent(
+      new CustomEvent("adverto:scroll-to", { detail: { top: Math.max(0, Math.min(cardTop, top)) } }),
+    );
+    return;
+  }
+
+  scrollToPosition(fallbackTop);
 };
 
 export default function HomeScrollRestore() {
@@ -79,7 +100,7 @@ export default function HomeScrollRestore() {
 
     const restore = () => {
       restoreProjectSlider(state.projectSlider);
-      restoreServicesGrid(state.servicesGrid);
+      restoreServicesGrid(state.servicesGrid, state.scrollY);
       scrollToPosition(state.scrollY);
     };
 
