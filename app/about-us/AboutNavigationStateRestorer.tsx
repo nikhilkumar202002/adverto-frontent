@@ -87,7 +87,7 @@ export default function AboutNavigationStateRestorer() {
     return runAfterPageReady(() => {
       restoreFeaturedSlider(state.featuredSlider);
       scrollToPosition(state.scrollY);
-    }, { delayMs: 140 });
+    }, { delayMs: 180 });
   }, []);
 
   useLayoutEffect(() => {

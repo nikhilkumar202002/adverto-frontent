@@ -1,35 +1,85 @@
 export const runAfterPageReady = (
   callback: () => void,
-  options: { delayMs?: number; waitForFonts?: boolean } = {},
+  options: { delayMs?: number; waitForFonts?: boolean; waitForImages?: boolean } = {},
 ) => {
-  const { delayMs = 90, waitForFonts = true } = options;
+  const { delayMs = 140, waitForFonts = true, waitForImages = true } = options;
 
   const run = () => {
+    let cancelled = false;
+
     const execute = () => {
+      if (cancelled) return;
+
       callback();
 
       window.requestAnimationFrame(() => {
+        if (cancelled) return;
+
         callback();
-        window.setTimeout(() => callback(), delayMs);
+        window.setTimeout(() => {
+          if (!cancelled) callback();
+        }, delayMs);
       });
     };
 
-    if (document.readyState === "loading") {
-      window.addEventListener("load", execute, { once: true });
-      return () => window.removeEventListener("load", execute);
-    }
+    const waitForDocumentAssets = async () => {
+      if (document.readyState === "loading") {
+        await new Promise<void>((resolve) => {
+          const onLoad = () => {
+            window.removeEventListener("load", onLoad);
+            resolve();
+          };
 
-    if (
-      waitForFonts &&
-      "fonts" in document &&
-      typeof document.fonts?.ready?.then === "function"
-    ) {
-      void document.fonts.ready.then(execute);
-      return () => undefined;
-    }
+          window.addEventListener("load", onLoad, { once: true });
+        });
+      }
 
-    execute();
-    return () => undefined;
+      if (waitForImages) {
+        const images = Array.from(document.images);
+
+        if (images.length > 0) {
+          await Promise.allSettled(
+            images.map((image) => {
+              if (image.complete && image.naturalWidth > 0) {
+                return Promise.resolve();
+              }
+
+              return new Promise<void>((resolve) => {
+                const finish = () => {
+                  image.removeEventListener("load", finish);
+                  image.removeEventListener("error", finish);
+                  resolve();
+                };
+
+                image.addEventListener("load", finish, { once: true });
+                image.addEventListener("error", finish, { once: true });
+                window.setTimeout(finish, 1500);
+              });
+            }),
+          );
+        }
+      }
+
+      if (
+        waitForFonts &&
+        "fonts" in document &&
+        typeof document.fonts?.ready?.then === "function"
+      ) {
+        await document.fonts.ready.catch(() => undefined);
+      }
+
+      await new Promise<void>((resolve) => {
+        window.requestAnimationFrame(() => resolve());
+      });
+    };
+
+    void waitForDocumentAssets().then(() => {
+      if (!cancelled) execute();
+    });
+
+    return () => {
+      cancelled = true;
+    };
   };
 
   return run();

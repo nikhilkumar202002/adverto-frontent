@@ -43,7 +43,7 @@ export default function ServiceNavigationStateRestorer() {
       scrollToPosition(state.scrollY);
     };
 
-    return runAfterPageReady(restorePosition, { delayMs: 140 });
+    return runAfterPageReady(restorePosition, { delayMs: 180 });
   }, []);
 
   useLayoutEffect(() => {

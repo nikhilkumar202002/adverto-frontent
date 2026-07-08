@@ -104,7 +104,7 @@ export default function HomeScrollRestore() {
       scrollToPosition(state.scrollY);
     };
 
-    const cleanup = runAfterPageReady(restore, { delayMs: 120 });
+    const cleanup = runAfterPageReady(restore, { delayMs: 180 });
 
     return cleanup;
   }, []);

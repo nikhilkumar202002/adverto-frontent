@@ -218,7 +218,7 @@ export default function PortfolioPageContent({
       scrollToPosition(state.scrollY);
     };
 
-    return runAfterPageReady(restore, { delayMs: 140 });
+    return runAfterPageReady(restore, { delayMs: 180 });
   }, [motionReady, pathname]);
 
   return (
