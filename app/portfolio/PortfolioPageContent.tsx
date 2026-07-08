@@ -252,15 +252,18 @@ export default function PortfolioPageContent({
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-              <motion.div
-                key={project.slug}
-                initial="hidden"
-                whileInView={motionReady ? "visible" : "hidden"}
-                viewport={{ once: true, amount: 0.12 }}
-                variants={gridCardReveal}
-                transition={{ delay: 0.045 }}
-                className="transform-gpu [contain:layout_paint_style] [content-visibility:auto] [contain-intrinsic-size:320px_240px]"
-              >
+    <motion.div
+      key={project.slug}
+      initial="hidden"
+      whileInView={motionReady ? "visible" : "hidden"}
+      
+      viewport={{ once: true, amount: 0.05, margin: "100px" }} 
+      variants={gridCardReveal}
+   
+      transition={{ duration: 0.48, delay: (index % 3) * 0.15 }}
+   
+      className="transform-gpu will-change-[opacity,transform]" 
+    >
                 <Link
                   href={`${worksIndexPath}/${project.slug}`}
                   onPointerDownCapture={(event) =>
