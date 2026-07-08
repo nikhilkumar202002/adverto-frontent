@@ -259,7 +259,7 @@ export default function PortfolioPageContent({
               viewport={{ once: true, amount: 0.05, margin: "100px" }}
               variants={gridCardReveal}
               transition={{ duration: 0.48, delay: (index % 3) * 0.15 }}
-              className="transform-gpu will-change-[opacity,transform]"
+              className=" will-change-[opacity,transform]"
             >
               <Link
                 href={`${worksIndexPath}/${project.slug}`}
@@ -270,7 +270,7 @@ export default function PortfolioPageContent({
                   handleProjectKeyDown(project.slug, event)
                 }
                 data-works-project={project.slug}
-                className="group relative block transform-gpu overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] [contain:layout_paint_style]"
+                className="group relative block overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] [contain:layout_paint_style]"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
@@ -281,7 +281,7 @@ export default function PortfolioPageContent({
                     decoding="async"
                     quality={72}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="transform-gpu object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />

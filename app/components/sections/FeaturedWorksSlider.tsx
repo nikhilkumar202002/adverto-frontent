@@ -106,7 +106,7 @@ export default function FeaturedWorksSlider({
       <Reveal waitForPageTransition={waitForPageTransition} amount={0.01} y={40}>
         <div className="w-full overflow-hidden">
           <div
-            className="featured-work-track flex w-max transform-gpu items-stretch"
+            className="featured-work-track flex w-max  items-stretch"
             data-about-featured-track
           >
             {[0, 1].map((setIndex) => (
@@ -118,7 +118,7 @@ export default function FeaturedWorksSlider({
                     data-about-featured-project={project.slug}
                     onKeyDownCapture={handleProjectKeyDown}
                     onPointerDownCapture={handleProjectPointerDown}
-                    className="featured-work-card group relative mx-2 h-[360px] w-[280px] shrink-0 transform-gpu overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
+                    className="featured-work-card group relative mx-2 h-[360px] w-[280px] shrink-0 overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] transition-colors duration-300 hover:border-[#0000FF]/70 md:h-[460px] md:w-[380px]"
                   >
                     <Image
                       src={project.portfolioImage ?? project.heroImage}
@@ -127,7 +127,7 @@ export default function FeaturedWorksSlider({
                       quality={72}
                       decoding="async"
                       sizes="(max-width: 768px) 280px, 380px"
-                      className="transform-gpu object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   </Link>
