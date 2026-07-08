@@ -8,6 +8,7 @@ function ImageLogo({ src, alt = "logo", size = 48, className = "", ...props }) {
       alt={alt}
       width={size}
       height={size}
+      loading="lazy"
       className={className}
       style={{ objectFit: "contain" }}
       {...props}

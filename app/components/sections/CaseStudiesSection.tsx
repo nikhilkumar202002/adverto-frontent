@@ -181,6 +181,7 @@ function RotatingCampaignImage() {
           src={activeImage}
           alt="Koickal Gold & Diamonds campaign visual"
           fill
+          loading="lazy"
           sizes="(min-width: 1024px) 50vw, 100vw"
           className="h-full w-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
         />

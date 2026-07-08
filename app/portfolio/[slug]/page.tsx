@@ -96,6 +96,7 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
             <img
               src={project.heroImage}
               alt={project.title}
+              loading="lazy"
               className="h-auto w-full object-cover"
             />
           </div>

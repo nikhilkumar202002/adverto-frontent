@@ -143,6 +143,7 @@ export default function OurTeamPage() {
                       src={member.image}
                       alt={member.name}
                       fill
+                      loading="lazy"
                       sizes={
                         index === 0 || index === 1
                           ? "(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw"

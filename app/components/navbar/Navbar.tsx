@@ -107,6 +107,7 @@ export default function Navbar() {
               alt="Adverto"
               width={128}
               height={32}
+              loading="lazy"
               decoding="async"
               className="h-6 w-auto md:h-8"
             />

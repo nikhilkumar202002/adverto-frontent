@@ -38,6 +38,7 @@ export default function MobileMenu({
             alt="Adverto"
             width={128}
             height={32}
+            loading="lazy"
             decoding="async"
             className="h-8 w-auto"
           />

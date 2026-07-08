@@ -277,7 +277,7 @@ export default function PortfolioPageContent({
                     src={project.heroImage}
                     alt={project.title}
                     fill
-                    loading={index < 3 ? "eager" : "lazy"}
+                    loading="lazy"
                     decoding="async"
                     quality={72}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

@@ -124,6 +124,7 @@ export default function FeaturedWorksSlider({
                       src={project.portfolioImage ?? project.heroImage}
                       alt={project.title}
                       fill
+                      loading="lazy"
                       quality={72}
                       decoding="async"
                       sizes="(max-width: 768px) 280px, 380px"

@@ -89,7 +89,7 @@ export default function AboutScrolling() {
       ref={sectionRef}
       className="relative z-10 bg-[#030303] py-24"
     >
-      <Container className="sticky top-0 flex min-h-screen items-center">
+      <Container className="relative flex min-h-screen items-center">
         <div className="grid w-full grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
           <div className="lg:col-span-3">
             <p className="flex items-center gap-3 text-[13px] uppercase tracking-[0.16em] text-[#0000FF]">

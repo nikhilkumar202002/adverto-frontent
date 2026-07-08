@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   // Disable Image Optimization for static export
   images: {
     unoptimized: true,
+    qualities: [72, 75],
   },
 };
 

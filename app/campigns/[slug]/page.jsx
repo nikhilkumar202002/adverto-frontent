@@ -91,6 +91,7 @@ export default async function CampaignPage({ params }) {
             <img
               src={campaign.heroImage}
               alt={campaign.title}
+              loading="lazy"
               className="h-auto w-full object-cover"
             />
           </div>
