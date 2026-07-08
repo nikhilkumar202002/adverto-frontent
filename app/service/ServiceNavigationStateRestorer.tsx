@@ -7,6 +7,7 @@ import {
   readServicePageState,
 } from "./serviceNavigationState";
 import usePageTransitionReady from "../components/common/usePageTransitionReady";
+import { runAfterPageReady } from "../components/common/navigationRestore";
 
 const serviceListPathnames = new Set(["/service", "/services"]);
 
@@ -42,16 +43,7 @@ export default function ServiceNavigationStateRestorer() {
       scrollToPosition(state.scrollY);
     };
 
-    restorePosition();
-    const frameId = window.requestAnimationFrame(restorePosition);
-    const settleTimers = [140, 340, 700].map((delay) =>
-      window.setTimeout(restorePosition, delay),
-    );
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      settleTimers.forEach((timer) => window.clearTimeout(timer));
-    };
+    return runAfterPageReady(restorePosition, { delayMs: 140 });
   }, []);
 
   useLayoutEffect(() => {

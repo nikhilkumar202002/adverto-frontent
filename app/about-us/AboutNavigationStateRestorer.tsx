@@ -8,6 +8,7 @@ import {
   type AboutFeaturedSliderState,
 } from "./aboutNavigationState";
 import usePageTransitionReady from "../components/common/usePageTransitionReady";
+import { runAfterPageReady } from "../components/common/navigationRestore";
 
 declare global {
   interface Window {
@@ -82,24 +83,11 @@ export default function AboutNavigationStateRestorer() {
     if (!state || !Number.isFinite(state.scrollY)) return;
 
     clearAboutNavigationState();
-    restoreFeaturedSlider(state.featuredSlider);
-    scrollToPosition(state.scrollY);
 
-    const frameId = window.requestAnimationFrame(() => {
+    return runAfterPageReady(() => {
       restoreFeaturedSlider(state.featuredSlider);
       scrollToPosition(state.scrollY);
-    });
-    const settleTimers = [140, 340, 700].map((delay) =>
-      window.setTimeout(() => {
-        restoreFeaturedSlider(state.featuredSlider);
-        scrollToPosition(state.scrollY);
-      }, delay),
-    );
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      settleTimers.forEach((timer) => window.clearTimeout(timer));
-    };
+    }, { delayMs: 140 });
   }, []);
 
   useLayoutEffect(() => {

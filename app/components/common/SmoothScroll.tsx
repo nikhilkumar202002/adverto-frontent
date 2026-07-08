@@ -22,9 +22,10 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
     const updateScrollTrigger = () => ScrollTrigger.update();
     const scrollToPosition = (top = 0) => {
+      if (typeof window === "undefined") return;
       window.scrollTo(0, top);
       lenis.scrollTo(top, { immediate: true, force: true });
-      ScrollTrigger.refresh();
+      window.requestAnimationFrame(() => ScrollTrigger.refresh());
     };
     const scrollToTop = () => scrollToPosition();
     const handleScrollTo = (event: Event) => {
@@ -35,7 +36,9 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
     lenis.on("scroll", updateScrollTrigger);
     window.addEventListener("adverto:scroll-to", handleScrollTo);
-    scrollToTop();
+    window.requestAnimationFrame(() => {
+      scrollToTop();
+    });
 
     return () => {
       window.removeEventListener("adverto:scroll-to", handleScrollTo);

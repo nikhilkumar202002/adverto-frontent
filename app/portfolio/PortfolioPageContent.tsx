@@ -16,6 +16,7 @@ import Container from "../components/common/Container";
 import InnerBannerHeading from "../components/common/InnerBannerHeading";
 import usePageTransitionReady from "../components/common/usePageTransitionReady";
 import ServiceVideoShowcase from "../service/ServiceVideoShowcase";
+import { runAfterPageReady } from "../components/common/navigationRestore";
 
 type PortfolioProject = {
   slug: string;
@@ -202,8 +203,6 @@ export default function PortfolioPageContent({
     if (!state || !Number.isFinite(state.scrollY)) return;
 
     clearWorksPageState();
-    let frameId = 0;
-    const settleTimers: number[] = [];
     const restore = () => {
       if (state.activeProjectSlug) {
         document
@@ -219,18 +218,7 @@ export default function PortfolioPageContent({
       scrollToPosition(state.scrollY);
     };
 
-    restore();
-    frameId = window.requestAnimationFrame(() => {
-      restore();
-      [120, 300, 650].forEach((delay) => {
-        settleTimers.push(window.setTimeout(restore, delay));
-      });
-    });
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      settleTimers.forEach((timer) => window.clearTimeout(timer));
-    };
+    return runAfterPageReady(restore, { delayMs: 140 });
   }, [motionReady, pathname]);
 
   return (

@@ -8,6 +8,7 @@ import {
   type HomeProjectSliderState,
   type HomeServicesGridState,
 } from "../../homeNavigationState";
+import { runAfterPageReady } from "./navigationRestore";
 
 const scrollToPosition = (top: number) => {
   window.scrollTo(0, top);
@@ -75,24 +76,16 @@ export default function HomeScrollRestore() {
     if (!state || !Number.isFinite(state.scrollY)) return;
 
     clearHomeNavigationState();
+
     const restore = () => {
       restoreProjectSlider(state.projectSlider);
       restoreServicesGrid(state.servicesGrid);
       scrollToPosition(state.scrollY);
     };
 
-    restore();
-    const frameId = window.requestAnimationFrame(() => {
-      restore();
-    });
-    const settleTimers = [80, 180, 360, 700, 1000].map((delay) =>
-      window.setTimeout(restore, delay),
-    );
+    const cleanup = runAfterPageReady(restore, { delayMs: 120 });
 
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      settleTimers.forEach((timer) => window.clearTimeout(timer));
-    };
+    return cleanup;
   }, []);
 
   useLayoutEffect(() => {
