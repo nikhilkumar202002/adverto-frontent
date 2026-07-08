@@ -111,7 +111,15 @@ export default function HomeScrollRestore() {
       }
     };
 
-    const cleanup = runAfterPageReady(restore, { delayMs: 180 });
+    // Restore immediately on first RAF to prevent flickering
+    window.requestAnimationFrame(() => {
+      restore();
+      // Call once more after layout paint to ensure it sticks
+      window.requestAnimationFrame(restore);
+    });
+
+    // Also run after page ready as a fallback for lazy-loaded content
+    const cleanup = runAfterPageReady(restore, { delayMs: 0 });
 
     return cleanup;
   }, []);

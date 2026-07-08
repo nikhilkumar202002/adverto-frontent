@@ -56,7 +56,15 @@ export default function ServiceNavigationStateRestorer() {
       scrollToPosition(state.scrollY);
     };
 
-    return runAfterPageReady(restorePosition, { delayMs: 180 });
+    // Restore immediately on first RAF to prevent flickering
+    window.requestAnimationFrame(() => {
+      restorePosition();
+      // Call once more after layout paint to ensure it sticks
+      window.requestAnimationFrame(restorePosition);
+    });
+
+    // Also run after page ready as a fallback for lazy-loaded content
+    return runAfterPageReady(restorePosition, { delayMs: 0 });
   }, []);
 
   useLayoutEffect(() => {
