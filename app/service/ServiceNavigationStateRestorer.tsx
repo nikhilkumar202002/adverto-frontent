@@ -30,6 +30,10 @@ export default function ServiceNavigationStateRestorer() {
     clearServicePageState();
     const restorePosition = () => {
       if (state.activeServiceHref) {
+        const matchingLink = document.querySelector<HTMLElement>(
+          `[data-service-card-link="${state.activeServiceHref}"]`,
+        );
+
         document
           .querySelectorAll<HTMLElement>("[data-service-card-link]")
           .forEach((link) => {
@@ -38,6 +42,15 @@ export default function ServiceNavigationStateRestorer() {
                 ? "true"
                 : "false";
           });
+
+        if (matchingLink) {
+          const cardTop =
+            window.scrollY + matchingLink.getBoundingClientRect().top - 24;
+          const top = Math.max(0, Math.min(cardTop, state.scrollY));
+
+          scrollToPosition(top);
+          return;
+        }
       }
 
       scrollToPosition(state.scrollY);

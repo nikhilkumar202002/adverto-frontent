@@ -57,9 +57,9 @@ const ScrollTopWhatsapp = () => {
           alt=""
           width={48}
           height={48}
-          loading="lazy"
+          loading="eager"
+          priority
           className="h-12 w-12 object-contain sm:h-14 sm:w-14"
-          priority={false}
         />
       </a>
     </div>

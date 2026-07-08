@@ -56,7 +56,7 @@ const restoreServicesGrid = (
   state: HomeServicesGridState | null | undefined,
   fallbackTop: number,
 ) => {
-  if (!state?.activeServiceHref) return;
+  if (!state?.activeServiceHref) return false;
 
   const matchingCard = document.querySelector<HTMLElement>(
     `[data-home-service-card="${state.activeServiceHref}"]`,
@@ -75,15 +75,17 @@ const restoreServicesGrid = (
     const top = Math.max(0, fallbackTop - 24);
     const cardTop =
       window.scrollY + matchingCard.getBoundingClientRect().top - 24;
+    const scrollTop = Math.max(0, Math.min(cardTop, top));
 
-    window.scrollTo({ top: Math.max(0, Math.min(cardTop, top)) });
+    window.scrollTo({ top: scrollTop });
     window.dispatchEvent(
-      new CustomEvent("adverto:scroll-to", { detail: { top: Math.max(0, Math.min(cardTop, top)) } }),
+      new CustomEvent("adverto:scroll-to", { detail: { top: scrollTop } }),
     );
-    return;
+    return true;
   }
 
   scrollToPosition(fallbackTop);
+  return true;
 };
 
 export default function HomeScrollRestore() {
@@ -100,8 +102,14 @@ export default function HomeScrollRestore() {
 
     const restore = () => {
       restoreProjectSlider(state.projectSlider);
-      restoreServicesGrid(state.servicesGrid, state.scrollY);
-      scrollToPosition(state.scrollY);
+      const servicesRestored = restoreServicesGrid(
+        state.servicesGrid,
+        state.scrollY,
+      );
+
+      if (!servicesRestored) {
+        scrollToPosition(state.scrollY);
+      }
     };
 
     const cleanup = runAfterPageReady(restore, { delayMs: 180 });
