@@ -72,10 +72,9 @@ const restoreServicesGrid = (
     });
 
   if (matchingCard) {
-    const top = Math.max(0, fallbackTop - 24);
     const cardTop =
       window.scrollY + matchingCard.getBoundingClientRect().top - 24;
-    const scrollTop = Math.max(0, Math.min(cardTop, top));
+    const scrollTop = Math.max(0, cardTop);
 
     window.scrollTo({ top: scrollTop });
     window.dispatchEvent(

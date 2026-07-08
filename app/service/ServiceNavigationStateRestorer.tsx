@@ -46,7 +46,7 @@ export default function ServiceNavigationStateRestorer() {
         if (matchingLink) {
           const cardTop =
             window.scrollY + matchingLink.getBoundingClientRect().top - 24;
-          const top = Math.max(0, Math.min(cardTop, state.scrollY));
+          const top = Math.max(0, cardTop);
 
           scrollToPosition(top);
           return;

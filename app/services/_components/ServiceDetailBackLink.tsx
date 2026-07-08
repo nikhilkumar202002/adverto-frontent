@@ -9,16 +9,20 @@ import {
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { hasHomeNavigationState } from "../../homeNavigationState";
-import { ensureServicePageFallbackState } from "../../service/serviceNavigationState";
+import {
+  ensureServicePageFallbackState,
+  hasServicePageState,
+} from "../../service/serviceNavigationState";
 
 export default function ServiceDetailBackLink() {
-  const [backHref] = useState(() =>
-    typeof window !== "undefined" && hasHomeNavigationState()
-      ? "/"
-      : "/services",
-  );
+  const [backHref] = useState(() => {
+    if (typeof window === "undefined") return "/services";
+    if (hasServicePageState()) return "/services";
+    if (hasHomeNavigationState()) return "/";
+    return "/services";
+  });
   const ensureFallback = useCallback(() => {
-    if (hasHomeNavigationState()) return;
+    if (hasHomeNavigationState() || hasServicePageState()) return;
 
     ensureServicePageFallbackState();
   }, []);
