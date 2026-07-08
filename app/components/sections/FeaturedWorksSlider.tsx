@@ -103,7 +103,7 @@ export default function FeaturedWorksSlider({
         }
       `}</style>
 
-      <Reveal waitForPageTransition={waitForPageTransition}>
+      <Reveal waitForPageTransition={waitForPageTransition} amount={0.01} y={40}>
         <div className="w-full overflow-hidden">
           <div
             className="featured-work-track flex w-max transform-gpu items-stretch"

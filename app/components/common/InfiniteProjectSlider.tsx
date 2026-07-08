@@ -121,7 +121,7 @@ export default function InfiniteProjectSlider({
                   alt={project.title}
                   fill
                   decoding="async"
-                  loading="lazy"
+                  loading="eager"
                   quality={72}
                   sizes="(max-width: 640px) 210px, (max-width: 768px) 232px, 260px"
                   className="relative z-0 rounded-[12px] object-cover md:rounded-[15px]"
