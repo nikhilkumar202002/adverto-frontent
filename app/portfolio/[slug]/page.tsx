@@ -92,12 +92,12 @@ export default async function PortfolioProjectPage({ params }: ProjectPageProps)
         </div>
 
         <Reveal y={36} amount={0.08} once waitForPageTransition>
-          <div className="mt-[30px] overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A]">
+          <div className="mt-[30px] h-[100svh] overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] md:h-[720px]">
             <img
               src={project.heroImage}
               alt={project.title}
               loading="lazy"
-              className="h-auto w-full object-cover"
+              className="h-full w-full object-cover"
             />
           </div>
         </Reveal>

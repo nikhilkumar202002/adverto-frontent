@@ -9,8 +9,12 @@ const TILE_COUNT = 12;
 const tiles = Array.from({ length: TILE_COUNT }, (_, index) => index);
 const homeProjectScrollKey = "adverto:home-project-scroll-y";
 const homeProjectRestoreKey = "adverto:home-project-restore-on-return";
+const homeNavigationRestoreKey = "adverto:home-navigation-restore-on-return";
 const portfolioScrollKey = "adverto:portfolio-scroll-y";
 const portfolioRestoreKey = "adverto:portfolio-restore-on-return";
+const worksPageRestoreKey = "adverto:works-page-restore-on-return";
+const servicePageRestoreKey = "adverto:service-page-restore-on-return";
+const aboutRestoreKey = "adverto:about-restore-on-return";
 
 declare global {
   interface Window {
@@ -35,6 +39,43 @@ const shouldRestoreHomePosition = (path: string) =>
 
 const setScrollCookie = (name: string, value: string) => {
   document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=1800; SameSite=Lax`;
+};
+
+const getCookie = (name: string) => {
+  const cookie = document.cookie
+    .split("; ")
+    .find((item) => item.startsWith(`${name}=`));
+
+  return cookie ? decodeURIComponent(cookie.split("=").slice(1).join("=")) : null;
+};
+
+const hasRestoreState = (name: string) =>
+  getCookie(name) === "true" || sessionStorage.getItem(name) === "true";
+
+const shouldPreserveScrollForPath = (path: string) => {
+  if (path === "/") {
+    return (
+      hasRestoreState(homeNavigationRestoreKey) ||
+      hasRestoreState(homeProjectRestoreKey)
+    );
+  }
+
+  if (path === "/portfolio" || path === "/works") {
+    return (
+      hasRestoreState(worksPageRestoreKey) ||
+      hasRestoreState(portfolioRestoreKey)
+    );
+  }
+
+  if (path === "/service" || path === "/services") {
+    return hasRestoreState(servicePageRestoreKey);
+  }
+
+  if (path === "/about-us" || path === "/about") {
+    return hasRestoreState(aboutRestoreKey);
+  }
+
+  return false;
 };
 
 const saveHomeProjectScroll = (currentPath: string, nextPath: string) => {
@@ -187,7 +228,7 @@ export default function PageTransition() {
       event.stopImmediatePropagation();
       coverPage(
         `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`,
-        isPortfolioDetailPath(nextUrl.pathname),
+        !shouldPreserveScrollForPath(nextUrl.pathname),
       );
     };
 

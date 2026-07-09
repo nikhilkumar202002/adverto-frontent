@@ -196,7 +196,7 @@ export default function PortfolioPageContent({
   );
 
   useLayoutEffect(() => {
-    if (!worksIndexPathnames.has(pathname) || !motionReady) return;
+    if (!worksIndexPathnames.has(pathname)) return;
 
     const state = getWorksPageState();
 
@@ -218,8 +218,24 @@ export default function PortfolioPageContent({
       scrollToPosition(state.scrollY);
     };
 
-    return runAfterPageReady(restore, { delayMs: 180 });
-  }, [motionReady, pathname]);
+    let firstFrameId = 0;
+    let secondFrameId = 0;
+
+    restore();
+
+    firstFrameId = window.requestAnimationFrame(() => {
+      restore();
+      secondFrameId = window.requestAnimationFrame(restore);
+    });
+
+    const cleanupAfterReady = runAfterPageReady(restore, { delayMs: 180 });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrameId);
+      window.cancelAnimationFrame(secondFrameId);
+      cleanupAfterReady();
+    };
+  }, [pathname]);
 
   return (
     <section className="relative bg-[#050505] pb-[25px] pt-32 md:pb-32 md:pt-40">

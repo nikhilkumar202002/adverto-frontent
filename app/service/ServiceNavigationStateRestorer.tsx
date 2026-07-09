@@ -6,7 +6,6 @@ import {
   clearServicePageState,
   readServicePageState,
 } from "./serviceNavigationState";
-import usePageTransitionReady from "../components/common/usePageTransitionReady";
 import { runAfterPageReady } from "../components/common/navigationRestore";
 
 const serviceListPathnames = new Set(["/service", "/services"]);
@@ -18,7 +17,6 @@ const scrollToPosition = (top: number) => {
 
 export default function ServiceNavigationStateRestorer() {
   const pathname = usePathname();
-  const pageTransitionReady = usePageTransitionReady(true);
 
   const restore = useCallback(() => {
     if (!serviceListPathnames.has(window.location.pathname)) return;
@@ -29,11 +27,8 @@ export default function ServiceNavigationStateRestorer() {
 
     clearServicePageState();
     const restorePosition = () => {
+      // Mark the active service card if one exists
       if (state.activeServiceHref) {
-        const matchingLink = document.querySelector<HTMLElement>(
-          `[data-service-card-link="${state.activeServiceHref}"]`,
-        );
-
         document
           .querySelectorAll<HTMLElement>("[data-service-card-link]")
           .forEach((link) => {
@@ -42,17 +37,9 @@ export default function ServiceNavigationStateRestorer() {
                 ? "true"
                 : "false";
           });
-
-        if (matchingLink) {
-          const cardTop =
-            window.scrollY + matchingLink.getBoundingClientRect().top - 24;
-          const top = Math.max(0, cardTop);
-
-          scrollToPosition(top);
-          return;
-        }
       }
 
+      // Restore to the saved scroll position
       scrollToPosition(state.scrollY);
     };
 
@@ -68,10 +55,10 @@ export default function ServiceNavigationStateRestorer() {
   }, []);
 
   useLayoutEffect(() => {
-    if (!serviceListPathnames.has(pathname) || !pageTransitionReady) return;
+    if (!serviceListPathnames.has(pathname)) return;
 
     return restore();
-  }, [pageTransitionReady, pathname, restore]);
+  }, [pathname, restore]);
 
   return null;
 }

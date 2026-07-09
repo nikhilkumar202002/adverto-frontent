@@ -40,43 +40,103 @@ export default function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [pendingHref, setPendingHref] = useState<string | null>(null);
   const lastScrollYRef = useRef(0);
+  const animationFrameRef = useRef(0);
+  const transparentSectionBoundsRef = useRef<Array<{ top: number; bottom: number }>>([]);
+  const navbarStateRef = useRef({
+    hasScrolled: false,
+    isTransparent: false,
+    isVisible: true,
+  });
   const activePath = pendingHref ?? pathname;
 
   useEffect(() => {
-    setPendingHref(null);
-    setIsOpen(false);
+    const frameId = window.requestAnimationFrame(() => {
+      setPendingHref(null);
+      setIsOpen(false);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+    };
   }, [pathname]);
 
   useEffect(() => {
     lastScrollYRef.current = window.scrollY;
 
-    const onScroll = () => {
+    const measureTransparentSections = () => {
+      transparentSectionBoundsRef.current = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-navbar-transparent]")
+      ).map((section) => {
+        const rect = section.getBoundingClientRect();
+        const top = rect.top + window.scrollY;
+
+        return {
+          top,
+          bottom: top + rect.height,
+        };
+      });
+    };
+
+    const updateNavbarState = () => {
+      animationFrameRef.current = 0;
+
       const currentScrollY = window.scrollY;
       const scrollingUp = currentScrollY < lastScrollYRef.current;
       const nearTop = currentScrollY < 12;
       const stickyActive = currentScrollY > 12;
       const navProbeY = currentScrollY + 96;
-      const transparentSection = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-navbar-transparent]")
-      ).some((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
+      const transparentSection = transparentSectionBoundsRef.current.some(
+        ({ top, bottom }) => navProbeY >= top && navProbeY <= bottom,
+      );
+      const nextState = {
+        hasScrolled: stickyActive,
+        isTransparent: nearTop || (transparentSection && !stickyActive),
+        isVisible: nearTop || scrollingUp || transparentSection,
+      };
+      const previousState = navbarStateRef.current;
 
-        return navProbeY >= sectionTop && navProbeY <= sectionBottom;
-      });
+      if (previousState.hasScrolled !== nextState.hasScrolled) {
+        setHasScrolled(nextState.hasScrolled);
+      }
 
-      setHasScrolled(stickyActive);
-      setIsTransparent(nearTop || (transparentSection && !stickyActive));
-      setIsVisible(nearTop || scrollingUp || transparentSection);
+      if (previousState.isTransparent !== nextState.isTransparent) {
+        setIsTransparent(nextState.isTransparent);
+      }
+
+      if (previousState.isVisible !== nextState.isVisible) {
+        setIsVisible(nextState.isVisible);
+      }
+
+      navbarStateRef.current = nextState;
       lastScrollYRef.current = currentScrollY;
     };
 
-    onScroll();
+    const requestNavbarUpdate = () => {
+      if (animationFrameRef.current) return;
+
+      animationFrameRef.current = window.requestAnimationFrame(updateNavbarState);
+    };
+
+    const onScroll = () => {
+      requestNavbarUpdate();
+    };
+
+    const onResize = () => {
+      measureTransparentSections();
+      requestNavbarUpdate();
+    };
+
+    measureTransparentSections();
+    updateNavbarState();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
     return () => {
+      if (animationFrameRef.current) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 

@@ -2,7 +2,6 @@
 
 import { useEffect, type ReactNode } from "react";
 import Lenis from "lenis";
-import "lenis/dist/lenis.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
@@ -20,7 +19,11 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       syncTouch: false,
     });
 
-    const updateScrollTrigger = () => ScrollTrigger.update();
+    const updateScrollTrigger = () => {
+      if (ScrollTrigger.getAll().length > 0) {
+        ScrollTrigger.update();
+      }
+    };
     const scrollToPosition = (top = 0) => {
       if (typeof window === "undefined") return;
       window.scrollTo(0, top);

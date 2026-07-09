@@ -58,10 +58,6 @@ const restoreServicesGrid = (
 ) => {
   if (!state?.activeServiceHref) return false;
 
-  const matchingCard = document.querySelector<HTMLElement>(
-    `[data-home-service-card="${state.activeServiceHref}"]`,
-  );
-
   document
     .querySelectorAll<HTMLElement>("[data-home-service-card]")
     .forEach((card) => {
@@ -70,18 +66,6 @@ const restoreServicesGrid = (
           ? "true"
           : "false";
     });
-
-  if (matchingCard) {
-    const cardTop =
-      window.scrollY + matchingCard.getBoundingClientRect().top - 24;
-    const scrollTop = Math.max(0, cardTop);
-
-    window.scrollTo({ top: scrollTop });
-    window.dispatchEvent(
-      new CustomEvent("adverto:scroll-to", { detail: { top: scrollTop } }),
-    );
-    return true;
-  }
 
   scrollToPosition(fallbackTop);
   return true;

@@ -7,7 +7,6 @@ import {
   readAboutNavigationState,
   type AboutFeaturedSliderState,
 } from "./aboutNavigationState";
-import usePageTransitionReady from "../components/common/usePageTransitionReady";
 import { runAfterPageReady } from "../components/common/navigationRestore";
 
 declare global {
@@ -73,7 +72,6 @@ const restoreFeaturedSlider = (state: AboutFeaturedSliderState | null) => {
 
 export default function AboutNavigationStateRestorer() {
   const pathname = usePathname();
-  const pageTransitionReady = usePageTransitionReady(true);
 
   const restore = useCallback(() => {
     if (!aboutPathnames.has(window.location.pathname)) return;
@@ -84,17 +82,37 @@ export default function AboutNavigationStateRestorer() {
 
     clearAboutNavigationState();
 
-    return runAfterPageReady(() => {
+    const restorePosition = () => {
       restoreFeaturedSlider(state.featuredSlider);
       scrollToPosition(state.scrollY);
-    }, { delayMs: 180 });
+    };
+
+    let firstFrameId = 0;
+    let secondFrameId = 0;
+
+    restorePosition();
+
+    firstFrameId = window.requestAnimationFrame(() => {
+      restorePosition();
+      secondFrameId = window.requestAnimationFrame(restorePosition);
+    });
+
+    const cleanupAfterReady = runAfterPageReady(restorePosition, {
+      delayMs: 180,
+    });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrameId);
+      window.cancelAnimationFrame(secondFrameId);
+      cleanupAfterReady();
+    };
   }, []);
 
   useLayoutEffect(() => {
-    if (!aboutPathnames.has(pathname) || !pageTransitionReady) return;
+    if (!aboutPathnames.has(pathname)) return;
 
     return restore();
-  }, [pageTransitionReady, pathname, restore]);
+  }, [pathname, restore]);
 
   useEffect(() => {
     const handlePageShow = () => {
